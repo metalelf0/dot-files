@@ -1,0 +1,57 @@
+startup_message off
+nethack on
+vbell off
+startup_message off
+  
+#terminfo and termcap for nice 256 color terminal
+ # allow bold colors - necessary for some reason
+attrcolor b ".I"
+# erase background with current bg color
+defbce "on"
+
+# utf8 on on
+defutf8 on
+encoding UTF-8
+defencoding UTF-8
+
+bind ^r screen su -
+bind ^h colon "screen man -a "
+#bind v search "vim "
+bind b select links
+bind c select zsh
+bind m select man
+bind t select htop
+bind r select su
+
+# eleet screen saver :D
+#blankerprg nice -n 19 cmatrix -asbu 2
+
+#idle 180 lockscreen
+
+# caption always
+caption always "%{=b Wk}%-w%{= bW}%t%{-} %+w%-=%{rY} %c %d%M"
+
+autodetach on
+
+# XXX: try this
+#windowlist string "%u"
+#windowlist
+#windowlist string "%{W}%3n %{+b y}%t%{r}%=%f "
+windowlist title "Num F      Title"
+windowlist string "%{W}%3n %{+b r}%6f %011=%{y}%t"
+
+#bind "" windowlist -m -b
+
+bind ^j focus down
+bind ^k focus up
+bind k
+
+# source .screenrc-${SHLVL}
+
+# vi:ft=screen:
+
+attrcolor b ".I" 
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
+termcapinfo xterm-color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+defbce "on" 
+term screen-256color 
