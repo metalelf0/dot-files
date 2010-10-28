@@ -5,14 +5,21 @@ syn on
 
 call pathogen#runtime_prepend_subdirectories(expand('~/.vimbundles'))
 
-set tabstop=2
-set smarttab
-set shiftwidth=2
-set autoindent
-set expandtab
+set tabstop=2      " a tab is 2 spaces
+set smarttab       " insert tab at BOL based on shiftwidth, not tabstop
+set shiftwidth=2   " number of spaces to use for autoindenting
+set autoindent     " always auto indent code
+set expandtab      " use spaces instead of tabs
+set hidden         " stop vim complaining about unsaved files when switching buffers
+set number         " always display line number
+set shiftround     " use multiple of shiftwidth when indenting with '<' and '>'
+set hlsearch       " highlight search terms
+set incsearch      " search as you type
+set nobackup       " stop using backups
+set noswapfile     " and stop using swapfiles!
+
 set tags=./ctags;
-set grepprg=ack;
-set cpoptions+=$
+set cpoptions+=$   " put a $ marker to show where I am changing text
 map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
 map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
 map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
@@ -30,7 +37,7 @@ noremap <silent> ,ml <C-W>L
 noremap <silent> ,mk <C-W>K
 noremap <silent> ,mh <C<silent> ,l :wincmd l<cr>
 noremap <silent> ,cj :wincmd j<cr>
-colorscheme herald
+colorscheme mustang " sea colorscheme sucks with CSApprox
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
   let isfirst = 1
@@ -57,4 +64,17 @@ function! s:RunShellCommand(cmdline)
 endfunction
 ca shell Shell
 autocmd filetype css setlocal equalprg=csstidy\ -\ --silent=true 
-
+" markdown specific configuration
+augroup mkd
+autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
+augroup END
+if has('gui_running')
+  if has("gui_macvim")
+    macmenu &File.New\ Tab key=<nop>
+    map <D-t> :CommandT<CR>
+  endif
+  colorscheme liquidcarbon
+  set guioptions-=r
+  set lines=100 columns=400
+  set guifont=Liberation_Mono_Regular:h12.00 " For GUI options
+endif
