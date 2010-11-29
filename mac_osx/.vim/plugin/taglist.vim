@@ -445,7 +445,7 @@ let s:tlist_def_rexx_settings = 'rexx;s:subroutine'
 
 " ruby language
 let s:tlist_def_ruby_settings = 'ruby;c:class;f:method;F:function;' .
-                              \ 'm:singleton method;d:describe;C:context'
+                              \ 'm:singleton method'
 
 " scheme language
 let s:tlist_def_scheme_settings = 'scheme;s:set;f:function'
