@@ -5,3 +5,4 @@ filetype plugin indent on
 syntax on
 colo Vitamins_Vim_Colorscheme_by_hcalves 
 set gfn=Terminus\ 13
+set number
