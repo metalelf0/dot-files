@@ -31,7 +31,8 @@ set guioptions-=L
 
 
 " Default gui color scheme
-color github
+set background=dark
+color solarized
 
 " ConqueTerm wrapper
 function StartTerm()
