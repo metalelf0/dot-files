@@ -97,7 +97,8 @@ set modeline
 set modelines=10
 
 " Default color scheme
-color desert
+set bg=dark
+color solarized
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))

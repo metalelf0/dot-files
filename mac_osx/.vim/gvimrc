@@ -2,6 +2,7 @@
 if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
+  set guifont=Terminus:h16
 
   " Command-T for CommandT
   macmenu &File.New\ Tab key=<nop>
@@ -22,7 +23,8 @@ endif
 set guioptions-=T
 
 " Default gui color scheme
-color molokai
+set background=dark
+color solarized
 
 " ConqueTerm wrapper
 function StartTerm()
