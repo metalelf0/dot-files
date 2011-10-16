@@ -26,7 +26,8 @@ hi FoldColumn   guibg=#800080 guifg=tan
 "hi IncSearch   cterm=none ctermbg=blue ctermfg=grey guifg=slategrey guibg=khaki
 hi ModeMsg guifg=#404040 guibg=#C0C0C0
 hi MoreMsg guifg=darkturquoise guibg=#188F90
-hi NonText guibg=#334C75 guifg=#9FADC5
+"hi NonText guibg=#334C75 guifg=#9FADC5
+hi NonText guibg=#162A4E guifg=#9FADC5
 hi Question     guifg=#F4BB7E
 hi Search guibg=fg guifg=bg 
 hi SpecialKey   guifg=#BF9261

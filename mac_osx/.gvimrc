@@ -1,1 +1,0 @@
-/Users/metalelf0/.vim/gvimrc
