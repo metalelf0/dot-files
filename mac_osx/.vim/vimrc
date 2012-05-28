@@ -36,15 +36,17 @@ set laststatus=2
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
 
+"if !has('gui_running')
+  "let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
+"endif
+
+
 " NERDTree configuration
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
+map <Leader><Leader> :NERDTreeToggle<CR>
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
-
-" ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
 
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
@@ -90,6 +92,9 @@ set backspace=indent,eol,start
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
 
+" double tap esc to clear highlighting after search
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -104,6 +109,14 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " :w!! saves a file as root
 cmap w!! w !sudo tee % >/dev/null
+cmap W call RetabAndSave()
+
+function RetabAndSave()
+  %s/\s\+$//e
+  retab
+  w
+endfunction
+
 
 " Unimpaired configuration
 " Bubble single lines
@@ -131,12 +144,19 @@ endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 
+let g:github_user="metalelf0"
+let g:github_token="73f78c03a891246e6d1657c839e3ea6b"
+
 " Use modeline overrides
 set modeline
 set modelines=10
 
 " Default color scheme
-color mustang
+"color lucius
+color smyck
+let g:solarized_termcolors = 256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 
 " Directories for swp files
 set backupdir=~/.vim/backup
@@ -161,4 +181,20 @@ endif
 
 " vim-pad configuration
 let g:pad_dir = "~/notes/"
+source $HOME/.simplenoterc
+
+function ListTodos()
+  noautocmd vimgrep /#TODO/j **/*
+  cw
+endfunction
+
+function ReindentHtml()
+  execute "set ft=html<cr>set si<cr>gg=G<cr>"
+endfunction
+
+" drastic remaps!
+map H ^
+map L $
+inoremap kj <Esc>
+"nnoremap ; :
 
