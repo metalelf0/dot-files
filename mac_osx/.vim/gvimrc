@@ -4,14 +4,16 @@ if has("gui_macvim")
 
   " gui and colorscheme
   "set guifont=Bitstream\ Vera\ Sans\ Mono:h10
-  set guifont=Inconsolata-dz:h10
-  set antialias
+  "set guifont=Inconsolata-dz:h10
+  set guifont=ProggyTiny:h11
+  set noantialias
   colorscheme smyck
 
 " Start without the toolbar
   set guioptions-=T
   set guioptions-=L
   set guioptions-=r
+  set guioptions-=e
 
   " Command-T for CommandT
   macmenu &File.New\ Tab key=<D-T>

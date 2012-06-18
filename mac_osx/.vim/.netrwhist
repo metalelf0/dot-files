@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Users/aschiavini/Documents/codice_elf0/bitmama/nau-ottica'
+let g:netrw_dirhist_2='/Users/aschiavini/.rvm/gems/ruby-1.9.3-p0@nau_ottica/gems/spree_core-1.1.0'
+let g:netrw_dirhist_3='/Users/aschiavini/Documents/codice_elf0/bitmama/nau-ottica'
+let g:netrw_dirhist_4='/Users/aschiavini/Documents/codice_elf0/bitmama/zegnaaw12'
+let g:netrw_dirhist_5='/Users/aschiavini/Documents/codice_elf0'
+let g:netrw_dirhist_6='/Users/aschiavini/Documents/codice_elf0/Hemisu'
+let g:netrw_dirhist_7='/Users/aschiavini/Documents/codice_elf0/bitmama/zegnaaw12'
+let g:netrw_dirhist_8='/Users/aschiavini/Documents/codice_elf0/bitmama/nau-ottica'
