@@ -2,11 +2,10 @@ if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
 
-  " gui and colorscheme
-  "set guifont=Bitstream\ Vera\ Sans\ Mono:h10
-  "set guifont=Inconsolata-dz:h10
-  set guifont=ProggyTiny:h11
-  set noantialias
+  " gui and colorschem
+  set guifont=Tamsyn7x14-Medium:h14
+  set linespace=2
+  set antialias
   colorscheme smyck
 
 " Start without the toolbar

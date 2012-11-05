@@ -1,7 +1,7 @@
 set t_Co=256
 set nocompatible
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
 set number
 set ruler
 syntax on
@@ -28,6 +28,7 @@ set noequalalways
 " NERDTree configuration
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
 map <Leader><Leader> :NERDTreeToggle<CR>
+map <Leader>f :NERDTreeFind<CR>
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
@@ -129,6 +130,9 @@ set modelines=10
 " Default color scheme
 "color lucius
 color smyck
+"color codeschool-skia
+"color smyck 
+"color rootwater
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
@@ -179,3 +183,46 @@ inoremap <C-s> <esc>:w<CR>
 
 let @l='Hilet(:WbEa)f=r{A }jH^M'
 
+" CtrlP settings
+let g:ctrlp_working_path_mode = 0
+
+set rtp+=~/.vim/bundle/vundle/
+ call vundle#rc()
+
+ " let Vundle manage Vundle
+ " required! 
+ Bundle 'gmarik/vundle'
+
+ " My Bundles here:
+ "
+  Bundle 'aerosol/vim-compot.git'
+  Bundle 'bbommarito/vim-slim'
+  Bundle 'ervandew/supertab.git'
+  Bundle 'jgdavey/tslime.vim.git'
+  Bundle 'julienXX/Hemisu'
+  Bundle 'kchmck/vim-coffee-script.git'
+  Bundle 'kien/ctrlp.vim.git'
+  Bundle 'metalelf0/Hemisu'
+  Bundle 'metalelf0/vim-vroom.git'
+  Bundle 'metalelf0/vimt0d0.git'
+  Bundle 'mileszs/ack.vim.git'
+  Bundle 'nathanaelkane/vim-indent-guides.git'
+  Bundle 'niklasl/vimheap'
+  Bundle 'programble/itchy.vim.git'
+  Bundle 'scrooloose/nerdcommenter.git'
+  Bundle 'scrooloose/nerdtree.git'
+  Bundle 'scrooloose/syntastic.git'
+  Bundle 'sjl/badwolf.git'
+  Bundle 'tpope/vim-abolish.git'
+  Bundle 'tpope/vim-fugitive.git'
+  Bundle 'tpope/vim-markdown.git'
+  Bundle 'tpope/vim-rails.git'
+  Bundle 'tpope/vim-surround.git'
+  Bundle 'vim-ruby/vim-ruby.git'
+  Bundle 'vim-scripts/blackboard.vim'
+  Bundle 'vim-scripts/vim-json-bundle'
+  Bundle 'bingaman/vim-sparkup.git'
+  Bundle 'tpope/vim-bundler.git'
+  Bundle 'chriskempson/base16-vim'
+
+ filetype plugin indent on     " required!
