@@ -129,17 +129,16 @@ set modelines=10
 
 " Default color scheme
 "color lucius
-color smyck
 "color codeschool-skia
-"color smyck 
+"color smyck
 "color rootwater
 let g:solarized_termcolors = 256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 
 " Directories for swp files
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
+set backupdir=~/.vim_backup
+set directory=~/.vim_backup
 
 " Turn off jslint errors by default
 let g:JSLintHighlightErrorLine = 0
@@ -190,7 +189,7 @@ set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
 
  " let Vundle manage Vundle
- " required! 
+ " required!
  Bundle 'gmarik/vundle'
 
  " My Bundles here:
@@ -203,6 +202,7 @@ set rtp+=~/.vim/bundle/vundle/
   Bundle 'kchmck/vim-coffee-script.git'
   Bundle 'kien/ctrlp.vim.git'
   Bundle 'metalelf0/Hemisu'
+  Bundle 'metalelf0/Smyck-Color-Scheme.git'
   Bundle 'metalelf0/vim-vroom.git'
   Bundle 'metalelf0/vimt0d0.git'
   Bundle 'mileszs/ack.vim.git'
@@ -227,3 +227,5 @@ set rtp+=~/.vim/bundle/vundle/
 
  filetype plugin indent on     " required!
  set foldlevelstart=20
+
+color smyck
