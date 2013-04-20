@@ -3,8 +3,6 @@
 " Last Change: Dec 28, 2010
 " Version: 0.3
 
-let colors_name = "underwater-mod"
-
 set background=dark
 hi clear
 
@@ -12,6 +10,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
+let colors_name = "underwater-mod"
 
 if version >= 700
     hi CursorLine       guibg=#18374F

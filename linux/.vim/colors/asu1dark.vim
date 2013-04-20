@@ -35,25 +35,25 @@ hi Cursor                            ctermfg=Black       ctermbg=Cyan
 hi LineNr       term=NONE cterm=NONE ctermfg=Red         ctermbg=Black
 
 " GUI Color Scheme
-hi Normal       gui=NONE     guifg=White   guibg=#110022
-hi NonText      gui=NONE     guifg=#ff9999 guibg=#444444
-hi Function     gui=NONE     guifg=#7788ff guibg=#110022
-hi Statement    gui=BOLD     guifg=Yellow  guibg=#110022
-hi Special      gui=NONE     guifg=Cyan    guibg=#110022
-hi Constant     gui=NONE     guifg=#ff9900 guibg=#110022
-hi Comment      gui=NONE     guifg=#99cc99 guibg=#110022
-hi Preproc      gui=NONE     guifg=#33ff66 guibg=#110022
-hi Type         gui=NONE     guifg=#ff5577 guibg=#110022
-hi Identifier   gui=NONE     guifg=Cyan    guibg=#110022
-hi StatusLine   gui=BOLD     guifg=White   guibg=#336600
-hi StatusLineNC gui=NONE     guifg=Black   guibg=#cccccc
-hi Visual       gui=NONE     guifg=White   guibg=#00aa33
+hi Normal       gui=NONE     guifg=White   guibg=#110022 ctermbg=233
+hi NonText      gui=NONE     guifg=#ff9999 ctermfg=210 guibg=#444444 ctermbg=238
+hi Function     gui=NONE     guifg=#7788ff ctermfg=105 guibg=#110022 ctermbg=233
+hi Statement    gui=BOLD     guifg=Yellow  guibg=#110022 ctermbg=233
+hi Special      gui=NONE     guifg=Cyan    guibg=#110022 ctermbg=233
+hi Constant     gui=NONE     guifg=#ff9900 ctermfg=208 guibg=#110022 ctermbg=233
+hi Comment      gui=NONE     guifg=#99cc99 ctermfg=114 guibg=#110022 ctermbg=233
+hi Preproc      gui=NONE     guifg=#33ff66 ctermfg=83 guibg=#110022 ctermbg=233
+hi Type         gui=NONE     guifg=#ff5577 ctermfg=204 guibg=#110022 ctermbg=233
+hi Identifier   gui=NONE     guifg=Cyan    guibg=#110022 ctermbg=233
+hi StatusLine   gui=BOLD     guifg=White   guibg=#336600 ctermbg=58
+hi StatusLineNC gui=NONE     guifg=Black   guibg=#cccccc ctermbg=252
+hi Visual       gui=NONE     guifg=White   guibg=#00aa33 ctermbg=35
 hi Search       gui=BOLD     guibg=Yellow  guifg=DarkBlue
-hi VertSplit    gui=NONE     guifg=White   guibg=#666666
-hi Directory    gui=NONE     guifg=Green   guibg=#110022
-hi WarningMsg   gui=STANDOUT guifg=#0000cc guibg=Yellow
+hi VertSplit    gui=NONE     guifg=White   guibg=#666666 ctermbg=241
+hi Directory    gui=NONE     guifg=Green   guibg=#110022 ctermbg=233
+hi WarningMsg   gui=STANDOUT guifg=#0000cc ctermfg=20 guibg=Yellow
 hi Error        gui=NONE     guifg=White   guibg=Red
-hi Cursor                    guifg=White   guibg=#00ff33
-hi LineNr       gui=NONE     guifg=#cccccc guibg=#334444
+hi Cursor                    guifg=White   guibg=#00ff33 ctermbg=47
+hi LineNr       gui=NONE     guifg=#cccccc ctermfg=252 guibg=#334444 ctermbg=237
 hi ModeMsg      gui=NONE     guifg=Blue    guibg=White
-hi Question     gui=NONE     guifg=#66ff99 guibg=#110022
+hi Question     gui=NONE     guifg=#66ff99 ctermfg=84 guibg=#110022 ctermbg=233
