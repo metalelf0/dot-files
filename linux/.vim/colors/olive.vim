@@ -51,7 +51,7 @@ hi WarningMsg           guifg=palevioletred
 " ============================================================
 " syntax highlighting groups
 " ============================================================
-hi Comment              guifg=darkkhaki     guibg=#4C4C00       gui=underline 
+hi Comment              guifg=darkkhaki     guibg=#4C4C00
 
 hi Constant             guifg=navajowhite
 hi String               guifg=greenyellow
@@ -82,7 +82,7 @@ hi Type                 guifg=goldenrod
 "hi Structure
 "hi Typedef
 
-hi Special              guifg=navajowhite                       gui=underline
+hi Special              guifg=navajowhite
 "hi SpecialChar
 "hi Tag
 "hi Delimiter

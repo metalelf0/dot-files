@@ -1,0 +1,1 @@
+/home/metalelf0/.vim/bundle/vim-coffee-script/ftdetect/coffee.vim
