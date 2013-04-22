@@ -207,4 +207,11 @@ inoremap kj <Esc>
 let g:molokai_original=0
 color molokai
 
-so passwords.vim
+" }}}
+
+" Extra vimrc {{{
+let s:extrarc = expand($HOME . '/.vim/passwords.vim')
+if filereadable(s:extrarc)
+    exec ':so ' . s:extrarc
+endif
+" }}} 
