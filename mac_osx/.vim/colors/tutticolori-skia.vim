@@ -29,7 +29,7 @@ highlight StatusLine                guifg=#888888 guibg=#ffffff
 highlight StatusLineNC              guifg=#bbbbbb guibg=#ffffff
 highlight VertSplit                 guifg=#888888 guibg=#ffffff
 
-highlight Comment                   guifg=#999999 guibg=#eeeeee gui=italic
+highlight Comment                   guifg=#999999 guibg=#eeeeee gui=NONE
 highlight Constant                  guifg=#d44950 guibg=NONE
 highlight Error                     guifg=#f9f2ce guibg=#f9323a
 highlight Identifier                guifg=#3a1d72 guibg=NONE              

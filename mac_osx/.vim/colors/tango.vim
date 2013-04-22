@@ -1,78 +1,77 @@
-"
-" Tango Vim Color Scheme
-" =======================
-"
-" For best results, set up your terminal with a Tango palette.
-" Instructions for GNOME Terminal:
-" http://uwstopia.nl/blog/2006/07/tango-terminal
-"
-" author:   Michele Campeotto <micampe@micampe.it>
-"
-set background=dark
-
-hi clear
+" Vim color file
+" Author: Taylon Silmer <taylonsilva@gmail.com>
+" Version: 0.1
+set background=light
+highlight clear
 if exists("syntax_on")
     syntax reset
 endif
-
-let colors_name = "tango"
-
-" Default Colors
-hi Normal       guifg=#eeeeec guibg=#000000
-hi NonText      guifg=#555753 guibg=#000000 gui=none
-hi NonText      ctermfg=darkgray
-hi Cursor       guibg=#d3d7cf
-hi lCursor      guibg=#d3d7cf
-
+ 
+let g:colors_name = "tango"
+ 
+if exists("g:bg_tango") && g:bg_tango == 1
+    highlight Normal gui=none guifg=#2e3436 guibg=#eeeeec
+else
+    highlight Normal gui=none guifg=#2e3436 guibg=#ffffff
+endif
+ 
 " Search
-hi Search       guifg=#eeeeec guibg=#c4a000
-hi Search       cterm=none ctermfg=grey ctermbg=blue
-hi IncSearch    guibg=#eeeeec guifg=#729fcf
-hi IncSearch    cterm=none ctermfg=yellow ctermbg=green
+highlight IncSearch gui=underline guifg=#555753 guibg=#fce94f
+highlight Search gui=none guifg=#555753 guibg=#fce94f
 
-" Window Elements
-hi StatusLine   guifg=#eeeeec guibg=#4e9a06 gui=bold
-hi StatusLine   ctermfg=white ctermbg=green cterm=bold
-hi StatusLineNC guifg=#d3d7df guibg=#4e9a06
-hi StatusLineNC ctermfg=lightgray ctermbg=darkgreen
-hi VertSplit    guifg=#eeeeec guibg=#eeeeec
-hi Folded       guifg=#eeeeec guibg=#75507b
-hi Folded       ctermfg=white ctermbg=magenta
-hi Visual       guifg=#d3d7cf guibg=#4e9a06
-hi Visual       ctermbg=white ctermfg=lightgreen cterm=reverse
-
-" Specials
-hi Todo         guifg=#8ae234 guibg=#4e9a06 gui=bold
-hi Todo         ctermfg=white ctermbg=green
-hi Title        guifg=#eeeeec gui=bold
-hi Title        ctermfg=white cterm=bold
-
-" Syntax
-hi Constant     guifg=#c4a000
-hi Constant     ctermfg=darkyellow
-hi Number       guifg=#729fcf
-hi Number       ctermfg=darkblue
-hi Statement    guifg=#4e9a06 gui=bold
-hi Statement    ctermfg=green
-hi Identifier   guifg=#8ae234
-hi Identifier   ctermfg=darkgreen
-hi PreProc      guifg=#cc0000
-hi PreProc      ctermfg=darkred
-hi Comment      guifg=#06989a gui=italic
-hi Comment      ctermfg=cyan cterm=none
-hi Type         guifg=#d3d7cf gui=bold
-hi Type         ctermfg=gray cterm=bold
-hi Special      guifg=#75507b
-hi Special      ctermfg=magenta cterm=none
-hi Error        guifg=#eeeeec guibg=#ef2929
-hi Error        ctermfg=white ctermbg=red
-
+" Messages
+highlight ErrorMsg gui=bold guifg=#eeeeec guibg=#cc0000
+highlight WarningMsg gui=bold guifg=#eeeeec guibg=#cc0000
+highlight ModeMsg gui=bold guifg=#2e3436 guibg=bg
+highlight MoreMsg gui=none guifg=#204a87 guibg=bg
+highlight Question gui=none guifg=#4e9a06 guibg=bg
+ 
+" Split area
+highlight StatusLine gui=none guifg=#eeeeec guibg=#3465a4
+highlight StatusLineNC gui=none guifg=#eeeeec guibg=#729fcf
+highlight VertSplit gui=none guifg=#d3d7cf guibg=#204a87
+highlight WildMenu gui=none guifg=#2e3436 guibg=#eeeeec
+ 
 " Diff
-hi DiffAdd      guifg=fg guibg=#3465a4 gui=none
-hi DiffAdd      ctermfg=gray ctermbg=blue cterm=none
-hi DiffChange   guifg=fg guibg=#555753 gui=none
-hi DiffChange   ctermfg=gray ctermbg=darkgray cterm=none
-hi DiffDelete   guibg=bg
-hi DiffDelete   ctermfg=gray ctermbg=none cterm=none
-hi DiffText     guifg=fg guibg=#c4a000 gui=none
-hi DiffText     ctermfg=gray ctermbg=yellow cterm=none
+highlight DiffText gui=bold guifg=#2e3436 guibg=#ad7fa8
+highlight DiffChange gui=none guifg=bg guibg=#ad7fa8
+highlight DiffDelete gui=none guifg=bg guibg=#eeeeec
+highlight DiffAdd gui=none guifg=#3465a4 guibg=#eeeeec
+ 
+" Cursor
+highlight Cursor gui=none guifg=#eeeeec guibg=#729fcf
+highlight MatchParen gui=bold guifg=#eeeeec guibg=#ce5c00
+ 
+" Fold
+highlight Folded gui=none guifg=#555753 guibg=#eeeeec
+highlight FoldColumn gui=none guifg=#888a85 guibg=#eeeeec
+ 
+" Popup Menu
+highlight PMenu guifg=#eeeeec guibg=#555753
+highlight PMenuSel guifg=#2e3436 guibg=#eeeeec
+highlight PMenuSBar guifg=#2e3436 guibg=#eeeeec
+highlight PMenuThumb guifg=#2e3436 guibg=#eeeeec
+ 
+" Other
+highlight Directory gui=none guifg=#204a87 guibg=bg
+highlight LineNr gui=none guifg=#888a85 guibg=#eeeeec
+highlight NonText gui=none guifg=#555753 guibg=#eeeeec
+highlight SpecialKey gui=none guifg=#75507b guibg=bg
+highlight Title gui=bold guifg=#3465a4 guibg=bg
+highlight Visual gui=none guifg=#555753 guibg=#eeeeec
+ 
+" Syntax group
+highlight Comment gui=none guifg=#888a85 guibg=bg
+highlight Constant gui=bold guifg=#cc0000 guibg=bg
+highlight Error gui=none guifg=#a40000 guibg=#cc0000
+highlight SpellBad term=underline gui=undercurl guisp=#ef2929
+highlight Identifier gui=none guifg=#3465a4 guibg=bg
+highlight Ignore gui=none guifg=bg guibg=bg
+highlight PreProc gui=none guifg=#75507b guibg=bg
+highlight Special gui=none guifg=#75507b guibg=bg
+highlight Statement gui=none guifg=#c4a000 guibg=bg
+highlight Todo gui=bold guifg=#ef2929 guibg=bg
+highlight Type gui=none guifg=#4e9a06 guibg=bg
+highlight Underlined gui=none guifg=#3465a4 guibg=bg
+highlight String gui=none guifg=#a40000 guibg=bg
+highlight Number gui=none guifg=#3465a4 guibg=bg

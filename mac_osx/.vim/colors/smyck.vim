@@ -1,1 +1,0 @@
-/Users/aschiavini/sources/Smyck-Color-Scheme/smyck.vim
