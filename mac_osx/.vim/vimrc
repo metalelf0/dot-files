@@ -4,12 +4,11 @@ set number
 set ruler
 syntax on
 set encoding=utf-8
-set nowrap
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set list listchars=tab:\ \ ,trail:·
+" set list listchars=tab:\ \ ,trail:·
 set hlsearch
 set incsearch
 set ignorecase
@@ -17,15 +16,27 @@ set smartcase
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set laststatus=2
+" set cul
+set autoindent
+
+set wrap
+set linebreak
+set nolist  " list disables linebreak
+
+let g:molokai_original=0
 
 " make rvm happy
 set shell=/bin/sh
 
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set cul
+  autocmd WinLeave * set nocul
+augroup END
+
+
 " rvm ruby configuration
 " let g:ruby_path="/Users/metalelf0/.rvm/bin/ruby"
-
-nnoremap tc  :tabnew<CR>
-nnoremap td  :tabclose<CR>
 
 " Show (partial) command in the status line
 set showcmd
@@ -76,13 +87,13 @@ nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 cmap w!! w !sudo tee % >/dev/null
 cmap W call RetabAndSave()
 
-function RetabAndSave()
+function! RetabAndSave()
   %s/\s\+$//e
   retab
   w
 endfunction
 
-function DeleteRubyComments()
+function! DeleteRubyComments()
   g/#.*$/d
 endfunction
 
@@ -104,7 +115,7 @@ let macvim_hig_shift_movement = 1
 
 " NERDTree configuration
 let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader><Leader> :NERDTreeToggle<CR>
+nmap <Tab><Tab> :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeFind<CR>
 
 " NERDCommenter configuration
@@ -113,12 +124,12 @@ let NERDSpaceDelims=1
 
 let g:vroom_detect_spec_helper=1
 
-function VroomUseRspec1x()
+function! VroomUseRspec1x()
   let g:vroom_rspec_version="1.x"
   let g:vroom_spec_command="spec "
 endfunction
 
-function VroomUseRspec2x()
+function! VroomUseRspec2x()
   let g:vroom_rspec_version="2.x"
   let g:vroom_spec_command="rspec "
 endfunction
@@ -132,29 +143,56 @@ endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 
-"" YouCompleteMe
-let g:ycm_key_list_previous_completion=['<Up>']
+" "" YouCompleteMe
+" let g:ycm_key_list_previous_completion=['<Up>']
 
 "" Ultisnips
 let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsListSnippets="<c-s-tab>"
 " }}}1
 
+"" Github flavoured markdown
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
 " CTags
 noremap <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 noremap <C-\> :tnext<CR>
 
+" pomodoro.vim
+let g:pomodoro_time_work = 25
+let g:pomodoro_time_slack = 5
+let g:pomodoro_do_log = 1
+let g:pomodoro_log_file = "/Users/metalelf0/Documents/pomodoro_log.txt"
+
+" http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
+" http://got-ravings.blogspot.it/2008/08/vim-pr0n-making-statuslines-that-own.html
+
+    " set statusline=
+    " set statusline +=%#Identifier#\ %n\ %*                  " buffer number
+    " set statusline +=%#PreProc#%{&ff}%*                     " file format
+    " set statusline +=%#Number#%y%*                          " file type
+    " set statusline +=%#String#\ %<%t%*                      " full path
+    " set statusline +=%#SpecialKey#%m%*                      " modified flag
+    " set statusline +=%#Identifier#\ %{PomodoroStatus()}\ %* " pomodoro status
+    " set statusline +=%=%*                                   " padding
+    " set statusline +=%#Identifier#%5l%*                     " current line
+    " set statusline +=%#SpecialKey#/%L%*                     " total lines
+    " set statusline +=%#Identifier#%4v\ %*                   " virtual column number
+    " set statusline +=%#SpecialKey#0x%04B\ %*                " character under cursor
 
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
 
-" Use the silver searcher when available
-if executable("ag")
-  let g:ackprg = 'ag --nogroup --nocolor --column'
-endif
+" -k means 'only filetypes known to ACK'
+"  if something is missing, look into ack --help-types
+let g:ackprg='/usr/local/bin/ack -H --nocolor --nogroup --column'
 
 let @l='Hilet(:WbEa)f=r{A }jH'
-let g:ctrlp_working_path_mode = 0
+
+let g:ctrlp_working_path_mode = 'ra'
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -163,7 +201,7 @@ call vundle#rc()
  " required!
   Bundle 'gmarik/vundle'
   " Bundle 'ervandew/supertab.git'
-  Bundle 'Valloric/YouCompleteMe'
+  " Bundle 'Valloric/YouCompleteMe'
   Bundle 'julienXX/Hemisu'
   Bundle 'metalelf0/Smyck-Color-Scheme.git'
   Bundle 'metalelf0/vimt0d0.git'
@@ -177,41 +215,89 @@ call vundle#rc()
   Bundle 'tpope/vim-surround.git'
   Bundle 'tpope/vim-dispatch'
   Bundle 'tpope/vim-rvm'
-  Bundle 'vim-ruby/vim-ruby.git'
+  " Bundle 'vim-ruby/vim-ruby.git'
   Bundle 'vim-scripts/blackboard.vim'
   Bundle 'chriskempson/base16-vim'
   Bundle 'mattn/gist-vim'
   Bundle 'vim-scripts/Align'
   Bundle 'vim-scripts/bufexplorer.zip'
   Bundle 'vim-scripts/vim-indent-object'
+  Bundle 'vim-scripts/LustyJuggler'
   Bundle 'vim-scripts/mayansmoke'
+  Bundle 'vim-ruby/vim-ruby'
   Bundle 'jaromero/vim-monokai-refined'
   Bundle 'dhruvasagar/vim-railscasts-theme'
   Bundle 'molok/vim-vombato-colorscheme'
-  Bundle 'ujihisa/tabpagecolorscheme'
   Bundle 'rking/vim-ruby-refactoring'
   Bundle 'skwp/vim-rspec'
   Bundle 'kien/ctrlp.vim'
   Bundle 'skalnik/vim-vroom'
   Bundle 'Valloric/vim-valloric-colorscheme'
+  Bundle 'kchmck/vim-coffee-script'
+  " Bundle 'pydave/AsyncCommand'
+  Bundle 'metalelf0/vim-pomodoro'
+  Bundle 'Pychimp/vim-luna'
+  Bundle 'Pychimp/vim-sol'
+  Bundle 'jtratner/vim-flavored-markdown'
+  Bundle "merlinrebrovic/focus.vim"
+  Bundle 't9md/vim-ruby-xmpfilter'
+  Bundle 'SirVer/ultisnips'
+  Bundle 'aalvarado/ultisnips-snippets'
+  Bundle 'bling/vim-airline'
+  Bundle 'Lokaltog/vim-easymotion'
+  Bundle 'euclio/vim-nocturne'
+  Bundle 'johnallen3d/made-of-code.vim'
+  Bundle 'justinmk/vim-gtfo'
+  Bundle 'junegunn/seoul256.vim'
+  
+  " Bundle 'Shougo/unite.vim'
+  " Bundle 'Shougo/vimproc.vim'
+
+" focus.vim configuration
+nmap <Leader>o <Plug>FocusModeToggle
+let t:focus_fillchars="."
+let g:focusmode_width = 72
+
 
 " drastic remaps!
 noremap H ^
 noremap L $
 inoremap kj <Esc>
 
+" macbook remaps!
+nnoremap <D-Right> :tabnext<CR>
+nnoremap <D-Left>  :tabprevious<CR>
 
- filetype plugin indent on     " required!
- set foldlevelstart=20
+" powerline
+let g:airline_powerline_fonts = 1
 
-let g:molokai_original=0
-color molokai
+" xmpfilter
+map <Leader>xa <Plug>(xmpfilter-mark)
+map <Leader>xr <Plug>(xmpfilter-run)
 
-" }}}
+" ultisnips
+
+let g:UltiSnipsExpandTrigger="<tab>" 
+let g:UltiSnipsJumpForwardTrigger="<tab>" 
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
+
+nnoremap <D-Up> :bn<CR>
+nnoremap <D-Down> :bp<CR>
+
+" " Unite.vim
+" nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async:!<CR>
+" nnoremap <space>/ :Unite grep:.<CR>
+" nnoremap <space>s :Unite -quick-match buffer<CR>
+
+set foldlevelstart=20
+
+" map <Esc>a :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Extra vimrc {{{
 let s:extrarc = expand($HOME . '/.vim/passwords.vim')
 if filereadable(s:extrarc)
     exec ':so ' . s:extrarc
 endif
-" }}} 
+" }}}
