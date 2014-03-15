@@ -52,6 +52,11 @@ if filereadable(expand("~/Dropbox/vim.local/macros.rc"))
   source ~/Dropbox/vim.local/macros.rc
 endif
 
+" Include user's local vim config
+if filereadable(expand("~/Dropbox/vim.local/vimrc"))
+  source ~/Dropbox/vim.local/vimrc
+endif
+
 function! NeatFoldText() "{{{2
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
   let lines_count = v:foldend - v:foldstart + 1
@@ -85,13 +90,6 @@ nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
 " :w!! saves a file as root
 cmap w!! w !sudo tee % >/dev/null
-cmap W call RetabAndSave()
-
-function! RetabAndSave()
-  %s/\s\+$//e
-  retab
-  w
-endfunction
 
 function! DeleteRubyComments()
   g/#.*$/d
@@ -113,10 +111,12 @@ let macvim_hig_shift_movement = 1
 
 " plugin configuration {{{1
 
-" NERDTree configuration
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-nmap <Tab><Tab> :NERDTreeToggle<CR>
-map <Leader>f :NERDTreeFind<CR>
+" " NERDTree configuration
+" let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+" nmap <Tab><Tab> :NERDTreeToggle<CR>
+" map <Leader>f :NERDTreeFind<CR>
+
+" nmap <Tab><Tab> :vsplit .<CR>
 
 " NERDCommenter configuration
 " add extra spaces around delimiters
@@ -142,14 +142,6 @@ elseif has("unix")
 endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
-
-" "" YouCompleteMe
-" let g:ycm_key_list_previous_completion=['<Up>']
-
-"" Ultisnips
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsListSnippets="<c-s-tab>"
-" }}}1
 
 "" Github flavoured markdown
 augroup markdown
@@ -189,111 +181,130 @@ runtime! macros/matchit.vim
 " -k means 'only filetypes known to ACK'
 "  if something is missing, look into ack --help-types
 let g:ackprg='/usr/local/bin/ack -H --nocolor --nogroup --column'
+let g:agprg='/Users/metalelf0/bin/agg --column'
 
 let @l='Hilet(:WbEa)f=r{A }jH'
+let @n='Gy17kggP<Esc>:read !gdate "+\%B \%d, \%A"kJ'
 
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
- " let Vundle manage Vundle
- " required!
+ " let Vundle manage Vundle " required!
   Bundle 'gmarik/vundle'
-  " Bundle 'ervandew/supertab.git'
-  " Bundle 'Valloric/YouCompleteMe'
-  Bundle 'julienXX/Hemisu'
-  Bundle 'metalelf0/Smyck-Color-Scheme.git'
+  Bundle 'Valloric/YouCompleteMe'
   Bundle 'metalelf0/vimt0d0.git'
   Bundle 'mileszs/ack.vim.git'
   Bundle 'scrooloose/nerdcommenter.git'
-  Bundle 'scrooloose/nerdtree.git'
   Bundle 'scrooloose/syntastic.git'
   Bundle 'tpope/vim-fugitive.git'
-  Bundle 'tpope/vim-markdown.git'
   Bundle 'tpope/vim-rails.git'
   Bundle 'tpope/vim-surround.git'
   Bundle 'tpope/vim-dispatch'
   Bundle 'tpope/vim-rvm'
-  " Bundle 'vim-ruby/vim-ruby.git'
-  Bundle 'vim-scripts/blackboard.vim'
-  Bundle 'chriskempson/base16-vim'
+  Bundle 'tpope/vim-vinegar'
+  Bundle 'tpope/vim-unimpaired'
   Bundle 'mattn/gist-vim'
+
+  " required for gist-vim to work
+  Bundle 'mattn/webapi-vim'
+
   Bundle 'vim-scripts/Align'
   Bundle 'vim-scripts/bufexplorer.zip'
   Bundle 'vim-scripts/vim-indent-object'
   Bundle 'vim-scripts/LustyJuggler'
-  Bundle 'vim-scripts/mayansmoke'
   Bundle 'vim-ruby/vim-ruby'
-  Bundle 'jaromero/vim-monokai-refined'
-  Bundle 'dhruvasagar/vim-railscasts-theme'
-  Bundle 'molok/vim-vombato-colorscheme'
   Bundle 'rking/vim-ruby-refactoring'
   Bundle 'skwp/vim-rspec'
   Bundle 'kien/ctrlp.vim'
-  Bundle 'skalnik/vim-vroom'
-  Bundle 'Valloric/vim-valloric-colorscheme'
   Bundle 'kchmck/vim-coffee-script'
-  " Bundle 'pydave/AsyncCommand'
   Bundle 'metalelf0/vim-pomodoro'
-  Bundle 'Pychimp/vim-luna'
-  Bundle 'Pychimp/vim-sol'
   Bundle 'jtratner/vim-flavored-markdown'
-  Bundle "merlinrebrovic/focus.vim"
-  Bundle 't9md/vim-ruby-xmpfilter'
   Bundle 'SirVer/ultisnips'
   Bundle 'aalvarado/ultisnips-snippets'
-  Bundle 'bling/vim-airline'
+  " Bundle 'bling/vim-airline'
+  Bundle 'itchyny/lightline.vim'
   Bundle 'Lokaltog/vim-easymotion'
+  Bundle 'rking/ag.vim'
+  " Bundle 'bronson/vim-trailing-whitespace'
+  Bundle 'justinmk/vim-sneak'
+  " Bundle 'Yggdroot/indentLine'
+
+  " colorschemes
+  Bundle 'Pychimp/vim-luna'
+  Bundle 'Pychimp/vim-sol'
+  Bundle 'Valloric/vim-valloric-colorscheme'
+  Bundle 'chriskempson/base16-vim'
+  Bundle 'chriskempson/vim-tomorrow-theme'
+  Bundle 'dhruvasagar/vim-railscasts-theme'
   Bundle 'euclio/vim-nocturne'
+  Bundle 'jaromero/vim-monokai-refined'
   Bundle 'johnallen3d/made-of-code.vim'
-  Bundle 'justinmk/vim-gtfo'
+  Bundle 'julienXX/Hemisu'
   Bundle 'junegunn/seoul256.vim'
-  
+  Bundle 'metalelf0/Sift'
+  Bundle 'metalelf0/Smyck-Color-Scheme.git'
+  Bundle 'molok/vim-vombato-colorscheme'
+  Bundle 'nanotech/jellybeans.vim'
+  Bundle 'vim-scripts/blackboard.vim'
+  Bundle 'vim-scripts/mayansmoke'
+  Bundle 'baverman/vim-babymate256'
+  Bundle 'gregsexton/Muon'
+
   " Bundle 'Shougo/unite.vim'
   " Bundle 'Shougo/vimproc.vim'
-
-" focus.vim configuration
-nmap <Leader>o <Plug>FocusModeToggle
-let t:focus_fillchars="."
-let g:focusmode_width = 72
-
 
 " drastic remaps!
 noremap H ^
 noremap L $
 inoremap kj <Esc>
 
+nnoremap <C-j> :bprevious<CR>
+nnoremap <C-k> :bnext<CR>
+
 " macbook remaps!
 nnoremap <D-Right> :tabnext<CR>
 nnoremap <D-Left>  :tabprevious<CR>
 
-" powerline
-let g:airline_powerline_fonts = 1
+" " xmpfilter
+" map <Leader>xa <Plug>(xmpfilter-mark)
+" map <Leader>xr <Plug>(xmpfilter-run)
 
-" xmpfilter
-map <Leader>xa <Plug>(xmpfilter-mark)
-map <Leader>xr <Plug>(xmpfilter-run)
+" bufexplorer
+" don't go to the active window
+let g:bufExplorerFindActive=0
 
 " ultisnips
+function! g:UltiSnips_Complete()
+    call UltiSnips_ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips_JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
 
-let g:UltiSnipsExpandTrigger="<tab>" 
-let g:UltiSnipsJumpForwardTrigger="<tab>" 
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-e>"
 
 nnoremap <D-Up> :bn<CR>
 nnoremap <D-Down> :bp<CR>
+nnoremap <silent> <Space> za
 
-" " Unite.vim
-" nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async:!<CR>
-" nnoremap <space>/ :Unite grep:.<CR>
-" nnoremap <space>s :Unite -quick-match buffer<CR>
+function! Agg(pattern)
+  Ag pattern $(git ls-files)
+endfunction
 
 set foldlevelstart=20
-
-" map <Esc>a :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Extra vimrc {{{
 let s:extrarc = expand($HOME . '/.vim/passwords.vim')
@@ -301,3 +312,21 @@ if filereadable(s:extrarc)
     exec ':so ' . s:extrarc
 endif
 " }}}
+
+let g:lightline = {
+      \ 'colorscheme': 'Tomorrow',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ }
+      \ }
+
+" speedy terminal
+" ----------------------------------- 
+set ttyfast
+set notimeout
+set ttimeout
+set ttimeoutlen=100
+syntax sync minlines=256
+set synmaxcol=500
+
+source ~/.vim/metalelf0-lightline.vim

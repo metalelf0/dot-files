@@ -2,13 +2,15 @@ if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
 
-  " gui and colorschem
-  set guifont=Inconsolata:h12
-  set linespace=1
+  "set guifont=Sauce\ Code\ Powerline:h12
+  set guifont=Envy\ Code\ R\ for\ Powerline:h13
+
   set antialias
-  "let g:molokai_original=0
-  "colorscheme molokai
-  colorscheme vombato
+  set linespace=3
+  " set background=dark
+  colorscheme base16-dphase
+  colorscheme Tomorrow
+  syntax on
 
 " Start without the toolbar
   set guioptions-=T
@@ -17,12 +19,12 @@ if has("gui_macvim")
   set guioptions-=e
 
   " tab navigation like firefox
-  nnoremap <C-t>     :tabnew<CR>
-  inoremap <C-t>     <Esc>:tabnew<CR>
-  nnoremap <C-S-tab> :tabprevious<CR>
-  nnoremap <C-tab>   :tabnext<CR>
-  inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-  inoremap <C-tab>   <Esc>:tabnext<CR>i
+  " nnoremap <C-t>     :tabnew<CR>
+  " inoremap <C-t>     <Esc>:tabnew<CR>
+  " nnoremap <C-S-tab> :tabprevious<CR>
+  " nnoremap <C-tab>   :tabnext<CR>
+  " inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+  " inoremap <C-tab>   <Esc>:tabnext<CR>i
 
   " Command-Return for fullscreen
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
