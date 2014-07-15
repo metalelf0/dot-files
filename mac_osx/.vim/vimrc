@@ -28,13 +28,6 @@ let g:molokai_original=0
 " make rvm happy
 set shell=/bin/sh
 
-augroup BgHighlight
-  autocmd!
-  autocmd WinEnter * set cul
-  autocmd WinLeave * set nocul
-augroup END
-
-
 " rvm ruby configuration
 " let g:ruby_path="/Users/metalelf0/.rvm/bin/ruby"
 
@@ -70,6 +63,32 @@ endfunction
 set foldtext=NeatFoldText()
 " }}}2
 
+function! s:TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'
+  \ matchgroup='.a:textSnipHl.'
+  \ start="'.a:start.'" end="'.a:end.'"
+  \ contains=@'.group
+endfunction
+
+
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
 
@@ -84,6 +103,8 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set f
 
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
+
+au BufEnter,BufNewFile,BufRead journal.md call s:TextEnableCodeSnip('vimt0d0', '#{{{t0d0', '#t0d0}}}', 'SpecialComment')
 
 " double tap esc to clear highlighting after search
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
@@ -102,37 +123,22 @@ nmap <silent> <Leader>dc call DeleteRubyComments()
 set modeline
 set modelines=10
 
-" Directories for swp files
+" no backup please
+
+set nobackup
+
+" " Directories for swp files
 set backupdir=~/.vim_backup
 set directory=~/.vim_backup
 
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 let macvim_hig_shift_movement = 1
 
-" plugin configuration {{{1
-
-" " NERDTree configuration
-" let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-" nmap <Tab><Tab> :NERDTreeToggle<CR>
-" map <Leader>f :NERDTreeFind<CR>
-
 " nmap <Tab><Tab> :vsplit .<CR>
 
 " NERDCommenter configuration
 " add extra spaces around delimiters
 let NERDSpaceDelims=1
-
-let g:vroom_detect_spec_helper=1
-
-function! VroomUseRspec1x()
-  let g:vroom_rspec_version="1.x"
-  let g:vroom_spec_command="spec "
-endfunction
-
-function! VroomUseRspec2x()
-  let g:vroom_rspec_version="2.x"
-  let g:vroom_spec_command="rspec "
-endfunction
 
 " gist-vim defaults
 if has("mac")
@@ -175,86 +181,100 @@ let g:pomodoro_log_file = "/Users/metalelf0/Documents/pomodoro_log.txt"
     " set statusline +=%#Identifier#%4v\ %*                   " virtual column number
     " set statusline +=%#SpecialKey#0x%04B\ %*                " character under cursor
 
-" % to bounce from do to end etc.
-runtime! macros/matchit.vim
-
 " -k means 'only filetypes known to ACK'
 "  if something is missing, look into ack --help-types
-let g:ackprg='/usr/local/bin/ack -H --nocolor --nogroup --column'
-let g:agprg='/Users/metalelf0/bin/agg --column'
+" let g:ackprg='/usr/local/bin/ack -H --nocolor --nogroup --column'
+" let g:agprg='/Users/metalelf0/bin/agg --column'
 
 let @l='Hilet(:WbEa)f=r{A }jH'
-let @n='Gy17kggP<Esc>:read !gdate "+\%B \%d, \%A"kJ'
+let @n='Gy17kggP<Esc>:read !gdate "+\%B \%d, \%A"kdd'
 
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let s:extrarc = expand($HOME . '.vim/ctrlp_rc.vim')
+if filereadable(s:extrarc)
+    exec ':so ' . s:extrarc
+endif
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
  " let Vundle manage Vundle " required!
-  Bundle 'gmarik/vundle'
-  Bundle 'Valloric/YouCompleteMe'
-  Bundle 'metalelf0/vimt0d0.git'
-  Bundle 'mileszs/ack.vim.git'
-  Bundle 'scrooloose/nerdcommenter.git'
-  Bundle 'scrooloose/syntastic.git'
-  Bundle 'tpope/vim-fugitive.git'
-  Bundle 'tpope/vim-rails.git'
-  Bundle 'tpope/vim-surround.git'
-  Bundle 'tpope/vim-dispatch'
-  Bundle 'tpope/vim-rvm'
-  Bundle 'tpope/vim-vinegar'
-  Bundle 'tpope/vim-unimpaired'
-  Bundle 'mattn/gist-vim'
-
+  Plugin 'gmarik/vundle'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'metalelf0/vimt0d0.git'
+  " Plugin 'mileszs/ack.vim.git'
+  Plugin 'scrooloose/nerdcommenter.git'
+  " Plugin 'scrooloose/syntastic.git'
+  Plugin 'tpope/vim-fugitive.git'
+  Plugin 'tpope/vim-rails.git'
+  Plugin 'tpope/vim-surround.git'
+  Plugin 'tpope/vim-dispatch'
+  Plugin 'tpope/vim-rvm'
+  Plugin 'tpope/vim-vinegar'
+  Plugin 'tpope/vim-unimpaired'
+  Plugin 'mattn/gist-vim'
   " required for gist-vim to work
-  Bundle 'mattn/webapi-vim'
+  Plugin 'mattn/webapi-vim'
+  Plugin 'wellle/targets.vim'
 
-  Bundle 'vim-scripts/Align'
-  Bundle 'vim-scripts/bufexplorer.zip'
-  Bundle 'vim-scripts/vim-indent-object'
-  Bundle 'vim-scripts/LustyJuggler'
-  Bundle 'vim-ruby/vim-ruby'
-  Bundle 'rking/vim-ruby-refactoring'
-  Bundle 'skwp/vim-rspec'
-  Bundle 'kien/ctrlp.vim'
-  Bundle 'kchmck/vim-coffee-script'
-  Bundle 'metalelf0/vim-pomodoro'
-  Bundle 'jtratner/vim-flavored-markdown'
-  Bundle 'SirVer/ultisnips'
-  Bundle 'aalvarado/ultisnips-snippets'
-  " Bundle 'bling/vim-airline'
-  Bundle 'itchyny/lightline.vim'
-  Bundle 'Lokaltog/vim-easymotion'
-  Bundle 'rking/ag.vim'
-  " Bundle 'bronson/vim-trailing-whitespace'
-  Bundle 'justinmk/vim-sneak'
-  " Bundle 'Yggdroot/indentLine'
+  Plugin 'vim-scripts/Align'
+  Plugin 'vim-scripts/bufexplorer.zip'
+  Plugin 'vim-scripts/vim-indent-object'
+  " Plugin 'vim-scripts/LustyJuggler'
+  " Plugin 'vim-ruby/vim-ruby'
+  " Plugin 'rking/vim-ruby-refactoring'
+  " Plugin 'skwp/vim-rspec'
+  Plugin 'kien/ctrlp.vim'
+  Plugin 'kchmck/vim-coffee-script'
+
+  Plugin  'jceb/vim-orgmode'
+
+  " AsyncCommand is required for vim-pomodoro
+  Plugin 'pydave/AsyncCommand'
+  Plugin 'metalelf0/vim-pomodoro'
+
+  Plugin 'jtratner/vim-flavored-markdown'
+  Plugin 'bling/vim-airline'
+  " Plugin 'Lokaltog/vim-easymotion'
+  Plugin 'rking/ag.vim'
+  " Plugin 'bronson/vim-trailing-whitespace'
+  Plugin 'justinmk/vim-sneak'
+  Plugin 'freitass/todo.txt-vim.git'
+  " Plugin 'Yggdroot/indentLine'
 
   " colorschemes
-  Bundle 'Pychimp/vim-luna'
-  Bundle 'Pychimp/vim-sol'
-  Bundle 'Valloric/vim-valloric-colorscheme'
-  Bundle 'chriskempson/base16-vim'
-  Bundle 'chriskempson/vim-tomorrow-theme'
-  Bundle 'dhruvasagar/vim-railscasts-theme'
-  Bundle 'euclio/vim-nocturne'
-  Bundle 'jaromero/vim-monokai-refined'
-  Bundle 'johnallen3d/made-of-code.vim'
-  Bundle 'julienXX/Hemisu'
-  Bundle 'junegunn/seoul256.vim'
-  Bundle 'metalelf0/Sift'
-  Bundle 'metalelf0/Smyck-Color-Scheme.git'
-  Bundle 'molok/vim-vombato-colorscheme'
-  Bundle 'nanotech/jellybeans.vim'
-  Bundle 'vim-scripts/blackboard.vim'
-  Bundle 'vim-scripts/mayansmoke'
-  Bundle 'baverman/vim-babymate256'
-  Bundle 'gregsexton/Muon'
+  Plugin 'Pychimp/vim-luna'
+  Plugin 'Pychimp/vim-sol'
+  Plugin 'Valloric/vim-valloric-colorscheme'
+  Plugin 'chriskempson/base16-vim'
+  Plugin 'chriskempson/vim-tomorrow-theme'
+  Plugin 'dhruvasagar/vim-railscasts-theme'
+  Plugin 'euclio/vim-nocturne'
+  Plugin 'jaromero/vim-monokai-refined'
+  Plugin 'johnallen3d/made-of-code.vim'
+  Plugin 'julienXX/Hemisu'
+  Plugin 'junegunn/seoul256.vim'
+  Plugin 'metalelf0/Sift'
+  Plugin 'metalelf0/Smyck-Color-Scheme.git'
+  Plugin 'molok/vim-vombato-colorscheme'
+  Plugin 'nanotech/jellybeans.vim'
+  Plugin 'vim-scripts/blackboard.vim'
+  Plugin 'vim-scripts/mayansmoke'
+  Plugin 'vim-scripts/inkpot'
+  Plugin 'vim-scripts/herald.vim'
+  Plugin 'baverman/vim-babymate256'
+  Plugin 'gregsexton/Muon'
+  Plugin 'altercation/vim-colors-solarized'
+  Plugin 'itchyny/landscape.vim'
+  Plugin 'tomasr/molokai'
+  Plugin 'Keithbsmiley/rspec.vim'
+  Plugin 'abra/obsidian2'
 
-  " Bundle 'Shougo/unite.vim'
-  " Bundle 'Shougo/vimproc.vim'
+call vundle#end()
+
+filetype plugin indent on
+
+  " Plugin 'Shougo/unite.vim'
+  " Plugin 'Shougo/vimproc.vim'
 
 " drastic remaps!
 noremap H ^
@@ -276,35 +296,74 @@ nnoremap <D-Left>  :tabprevious<CR>
 " don't go to the active window
 let g:bufExplorerFindActive=0
 
-" ultisnips
-function! g:UltiSnips_Complete()
-    call UltiSnips_ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips_JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
+" " airline: use powerline fonts
+let g:airline_powerline_fonts=1
+
+" airline customization
+
+function! AddPomoToAirline(ext)
+  call a:ext.add_statusline_funcref(function('AddPomo'))
 endfunction
 
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-e>"
+function! AddPomo(...)
+  let w:airline_section_c = get(w:, 'airline_section_c', g:airline_section_c)
+  let w:airline_section_c .= g:airline_left_sep . ' %{PomodoroStatus()}'
+endfunction
 
 nnoremap <D-Up> :bn<CR>
 nnoremap <D-Down> :bp<CR>
-nnoremap <silent> <Space> za
+" nnoremap <silent> <Space> za
+" vnoremap <silent> <Space> za<Esc>
+map <Leader>fi :set foldmethod=indent<cr>
+map <Leader>fm :set foldmethod=manual<cr>
+
+" select last paste in visual mode
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+
+" Qargs loads quickfix filenames into args list
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+ 
+" populate the argument list with each of the files named in the quickfix list
+function! QuickfixFilenames()
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
+
+nnoremap n nzz
+nnoremap N Nzz
+
+" Use Q to intelligently close a window 
+" (if there are multiple windows into the same buffer)
+" or kill the buffer entirely if it's the last window looking into that buffer
+function! CloseWindowOrKillBuffer()
+  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+  " We should never bdelete a nerd tree
+  if matchstr(expand("%"), 'NERD') == 'NERD'
+    wincmd c
+    return
+  endif
+
+  if number_of_windows_to_this_buffer > 1
+    wincmd c
+  else
+    bdelete
+  endif
+endfunction
+
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
 
 function! Agg(pattern)
   Ag pattern $(git ls-files)
 endfunction
 
 set foldlevelstart=20
+
+autocmd BufNewFile,BufRead *.rb set foldmethod=indent
 
 " Extra vimrc {{{
 let s:extrarc = expand($HOME . '/.vim/passwords.vim')
@@ -313,15 +372,8 @@ if filereadable(s:extrarc)
 endif
 " }}}
 
-let g:lightline = {
-      \ 'colorscheme': 'Tomorrow',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"⭤":""}',
-      \ }
-      \ }
-
 " speedy terminal
-" ----------------------------------- 
+" -----------------------------------
 set ttyfast
 set notimeout
 set ttimeout
@@ -329,4 +381,4 @@ set ttimeoutlen=100
 syntax sync minlines=256
 set synmaxcol=500
 
-source ~/.vim/metalelf0-lightline.vim
+colo herald

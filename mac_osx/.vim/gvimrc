@@ -2,14 +2,13 @@ if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
 
-  "set guifont=Sauce\ Code\ Powerline:h12
-  set guifont=Envy\ Code\ R\ for\ Powerline:h13
+  " set guifont=Sauce\ Code\ Powerline:h13
+  set guifont=Sauce\ Code\ Powerline\ Light:h12
 
   set antialias
-  set linespace=3
   " set background=dark
-  colorscheme base16-dphase
-  colorscheme Tomorrow
+  colorscheme landscape
+  set linespace=1
   syntax on
 
 " Start without the toolbar
@@ -17,6 +16,13 @@ if has("gui_macvim")
   set guioptions-=L
   set guioptions-=r
   set guioptions-=e
+
+  augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+  augroup END
+
 
   " tab navigation like firefox
   " nnoremap <C-t>     :tabnew<CR>
@@ -28,15 +34,6 @@ if has("gui_macvim")
 
   " Command-Return for fullscreen
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
-
-  " Command-/ to toggle comments
-  map <D-/> <plug>NERDCommenterToggle<CR>
-  imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
-
-
-  " Command-][ to increase/decrease indentation
-  vmap <D-]> >gv
-  vmap <D-[> <gv
 
   " Map Command-# to switch tabs
   map  <D-0> 0gt

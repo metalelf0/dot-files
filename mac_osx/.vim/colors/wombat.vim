@@ -1,4 +1,4 @@
-" Maintainer:	Lars H. Nielsen (dengmao@gmail.com)
+" Maintainer:	Lars Nielsen (dengmao@gmail.com)
 " Last Change:	January 22 2007
 
 set background=dark
@@ -14,7 +14,7 @@ let colors_name = "wombat"
 
 " Vim >= 7.0 specific colors
 if version >= 700
-  hi CursorLine guibg=#2d2d2d
+  hi CursorLine guibg=#3a3a3a
   hi CursorColumn guibg=#2d2d2d
   hi MatchParen guifg=#f6f3e8 guibg=#857b6f gui=bold
   hi Pmenu 		guifg=#f6f3e8 guibg=#444444
