@@ -2,27 +2,21 @@ if has("gui_macvim")
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert
 
-  " set guifont=Sauce\ Code\ Powerline:h13
-  set guifont=Sauce\ Code\ Powerline\ Light:h12
+  set guifont=Monaco:h13
+  " set guifont=PragmataPro:h13
 
   set antialias
-  " set background=dark
-  colorscheme landscape
+  syntax enable
+  set background=dark
+  colo zenburn
   set linespace=1
-  syntax on
+  let g:airline_powerline_fonts=0  
 
 " Start without the toolbar
   set guioptions-=T
   set guioptions-=L
   set guioptions-=r
   set guioptions-=e
-
-  augroup BgHighlight
-    autocmd!
-    autocmd WinEnter * set cul
-    autocmd WinLeave * set nocul
-  augroup END
-
 
   " tab navigation like firefox
   " nnoremap <C-t>     :tabnew<CR>
@@ -56,6 +50,9 @@ if has("gui_macvim")
   imap <D-8> <Esc>8gt
   map  <D-9> 9gt
   imap <D-9> <Esc>9gt
+else
+  " " airline: use powerline fonts
+  let g:airline_powerline_fonts=1
 endif
 " Don't beep
 set visualbell

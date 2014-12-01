@@ -13,11 +13,17 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set laststatus=2
-" set cul
 set autoindent
+set autoread
+
+set complete=.,b,u,]
+set wildmode=longest,list:longest,list:full
+set completeopt=menu,preview
+
+" use osx clipboard for copy and paste
+set clipboard+=unnamed
 
 set wrap
 set linebreak
@@ -28,14 +34,15 @@ let g:molokai_original=0
 " make rvm happy
 set shell=/bin/sh
 
-" rvm ruby configuration
-" let g:ruby_path="/Users/metalelf0/.rvm/bin/ruby"
-
 " Show (partial) command in the status line
 set showcmd
 
+au Filetype ruby setlocal iskeyword+=_
+
 " Remember last location in file
 if has("autocmd")
+  au VimResized * exe "normal! \<C-W>="
+  au BufNewFile,BufRead *.rb set foldmethod=indent
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 endif
@@ -49,6 +56,12 @@ endif
 if filereadable(expand("~/Dropbox/vim.local/vimrc"))
   source ~/Dropbox/vim.local/vimrc
 endif
+
+augroup BgHighlight
+  autocmd!
+  autocmd WinEnter * set cul
+  autocmd WinLeave * set nocul
+augroup END
 
 function! NeatFoldText() "{{{2
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
@@ -104,10 +117,21 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set f
 " add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
 
+" my journal file
+map <Leader>J :vsplit $HOME/Documents/GildDocuments/journal.md<Enter>
+map <Leader>N :vsplit $HOME/Documents/GildDocuments/notes.md<Enter>
+map <Leader>T :vsplit $HOME/Dropbox/todo.txt/todo.txt<Enter>
+map <Leader>V :vsplit $MYVIMRC<Enter>
+map <Leader>* :execute 'Ag ' . expand('<cword>')<CR>
 au BufEnter,BufNewFile,BufRead journal.md call s:TextEnableCodeSnip('vimt0d0', '#{{{t0d0', '#t0d0}}}', 'SpecialComment')
 
 " double tap esc to clear highlighting after search
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" To highlight all incremental matches (requires incsearch)
+let g:oblique#incsearch_highlight_all=1
+"To clear search highlight or not
+let g:oblique#clear_highlight=1
 
 " :w!! saves a file as root
 cmap w!! w !sudo tee % >/dev/null
@@ -118,13 +142,11 @@ endfunction
 
 nmap <silent> <Leader>dc call DeleteRubyComments()
 
-
 " Use modeline overrides
 set modeline
 set modelines=10
 
 " no backup please
-
 set nobackup
 
 " " Directories for swp files
@@ -148,6 +170,8 @@ elseif has("unix")
 endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
+
+let g:vimwiki_underline_links=0
 
 "" Github flavoured markdown
 augroup markdown
@@ -185,91 +209,138 @@ let g:pomodoro_log_file = "/Users/metalelf0/Documents/pomodoro_log.txt"
 "  if something is missing, look into ack --help-types
 " let g:ackprg='/usr/local/bin/ack -H --nocolor --nogroup --column'
 " let g:agprg='/Users/metalelf0/bin/agg --column'
+let @l='^ilet(:WbEa)f=r{A }j$'
+let @n='zRGy17kggP<Esc>:read !gdate "+\%B \%d, \%A"kdd'
+let @d='<Esc>:read !gdate "+\%B \%d, \%A"'
 
-let @l='Hilet(:WbEa)f=r{A }jH'
-let @n='Gy17kggP<Esc>:read !gdate "+\%B \%d, \%A"kdd'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+  \ }
 
-let s:extrarc = expand($HOME . '.vim/ctrlp_rc.vim')
-if filereadable(s:extrarc)
-    exec ':so ' . s:extrarc
-endif
+" Additional mapping for buffer search
+nnoremap <silent> ,b :CtrlPBuffer<cr>
+nnoremap <silent> <Leader>pb :CtrlPBuffer<cr>
+nnoremap <silent> <Leader>pl :CtrlPLine<cr>
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Cmd-Shift-P to clear the cache
+nnoremap <silent> <D-P> :ClearCtrlPCache<cr>
 
- " let Vundle manage Vundle " required!
-  Plugin 'gmarik/vundle'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'metalelf0/vimt0d0.git'
-  " Plugin 'mileszs/ack.vim.git'
-  Plugin 'scrooloose/nerdcommenter.git'
-  " Plugin 'scrooloose/syntastic.git'
-  Plugin 'tpope/vim-fugitive.git'
-  Plugin 'tpope/vim-rails.git'
-  Plugin 'tpope/vim-surround.git'
-  Plugin 'tpope/vim-dispatch'
-  Plugin 'tpope/vim-rvm'
-  Plugin 'tpope/vim-vinegar'
-  Plugin 'tpope/vim-unimpaired'
-  Plugin 'mattn/gist-vim'
-  " required for gist-vim to work
-  Plugin 'mattn/webapi-vim'
-  Plugin 'wellle/targets.vim'
+" Idea from : http://www.charlietanksley.net/blog/blog/2011/10/18/vim-navigation-with-lustyexplorer-and-lustyjuggler/
+" Open CtrlP starting from a particular path, making it much
+" more likely to find the correct thing first. mnemonic 'jump to [something]'
+map ,ja :CtrlP app/api<CR>
+map ,je :CtrlP app/api/entities<CR>
+map ,jm :CtrlP app/models<CR>
+map ,jc :CtrlP app/controllers<CR>
+map ,jv :CtrlP app/views<CR>
+map ,jh :CtrlP app/helpers<CR>
+map ,jl :CtrlP lib<CR>
+map ,jp :CtrlP public<CR>
+map ,js :CtrlP spec<CR>
+map ,jf :CtrlP fast_spec<CR>
+map ,jd :CtrlP db<CR>
+map ,jC :CtrlP config<CR>
+map ,jV :CtrlP vendor<CR>
+map ,jF :CtrlP factories<CR>
+map ,jT :CtrlP test<CR>
 
-  Plugin 'vim-scripts/Align'
-  Plugin 'vim-scripts/bufexplorer.zip'
-  Plugin 'vim-scripts/vim-indent-object'
-  " Plugin 'vim-scripts/LustyJuggler'
-  " Plugin 'vim-ruby/vim-ruby'
-  " Plugin 'rking/vim-ruby-refactoring'
-  " Plugin 'skwp/vim-rspec'
-  Plugin 'kien/ctrlp.vim'
-  Plugin 'kchmck/vim-coffee-script'
+" set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.fzf
 
-  Plugin  'jceb/vim-orgmode'
-
-  " AsyncCommand is required for vim-pomodoro
-  Plugin 'pydave/AsyncCommand'
-  Plugin 'metalelf0/vim-pomodoro'
-
-  Plugin 'jtratner/vim-flavored-markdown'
-  Plugin 'bling/vim-airline'
-  " Plugin 'Lokaltog/vim-easymotion'
-  Plugin 'rking/ag.vim'
-  " Plugin 'bronson/vim-trailing-whitespace'
-  Plugin 'justinmk/vim-sneak'
-  Plugin 'freitass/todo.txt-vim.git'
-  " Plugin 'Yggdroot/indentLine'
-
+" call vundle#begin()
+call plug#begin('~/.vim/plugged')
+  Plug 'airblade/vim-gitgutter'
+  Plug 'bling/vim-airline'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'cohama/lexima.vim'
+  Plug 'ervandew/supertab'
+  Plug 'freitass/todo.txt-vim'
+  Plug 'honza/vim-snippets'
+  Plug 'jtratner/vim-flavored-markdown'
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/limelight.vim'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'junegunn/vim-oblique'
+  Plug 'junegunn/vim-pseudocl'
+  Plug 'justinmk/vim-sneak'
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'kien/ctrlp.vim'
+  Plug 'majutsushi/tagbar'
+  Plug 'mattn/gist-vim'
+  Plug 'mattn/webapi-vim'
+  Plug 'metalelf0/vimt0d0'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'rking/ag.vim'
+  Plug 'rking/vim-ruby-refactoring'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/syntastic'
+  Plug 'sirver/ultisnips'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rsi'
+  Plug 'tpope/vim-rvm'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-vinegar'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'vim-scripts/ScrollColors'
+  Plug 'vim-scripts/bufexplorer.zip'
+  Plug 'vim-scripts/vim-indent-object'
+  Plug 'vim-scripts/vimwiki'
+  Plug 'wellle/targets.vim'
   " colorschemes
-  Plugin 'Pychimp/vim-luna'
-  Plugin 'Pychimp/vim-sol'
-  Plugin 'Valloric/vim-valloric-colorscheme'
-  Plugin 'chriskempson/base16-vim'
-  Plugin 'chriskempson/vim-tomorrow-theme'
-  Plugin 'dhruvasagar/vim-railscasts-theme'
-  Plugin 'euclio/vim-nocturne'
-  Plugin 'jaromero/vim-monokai-refined'
-  Plugin 'johnallen3d/made-of-code.vim'
-  Plugin 'julienXX/Hemisu'
-  Plugin 'junegunn/seoul256.vim'
-  Plugin 'metalelf0/Sift'
-  Plugin 'metalelf0/Smyck-Color-Scheme.git'
-  Plugin 'molok/vim-vombato-colorscheme'
-  Plugin 'nanotech/jellybeans.vim'
-  Plugin 'vim-scripts/blackboard.vim'
-  Plugin 'vim-scripts/mayansmoke'
-  Plugin 'vim-scripts/inkpot'
-  Plugin 'vim-scripts/herald.vim'
-  Plugin 'baverman/vim-babymate256'
-  Plugin 'gregsexton/Muon'
-  Plugin 'altercation/vim-colors-solarized'
-  Plugin 'itchyny/landscape.vim'
-  Plugin 'tomasr/molokai'
-  Plugin 'Keithbsmiley/rspec.vim'
-  Plugin 'abra/obsidian2'
+  Plug 'whatyouhide/vim-gotham'
+  Plug 'sjl/badwolf'
+  Plug 'freeo/vim-kalisi'
+  Plug 'pychimp/vim-luna'
+  Plug 'pychimp/vim-sol'
+  Plug 'valloric/vim-valloric-colorscheme'
+  Plug 'chriskempson/base16-vim'
+  Plug 'chriskempson/vim-tomorrow-theme'
+  Plug 'dhruvasagar/vim-railscasts-theme'
+  Plug 'euclio/vim-nocturne'
+  Plug 'jaromero/vim-monokai-refined'
+  Plug 'johnallen3d/made-of-code.vim'
+  Plug 'julienxx/hemisu'
+  Plug 'junegunn/seoul256.vim'
+  Plug 'metalelf0/sift'
+  Plug 'metalelf0/smyck-color-scheme'
+  Plug 'molok/vim-vombato-colorscheme'
+  Plug 'nanotech/jellybeans.vim'
+  Plug 'vim-scripts/blackboard.vim'
+  Plug 'vim-scripts/mayansmoke'
+  Plug 'vim-scripts/inkpot'
+  Plug 'vim-scripts/herald.vim'
+  Plug 'baverman/vim-babymate256'
+  Plug 'gregsexton/muon'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'itchyny/landscape.vim'
+  Plug 'tomasr/molokai'
+  Plug 'keithbsmiley/rspec.vim'
+  Plug 'vim-scripts/obsidian2.vim'
+  Plug 'vim-scripts/Colour-Sampler-Pack'
+  Plug 'metalelf0/harlequin'
+  Plug 'nice/sweater'
+  Plug 'jnurmine/Zenburn'
+  Plug 'gosukiwi/vim-atom-dark'
+  
 
-call vundle#end()
+
+call plug#end()
 
 filetype plugin indent on
 
@@ -280,9 +351,6 @@ filetype plugin indent on
 noremap H ^
 noremap L $
 inoremap kj <Esc>
-
-nnoremap <C-j> :bprevious<CR>
-nnoremap <C-k> :bnext<CR>
 
 " macbook remaps!
 nnoremap <D-Right> :tabnext<CR>
@@ -296,11 +364,8 @@ nnoremap <D-Left>  :tabprevious<CR>
 " don't go to the active window
 let g:bufExplorerFindActive=0
 
-" " airline: use powerline fonts
-let g:airline_powerline_fonts=1
 
 " airline customization
-
 function! AddPomoToAirline(ext)
   call a:ext.add_statusline_funcref(function('AddPomo'))
 endfunction
@@ -310,10 +375,13 @@ function! AddPomo(...)
   let w:airline_section_c .= g:airline_left_sep . ' %{PomodoroStatus()}'
 endfunction
 
+vmap <Enter> <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+
 nnoremap <D-Up> :bn<CR>
 nnoremap <D-Down> :bp<CR>
-" nnoremap <silent> <Space> za
-" vnoremap <silent> <Space> za<Esc>
+nnoremap <silent> <Space> za
+vnoremap <silent> <Space> za<Esc>
 map <Leader>fi :set foldmethod=indent<cr>
 map <Leader>fm :set foldmethod=manual<cr>
 
@@ -323,7 +391,7 @@ nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Qargs loads quickfix filenames into args list
 command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
- 
+
 " populate the argument list with each of the files named in the quickfix list
 function! QuickfixFilenames()
   let buffer_numbers = {}
@@ -336,7 +404,18 @@ endfunction
 nnoremap n nzz
 nnoremap N Nzz
 
-" Use Q to intelligently close a window 
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:SuperTabCrMapping = 0
+
+" Use Q to intelligently close a window
 " (if there are multiple windows into the same buffer)
 " or kill the buffer entirely if it's the last window looking into that buffer
 function! CloseWindowOrKillBuffer()
@@ -355,6 +434,20 @@ function! CloseWindowOrKillBuffer()
   endif
 endfunction
 
+function! GoyoBefore()
+  Limelight
+endfunction
+
+function! GoyoAfter()
+  Limelight!
+endfunction
+
+let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
+nnoremap <Leader><Space> :Goyo<CR>
+
+" Dispatch.vim
+nnoremap <Leader>d :Dispatch<CR>
+
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
 
 function! Agg(pattern)
@@ -363,7 +456,7 @@ endfunction
 
 set foldlevelstart=20
 
-autocmd BufNewFile,BufRead *.rb set foldmethod=indent
+" " let g:UltiSnipsSnippetDirectories=["/Users/metalelf0/.vim/bundle/vim-snippets/UltiSnips"]
 
 " Extra vimrc {{{
 let s:extrarc = expand($HOME . '/.vim/passwords.vim')
@@ -371,7 +464,7 @@ if filereadable(s:extrarc)
     exec ':so ' . s:extrarc
 endif
 " }}}
-
+"
 " speedy terminal
 " -----------------------------------
 set ttyfast
@@ -381,4 +474,9 @@ set ttimeoutlen=100
 syntax sync minlines=256
 set synmaxcol=500
 
-colo herald
+" set bg=dark
+" let g:solarized_termcolors=256
+" colo predawn
+set bg=light
+let g:solarized_termcolors=256
+colo kalisi

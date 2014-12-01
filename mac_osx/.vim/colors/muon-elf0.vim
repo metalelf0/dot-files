@@ -92,4 +92,8 @@ hi Ignore     ctermfg=214 ctermbg=234                               gui=None    
 hi Todo       ctermfg=196 ctermbg=234                               gui=None        guifg=#ff0000       guibg=#1c1c1c
 hi Exception  ctermfg=080 ctermbg=234 cterm=bold                    gui=bold        guifg=#5fdfdf       guibg=#1c1c1c
 
+" ruby
+" hi rubySymbol ctermfg=080 ctermbg=234 cterm=bold                    gui=bold        guifg=#5fdfdf       guibg=#1c1c1c
+
+
 "vim: sw=4
