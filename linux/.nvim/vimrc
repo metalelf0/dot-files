@@ -1,0 +1,473 @@
+set t_Co=256
+set nocompatible
+set number
+set ruler
+syntax on
+set encoding=utf-8
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+" set list listchars=tab:\ \ ,trail:·
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+set laststatus=2
+set autoindent
+set autoread
+
+set complete=.,b,u,]
+set wildmode=longest,list:longest,list:full
+set completeopt=menu,preview
+
+" use osx clipboard for copy and paste
+" set clipboard+=unnamed
+
+set wrap
+set linebreak
+set nolist  " list disables linebreak
+
+let g:molokai_original=0
+
+" make rvm happy
+set shell=/bin/sh
+
+" Show (partial) command in the status line
+set showcmd
+
+au Filetype ruby setlocal iskeyword+=_
+
+" Remember last location in file
+if has("autocmd")
+  au VimResized * exe "normal! \<C-W>="
+  au BufNewFile,BufRead *.rb set foldmethod=indent
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+endif
+
+" Include user's local vim config
+if filereadable(expand("~/Dropbox/vim.local/macros.rc"))
+  source ~/Dropbox/vim.local/macros.rc
+endif
+
+" Include user's local vim config
+if filereadable(expand("~/Dropbox/vim.local/vimrc"))
+  source ~/Dropbox/vim.local/vimrc
+endif
+
+if filereadable(expand("~/.nvim/setup/easymotion.vim"))
+  source $HOME/.nvim/setup/easymotion.vim
+endif
+
+" augroup BgHighlight
+  " autocmd!
+  " autocmd WinEnter * set cul
+  " autocmd WinLeave * set nocul
+" augroup END
+
+function! NeatFoldText() "{{{2
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+set foldtext=NeatFoldText()
+" }}}2
+
+function! s:TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'
+  \ matchgroup='.a:textSnipHl.'
+  \ start="'.a:start.'" end="'.a:end.'"
+  \ contains=@'.group
+endfunction
+
+
+" load the plugin and indent settings for the detected filetype
+filetype plugin indent on
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" make uses real tabs
+au FileType make set noexpandtab
+
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+
+" add json syntax highlighting
+au BufNewFile,BufRead *.json set ft=javascript
+
+" my journal file
+map <Leader>J :vsplit $HOME/Documents/GildDocuments/journal.md<Enter>
+map <Leader>N :vsplit $HOME/Documents/GildDocuments/notes.md<Enter>
+map <Leader>T :vsplit $HOME/Dropbox/todo.txt/todo.txt<Enter>
+map <Leader>V :vsplit $MYVIMRC<Enter>
+map <Leader>* :execute 'Ag ' . expand('<cword>')<CR>
+au BufEnter,BufNewFile,BufRead journal.md call s:TextEnableCodeSnip('vimt0d0', '#{{{t0d0', '#t0d0}}}', 'SpecialComment')
+
+" double tap esc to clear highlighting after search
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" To highlight all incremental matches (requires incsearch)
+let g:oblique#incsearch_highlight_all=1
+"To clear search highlight or not
+let g:oblique#clear_highlight=1
+
+" :w!! saves a file as root
+cmap w!! w !sudo tee % >/dev/null
+
+function! DeleteRubyComments()
+  g/#.*$/d
+endfunction
+
+nmap <silent> <Leader>dc call DeleteRubyComments()
+
+" Use modeline overrides
+set modeline
+set modelines=10
+
+" no backup please
+set nobackup
+
+" " Directories for swp files
+set backupdir=~/.vim_backup
+set directory=~/.vim_backup
+
+" MacVIM shift+arrow-keys behavior (required in .vimrc)
+let macvim_hig_shift_movement = 1
+
+" nmap <Tab><Tab> :vsplit .<CR>
+
+" NERDCommenter configuration
+" add extra spaces around delimiters
+let NERDSpaceDelims=1
+
+" gist-vim defaults
+if has("mac")
+  let g:gist_clip_command = 'pbcopy'
+elseif has("unix")
+  let g:gist_clip_command = 'xclip -selection clipboard'
+endif
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+
+let g:vimwiki_underline_links=0
+
+"" Github flavoured markdown
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
+" CTags
+noremap <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+noremap <C-\> :tnext<CR>
+
+" pomodoro.vim
+let g:pomodoro_time_work = 25
+let g:pomodoro_time_slack = 5
+let g:pomodoro_do_log = 1
+let g:pomodoro_log_file = "/Users/metalelf0/Documents/pomodoro_log.txt"
+
+" http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
+" http://got-ravings.blogspot.it/2008/08/vim-pr0n-making-statuslines-that-own.html
+
+    " set statusline=
+    " set statusline +=%#Identifier#\ %n\ %*                  " buffer number
+    " set statusline +=%#PreProc#%{&ff}%*                     " file format
+    " set statusline +=%#Number#%y%*                          " file type
+    " set statusline +=%#String#\ %<%t%*                      " full path
+    " set statusline +=%#SpecialKey#%m%*                      " modified flag
+    " set statusline +=%#Identifier#\ %{PomodoroStatus()}\ %* " pomodoro status
+    " set statusline +=%=%*                                   " padding
+    " set statusline +=%#Identifier#%5l%*                     " current line
+    " set statusline +=%#SpecialKey#/%L%*                     " total lines
+    " set statusline +=%#Identifier#%4v\ %*                   " virtual column number
+    " set statusline +=%#SpecialKey#0x%04B\ %*                " character under cursor
+
+" -k means 'only filetypes known to ACK'
+"  if something is missing, look into ack --help-types
+" let g:ackprg='/usr/local/bin/ack -H --nocolor --nogroup --column'
+" let g:agprg='/Users/metalelf0/bin/agg --column'
+let @l='^ilet(:WbEa)f=r{A }j$'
+let @n='zRGy17kggP<Esc>:read !gdate "+\%B \%d, \%A"kdd'
+let @d='<Esc>:read !gdate "+\%B \%d, \%A"'
+
+
+" set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.fzf
+
+" call vundle#begin()
+call plug#begin('~/.nvim/plugged')
+  Plug 'ngmy/vim-rubocop'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'bling/vim-airline'
+  Plug 'kokakolako/vim-hemisu-airline'
+  Plug 'christoomey/vim-tmux-navigator'
+  " Plug 'cohama/lexima.vim'
+  Plug 'Raimondi/delimitMate'
+  Plug 'ervandew/supertab'
+  Plug 'freitass/todo.txt-vim'
+  " Plug 'google/vim-maktaba'
+  " Plug 'google/vim-codefmtlib'
+  " Plug 'google/vim-codefmt'
+  " Plug 'google/vim-glaive'
+  Plug 'jtratner/vim-flavored-markdown'
+  " Plug 'junegunn/goyo.vim'
+  " Plug 'junegunn/limelight.vim'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'junegunn/vim-oblique'
+  Plug 'junegunn/vim-pseudocl'
+  Plug 'justinmk/vim-sneak'
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'kien/ctrlp.vim'
+  Plug 'FelikZ/ctrlp-py-matcher'
+  " Plug 'majutsushi/tagbar'
+  Plug 'Lokaltog/vim-easymotion'
+  Plug 'mattn/gist-vim'
+  Plug 'mattn/webapi-vim'
+  Plug 'metalelf0/vimt0d0'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'rking/ag.vim'
+  Plug 'rking/vim-ruby-refactoring'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/syntastic'
+  Plug 'Shougo/unite.vim'
+  Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+  Plug 'sirver/ultisnips'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rsi'
+  Plug 'tpope/vim-rvm'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-vinegar'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'vim-scripts/ScrollColors'
+  Plug 'vim-scripts/bufexplorer.zip'
+  Plug 'vim-scripts/vim-indent-object'
+  Plug 'vim-scripts/vimwiki'
+  Plug 'wellle/targets.vim'
+  Plug 'mustache/vim-mustache-handlebars'
+  Plug 'unifieddialog/vim-rspec-focus'
+  Plug 'mattn/emmet-vim'
+
+  " colorschemes
+  Plug 'whatyouhide/vim-gotham'
+  Plug 'sjl/badwolf'
+  Plug 'freeo/vim-kalisi'
+  Plug 'pychimp/vim-luna'
+  Plug 'pychimp/vim-sol'
+  Plug 'valloric/vim-valloric-colorscheme'
+  Plug 'chriskempson/base16-vim'
+  Plug 'chriskempson/vim-tomorrow-theme'
+  Plug 'dhruvasagar/vim-railscasts-theme'
+  Plug 'euclio/vim-nocturne'
+  Plug 'cdmedia/itg_flat_vim'
+  Plug 'jaromero/vim-monokai-refined'
+  Plug 'johnallen3d/made-of-code.vim'
+  Plug 'julienxx/hemisu'
+  Plug 'junegunn/seoul256.vim'
+  Plug 'metalelf0/sift'
+  Plug 'metalelf0/smyck-color-scheme'
+  Plug 'metalelf0/vim-idleFingers'
+  Plug 'molok/vim-vombato-colorscheme'
+  Plug 'nanotech/jellybeans.vim'
+  Plug 'vim-scripts/blackboard.vim'
+  Plug 'vim-scripts/mayansmoke'
+  Plug 'vim-scripts/inkpot'
+  Plug 'vim-scripts/herald.vim'
+  Plug 'baverman/vim-babymate256'
+  Plug 'gregsexton/muon'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'itchyny/landscape.vim'
+  Plug 'tomasr/molokai'
+  Plug 'keithbsmiley/rspec.vim'
+  Plug 'vim-scripts/obsidian2.vim'
+  Plug 'vim-scripts/Colour-Sampler-Pack'
+  Plug 'metalelf0/harlequin'
+  Plug 'nice/sweater'
+  Plug 'jnurmine/Zenburn'
+  Plug 'gosukiwi/vim-atom-dark'
+  Plug 'morhetz/gruvbox'
+  Plug 'idbrii/vim-sandydune'
+  Plug 'duythinht/inori'
+  Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+  Plug 'romainl/Apprentice'
+  Plug 'wimstefan/Lightning'
+  Plug 'NLKNguyen/papercolor-theme'
+  
+call plug#end()
+
+" call glaive#Install()
+" Glaive codefmt plugin[mappings]
+
+source $HOME/.nvim/setup/ctrlp.vim
+source $HOME/.nvim/setup/unite.vim
+
+filetype plugin indent on
+
+  " Plugin 'Shougo/unite.vim'
+  " Plugin 'Shougo/vimproc.vim'
+
+" drastic remaps!
+noremap H ^
+noremap L $
+inoremap kj <Esc>
+
+" macbook remaps!
+nnoremap <D-Right> :tabnext<CR>
+nnoremap <D-Left>  :tabprevious<CR>
+
+" " xmpfilter
+" map <Leader>xa <Plug>(xmpfilter-mark)
+" map <Leader>xr <Plug>(xmpfilter-run)
+
+" bufexplorer
+" don't go to the active window
+let g:bufExplorerFindActive=0
+let g:airline_theme = 'hemisu_airline'
+
+" " airline customization
+" function! AddPomoToAirline(ext)
+  " call a:ext.add_statusline_funcref(function('AddPomo'))
+" endfunction
+
+" function! AddPomo(...)
+  " let w:airline_section_c = get(w:, 'airline_section_c', g:airline_section_c)
+  " let w:airline_section_c .= g:airline_left_sep . ' %{PomodoroStatus()}'
+" endfunction
+
+vmap <Enter> <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+
+nnoremap <D-Up> :bn<CR>
+nnoremap <D-Down> :bp<CR>
+nnoremap <silent> <Space> za
+vnoremap <silent> <Space> za<Esc>
+map <Leader>fi :set foldmethod=indent<cr>
+map <Leader>fm :set foldmethod=manual<cr>
+
+" select last paste in visual mode
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+
+" Qargs loads quickfix filenames into args list
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+
+" populate the argument list with each of the files named in the quickfix list
+function! QuickfixFilenames()
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
+
+nnoremap n nzz
+nnoremap N Nzz
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:SuperTabCrMapping = 0
+
+" Use Q to intelligently close a window
+" (if there are multiple windows into the same buffer)
+" or kill the buffer entirely if it's the last window looking into that buffer
+function! CloseWindowOrKillBuffer()
+  let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+  " We should never bdelete a nerd tree
+  if matchstr(expand("%"), 'NERD') == 'NERD'
+    wincmd c
+    return
+  endif
+
+  if number_of_windows_to_this_buffer > 1
+    wincmd c
+  else
+    bdelete
+  endif
+endfunction
+
+function! GoyoBefore()
+  Limelight
+endfunction
+
+function! GoyoAfter()
+  Limelight!
+endfunction
+
+let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
+nnoremap <Leader><Space> :Goyo<CR>
+
+" Dispatch.vim
+nnoremap <Leader>d :Dispatch<CR>
+
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
+
+" Terminal: use esc to escape 
+tnoremap <Esc> <c-\><c-n>
+
+function! Agg(pattern)
+  Ag pattern $(git ls-files)
+endfunction
+
+set foldlevelstart=20
+
+" " let g:UltiSnipsSnippetDirectories=["/Users/metalelf0/.vim/bundle/vim-snippets/UltiSnips"]
+
+" Extra vimrc {{{
+let s:extrarc = expand($HOME . '/.vim/passwords.vim')
+if filereadable(s:extrarc)
+    exec ':so ' . s:extrarc
+endif
+" }}}
+"
+" speedy terminal
+" -----------------------------------
+" set ttyfast
+set notimeout
+set nottimeout
+set ttimeoutlen=10
+syntax sync minlines=256
+set synmaxcol=500
+
+" set bg=light
+" let g:solarized_termcolors=256
+colo apprentice
+" colo solarized
