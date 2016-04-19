@@ -3,7 +3,7 @@
 " let g:airline_theme='papercolor'
 " let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 " " airline customization
 " function! AddPomoToAirline(ext)
@@ -15,3 +15,4 @@ let g:airline#extensions#tabline#enabled = 1
   " let w:airline_section_c .= g:airline_left_sep . ' %{PomodoroStatus()}'
 " endfunction
 
+let g:airline#extensions#branch#enabled=0

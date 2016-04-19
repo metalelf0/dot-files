@@ -2,7 +2,7 @@
   let g:fzf_nvim_statusline = 0 " disable statusline overwriting
   let g:fzf_layout = { 'window': 'enew' } " same window, please
 
-  nnoremap <silent> <leader><space> :Files<CR>
+  nnoremap <silent> <leader>p :Files<CR>
   nnoremap <silent> <leader>b :Buffers<CR>
   nnoremap <silent> <leader>; :BLines<CR>
   nnoremap <silent> <leader>. :Lines<CR>
@@ -35,3 +35,10 @@
     execute 'Ag' selection
   endfunction
 " }}}
+
+if has('nvim')
+  tnoremap <a-a> <esc>a
+  tnoremap <a-b> <esc>b
+  tnoremap <a-d> <esc>d
+  tnoremap <a-f> <esc>f
+endif

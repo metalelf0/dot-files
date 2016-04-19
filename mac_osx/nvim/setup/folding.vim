@@ -10,3 +10,6 @@ function! NeatFoldText() "{{{2
 endfunction
 set foldtext=NeatFoldText()
 " }}}2
+
+" Dont fold markdown by default
+let g:vim_markdown_folding_disabled=1

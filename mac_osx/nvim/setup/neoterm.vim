@@ -13,7 +13,7 @@ nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
 
 " Useful maps
 " hide/close all terminals
-nnoremap <silent> ,th :call neoterm#close_all()<cr>
+nnoremap <silent> ,th :call neoterm#close()<cr>
 " clear terminal
 nnoremap <silent> ,tl :call neoterm#clear()<cr>
 " kills the current job (send a <c-c>)
