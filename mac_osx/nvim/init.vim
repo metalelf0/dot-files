@@ -119,30 +119,48 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 Plug 'tpope/vim-haml', { 'for': ['haml'] }
 
 "colors
+" Plug 'chriskempson/base16-vim'
+Plug '29decibel/codeschool-vim-theme'
 Plug 'AlessandroYorba/Alduin'
+Plug 'AlessandroYorba/Despacio'
 Plug 'AlessandroYorba/Sierra'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'MaxSt/FlatColor'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'Soares/base16.nvim'
 Plug 'abra/vim-obsidian'
 Plug 'acarapetis/vim-colors-github'
 Plug 'ajh17/Spacegray.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'baskerville/bubblegum'
+Plug 'chase/focuspoint-vim'
+Plug 'chriskempson/base16-vim'
 Plug 'chriskempson/vim-tomorrow-theme'
-" Plug 'chriskempson/base16-vim'
-Plug 'Soares/base16.nvim'
-Plug 'nyomaszto/crayon'
+Plug 'ciaranm/inkpot'
+Plug 'djjcast/mirodark'
+Plug 'dracula/vim'
+Plug 'dylanaraps/ryuuko'
 Plug 'ewilazarus/preto'
+Plug 'fmoralesc/molokayo'
 Plug 'freeo/vim-kalisi'
 Plug 'fxn/vim-monochrome'
+Plug 'gilgigilgil/anderson.vim'
 Plug 'gmoe/vim-espresso'
+Plug 'gregsexton/Atom'
 Plug 'herrbischoff/cobalt2.vim'
 Plug 'ifightcrime/Muon'
+Plug 'jacoborus/tender.vim'
+Plug 'jdkanani/vim-material-theme'
+Plug 'jnurmine/Zenburn'
 Plug 'jonathanfilip/vim-lucius'
+Plug 'joshdick/onedark.vim'
 Plug 'juanedi/predawn.vim'
 Plug 'julienxx/hemisu'
 Plug 'junegunn/seoul256.vim'
 Plug 'kabbamine/yowish.vim'
+Plug 'keith/parsec.vim'
 Plug 'kokakolako/vim-hemisu-airline'
+Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'marcopaganini/termschool-vim-theme'
 Plug 'mhartington/oceanic-next'
 Plug 'mhinz/vim-janah'
@@ -150,32 +168,26 @@ Plug 'mkarmona/colorsbox'
 Plug 'morhetz/gruvbox'
 Plug 'mswift42/vim-themes'
 Plug 'nanotech/jellybeans.vim'
-Plug 'petelewis/vim-evolution'
-Plug 'petelewis/vim-evolution'
-Plug 'romainl/Apprentice'
-Plug 'romainl/flattened'
-Plug 'sheerun/vim-wombat-scheme'
-Plug 'sts10/vim-mustard'
-Plug 'thriveth/vim-twilight-bright'
-Plug 'twerth/ir_black'
-Plug 'whatyouhide/vim-gotham'
-Plug 'dracula/vim'
-Plug 'jdkanani/vim-material-theme'
-Plug 'tomasr/molokai'
-Plug 'sjl/badwolf'
-Plug 'tpope/vim-vividchalk'
-Plug 'Lokaltog/vim-distinguished'
 Plug 'notpratheek/vim-luna'
+Plug 'nyomaszto/crayon'
+Plug 'petelewis/vim-evolution'
 Plug 'rakr/vim-one'
 Plug 'rakr/vim-two-firewatch'
-Plug '29decibel/codeschool-vim-theme'
-Plug 'ciaranm/inkpot'
-Plug 'djjcast/mirodark'
-Plug 'jnurmine/Zenburn'
+Plug 'romainl/Apprentice'
+Plug 'romainl/flattened'
+Plug 'scheakur/vim-scheakur'
+Plug 'sheerun/vim-wombat-scheme'
+Plug 'sjl/badwolf'
+Plug 'sts10/vim-mustard'
+Plug 'thriveth/vim-twilight-bright'
+Plug 'tomasr/molokai'
+Plug 'tpope/vim-vividchalk'
+Plug 'twerth/ir_black'
 Plug 'vim-scripts/twilight'
-Plug 'jacoborus/tender.vim'
-Plug 'dylanaraps/ryuuko'
+Plug 'vim-scripts/twilight256.vim'
 Plug 'w0ng/vim-hybrid'
+Plug 'whatyouhide/vim-gotham'
+Plug 'wimstefan/Lightning'
 Plug 'zanglg/nova.vim'
 call plug#end()
 
@@ -193,6 +205,7 @@ source $HOME/.config/nvim/setup/nerdcommenter.vim
 source $HOME/.config/nvim/setup/sneak.vim
 source $HOME/.config/nvim/setup/vim-multiple-cursors.vim
 " source $HOME/.config/nvim/setup/vim-windowswap.vim
+source $HOME/.config/nvim/setup/base16.vim
 source $HOME/.config/nvim/setup/conflicted.vim
 source $HOME/.config/nvim/setup/vimwiki.vim
 source $HOME/.config/nvim/setup/ripgrep.vim
@@ -237,7 +250,7 @@ endfunc
 let colors = ['PaperColor', 'crayon', 'oceanicnext', 'gruvbox', 'solarized', 'hemisu', 'apprentice', 'jellybeans', 'wombat', 'monochrome', 'alduin', 'sierra', 'dracula', 'one', 'tender', 'ir_black', 'base16-eighties']
 if $ITERM_PROFILE != ""
   if index(colors, $ITERM_PROFILE) != -1
-    color $ITERM_PROFILE
+    exe "color ".$ITERM_PROFILE
     if filereadable($HOME . "/.config/nvim/setup/color-" . $ITERM_PROFILE. ".vim")
       source $HOME/.config/nvim/setup/color-$ITERM_PROFILE.vim
     endif
