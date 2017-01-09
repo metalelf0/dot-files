@@ -1,3 +1,4 @@
+let g:neoterm_shell = "zsh"
 let g:neoterm_position = 'horizontal'
 let g:neoterm_automap_keys = ',tt'
 

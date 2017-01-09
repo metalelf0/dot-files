@@ -1,19 +1,24 @@
 " $HOME/.config/nvim/init.vim
+set termguicolors
 set t_Co=256
 set nocompatible
 set number
 set ruler
+
+" tabs
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set autoindent
+set smarttab
+
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set laststatus=2
-set autoindent
 set autoread
 set notimeout
 set nottimeout
@@ -22,6 +27,8 @@ set synmaxcol=500
 set relativenumber
 set number
 set complete=.,b,u,]
+set completeopt-=preview
+set completeopt+=noinsert,noselect
 set wildmode=longest,list:longest,list:full
 set completeopt=menu,preview
 set backspace=indent,eol,start
@@ -39,136 +46,158 @@ let mapleader = "\<Space>"
 let g:python3_host_prog='/usr/local/bin/python3'
 " set clipboard+=unnamed
 
+" used by deoplete
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 
 set rtp+=~/.fzf
 call plug#begin('~/.config/nvim/plugged')
- Plug 'Raimondi/delimitMate'
- " Plug 'airblade/vim-gitgutter'
- Plug 'ap/vim-css-color'
- Plug 'vim-airline/vim-airline'
- Plug 'vim-airline/vim-airline-themes'
- " Plug 'christoomey/vim-tmux-navigator'
- " Plug 'itchyny/lightline.vim'
- Plug 'dyng/ctrlsf.vim'
- Plug 'ervandew/supertab'
- Plug 'honza/vim-snippets'
- Plug 'jtratner/vim-flavored-markdown'
- Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
- Plug 'junegunn/fzf.vim'
- Plug 'junegunn/vim-easy-align'
- Plug 'junegunn/vim-oblique'
- Plug 'junegunn/vim-pseudocl'
- Plug 'justinmk/vim-sneak'
- " Plug 'ctrlpvim/ctrlp.vim'
- Plug 'kassio/neoterm'
- Plug 'kchmck/vim-coffee-script'
- Plug 'metalelf0/vimt0d0'
- Plug 'mtscout6/vim-cjsx'
- Plug 'mustache/vim-mustache-handlebars'
- Plug 'plasticboy/vim-markdown'
- Plug 'scrooloose/nerdcommenter'
- " Plug 'Shougo/unite.vim'
- " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
- " Plug 'Shougo/deoplete.nvim'
- Plug 'sirver/ultisnips'
- Plug 'terryma/vim-multiple-cursors'
- Plug 'tpope/vim-dispatch'
- Plug 'tpope/vim-eunuch'
- Plug 'tpope/vim-fugitive'
- Plug 'tpope/vim-rails'
- Plug 'tpope/vim-rsi'
- Plug 'tpope/vim-rvm'
- Plug 'tpope/vim-surround'
- Plug 'tpope/vim-unimpaired'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'nazo/pt.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'metalelf0/todo.txt-vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'scrooloose/nerdcommenter'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-surround'
+" vim-abolish: abbreviation / substitution / coercion
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-rbenv'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'wellle/targets.vim'
+" Plug 'qpkorr/vim-bufkill'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'fishbullet/deoplete-ruby'
+Plug 'ervandew/supertab'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
+" Plug 'wesQ3/vim-windowswap'
+Plug 'w0rp/ale'
+Plug 'christoomey/vim-conflicted'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'mhinz/vim-signify'
+Plug 'vimwiki/vimwiki'
+" Plug 'sheerun/vim-polyglot'
+Plug 'metalelf0/vim-bbye'
 
- " directory editor - one of these should be fine!
- Plug 'tpope/vim-vinegar'
- " Plug 'justinmk/vim-dirvish'
+" ruby
+Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
+Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby'] }
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
+Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
+Plug 'Keithbsmiley/rspec.vim', { 'for': ['ruby'] }
+Plug 'sunaku/vim-ruby-minitest', { 'for': ['ruby'] }
+Plug 'jiajiawang/vim-ruby-helper', { 'for': ['ruby'] }
+Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby'] }
 
- Plug 'tpope/vim-speeddating'
- Plug 'vim-ruby/vim-ruby'
- Plug 'jiajiawang/vim-ruby-helper'
- Plug 'ecomba/vim-ruby-refactoring'
- Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
- " Plug 'ajh17/VimCompletesMe'
- Plug 'vim-scripts/ScrollColors'
- Plug 'wellle/targets.vim'
- Plug 'sickill/vim-pasta'
- Plug 't9md/vim-ruby-xmpfilter'
- Plug 'benekastah/neomake'
- Plug 'metalelf0/todo.txt-vim'
- Plug 'Glench/Vim-Jinja2-Syntax'
- " Plug 'easymotion/vim-easymotion'
- Plug 'terryma/vim-expand-region'
- Plug 'michaeljsmith/vim-indent-object'
- Plug 'jceb/vim-orgmode'
- " Plug 'scrooloose/nerdtree'
- "colors
-  Plug 'AlessandroYorba/Alduin'
-  Plug 'AlessandroYorba/Sierra'
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'abra/vim-abra'
-  Plug 'acarapetis/vim-colors-github'
-  Plug 'ajh17/Spacegray.vim'
-  Plug 'altercation/vim-colors-solarized'
-  Plug 'baskerville/bubblegum'
-  Plug 'chriskempson/vim-tomorrow-theme'
-  Plug 'dylanaraps/crayon'
-  Plug 'ewilazarus/preto'
-  Plug 'freeo/vim-kalisi'
-  Plug 'fxn/vim-monochrome'
-  Plug 'gmoe/vim-espresso'
-  Plug 'ifightcrime/Muon'
-  Plug 'jonathanfilip/vim-lucius'
-  Plug 'julienxx/hemisu'
-  Plug 'junegunn/seoul256.vim'
-  Plug 'kokakolako/vim-hemisu-airline'
-  Plug 'marcopaganini/termschool-vim-theme'
-  Plug 'mhartington/oceanic-next'
-  Plug 'mhinz/vim-janah'
-  Plug 'mkarmona/colorsbox'
-  Plug 'morhetz/gruvbox'
-  Plug 'mswift42/vim-themes'
-  Plug 'nanotech/jellybeans.vim'
-  Plug 'petelewis/vim-evolution'
-  Plug 'petelewis/vim-evolution'
-  Plug 'romainl/Apprentice'
-  Plug 'romainl/flattened'
-  Plug 'sheerun/vim-wombat-scheme'
-  Plug 'sts10/vim-mustard'
-  Plug 'thriveth/vim-twilight-bright'
-  Plug 'twerth/ir_black'
-  Plug 'whatyouhide/vim-gotham'
-  Plug 'zenorocha/dracula-theme', { 'rtp': 'vim' }
-  Plug 'jdkanani/vim-material-theme'
-  Plug 'tomasr/molokai'
- call plug#end()
+" javascript
+Plug 'othree/yajs.vim', { 'for': ['javascript'] }
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
+Plug 'moll/vim-node', { 'for': ['javascript'] }
+Plug 'elzr/vim-json', { 'for': ['json', 'javascript'] }
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 
-" source $HOME/.config/nvim/setup/ctrlp.vim
-" source $HOME/.config/nvim/setup/deoplete.nvim
-" source $HOME/.config/nvim/setup/easymotion.vim
-" source $HOME/.config/nvim/setup/unite.vim
+" markup
+Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'eruby'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['html', 'css', 'eruby'] }
+Plug 'plasticboy/vim-markdown', { 'for': ['mkd', 'markdown', 'mkd.markdown'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
+Plug 'tpope/vim-haml', { 'for': ['haml'] }
+
+"colors
+Plug 'AlessandroYorba/Alduin'
+Plug 'AlessandroYorba/Sierra'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'abra/vim-obsidian'
+Plug 'acarapetis/vim-colors-github'
+Plug 'ajh17/Spacegray.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'baskerville/bubblegum'
+Plug 'chriskempson/vim-tomorrow-theme'
+" Plug 'chriskempson/base16-vim'
+Plug 'Soares/base16.nvim'
+Plug 'nyomaszto/crayon'
+Plug 'ewilazarus/preto'
+Plug 'freeo/vim-kalisi'
+Plug 'fxn/vim-monochrome'
+Plug 'gmoe/vim-espresso'
+Plug 'herrbischoff/cobalt2.vim'
+Plug 'ifightcrime/Muon'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'juanedi/predawn.vim'
+Plug 'julienxx/hemisu'
+Plug 'junegunn/seoul256.vim'
+Plug 'kabbamine/yowish.vim'
+Plug 'kokakolako/vim-hemisu-airline'
+Plug 'marcopaganini/termschool-vim-theme'
+Plug 'mhartington/oceanic-next'
+Plug 'mhinz/vim-janah'
+Plug 'mkarmona/colorsbox'
+Plug 'morhetz/gruvbox'
+Plug 'mswift42/vim-themes'
+Plug 'nanotech/jellybeans.vim'
+Plug 'petelewis/vim-evolution'
+Plug 'petelewis/vim-evolution'
+Plug 'romainl/Apprentice'
+Plug 'romainl/flattened'
+Plug 'sheerun/vim-wombat-scheme'
+Plug 'sts10/vim-mustard'
+Plug 'thriveth/vim-twilight-bright'
+Plug 'twerth/ir_black'
+Plug 'whatyouhide/vim-gotham'
+Plug 'dracula/vim'
+Plug 'jdkanani/vim-material-theme'
+Plug 'tomasr/molokai'
+Plug 'sjl/badwolf'
+Plug 'tpope/vim-vividchalk'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'notpratheek/vim-luna'
+Plug 'rakr/vim-one'
+Plug 'rakr/vim-two-firewatch'
+Plug '29decibel/codeschool-vim-theme'
+Plug 'ciaranm/inkpot'
+Plug 'djjcast/mirodark'
+Plug 'jnurmine/Zenburn'
+Plug 'vim-scripts/twilight'
+Plug 'jacoborus/tender.vim'
+Plug 'dylanaraps/ryuuko'
+Plug 'w0ng/vim-hybrid'
+Plug 'zanglg/nova.vim'
+call plug#end()
+
 source $HOME/.config/nvim/setup/airline.vim
-source $HOME/.config/nvim/setup/color-alduin.vim
-source $HOME/.config/nvim/setup/ctrlsf.vim
+" source $HOME/.config/nvim/setup/ctrlp.vim
+source $HOME/.config/nvim/setup/ultisnips.vim
+source $HOME/.config/nvim/setup/deoplete.vim
+source $HOME/.config/nvim/setup/supertab.vim
 source $HOME/.config/nvim/setup/easyalign.vim
 source $HOME/.config/nvim/setup/file-open-mappings.vim
 source $HOME/.config/nvim/setup/folding.vim
 source $HOME/.config/nvim/setup/functions.vim
 source $HOME/.config/nvim/setup/fzf.vim
-source $HOME/.config/nvim/setup/neomake.nvim
-source $HOME/.config/nvim/setup/neoterm.vim
 source $HOME/.config/nvim/setup/nerdcommenter.vim
-source $HOME/.config/nvim/setup/oblique.vim
-source $HOME/.config/nvim/setup/rails-autocommands.nvim
 source $HOME/.config/nvim/setup/sneak.vim
-source $HOME/.config/nvim/setup/supertab.vim
-source $HOME/.config/nvim/setup/syntax_coffee.vim
-source $HOME/.config/nvim/setup/syntax_markdown.vim
-source $HOME/.config/nvim/setup/ultisnips.vim
-source $HOME/.config/nvim/setup/vim-expand-region.nvim
-source $HOME/.config/nvim/setup/xmpfilter.vim
-" source $HOME/.config/nvim/setup/leader-key-window-navigation.vim
+source $HOME/.config/nvim/setup/vim-multiple-cursors.vim
+" source $HOME/.config/nvim/setup/vim-windowswap.vim
+source $HOME/.config/nvim/setup/conflicted.vim
+source $HOME/.config/nvim/setup/vimwiki.vim
+source $HOME/.config/nvim/setup/ripgrep.vim
+source $HOME/.config/nvim/setup/rubocop.vim
+
 
 " mappings
 map <Leader>tt :tabnew<Enter>
@@ -180,36 +209,57 @@ map gb :bn<Enter>
 map gB :bN<Enter>
 noremap <C-j> :bn<Enter>
 noremap <C-k> :bp<Enter>
+nnoremap <Leader>b :Bdelete<Enter>
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 tnoremap <Esc> <c-\><c-n>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
+au! BufNewFile,BufRead *.csv setf csv
+
 " useful macros
-let @n='zRGy17kggP<Esc>:read !date "+\%B \%d, \%A"'
+let @n='zRGy14kggP<Esc>:read !date "+\%B \%d, \%A"'
 let @d=':read !date "+\%B \%d, \%A"'
 
-let colors = [ 'PaperColor', 'crayon', 'oceanicnext', 'gruvbox', 'solarized', 'hemisu', 'apprentice', 'jellybeans', 'wombat', 'monochrome', 'alduin', 'sierra' ]
+" incremental command support
+if exists('&inccommand')
+  set inccommand=split
+endif
+
+" Show syntax highlighting groups for word under cursor
+nmap <leader>z :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+let colors = ['PaperColor', 'crayon', 'oceanicnext', 'gruvbox', 'solarized', 'hemisu', 'apprentice', 'jellybeans', 'wombat', 'monochrome', 'alduin', 'sierra', 'dracula', 'one', 'tender', 'ir_black', 'base16-eighties']
 if $ITERM_PROFILE != ""
   if index(colors, $ITERM_PROFILE) != -1
     color $ITERM_PROFILE
-    source $HOME/.config/nvim/setup/color-$ITERM_PROFILE.vim
+    if filereadable($HOME . "/.config/nvim/setup/color-" . $ITERM_PROFILE. ".vim")
+      source $HOME/.config/nvim/setup/color-$ITERM_PROFILE.vim
+    endif
   elseif index(colors, substitute($ITERM_PROFILE, '-dark\|-light', '', '')) != -1
     let baseColor = substitute($ITERM_PROFILE, '-dark\|-light', '', '')
     let variant   = substitute($ITERM_PROFILE, baseColor . '-', '', '')
     exe "color ".baseColor
     exe "set bg=".variant
-    source $HOME/.config/nvim/setup/color-$ITERM_PROFILE.vim
+    if filereadable($HOME . "/.config/nvim/setup/color-" . $ITERM_PROFILE . ".vim")
+      source $HOME/.config/nvim/setup/color-$ITERM_PROFILE.vim
+    endif
   endif
 else
   color apprentice
   source $HOME/.config/nvim/setup/color-apprentice.vim
 endif
 
-augroup CursorLine
-    au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-  augroup END
+" augroup CursorLine
+  " au!
+  " au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  " au WinLeave * setlocal nocursorline
+" augroup END
 
 
 " no colorcolumn, please

@@ -1,9 +1,12 @@
 " {{{
   let g:fzf_nvim_statusline = 0 " disable statusline overwriting
   let g:fzf_layout = { 'window': 'enew' } " same window, please
+  let $FZF_DEFAULT_COMMAND = 'ag -l --ignore "node_modules" -g ""'
+  nnoremap <c-p> :FZF<cr>
 
   nnoremap <silent> <leader>p :Files<CR>
-  nnoremap <silent> <leader>b :Buffers<CR>
+  " nnoremap <silent> <leader>b :Buffers<CR>
+  nnoremap <silent> <leader>B :Buffers<CR>
   nnoremap <silent> <leader>; :BLines<CR>
   nnoremap <silent> <leader>. :Lines<CR>
   nnoremap <silent> <leader>o :BTags<CR>
