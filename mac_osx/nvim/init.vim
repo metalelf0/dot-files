@@ -40,25 +40,36 @@ set backupdir=~/.vim_backup
 set directory=~/.vim_backup
 set hidden
 set diffopt=filler,vertical,iwhite
-syntax sync minlines=256
+" syntax sync minlines=256
 
 let mapleader = "\<Space>"
 let g:python3_host_prog='/usr/local/bin/python3'
 " set clipboard+=unnamed
+" let g:airline_powerline_fonts = 0
+" let g:airline_symbols_ascii = 1
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 
 " used by deoplete
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
+" Load vim-plug
+if empty(glob("~/.config/nvim/autoload/plug.vim"))
+    execute '!curl -fLo ~/.config/nvim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+
 set rtp+=~/.fzf
 call plug#begin('~/.config/nvim/plugged')
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'nazo/pt.vim'
+" leave supertab at the top or it will throw an error
+Plug 'ervandew/supertab'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
+Plug 'easymotion/vim-easymotion'
 Plug 'metalelf0/todo.txt-vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'scrooloose/nerdcommenter'
@@ -72,29 +83,37 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
+Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'tpope/vim-rbenv'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
 " Plug 'qpkorr/vim-bufkill'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
-Plug 'ervandew/supertab'
+" deoplete ruby-code-tools
+" requisite: `gem install rcodetools fastri`
+Plug 'Shougo/deoplete-rct'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'wesQ3/vim-windowswap'
 Plug 'w0rp/ale'
 Plug 'christoomey/vim-conflicted'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'mhinz/vim-signify'
 Plug 'vimwiki/vimwiki'
-" Plug 'sheerun/vim-polyglot'
 Plug 'metalelf0/vim-bbye'
+Plug 'sbdchd/neoformat'
+Plug 'vim-scripts/ScrollColors'
+Plug 'bronson/vim-visual-star-search'
+Plug 'mattn/emmet-vim'
+Plug 'janko-m/vim-test'
+Plug 'equalsraf/neovim-gui-shim'
+Plug 'guywald1/vim-prismo' " beautify comments with :Prismo
+Plug 'junegunn/goyo.vim'
+Plug 'benmills/vimux'
 
-" ruby
-Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
+" ------------------------------------ RUBY -----------------------------------
+" Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby'] }
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
@@ -103,7 +122,7 @@ Plug 'sunaku/vim-ruby-minitest', { 'for': ['ruby'] }
 Plug 'jiajiawang/vim-ruby-helper', { 'for': ['ruby'] }
 Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby'] }
 
-" javascript
+" --------------------------------- JAVASCRIPT --------------------------------
 Plug 'othree/yajs.vim', { 'for': ['javascript'] }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
 Plug 'moll/vim-node', { 'for': ['javascript'] }
@@ -111,14 +130,14 @@ Plug 'elzr/vim-json', { 'for': ['json', 'javascript'] }
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 
-" markup
+" ----------------------------------- MARKUP ----------------------------------
 Plug 'othree/html5.vim', { 'for': ['html', 'javascript', 'eruby'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['html', 'css', 'eruby'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['mkd', 'markdown', 'mkd.markdown'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 Plug 'tpope/vim-haml', { 'for': ['haml'] }
 
-"colors
+" ----------------------------------- COLORS ----------------------------------
 " Plug 'chriskempson/base16-vim'
 Plug '29decibel/codeschool-vim-theme'
 Plug 'AlessandroYorba/Alduin'
@@ -159,7 +178,7 @@ Plug 'julienxx/hemisu'
 Plug 'junegunn/seoul256.vim'
 Plug 'kabbamine/yowish.vim'
 Plug 'keith/parsec.vim'
-Plug 'kokakolako/vim-hemisu-airline'
+" Plug 'kokakolako/vim-hemisu-airline'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'marcopaganini/termschool-vim-theme'
 Plug 'mhartington/oceanic-next'
@@ -188,10 +207,18 @@ Plug 'vim-scripts/twilight256.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'whatyouhide/vim-gotham'
 Plug 'wimstefan/Lightning'
-Plug 'zanglg/nova.vim'
+Plug 'trevordmiller/nova-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'fcpg/vim-orbital'
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'reedes/vim-colors-pencil'
+Plug 'float168/vim-colors-cherryblossom'
+Plug 'protesilaos/prot16-vim'
+" Plug 'protesilaos/prot16-vim-airline'
+Plug 'ayu-theme/ayu-vim' " or other package manager
 call plug#end()
 
-source $HOME/.config/nvim/setup/airline.vim
+" source $HOME/.config/nvim/setup/airline.vim
 " source $HOME/.config/nvim/setup/ctrlp.vim
 source $HOME/.config/nvim/setup/ultisnips.vim
 source $HOME/.config/nvim/setup/deoplete.vim
@@ -208,9 +235,17 @@ source $HOME/.config/nvim/setup/vim-multiple-cursors.vim
 source $HOME/.config/nvim/setup/base16.vim
 source $HOME/.config/nvim/setup/conflicted.vim
 source $HOME/.config/nvim/setup/vimwiki.vim
-source $HOME/.config/nvim/setup/ripgrep.vim
+" source $HOME/.config/nvim/setup/ripgrep.vim
 source $HOME/.config/nvim/setup/rubocop.vim
+source $HOME/.config/nvim/setup/vim-test.vim
+source $HOME/.config/nvim/setup/statusline.vim
+" source $HOME/.config/nvim/setup/rubycomplete.vim
 
+" ------------------------------------ ALE ------------------------------------
+
+let g:ale_pattern_options = {
+\   '.*db/schema.rb$': {'ale_enabled': 0}
+\}
 
 " mappings
 map <Leader>tt :tabnew<Enter>
@@ -226,6 +261,9 @@ nnoremap <Leader>b :Bdelete<Enter>
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 tnoremap <Esc> <c-\><c-n>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+vmap <C-f> y0/<C-r>"<Enter>cgn
+
+let g:rubycomplete_rails = 1
 
 au! BufNewFile,BufRead *.csv setf csv
 
@@ -247,7 +285,13 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-let colors = ['PaperColor', 'crayon', 'oceanicnext', 'gruvbox', 'solarized', 'hemisu', 'apprentice', 'jellybeans', 'wombat', 'monochrome', 'alduin', 'sierra', 'dracula', 'one', 'tender', 'ir_black', 'base16-eighties']
+if has("termguicolors")     " set true colors
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+let colors = ['PaperColor', 'crayon', 'oceanicnext', 'gruvbox', 'solarized', 'hemisu', 'apprentice', 'jellybeans', 'wombat', 'monochrome', 'alduin', 'sierra', 'dracula', 'one', 'tender', 'tender-blue', 'ir_black', 'base16-eighties', 'hybrid', 'nord', 'ficus_light']
 if $ITERM_PROFILE != ""
   if index(colors, $ITERM_PROFILE) != -1
     exe "color ".$ITERM_PROFILE
@@ -263,6 +307,9 @@ if $ITERM_PROFILE != ""
       source $HOME/.config/nvim/setup/color-$ITERM_PROFILE.vim
     endif
   endif
+elseif filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
 else
   color apprentice
   source $HOME/.config/nvim/setup/color-apprentice.vim
@@ -277,3 +324,4 @@ endif
 
 " no colorcolumn, please
 set colorcolumn=
+" oni_config_file = $HOME/.oni/config.js
