@@ -35,6 +35,7 @@ set backspace=indent,eol,start
 set wrap
 set linebreak
 set list
+set listchars=eol:¬,tab:▸\
 set nobackup
 set backupdir=~/.vim_backup
 set directory=~/.vim_backup
@@ -44,6 +45,7 @@ set diffopt=filler,vertical,iwhite
 
 let mapleader = "\<Space>"
 let g:python3_host_prog='/usr/local/bin/python3'
+set clipboard^=unnamedplus
 " set clipboard+=unnamed
 " let g:airline_powerline_fonts = 0
 " let g:airline_symbols_ascii = 1
@@ -64,7 +66,7 @@ endif
 set rtp+=~/.fzf
 call plug#begin('~/.config/nvim/plugged')
 " leave supertab at the top or it will throw an error
-Plug 'ervandew/supertab'
+Plug 'metalelf0/supertab'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -85,6 +87,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'jeetsukumaran/vim-filebeagle'
 Plug 'tpope/vim-rbenv'
+Plug 'tpope/vim-endwise'
+Plug 'docunext/closetag.vim'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
@@ -111,11 +115,14 @@ Plug 'equalsraf/neovim-gui-shim'
 Plug 'guywald1/vim-prismo' " beautify comments with :Prismo
 Plug 'junegunn/goyo.vim'
 Plug 'benmills/vimux'
+Plug 'sheerun/vim-polyglot'
+Plug 'airblade/vim-gitgutter'
 
 " ------------------------------------ RUBY -----------------------------------
 " Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby'] }
-Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
+" Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
+Plug 'alexgenco/neovim-ruby', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
 Plug 'Keithbsmiley/rspec.vim', { 'for': ['ruby'] }
 Plug 'sunaku/vim-ruby-minitest', { 'for': ['ruby'] }
@@ -216,6 +223,13 @@ Plug 'float168/vim-colors-cherryblossom'
 Plug 'protesilaos/prot16-vim'
 " Plug 'protesilaos/prot16-vim-airline'
 Plug 'ayu-theme/ayu-vim' " or other package manager
+Plug 'zcodes/vim-colors-basic'
+Plug 'nightsense/office'
+Plug 'cocopon/iceberg.vim'
+Plug 'archseer/colibri.vim'
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'kocakosm/hilal'
+Plug 'rhysd/vim-color-spring-night'
 call plug#end()
 
 " source $HOME/.config/nvim/setup/airline.vim
@@ -239,6 +253,8 @@ source $HOME/.config/nvim/setup/vimwiki.vim
 source $HOME/.config/nvim/setup/rubocop.vim
 source $HOME/.config/nvim/setup/vim-test.vim
 source $HOME/.config/nvim/setup/statusline.vim
+source $HOME/.config/nvim/setup/gitgutter.vim
+source $HOME/.config/nvim/setup/vimux.vim
 " source $HOME/.config/nvim/setup/rubycomplete.vim
 
 " ------------------------------------ ALE ------------------------------------
@@ -291,7 +307,7 @@ if has("termguicolors")     " set true colors
   set termguicolors
 endif
 
-let colors = ['PaperColor', 'crayon', 'oceanicnext', 'gruvbox', 'solarized', 'hemisu', 'apprentice', 'jellybeans', 'wombat', 'monochrome', 'alduin', 'sierra', 'dracula', 'one', 'tender', 'tender-blue', 'ir_black', 'base16-eighties', 'hybrid', 'nord', 'ficus_light']
+let colors = ['PaperColor', 'crayon', 'oceanicnext', 'gruvbox', 'solarized', 'hemisu', 'apprentice', 'jellybeans', 'wombat', 'monochrome', 'alduin', 'sierra', 'dracula', 'one', 'tender', 'tender-blue', 'ir_black', 'base16-eighties', 'hybrid', 'nord', 'ficus_light', 'desert']
 if $ITERM_PROFILE != ""
   if index(colors, $ITERM_PROFILE) != -1
     exe "color ".$ITERM_PROFILE
@@ -315,11 +331,27 @@ else
   source $HOME/.config/nvim/setup/color-apprentice.vim
 endif
 
+" dont try to setup airline colors, cause no airline here
+let g:base16_airline=0
+
+" if filereadable(expand("~/.vimrc_background"))
+"   let base16colorspace=256
+"   source ~/.vimrc_background
+" endif
+
 " augroup CursorLine
   " au!
   " au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   " au WinLeave * setlocal nocursorline
 " augroup END
+
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading
+elseif executable('pt')
+  set grepprg=pt\ --nogroup\ --nocolor\ --ignore-case
+elseif executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 
 
 " no colorcolumn, please

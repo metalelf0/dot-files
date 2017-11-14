@@ -1,5 +1,5 @@
 " deoplete
-call remote#host#RegisterPlugin('python3', '/Users/metalelf0/.config/nvim/plugged/deoplete.nvim/rplugin/python3/deoplete.py', [
+" call remote#host#RegisterPlugin('python3', '/Users/metalelf0/.config/nvim/plugged/deoplete.nvim/rplugin/python3/deoplete.py', [
   \ {'sync': 1, 'name': '_deoplete', 'opts': {}, 'type': 'function'},
 \ ])
 
