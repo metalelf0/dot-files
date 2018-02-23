@@ -1,0 +1,21 @@
+set bg=dark
+colo crayon
+let g:airline_theme='crayon' 
+let g:terminal_foreground =    "#d8d8d8"
+let g:terminal_background =    "#101112"
+let g:terminal_color_0 =       "#101112"
+let g:terminal_color_1 =       "#c48d62"
+let g:terminal_color_2 =       "#99ae63"
+let g:terminal_color_3 =       "#d8c27a"
+let g:terminal_color_4 =       "#7495b6"
+let g:terminal_color_5 =       "#b59cd8"
+let g:terminal_color_6 =       "#8dc9c3"
+let g:terminal_color_7 =       "#bcc5d1"
+let g:terminal_color_8 =       "#586270"
+let g:terminal_color_9 =       "#b27b78"
+let g:terminal_color_10 =      "#282c33"
+let g:terminal_color_11 =      "#383e47"
+let g:terminal_color_12 =      "#798494"
+let g:terminal_color_13 =      "#d8d8d8"
+let g:terminal_color_14 =      "#cc99b3"
+let g:terminal_color_15 =      "#fdfeff"

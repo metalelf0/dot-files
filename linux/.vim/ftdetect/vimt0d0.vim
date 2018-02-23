@@ -1,1 +1,0 @@
-../bundle/vimt0d0/ftdetect/vimt0d0.vim

@@ -1,0 +1,21 @@
+let g:sierra_Pitch = 1
+colo sierra
+
+let g:terminal_color_background =  "#090909"
+let g:terminal_color_foreground =  "#dddddd"
+let g:terminal_color_0 =  "#090909"
+let g:terminal_color_1 =  "#9e4a4d"
+let g:terminal_color_2 =  "#cb484d"
+let g:terminal_color_3 =  "#a1cfce"
+let g:terminal_color_4 =  "#9e7374"
+let g:terminal_color_5 =  "#d6a04d"
+let g:terminal_color_6 =  "#fd9d9f"
+let g:terminal_color_7 =  "#f5deb3"
+let g:terminal_color_8 =  "#555555"
+let g:terminal_color_9 =  "#9e4a4d"
+let g:terminal_color_10 =  "#cb484d"
+let g:terminal_color_11 =  "#a1cfce"
+let g:terminal_color_12 =  "#9e7374"
+let g:terminal_color_13 =  "#d6a04d"
+let g:terminal_color_14 =  "#fda0a0"
+let g:terminal_color_15 =  "#ffffff"
