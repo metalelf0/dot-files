@@ -1,14 +1,7 @@
 " $HOME/.config/nvim/init.vim
-" if has("termguicolors")     " set true colors
-"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"   set termguicolors
-" endif
-
 " set t_Co=256
 set nocompatible
 set number
-set ruler
 
 " tabs
 set tabstop=2
@@ -18,34 +11,29 @@ set expandtab
 set autoindent
 set smarttab
 
-set hlsearch
-set incsearch
 set ignorecase
 set smartcase
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set laststatus=2
-set autoread
 set notimeout
 set nottimeout
 set ttimeoutlen=10
 set synmaxcol=500
 set norelativenumber
 set number
-set complete=.,b,u,]
-set completeopt-=preview
-set completeopt+=noinsert,noselect
 set wildmode=longest,list:longest,list:full
 set completeopt=menu,preview
 set backspace=indent,eol,start
 set wrap
 set linebreak
-set list
-set listchars=eol:¬,tab:▸\
 set nobackup
 set backupdir=~/.vim_backup
 set directory=~/.vim_backup
 set hidden
 set diffopt=filler,vertical,iwhite
+
+set scrolloff=5
+
 " syntax sync minlines=256
 
 let mapleader = "\<Space>"
@@ -82,6 +70,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 " vim-abolish: abbreviation / substitution / coercion
@@ -97,12 +86,10 @@ Plug 'docunext/closetag.vim'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
 " Plug 'qpkorr/vim-bufkill'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
-" deoplete ruby-code-tools
-" requisite: `gem install rcodetools fastri`
-" Plug 'Shougo/deoplete-rct'
-Plug 'ajh17/VimCompletesMe'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'uplus/deoplete-solargraph'
+" Plug 'ajh17/VimCompletesMe'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
@@ -119,11 +106,18 @@ Plug 'equalsraf/neovim-gui-shim'
 Plug 'guywald1/vim-prismo' " beautify comments with :Prismo
 Plug 'junegunn/goyo.vim'
 Plug 'benmills/vimux'
-Plug 'sheerun/vim-polyglot'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'chrisbra/Colorizer'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'jreybert/vimagit'
+Plug 'roxma/nvim-completion-manager'
+Plug 'idanarye/vim-merginal'
+Plug 'cj/vim-webdevicons'
+" Plug 'itchyny/lightline.vim'
+Plug 'zirrostig/vim-schlepp'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }                       " Nerdtree
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
 
 " ------------------------------------ RUBY -----------------------------------
 " Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
@@ -135,6 +129,7 @@ Plug 'Keithbsmiley/rspec.vim', { 'for': ['ruby'] }
 Plug 'sunaku/vim-ruby-minitest', { 'for': ['ruby'] }
 Plug 'jiajiawang/vim-ruby-helper', { 'for': ['ruby'] }
 Plug 'ecomba/vim-ruby-refactoring', { 'for': ['ruby'] }
+Plug 'hallison/vim-rdoc'
 
 " --------------------------------- JAVASCRIPT --------------------------------
 Plug 'othree/yajs.vim', { 'for': ['javascript'] }
@@ -150,6 +145,7 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['html', 'css', 'eruby'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['mkd', 'markdown', 'mkd.markdown'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss'] }
 Plug 'tpope/vim-haml', { 'for': ['haml'] }
+
 
 " ----------------------------------- COLORS ----------------------------------
 " Plug 'chriskempson/base16-vim'
@@ -214,6 +210,7 @@ Plug 'danilo-augusto/vim-afterglow'
 Plug 'reedes/vim-colors-pencil'
 Plug 'float168/vim-colors-cherryblossom'
 Plug 'protesilaos/prot16-vim'
+Plug 'protesilaos/tempus-themes-vim'
 " Plug 'protesilaos/prot16-vim-airline'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'zcodes/vim-colors-basic'
@@ -229,12 +226,18 @@ Plug 'metalelf0/base16-black-metal-scheme'
 Plug 'plan9-for-vimspace/acme-colors'
 Plug 'yuttie/hydrangea-vim'
 Plug 'vim-scripts/peaksea'
+Plug 'dsalychev/firesparks'
+Plug 'fenetikm/falcon'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " source $HOME/.config/nvim/setup/airline.vim
 " source $HOME/.config/nvim/setup/ctrlp.vim
+source $HOME/.config/nvim/setup/ale.vim
 source $HOME/.config/nvim/setup/ultisnips.vim
-" source $HOME/.config/nvim/setup/deoplete.vim
+source $HOME/.config/nvim/setup/deoplete.vim
 source $HOME/.config/nvim/setup/supertab.vim
 source $HOME/.config/nvim/setup/easyalign.vim
 source $HOME/.config/nvim/setup/easymotion.vim
@@ -252,19 +255,17 @@ source $HOME/.config/nvim/setup/vimwiki.vim
 source $HOME/.config/nvim/setup/rubocop.vim
 source $HOME/.config/nvim/setup/vim-test.vim
 source $HOME/.config/nvim/setup/statusline.vim
-source $HOME/.config/nvim/setup/gitgutter.vim
+" source $HOME/.config/nvim/setup/gitgutter.vim
 source $HOME/.config/nvim/setup/vimux.vim
 source $HOME/.config/nvim/setup/gutentags.vim
+" source $HOME/.config/nvim/setup/lightline.vim
 " source $HOME/.config/nvim/setup/rubycomplete.vim
-
-" ------------------------------------ ALE ------------------------------------
-
-let g:ale_pattern_options = {
-\   '.*db/schema.rb$': {'ale_enabled': 0}
-\}
+source $HOME/.config/nvim/setup/schlepp.vim
+source $HOME/.config/nvim/setup/incsearch-fuzzy.vim
 
 " mappings
-map <Leader>tt :tabnew<Enter>
+" map <Leader>tt :tabnew<Enter>
+map <Leader>tt :NERDTreeToggle<Enter>
 cmap w!! w !sudo tee % >/dev/null
 noremap H ^
 noremap L $
@@ -319,5 +320,50 @@ set colorcolumn=
 " oni_config_file = $HOME/.oni/config.js
 "
 
-colo wal
+autocmd BufWritePre *.erb,*.rb,*.py,*.vim,*.css,*.js,*.html,*.cpp,*.c,*.java,*.go,*.rs,*.ts,*.cljs,*.clj :%s/\s\+$//e
+
+highlight SquishedCommas ctermbg=red guibg=red
+match SquishedCommas /, \@!/
+
+" colo wal
 " colo iceberg
+if empty($WAL)
+  if has("termguicolors")     " set true colors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+  endif
+  colo janah
+  source $HOME/.config/nvim/setup/janah-custom.vim
+else
+  colo wal
+endif
+
+" ----------------------- SEARCH AUTOCOMPLETE WITH <TAB> ----------------------
+
+function! s:search_mode_start()
+    cnoremap <tab> <c-f>a<c-n>
+    let s:old_complete_opt = &completeopt
+    set completeopt-=noinsert
+endfunction
+
+function! s:search_mode_stop()
+    cunmap <tab>
+    let &completeopt = s:old_complete_opt
+endfunction
+
+autocmd CmdlineEnter [/\?] call <SID>search_mode_start()
+autocmd CmdlineLeave [/\?] call <SID>search_mode_stop()
+
+hi VertSplit guifg=#556873
+
+hi clear IncSearch
+hi link IncSearch StatusLine
+hi clear Search
+hi link Search StatusLine
+
+" get rid of tildes
+" hi EndOfBuffer guifg=#3C4C55
+" hi StatusLine guifg=#7FC1CA guibg=#556873
+" hi StatusLineNC guifg=#3C4C55 guibg=#556873
+" hi StatusLineError guifg=#DF8C8C guibg=#556873
