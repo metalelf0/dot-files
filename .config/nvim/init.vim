@@ -1,6 +1,5 @@
 " $HOME/.config/nvim/init.vim
 " set t_Co=256
-set nocompatible
 set number
 
 " tabs
@@ -9,6 +8,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
+filetype plugin indent on
 set smarttab
 
 set ignorecase
@@ -19,7 +19,7 @@ set notimeout
 set nottimeout
 set ttimeoutlen=10
 set synmaxcol=500
-set norelativenumber
+set relativenumber
 set number
 set wildmode=longest,list:longest,list:full
 set completeopt=menu,preview
@@ -31,6 +31,7 @@ set backupdir=~/.vim_backup
 set directory=~/.vim_backup
 set hidden
 set diffopt=filler,vertical,iwhite
+set autoread
 
 set scrolloff=5
 
@@ -87,8 +88,13 @@ Plug 'docunext/closetag.vim'
 Plug 'wellle/targets.vim'
 " Plug 'qpkorr/vim-bufkill'
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'uplus/deoplete-solargraph'
+" Plug 'uplus/deoplete-solargraph'
 " Plug 'ajh17/VimCompletesMe'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
@@ -114,10 +120,12 @@ Plug 'roxma/nvim-completion-manager'
 Plug 'idanarye/vim-merginal'
 Plug 'cj/vim-webdevicons'
 " Plug 'itchyny/lightline.vim'
-Plug 'zirrostig/vim-schlepp'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }                       " Nerdtree
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'takac/vim-hardtime'
+Plug 'dyng/ctrlsf.vim'
+" Plug 'neoclide/rename.nvim', { 'do': ':!npm install --only=production' }
 
 " ------------------------------------ RUBY -----------------------------------
 " Plug 'osyo-manga/vim-monster', { 'for': ['ruby', 'eruby'] }
@@ -229,6 +237,8 @@ Plug 'vim-scripts/peaksea'
 Plug 'dsalychev/firesparks'
 Plug 'fenetikm/falcon'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'andreypopp/vim-colors-plain'
+Plug 'tomasiser/vim-code-dark'
 
 Plug 'sheerun/vim-polyglot'
 call plug#end()
@@ -260,31 +270,30 @@ source $HOME/.config/nvim/setup/vimux.vim
 source $HOME/.config/nvim/setup/gutentags.vim
 " source $HOME/.config/nvim/setup/lightline.vim
 " source $HOME/.config/nvim/setup/rubycomplete.vim
-source $HOME/.config/nvim/setup/schlepp.vim
 source $HOME/.config/nvim/setup/incsearch-fuzzy.vim
+source $HOME/.config/nvim/setup/ctrlsf.vim
 
 " mappings
 " map <Leader>tt :tabnew<Enter>
 map <Leader>tt :NERDTreeToggle<Enter>
 cmap w!! w !sudo tee % >/dev/null
-noremap H ^
-noremap L $
+" noremap H ^
+" noremap L $
 inoremap kj <Esc>
-map gb :bn<Enter>
-map gB :bN<Enter>
+noremap gb :bn<Enter>
+noremap gB :bN<Enter>
 noremap <C-j> :bn<Enter>
 noremap <C-k> :bp<Enter>
 nnoremap <Leader>b :Bdelete<Enter>
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 tnoremap <Esc> <c-\><c-n>
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-vmap <C-f> y0/<C-r>"<Enter>cgn
+vnoremap <C-f> y0/<C-r>"<Enter>cgn
 nnoremap g= mmgg=G`m
 nnoremap gQ mmgggqG`m
 
-let g:rubycomplete_rails = 1
+" let g:rubycomplete_rails = 1
 
-au! BufNewFile,BufRead *.csv setf csv
 
 " useful macros
 let @n='zRGy14kggP<Esc>:read !date "+\%B \%d, \%A"'
@@ -319,8 +328,14 @@ endif
 set colorcolumn=
 " oni_config_file = $HOME/.oni/config.js
 "
-
-autocmd BufWritePre *.erb,*.rb,*.py,*.vim,*.css,*.js,*.html,*.cpp,*.c,*.java,*.go,*.rs,*.ts,*.cljs,*.clj :%s/\s\+$//e
+augroup MyAutocommands
+  " Remove all vimrc autocommands
+  autocmd!
+  autocmd BufWritePre *.erb,*.rb,*.py,*.vim,*.css,*.js,*.html,*.cpp,*.c,*.java,*.go,*.rs,*.ts,*.cljs,*.clj :%s/\s\+$//e
+  autocmd CmdlineEnter [/\?] call <SID>search_mode_start()
+  autocmd CmdlineLeave [/\?] call <SID>search_mode_stop()
+  autocmd BufNewFile,BufRead *.csv setf csv
+augroup END
 
 highlight SquishedCommas ctermbg=red guibg=red
 match SquishedCommas /, \@!/
@@ -351,9 +366,6 @@ function! s:search_mode_stop()
     cunmap <tab>
     let &completeopt = s:old_complete_opt
 endfunction
-
-autocmd CmdlineEnter [/\?] call <SID>search_mode_start()
-autocmd CmdlineLeave [/\?] call <SID>search_mode_stop()
 
 hi VertSplit guifg=#556873
 

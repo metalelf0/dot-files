@@ -1,0 +1,9 @@
+#!/bin/sh
+screenshot_filename="$(ls tmp/capybara/*.png | tail -n 1 )"
+if [ "xterm-kitty" = $TERM ]
+then
+  kitty icat "$screenshot_filename"
+else
+  xdg-open "$screenshot_filename"
+fi
+
