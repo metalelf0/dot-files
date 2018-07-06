@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+source "${HOME}/.cache/wal/colors.sh"
+
+CURRENT_NOTIFICATION_HANDLER_PID=$(/usr/bin/dunst 2>&1 | grep PID | cut -d \' -f 4)
+if [ $CURRENT_NOTIFICATION_HANDLER_PID ]
+then
+  echo "Killing current notifier ("$CURRENT_NOTIFICATION_HANDLER_PID")"
+  kill -9 $CURRENT_NOTIFICATION_HANDLER_PID
+fi
+
+/usr/bin/dunst \
+    -lb "${color0:-#F0F0F0}" \
+    -nb "${color0:-#F0F0F0}" \
+    -cb "${color0:-#F0F0F0}" \
+    -lf "${color15:=#000000}" \
+    -bf "${color15:=#000000}" \
+    -cf "${color15:=#000000}" \
+    -nf "${color15:=#000000}" &

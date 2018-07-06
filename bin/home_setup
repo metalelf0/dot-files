@@ -1,0 +1,8 @@
+xrandr --output DP-1 --scale 1x1 --mode 2560x1080 --fb 
+xrandr --output eDP-1 --scale 2x2 
+
+
+eDP-1 connected (normal left inverted right x axis y axis)
+   3200x1800     59.98 +  59.96    59.94    47.99  
+DP-1 connected primary 3840x1620+0+0 (normal left inverted right x axis y axis) 798mm x 334mm
+   2560x1080     59.98*+  74.99  

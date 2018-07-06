@@ -1,0 +1,18 @@
+#!/usr/bin/env python3.6
+
+import colorgram
+from colr import color
+import sys
+
+how_many_colors = int(sys.argv[2] or '8')
+
+# Extract 6 colors from an image.
+colors = colorgram.extract(sys.argv[1], how_many_colors)
+
+def print_to_hex(col):
+    rgb = col.rgb
+    hex_color = '{0:02x}'.format(rgb.r) + '{0:02x}'.format(rgb.g) + '{0:02x}'.format(rgb.b) 
+    print(color(hex_color, fore=hex_color))
+
+for col in sorted(colors, key=lambda c: c.hsl.l):
+    print_to_hex(col)
