@@ -1,265 +1,415 @@
+; vim:ft=cfg
+;--------------------------------------------
+; colors                                    ;
+;--------------------------------------------
+
 [colors]
-background = ${xrdb:color0:#222}
-background-alt = ${xrdb:color3:#222}
-foreground = ${xrdb:color15:#222}
-foreground-alt = ${xrdb:color2:#222}
-primary = ${xrdb:color1:#222}
-secondary = ${xrdb:color2:#222}
-alert = ${xrdb:color3:#222}
 
-[bar/bar]
-background = ${colors.background}
-foreground = ${colors.foreground}
+	bar_bg = ${xrdb:color0}
+	bar_fg = ${xrdb:color7}
 
-monitor = ${env:MONITOR:}
-width = 100%
-height = 36
-radius = 0.0
-fixed-center = true
+	border_col = ${xrdb:color0}
 
-line-size = 4 
-line-color = #f00
+	modules_bg = ${xrdb:color7}
+	modules_fg = ${xrdb:color0}
 
-border-left-size = 0
-border-top-size = 0
-border-right-size = 0
-border-bottom-size = 0
-border-color = #00000000
+	mod_bg = ${xrdb:color7}
 
-padding-left = 0
-padding-right = 0
+	modules_prefix_bg = ${xrdb:color7}
+	modules_prefix_fg = ${xrdb:color0}
 
-module-margin-left = 1
-module-margin-right = 2
-font-0 = UbuntuMono Nerd Font:pixelsize=18;1k
-font-1 = mplus:pixelsize=18;1
-font-2 = mplus:pixelsize=18;1
+	urgent_bg  = ${xrdb:color1}
+	focused_bg = ${xrdb:color10}
 
-modules-left = i3
-modules-center = spotify
-modules-right = pub-ip volume memory cpu battery date
+	essid_p_bg   = ${xrdb:color6}
+	down_p_bg    = #5e606c
+	cpu_p_bg     = ${xrdb:color5}
+	ram_p_bg     = ${xrdb:color11}
+	vol_p_bg     = #637b81
+	bright_p_bg  = #c29f6f
+	battery_p_bg = ${xrdb:color9}
+	time_p_bg    = ${xrdb:color10}
 
-tray-position = right 
-tray-padding = 2
+;--------------------------------------------
+; bars                                      ;
+;--------------------------------------------
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+[bar/base]
+	# dpi      = 192
+	width    = 100%
+	height   = 32
+	offset-x = 0
+	offset-y = 0
 
-[module/bspwm]
-type = internal/bspwm
+	bottom = true
 
-label-focused = %name%
-label-focused-background = ${colors.background}
-label-focused-underline= ${colors.foreground-alt}
-label-focused-padding = 2
+	background = ${xrdb:color0}
+	foreground = ${xrdb:color7}
 
-label-occupied = %name%
-label-occupied-padding = 2
+	border-bottom-size  = 0
+	border-top-size     = 0
 
-label-urgent = %name%!
-label-urgent-background = ${colors.background-alt}
-label-urgent-padding = 2
+	border-left-size  = 0
+	border-right-size = 0
 
-label-empty = %name%
-label-empty-foreground = ${colors.foreground}
-label-empty-padding = 2
+	border-bottom-color = ${xrdb:color0}
+	border-top-color    = ${xrdb:color0}
 
-[module/spotify]
-type = custom/script
-exec = ~/.config/polybar/modules/spotify %artist% - %title%
-format-prefix = "♬ "
-tail = true
-interval = 2
+	border-left-color = ${xrdb:color0}
+	border-right-colo = ${xrdb:color0}
 
-[module/pub-ip]
-type = custom/script
-exec = ~/.config/polybar/modules/pub-ip
-interval = 100
-tail = true
+	spacing            = 0
+	padding-left       = 1
+	padding-right      = 1
+	module-margin-left = 0
 
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-strip-wsnumbers = true
+	font-N = <fontconfig pattern>;<vertical offset>
+	font-0 = WunconSiji:size=14;2
+	font-1 = lemon:pixelsize=18;1
+	font-2 = lemon:pixelsize=18;1
+	font-3 = Kochi Gothic:size=14;1
 
-; Only show workspaces on the same output as the bar
-pin-workspaces = true
+	modules-left   = spotify volume
+	modules-center = workspaces
+	modules-right  = essid battery date
+  tray-position = right 
+  tray-padding = 0
 
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.background}
+	fixed-center = true
 
-; focused = Active workspace on focused monitor
-label-focused = %name% 
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+;--------------------------------------------
+; modules                                   ;
+;--------------------------------------------
 
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %name%
-label-unfocused-underline = ${colors.foreground-alt}
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+[module/network]
+	type          = internal/network
+	interface     = wlp3s0
+	ping-interval = 3
 
-; visible = Active workspace on unfocused monitor
-label-visible = %name%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %name%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
-
-[module/battery]
-type = internal/battery
-
-; This is useful in case the battery never reports 100% charge
-full-at = 99
-
-; Use the following command to list batteries and adapters:
-; $ ls -1 /sys/class/power_supply/
-battery = BAT0
-adapter = AC
-
-; If an inotify event haven't been reported in this many
-; seconds, manually poll for new values.
-;
-; Needed as a fallback for systems that don't report events
-; on sysfs/procfs.
-;
-; Disable polling by setting the interval to 0.
-;
-; Default: 5
-poll-interval = 5
-
-; see "man date" for details on how to format the time string
-; NOTE: if you want to use syntax tags here you need to use %%{...}
-; Default: %H:%M:%S
-time-format = %H:%M
-
-; Available tags:
-;   <label-charging> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-;   <animation-charging>
-format-charging = <animation-charging> <label-charging>
-
-; Available tags:
-;   <label-discharging> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-format-discharging = <ramp-capacity> <label-discharging>
-
-; Available tags:
-;   <label-full> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-;format-full = <ramp-capacity> <label-full>
-
-; Available tokens:
-;   %percentage% (default)
-;   %time%
-;   %consumption% (shows current charge rate in watts)
-label-charging = Charging %percentage%%
-
-; Available tokens:
-;   %percentage% (default)
-;   %time%
-;   %consumption% (shows current discharge rate in watts)
-label-discharging = Discharging %percentage%%
-
-; Available tokens:
-;   %percentage% (default)
-label-full = Fully charged
-
-; Only applies if <ramp-capacity> is used
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-
-; Only applies if <bar-capacity> is used
-bar-capacity-width = 10
-
-; Only applies if <animation-charging> is used
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-; Framerate in milliseconds
-animation-charging-framerate = 750
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = "💻 "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.foreground-alt} 
-label = %percentage%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.foreground-alt}
-label = %percentage_used%%
+[module/xwindow]
+	y-offset      = 10
+	type          = internal/xwindow
+	format        = <label>
+	label         = %title:0:50:%
+	label-padding = 1
 
 [module/date]
-type = internal/date
-interval = 5
+	type     = internal/date
+	interval = 1.0
+	time     = "%a %d %b %I:%M %p "
+	label    = "%time% "
 
-date =
-date-alt = " %Y-%m-%d"
+	format         = <label>
+	format-padding = 0
 
-time = %I:%M %p
-time-alt = %H:%M:%S
+	format-prefix            = " "
+	format-prefix-background = ${xrdb:color0}
+	format-prefix-foreground = ${xrdb:color2}
+	format-prefix-padding    = 1
 
-format-prefix-foreground = ${colors.foreground}
-format-underline = ${colors.foreground-alt} 
+	label-background = ${xrdb:color0}
+	label-foreground = ${xrdb:color2}
+	label-padding    = 0
 
-label = %date% %time%
+[module/spotify]
+    type = custom/script
+    exec = sh ~/.config/polybar/modules/spotify
+    interval = 1
+ 
+    format-prefix            = 
+    format-prefix-background = ${colors.cpu_p_bg}
+    format-prefix-foreground = ${colors.modules_prefix_fg}
+    format-prefix-padding    = 1
+ 
+    label-background = ${xrdb:color0}
+    label-foreground = ${xrdb:color5}
+    label-padding    = 1
+ 
+    click-left   = playerctl play-pause
+    click-middle = playerctl previous
+    click-right  = playerctl next
 
-padding-right = 2
+[module/previous]
+	type = custom/text
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
+	content = ""
+	content-background = ${xrdb:color0}
+	content-foreground = ${xrdb:color7}
+	content-padding = 0
 
-format = <ramp> <label>
-format-underline = ${colors.foreground-alt}
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+	click-left = mpc previous
 
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.foreground-alt}
+[module/playpause]
+	type = custom/script
 
-ramp-foreground = ${colors.foreground}
+	exec = sh ~/.config/polybar/playpause.sh
 
-[global/wm]
-margin-top = 0
-margin-bottom = 
+	interval= 1
+
+	label = %output%
+	label-background = ${xrdb:color0}
+	label-foreground = ${xrdb:color7}
+	label-padding = 1
+
+	click-left = mpc toggle
+
+[module/next]
+	type = custom/text
+
+	content = ""
+
+	content-background = ${xrdb:color0}
+	content-foreground = ${xrdb:color7}
+	content-padding = 0
+
+	click-left = mpc next
+
+[module/music]
+	type = internal/mpd
+
+	host = 127.0.0.1
+	port = 6600
+
+	interval = 2
+
+	format-online = <label-song>
+
+	label-song         = "  %artist% - %title% "
+	label-song-padding = 2
+	label-song-background = ${xrdb:color0}
+	label-song-foreground = ${xrdb:color5}
+
+	format-online-prefix-padding = 1
+
+[module/battery]
+	type          = internal/battery
+	full-at       = 98
+	battery       = BAT0
+	adapter       = AC0
+	poll-interval = 5
+
+	format-charging = <label-charging>
+
+	format-charging-prefix            = " "
+	format-charging-prefix-background = ${xrdb:color0}
+	format-charging-prefix-foreground = ${xrdb:color4}
+	format-charging-prefix-padding    = 1
+
+	label-charging            = "%percentage%% "
+	label-charging-background = ${xrdb:color0}
+	label-charging-foreground = ${xrdb:color4}
+	label-charging-padding    = 1
+
+	format-discharging = <label-discharging>
+
+	format-discharging-prefix            = " "
+	format-discharging-prefix-background = ${xrdb:color0}
+	format-discharging-prefix-foreground = ${xrdb:color4}
+	format-discharging-prefix-padding    = 1
+
+	label-discharging            = "%percentage%% "
+	label-discharging-background = ${xrdb:color0}
+	label-discharging-foreground = ${xrdb:color4}
+	label-discharging-padding    = 1
+
+	format-full = <label-full>
+
+	format-full-prefix            = " "
+	format-full-prefix-background = ${xrdb:color0}
+	format-full-prefix-foreground = ${xrdb:color4}
+	format-full-prefix-padding    = 1
+
+	label-full            = "%percentage%% "
+	label-full-background = ${xrdb:color0}
+	label-full-foreground = ${xrdb:color4}
+	label-full-padding    = 1
 
 [module/volume]
-type = internal/volume
+	type          = internal/volume
+	format-volume = <label-volume>
 
-format-volume = <label-volume> <bar-volume>
-label-volume = ""
-label-volume-foreground = ${root.foreground}
-label-muted = muted
+	label-volume            = " %percentage%"
+	label-volume-background = ${xrdb:color0}
+	label-volume-foreground = ${xrdb:color4}
+	label-volume-padding    = 3
 
-bar-volume-width = 10
-bar-volume-gradient = true
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
+	format-muted = <label-muted>
+
+	label-muted            = " 0"
+	label-muted-background = ${xrdb:color0}
+	label-muted-foreground = ${xrdb:color4}
+	label-muted-padding    = 3
+
+	format-volume-padding = 0
+	format-muted-padding  = 0
+
+	ramp-headphones-0 = 
+
+[module/cpu]
+	type             = internal/cpu
+	interval         = 0.5
+	format           = <label>
+	label            = %percentage%%
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1
+
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.cpu_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+[module/ram]
+	type     = internal/memory
+	interval = 3
+
+	format           = <label>
+	label            = "%percentage_used%%"
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1
+
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.ram_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+
+[module/essid]
+	inherit = module/network
+
+	format-connected = <label-connected>
+
+	format-connected-prefix            = " "
+	format-connected-prefix-padding    = 1
+	format-connected-prefix-background = ${xrdb:color0}
+	format-connected-prefix-foreground = ${xrdb:color5}
+
+	label-connected            = "%essid% "
+	label-connected-background = ${xrdb:color0}
+	label-connected-foreground = ${xrdb:color5}
+	label-connected-padding    = 1
+
+	ramp-signal-background    = ${xrdb:color0}
+	ramp-signal-foreground    = ${xrdb:color5}
+	ramp-connected-foreground = ${xrdb:color5}
+	ramp-signal-padding       = 1
+
+	format-disconnected = <label-disconnected>
+
+	format-disconnected-prefix            = " "
+	format-disconnected-prefix-padding    = 1
+	format-disconnected-prefix-background = ${xrdb:color0}
+	format-disconnected-prefix-foreground = ${xrdb:color7}
+
+	label-disconnected            = "DISCONNECTED "
+	label-disconnected-background = ${xrdb:color0}
+	label-disconnected-foreground = ${xrdb:color7}
+	label-disconnected-padding    = 1
+
+
+[module/down]
+	inherit = module/network
+
+	format-connected = <label-connected>
+
+	format-connected-prefix            = 
+	format-connected-prefix-background = ${colors.down_p_bg}
+	format-connected-prefix-foreground = ${colors.modules_prefix_fg}
+	format-connected-prefix-padding    = 1
+
+	label-connected               = %{T2}%downspeed:7%%{T-}
+	label-connected-background    = ${colors.modules_bg}
+	label-connected-foreground    = ${colors.modules_fg}
+	label-connected-padding-right = 1
+
+[module/padding]
+	type               = custom/text
+	content            = |
+	content-foreground = ${colors.bg}
+	content-background = ${colors.bg}
+
+[module/paddinglite]
+	type               = custom/text
+	content            = |
+	content-foreground = #000f0f0f
+	content-background = #000f0f0f
+
+[module/workspaces]
+
+	type            = internal/i3
+	format          = <label-state> <label-mode>
+	index-sort      = true
+	wrapping-scroll = false
+	strip-wsnumbers = true
+
+	label-mode-background = ${xrdb:color7}
+	label-mode-foreground = ${xrdb:color0}
+	label-mode-padding    = 2
+
+	label-focused            = %name%
+	label-focused-background = ${xrdb:color0}
+	label-focused-foreground = ${xrdb:color10}
+	label-focused-padding    = 2
+
+	label-unfocused            = %name%
+	label-unfocused-background = ${xrdb:color0}
+	label-unfocused-foreground = ${xrdb:color7}
+	label-unfocused-padding    = 2
+
+	label-visible            = %name%
+	label-visible-background = ${xrdb:color0}
+	label-visible-foreground = ${xrdb:color7}
+	label-visible-padding    = 2
+
+	label-urgent            = %name%
+	label-urgent-background = ${xrdb:color0}
+	label-urgent-foreground = ${xrdb:color1}
+	label-urgent-padding    = 2
+
+
+[module/openbox]
+	type                      = internal/xworkspaces
+	pin-workspaces            = true
+	enable-click              = false
+	enable-scroll             = false
+	format                    = <label-state>
+	label-monitor             = %name%
+	label-active              = %icon%%name%
+	label-active-foreground   = ${colors.obfg}
+	label-active-background   = ${colors.obbg}
+	label-active-underline    = #fba922
+	label-active-padding      = 1
+	label-occupied            = %name%
+	label-occupied-background = ${colors.obbg}
+	label-occupied-padding    = 1
+	label-urgent              = %index%
+	label-urgent-foreground   = #000000
+	label-urgent-background   = #bd2c40
+	label-urgent-underline    = #9b0a20
+	label-empty               = %name%
+	label-empty-padding       = 1
+	label-empty-background    = ${colors.obibg}
+	label-empty-foreground    = ${colors.obifg}
+
+[module/backlight]
+	type = internal/backlight
+
+	output = LVDS-1
+
+	card          = acpi_video0
+	enable-scroll = false
+
+	format        = <label>
+	format-prefix = 
+
+	format-prefix-padding    = 1
+	format-prefix-background = ${colors.cpu_p_bg}
+	format-prefix-foreground = ${colors.modules_prefix_fg}
+
+	label            = %percentage%%
+	label-background = ${colors.modules_bg}
+	label-foreground = ${colors.modules_fg}
+	label-padding    = 1

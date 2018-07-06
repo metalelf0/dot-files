@@ -9,3 +9,11 @@
 
  " Select current paragraph and send it to tmux
  nmap <LocalLeader>tt vip<LocalLeader>vs<Enter>
+
+function! VimuxCreateNewPane()
+  " Creates new Tmux pane
+  let splitExitCode = system("tmux split-window")
+  " Set the proper index
+  let g:VimuxRunnerIndex = _VimuxTmuxIndex()
+  call _VimuxTmux("last-"._VimuxRunnerType())
+endfunction

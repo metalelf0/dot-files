@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/metalelf0/codice_elf0/surveyeah/app/assets/javascripts/admin'
-let g:netrw_dirhist_2='/home/metalelf0/codice_elf0/surveyeah/app/assets/javascripts'
-let g:netrw_dirhist_3='/home/metalelf0/codice_elf0/surveyeah/app/views/admin/surveys'
-let g:netrw_dirhist_4='/home/metalelf0/codice_elf0/surveyeah/app/assets/javascripts/admin'
-let g:netrw_dirhist_5='/home/metalelf0/codice_elf0/surveyeah/app/assets/javascripts'

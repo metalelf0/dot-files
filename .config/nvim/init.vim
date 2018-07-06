@@ -42,8 +42,6 @@ let maplocalleader = "_"
 let g:python3_host_prog='/usr/bin/python3'
 set clipboard^=unnamedplus
 " set clipboard+=unnamed
-" let g:airline_powerline_fonts = 0
-" let g:airline_symbols_ascii = 1
 
 " used by deoplete
 function! DoRemote(arg)
@@ -125,6 +123,8 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'takac/vim-hardtime'
 Plug 'dyng/ctrlsf.vim'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'pacha/vem-tabline'
 " Plug 'neoclide/rename.nvim', { 'do': ':!npm install --only=production' }
 
 " ------------------------------------ RUBY -----------------------------------
@@ -223,6 +223,7 @@ Plug 'protesilaos/tempus-themes-vim'
 Plug 'ayu-theme/ayu-vim' " or other package manager
 Plug 'zcodes/vim-colors-basic'
 Plug 'nightsense/office'
+Plug 'nightsense/seabird'
 Plug 'cocopon/iceberg.vim'
 Plug 'archseer/colibri.vim'
 Plug 'gosukiwi/vim-atom-dark'
@@ -239,6 +240,7 @@ Plug 'fenetikm/falcon'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'andreypopp/vim-colors-plain'
 Plug 'tomasiser/vim-code-dark'
+Plug 'brendonrapp/smyck-vim'
 
 Plug 'sheerun/vim-polyglot'
 call plug#end()
@@ -294,7 +296,6 @@ nnoremap gQ mmgggqG`m
 
 " let g:rubycomplete_rails = 1
 
-
 " useful macros
 let @n='zRGy14kggP<Esc>:read !date "+\%B \%d, \%A"'
 let @d=':read !date "+\%B \%d, \%A"'
@@ -348,8 +349,8 @@ if empty($WAL)
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
   endif
-  colo janah
-  source $HOME/.config/nvim/setup/janah-custom.vim
+  colo OceanicNext
+  " source $HOME/.config/nvim/setup/janah-custom.vim
 else
   colo wal
 endif
@@ -367,12 +368,12 @@ function! s:search_mode_stop()
     let &completeopt = s:old_complete_opt
 endfunction
 
-hi VertSplit guifg=#556873
+" hi VertSplit guifg=#556873
 
-hi clear IncSearch
-hi link IncSearch StatusLine
-hi clear Search
-hi link Search StatusLine
+" hi clear IncSearch
+" hi link IncSearch StatusLine
+" hi clear Search
+" hi link Search StatusLine
 
 " get rid of tildes
 " hi EndOfBuffer guifg=#3C4C55
