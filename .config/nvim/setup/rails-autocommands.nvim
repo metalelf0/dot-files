@@ -1,7 +1,0 @@
-autocmd BufLeave *.css,*.less,*scss normal! mS
-autocmd BufLeave *.js,*.coffee      normal! mJ
-autocmd BufLeave */models/*         normal! mM
-autocmd BufLeave *.erb,*.haml       normal! mV
-autocmd BufLeave */controllers/*    normal! mC
-autocmd BufLeave */test/*,*/spec/*  normal! mT
-autocmd BufLeave routes.rb          normal! mR

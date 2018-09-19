@@ -1,3 +1,0 @@
-autocmd! BufWritePost * Neomake
-let g:neomake_ruby_enabled_makers = ['mri','rubocop']
-let g:neomake_verbose=0
