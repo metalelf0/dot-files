@@ -75,18 +75,21 @@ Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-signify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-rbenv', { 'for': ['ruby', 'eruby'] }
+Plug 'NLKNguyen/cloudformation-syntax.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rsi'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'SirVer/ultisnips'
@@ -100,7 +103,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'cameronbrown/vim-colorscheme-switcher'
 Plug 'xolox/vim-misc'
 Plug 'alok/notational-fzf-vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'metalelf0/vimt0d0'
 Plug 'rhysd/git-messenger.vim'
 Plug 'mattn/emmet-vim'
@@ -114,58 +116,72 @@ Plug 'junegunn/vim-journal'
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'norcalli/nvim-colorizer.lua'
-
+Plug 'sheerun/vim-polyglot'
+" Plug 'liuchengxu/vim-clap'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'dhruvasagar/vim-dotoo'
+Plug 'godlygeek/tabular'
+" Plug 'plasticboy/vim-markdown'
 " colorschemes {{{2
 Plug 'cocopon/iceberg.vim'
 Plug 'jacoborus/tender.vim'
-Plug 'NerdyPepper/vim-colors-plain'
+" Plug 'NerdyPepper/vim-colors-plain'
 Plug 'metalelf0/apprentice'
 Plug 'gruvbox-community/gruvbox'
-Plug 'w0ng/vim-hybrid'
-Plug 'fcpg/vim-fahrenheit'
+Plug 'scwood/vim-hybrid'
+" Plug 'fcpg/vim-fahrenheit'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
 Plug 'rakr/vim-one'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'liuchengxu/space-vim-theme'
-Plug 'owickstrom/vim-colors-paramount'
+" Plug 'owickstrom/vim-colors-paramount'
 Plug 'dylanaraps/wal.vim'
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'mhartington/oceanic-next'
 Plug 'ayu-theme/ayu-vim'
-Plug 'yorickpeterse/happy_hacking.vim'
+" Plug 'yorickpeterse/happy_hacking.vim'
 Plug 'bluz71/vim-moonfly-colors'
-Plug 'tomasiser/vim-code-dark'
-Plug 'freeo/vim-kalisi'
+" Plug 'freeo/vim-kalisi'
 Plug 'junegunn/seoul256.vim'
 Plug 'jnurmine/Zenburn'
-Plug 'drewtempelmeyer/palenight.vim'
+" Plug 'drewtempelmeyer/palenight.vim'
 Plug 'noahfrederick/vim-hemisu'
-Plug 'sjl/badwolf'
+" Plug 'sjl/badwolf'
 Plug 'chriskempson/base16-vim'
-Plug 'aonemd/kuroi.vim'
+" Plug 'aonemd/kuroi.vim'
 Plug 'fenetikm/falcon'
-Plug 'ajmwagar/vim-deus'
-Plug 'romainl/flattened'
-Plug 'reedes/vim-colors-pencil'
+" Plug 'ajmwagar/vim-deus'
+" Plug 'romainl/flattened'
+" Plug 'reedes/vim-colors-pencil'
 Plug 'sainnhe/vim-color-forest-night'
-Plug 'sainnhe/vim-color-desert-night'
+Plug 'sainnhe/archived-colors'
 Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/edge'
 Plug 'rhysd/vim-color-spring-night'
 Plug 'nightsense/snow'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'mhinz/vim-janah'
-Plug 'srcery-colors/srcery-vim'
-Plug 'arzg/vim-corvine'
-Plug 'kaicataldo/material.vim'
-Plug 'ajh17/Spacegray.vim'
-Plug 'doums/darcula'
-Plug 'AlessandroYorba/alduin'
+" Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'mhinz/vim-janah'
+" Plug 'srcery-colors/srcery-vim'
+" Plug 'arzg/vim-corvine'
+" Plug 'kaicataldo/material.vim'
+" Plug 'ajh17/Spacegray.vim'
+" Plug 'doums/darcula'
+" Plug 'AlessandroYorba/alduin'
 Plug 'rakr/vim-two-firewatch'
+" Plug 'haishanh/night-owl.vim'
+" Plug 'wadackel/vim-dogrun'
+" Plug 'gmoe/vim-espresso'
+" Plug 'arzg/vim-substrata'
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'Nequo/vim-allomancer'
+Plug 'wimstefan/vim-artesanal'
+Plug 'fcpg/vim-orbital'
 call plug#end()
-
 
 " Plugin configurations {{{1{{{
 " NERDCommenter {{{2
@@ -181,21 +197,41 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 " $ kitty -o allow_remote_control=yes --listen-on unix:/tmp/mykitty
 " export KITTY_LISTEN_ON=/tmp/mykitty
-let test#strategy="kitty"
+if has('gui_vimr')
+  let test#strategy="neovim"
+else
+  let test#strategy="kitty"
+endif
 
+
+
+" LeaderF {{{2
+" let g:Lf_WindowPosition = 'popup'
+" let g:Lf_PreviewInPopup = 1
+" let g:Lf_UseVersionControlTool = 1
+" let g:Lf_ShortcutF = "<leader>p"
+" noremap <leader>B :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+" noremap <leader>R :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+" noremap <leader>/ :<C-U><C-R>=printf("Leaderf rg --match-path %s", "")<CR><CR>
+" noremap <leader>K :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+"
+" vim-clap {{{2
+" nnoremap <Leader>p :Clap files<CR>
+" nnoremap <Leader>B :Clap buffers<CR>
+" nnoremap <Leader>C :Clap colors<CR>
+" nnoremap <Leader>/ :Clap grep<CR>
+" nnoremap <Leader>K :Clap grep ++query=<cword><CR>
+
+" let g:clap_popup_input_delay=0
+" let g:clap_provider_grep_delay=0
+" " let g:clap_theme='material_design_dark'
+" let g:clap_layout = { 'relative': 'editor' }
 " FZF {{{2
 set rtp+=~/.fzf
 
-let g:height = float2nr(&lines * 0.9)
-let g:width = float2nr(&columns * 0.7)
-let g:preview_height = float2nr(&lines * 0.7)
 let g:fzf_buffers_jump = 1
-let $FZF_DEFAULT_OPTS=" --layout=reverse  --margin=1,4 --preview 'if file -i {}|grep -q binary; then file -b {-1}; else bat --style=changes --color always --theme base16 --line-range :40 {-1}; fi' --preview-window bottom:" . g:preview_height
-let g:fzf_layout = { 'window': 'call FloatingFZF(' . g:width . ',' . g:height . ')' }
 
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden'
 nnoremap <c-p> :FZF<cr>
-
 nnoremap <silent> <leader>p :Files<CR>
 nnoremap <silent> <leader>B :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
@@ -204,7 +240,6 @@ nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
-" nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
 nnoremap <silent> K :call SearchWordWithAg()<CR>
 vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
@@ -229,30 +264,6 @@ function! SearchVisualSelectionWithAg() range
   execute 'Rg' selection
 endfunction
 
-function! FloatingFZF(width, height)
-  let buf = nvim_create_buf(v:false, v:true)
-  call setbufvar(buf, '&signcolumn', 'no')
-
-  let height = a:height
-  let width = a:width
-  " let height = float2nr(10)
-  " let width = float2nr(80)
-  "
-  let horizontal = float2nr((&columns - width) / 2)
-  let vertical = 1
-
-  let opts = {
-        \ 'relative': 'editor',
-        \ 'row': vertical,
-        \ 'col': horizontal,
-        \ 'width': width,
-        \ 'height': height,
-        \ 'style': 'minimal'
-        \ }
-
-  call nvim_open_win(buf, v:true, opts)
-endfunction
-
 if has('nvim')
   tnoremap <a-a> <esc>a
   tnoremap <a-b> <esc>b
@@ -262,10 +273,8 @@ endif
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 nnoremap <silent> <leader>/ :execute 'Rg'<CR>
 
@@ -279,21 +288,35 @@ let g:gutentags_ctags_exclude = [".git", "node_modules", "log", "vendor", "solr-
 
 " Lightline {{{2
 let g:lightline = {
-      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo', 'clock' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
       \   'cocstatus': 'coc#status',
-      \  'filename': 'LightLineFilename'
+      \   'filename': 'LightLineFilename',
+      \   'clock'   : 'LightLineClock',
       \ },
       \ }
 
+" set showtabline=2
+" let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+" let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+" let g:lightline.component_type   = {'buffers': 'tabsel'}
+" let g:lightline#bufferline#filename_modifier = ':t'
+
 function! LightLineFilename()
-  return expand('%')
+  return winwidth(0) > 80 ? expand('%') : expand('%:t')
 endfunction
+
+function LightLineClock()
+  return strftime("%H:%M")
+endfunction
+
 " easyMotion {{{2
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
@@ -311,9 +334,11 @@ nmap t <Plug>(easymotion-t2)
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
+
+let g:coc_global_extensions = ['coc-solargraph']
+
 let g:coc_force_debug=1
-"
-" Use tab for trigger completion with characters ahead and navigate.
+"Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -343,16 +368,14 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K for show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if &filetype == 'vim'
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
+" Get outline
+nnoremap <silent> <Leader>co :<C-u>CocList outline<CR>
+" Get symbols
+nnoremap <silent> <Leader>cs :<C-u>CocList -I symbols<CR>
+" Get errors
+nnoremap <silent> <Leader>cl :<C-u>CocList locationlist<CR>
+" Get available commands
+nnoremap <silent> <Leader>cc :<C-u>CocList commands<CR>
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -394,6 +417,10 @@ let g:jellybeans_use_term_italics = 0
 " enabled with :RainbowToggle
 let g:rainbow_active = 0
 
+" vim-dotoo {{{2
+let g:dotoo#capture#refile = expand('~/Notes/refile.dotoo')
+let g:dotoo#agenda#files = ['~/Notes/*.dotoo']
+" }}}
 "mappings I like {{{1
 " cmap w!! w !sudo tee % >/dev/null
 inoremap kj <Esc>
@@ -418,6 +445,19 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" sends the currently visual-selected text to rails runner
+function! SendVisualToRailsRunner() range
+    let n = @n
+    silent! normal gv"ny
+    echo system("bin/rails runner '" . @n . "'")
+    let @n = n
+    " bonus: restores the visual selection
+    normal! gv
+endfunction
+
+xnoremap <F6> :call SendVisualToRailsRunner()<CR>
+
 " and some file-open-mappings {{{2
 map <Leader>J :vsplit $HOME/Documents/journal.md<Enter>
 " map <Leader>N :vsplit $HOME/Documents/notes.md<Enter>
@@ -465,18 +505,26 @@ endif
 autocmd FileType php setlocal shiftwidth=4 tabstop=4
 
 " color and niceties {{{1
+"
+" if (has("autocmd"))
+"   augroup colorextend
+"     autocmd!
+"     " Override the `Identifier` background color in GUI mode
+"     autocmd ColorScheme * call onedark#extend_highlight("rubySymbol", { "fg": { "gui": "#98C379" } })
+"   augroup END
+" endif
 
-let g:ayucolor="mirage"
-set bg=dark
-colo ayu
-let g:lightline.colorscheme="ayu_mirage"
 
-" let g:material_theme_style = 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker'
-" let g:material_terminal_italics=1
-" colo material
-" let g:lightline.colorscheme="material_vim"
+set bg=light
+" let g:ayucolor="dark"
+let g:lightline.colorscheme = "edge"
+colo edge
+
+if g:colors_name == "darcula"
+  call darcula#Hi('rubySymbol', darcula#palette.constant)
+endif
+
 set pumblend=20
-
 
 " veonim {{{1
 let g:vn_font = 'Iosevka'
@@ -489,4 +537,18 @@ if exists('g:gonvim_running')
   set noshowmode
   set noruler
 endif
+
+" vv {{{1
+if exists('g:vv')
+  VVset fontfamily="Iosevka"
+  VVset fontsize=16
+  VVset lineheight=1.5
+endif
+
+" fvim {{{1
+if exists('g:fvim_loaded')
+  set gfn=Iosevka:h16
+  FVimFontLineHeight '+3.0'
+end
+"}}}
 
