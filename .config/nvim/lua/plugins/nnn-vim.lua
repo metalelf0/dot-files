@@ -1,0 +1,1 @@
+-- map('n', '-', "<cmd>:NnnPicker %<CR>")
