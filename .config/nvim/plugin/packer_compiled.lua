@@ -69,51 +69,27 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["SpacegrayEighties.vim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/SpacegrayEighties.vim"
-  },
-  Zenburn = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/Zenburn"
-  },
-  ["ayu-vim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/ayu-vim"
-  },
   ["barbar.nvim"] = {
     config = { "\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19plugins.barbar\frequire\0" },
     loaded = false,
     needs_bufread = false,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/opt/barbar.nvim"
   },
-  ["blue-moon"] = {
+  chadtree = {
     loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/blue-moon"
-  },
-  ["boo-colorscheme-nvim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/boo-colorscheme-nvim"
+    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/chadtree"
   },
   ["completion-nvim"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/completion-nvim"
   },
-  darcula = {
+  ["coq.artifacts"] = {
     loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/darcula"
+    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/coq.artifacts"
   },
-  embark = {
+  coq_nvim = {
     loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/embark"
-  },
-  firenvim = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/firenvim"
-  },
-  ["forest-night"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/forest-night"
+    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/coq_nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -123,45 +99,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/fzf"
   },
-  ["github-nvim-theme"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/github-nvim-theme"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
-  },
-  gruvbox = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/gruvbox"
-  },
-  ["gruvbox-material"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/gruvbox-material"
   },
   ["hop.nvim"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/hop.nvim"
   },
-  ["iceberg.vim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/iceberg.vim"
-  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
-  ["jellybeans-nvim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/jellybeans-nvim"
-  },
   kommentary = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/kommentary"
-  },
-  ["kosmikoa.nvim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/kosmikoa.nvim"
   },
   ["lsp-status.nvim"] = {
     loaded = true,
@@ -179,34 +131,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/lush.nvim"
   },
-  ["material.nvim"] = {
+  ["nightfox.nvim"] = {
     loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/material.nvim"
-  },
-  melange = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/melange"
-  },
-  ["moonlight.nvim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/moonlight.nvim"
-  },
-  neorg = {
-    config = { "\27LJ\2\n’\1\0\0\a\0\14\0\0196\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\f\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\t\0005\5\a\0005\6\6\0=\6\b\5=\5\n\4=\4\v\3=\3\r\2B\0\2\1K\0\1\0\tload\1\0\0\21core.norg.dirman\vconfig\1\0\0\15workspaces\1\0\0\1\0\1\17my_workspace\f~/neorg\24core.norg.concealer\18core.defaults\1\0\0\nsetup\nneorg\frequire\0" },
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/neorg"
-  },
-  ["nnn.vim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nnn.vim"
+    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nightfox.nvim"
   },
   ["notational-fzf-vim"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/notational-fzf-vim"
-  },
-  ["nvcode-color-schemes.vim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -215,14 +146,6 @@ _G.packer_plugins = {
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
-  },
-  ["nvim-compe"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nvim-compe"
-  },
-  ["nvim-deus"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nvim-deus"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -236,10 +159,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nvim-spectre"
   },
-  ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
-  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
@@ -247,15 +166,6 @@ _G.packer_plugins = {
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
-  },
-  ["one-nvim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/one-nvim"
-  },
-  ["orgmode.nvim"] = {
-    config = { "\27LJ\2\nù\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21org_agenda_files\1\0\1\27org_default_notes_file\31~/Documents/org/refile.org\1\2\0\0\22~/Documents/org/*\nsetup\forgmode\frequire\0" },
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/orgmode.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -269,14 +179,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
-  serenade = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/serenade"
-  },
-  ["solarized.nvim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/solarized.nvim"
-  },
   ["telescope-symbols.nvim"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/telescope-symbols.nvim"
@@ -289,21 +191,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/todoplus.vim"
   },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
-  },
-  vim = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim"
-  },
   ["vim-abolish"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-abolish"
-  },
-  ["vim-color-spring-night"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-color-spring-night"
   },
   ["vim-dadbod"] = {
     loaded = true,
@@ -324,18 +214,6 @@ _G.packer_plugins = {
   ["vim-indent-object"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-indent-object"
-  },
-  ["vim-lighthaus"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-lighthaus"
-  },
-  ["vim-moonfly-colors"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-moonfly-colors"
-  },
-  ["vim-nightfly-guicolors"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors"
   },
   ["vim-rails"] = {
     loaded = true,
@@ -361,10 +239,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-sneak"
   },
-  ["vim-substrata"] = {
-    loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-substrata"
-  },
   ["vim-test"] = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vim-test"
@@ -381,21 +255,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/vimux"
   },
-  ["zephyr-nvim"] = {
+  ["which-key.nvim"] = {
     loaded = true,
-    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/zephyr-nvim"
+    path = "/Users/metalelf0/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: orgmode.nvim
-time([[Config for orgmode.nvim]], true)
-try_loadstring("\27LJ\2\nù\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21org_agenda_files\1\0\1\27org_default_notes_file\31~/Documents/org/refile.org\1\2\0\0\22~/Documents/org/*\nsetup\forgmode\frequire\0", "config", "orgmode.nvim")
-time([[Config for orgmode.nvim]], false)
--- Config for: neorg
-time([[Config for neorg]], true)
-try_loadstring("\27LJ\2\n’\1\0\0\a\0\14\0\0196\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\f\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0035\4\t\0005\5\a\0005\6\6\0=\6\b\5=\5\n\4=\4\v\3=\3\r\2B\0\2\1K\0\1\0\tload\1\0\0\21core.norg.dirman\vconfig\1\0\0\15workspaces\1\0\0\1\0\1\17my_workspace\f~/neorg\24core.norg.concealer\18core.defaults\1\0\0\nsetup\nneorg\frequire\0", "config", "neorg")
-time([[Config for neorg]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads

@@ -24,15 +24,3 @@ require('telescope').setup {
 }
 
 -- Mappings
-map('n', '<leader>p',  "<cmd>lua require('telescope.builtin').find_files()<CR>")
-map('n', '<leader>r',  "<cmd>lua require('telescope.builtin').oldfiles()<CR>")
-map('n', '<leader>/',  "<cmd>lua require('telescope.builtin').live_grep()<CR>")
-map('n', '<leader>k',  "<cmd>lua require('telescope.builtin').grep_string()<CR>")
-map('n', '<leader>;',  "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>")
-map('n', '<leader>b',  "<cmd>lua require('telescope.builtin').buffers()<CR>")
-map('n', '<leader>gr', "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
-map('n', '<leader>gS', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>")
-map('n', '<leader>ws', "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>")
-map('n', '<leader>a',  "<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>")
-map('n', '<Leader>G',  "<cmd>lua require('telescope.builtin').symbols{ sources = {'gitmoji'} }<CR>")
-map('n', '<Leader>E',  "<cmd>lua require('telescope.builtin').symbols{ sources = {'emoji'} }<CR>")

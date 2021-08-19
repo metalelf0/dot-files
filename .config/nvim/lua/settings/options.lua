@@ -25,5 +25,6 @@ vim.opt.grepprg = 'rg --vimgrep --no-heading'      -- Ripgrep for searching
 vim.opt.gdefault = true                            -- Default 'g' flag for substitution
 vim.opt.updatetime = 100
 vim.opt.swapfile = false
+vim.opt.timeoutlen = 0
 vim.opt.diffopt:append { ",vertical" }
 vim.opt.wrap = true

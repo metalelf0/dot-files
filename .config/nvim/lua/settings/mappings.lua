@@ -33,7 +33,7 @@ local mappings = {
     { "<C-l>", "<C-w>l", { silent = true } },
 
     -- Esc Esc to clear highlights
-    { "<Esc><Esc>", ":nohlsearch<CR>" },
+    { "<Esc><Esc>", ":nohlsearch<CR>", { silent = true} },
 
     -- Resize with arrows
     { "<C-Up>", ":resize -2<CR>", { silent = true } },
@@ -98,7 +98,7 @@ register_mappings(mappings, { silent = true, noremap = true })
 
 vim.cmd 'inoremap <expr> <c-j> ("\\<C-n>")'
 vim.cmd 'inoremap <expr> <c-k> ("\\<C-p>")'
-vim.cmd 'nnoremap <Esc><Esc> :nohl<CR>'
+vim.cmd 'nnoremap <Esc><Esc> :nohlsearch<CR>'
 
 -- vim.cmd('inoremap <expr> <TAB> (\"\\<C-n>\")')
 -- vim.cmd('inoremap <expr> <S-TAB> (\"\\<C-p>\")')
