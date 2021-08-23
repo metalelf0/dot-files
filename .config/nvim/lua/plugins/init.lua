@@ -32,11 +32,8 @@ local pluginList = {
   "airblade/vim-rooter",
   "mg979/vim-visual-multi",
   "justinmk/vim-sneak",
-  -- "kyazdani42/nvim-tree.lua",
   "ms-jpq/chadtree",
   "lewis6991/gitsigns.nvim",
-  "hrsh7th/vim-vsnip",
-  "rafamadriz/friendly-snippets",
   "neovim/nvim-lspconfig",
   "ojroques/nvim-lspfuzzy",
   "nvim-lua/completion-nvim",
@@ -45,6 +42,7 @@ local pluginList = {
   "alok/notational-fzf-vim",
   "nvim-telescope/telescope.nvim" ,
   "nvim-telescope/telescope-symbols.nvim",
+  "nvim-telescope/telescope-project.nvim",
   "hoob3rt/lualine.nvim",
   "nvim-lua/lsp-status.nvim",
   "b3nj5m1n/kommentary",
@@ -56,9 +54,8 @@ local pluginList = {
   "janko/vim-test",
   "benmills/vimux",
   "lukas-reineke/indent-blankline.nvim",
-  -- "hrsh7th/nvim-compe",
-  { 'ms-jpq/coq_nvim', branch = 'coq'},           -- main one
-  { 'ms-jpq/coq.artifacts', branch= 'artifacts'}, -- 9000+ Snippets
+  { 'ms-jpq/coq_nvim', branch = 'coq' },
+  { 'ms-jpq/coq.artifacts', branch= 'artifacts' },
   "windwp/nvim-autopairs",
   "phaazon/hop.nvim",
   { "windwp/nvim-spectre" },
@@ -70,7 +67,9 @@ local pluginList = {
     end,
     event = "BufWinEnter",
   },
+  "akinsho/nvim-toggleterm.lua",
   'EdenEast/nightfox.nvim',
+  { 'rcarriga/vim-ultest', requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" }
 }
 
 packer.startup(function()
