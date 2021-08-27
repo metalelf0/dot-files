@@ -54,10 +54,16 @@ local pluginList = {
   "janko/vim-test",
   "benmills/vimux",
   "lukas-reineke/indent-blankline.nvim",
-  { 'ms-jpq/coq_nvim', branch = 'coq' },
-  { 'ms-jpq/coq.artifacts', branch= 'artifacts' },
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-nvim-lua',
+  'hrsh7th/cmp-nvim-lsp',
+  'saadparwaiz1/cmp_luasnip',
+  'L3MON4D3/LuaSnip',
   "windwp/nvim-autopairs",
   "phaazon/hop.nvim",
+  "romgrk/fzy-lua-native",
+  "gelguy/wilder.nvim",
   { "windwp/nvim-spectre" },
   'folke/which-key.nvim',
   {
@@ -69,6 +75,7 @@ local pluginList = {
   },
   "akinsho/nvim-toggleterm.lua",
   'EdenEast/nightfox.nvim',
+  "Pocco81/Catppuccino.nvim",
   { 'rcarriga/vim-ultest', requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" }
 }
 
@@ -78,7 +85,7 @@ packer.startup(function()
   end
 end)
 
-require('nightfox').set()
+require('nightfox').load()
 
 for index, plugin in ipairs(pluginList) do
   utils.loadPluginConfig(plugin)

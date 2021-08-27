@@ -27,9 +27,8 @@ require("trouble").setup {
 
 vim.schedule(function() 
   local lsp = require "lspconfig"
-  require("packer").loader("coq_nvim coq.artifacts")
 
-  lsp.solargraph.setup(require("coq")().lsp_ensure_capabilities(
+  lsp.solargraph.setup(
     {
       root_dir = lsp.util.root_pattern('.git', "Gemfile", fn.getcwd()),
       settings = {
@@ -44,21 +43,21 @@ vim.schedule(function()
         require 'illuminate'.on_attach(client)
       end
     }
-  ))
+  )
 
-  lsp.tsserver.setup(require("coq")().lsp_ensure_capabilities(
+  lsp.tsserver.setup(
     {
       on_attach = function(client)
         require 'illuminate'.on_attach(client)
       end
     }
-  ))
+  )
 
-  lsp.phpactor.setup(require("coq")().lsp_ensure_capabilities(
+  lsp.phpactor.setup(
     {
       on_attach = function(client)
         require 'illuminate'.on_attach(client)
       end
     }
-  ))
+  )
 end)
