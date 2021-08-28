@@ -32,7 +32,7 @@ local pluginList = {
   "airblade/vim-rooter",
   "mg979/vim-visual-multi",
   "justinmk/vim-sneak",
-  "ms-jpq/chadtree",
+  "kyazdani42/nvim-tree.lua",
   "lewis6991/gitsigns.nvim",
   "neovim/nvim-lspconfig",
   "ojroques/nvim-lspfuzzy",

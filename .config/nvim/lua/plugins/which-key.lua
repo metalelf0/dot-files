@@ -29,7 +29,7 @@ wk.register({
   },
   t = {
     name = "Tree",
-    t = {  "<cmd>:CHADopen<CR>", "Toggle" },
+    t = {  "<cmd>:NvimTreeToggle<CR>", "Toggle" },
   },
   g = {
     name = "LSP stuff",
@@ -43,7 +43,7 @@ wk.register({
   },
   v = {
     name = "VCS",
-    s = {  ":Gstatus<CR>", "Status" },
+    s = {  ":Git<CR>", "Status" },
     b = {  ":Gblame<CR>", "Blame" },
     l = {  ":Glog<CR>", "Log" },
     d = {  ":Gdiff<CR>", "Diff" },
