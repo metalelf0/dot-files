@@ -6,7 +6,8 @@ wk.register({
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap=false },
     n = { "<cmd>lua require('telescope.builtin').live_grep({search_dirs={'/Users/metalelf0/Documents/Notes'}})<CR>", "Notes"},
-    p = { "<cmd>lua require('telescope').extensions.project.project{}<CR>", "Projects"}
+    p = { "<cmd>lua require('telescope').extensions.project.project{}<CR>", "Projects"},
+    ["/"] = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", "Search" },
     -- ["1"] = "which_key_ignore",  -- special label to hide it in the popup
   },
   b = {

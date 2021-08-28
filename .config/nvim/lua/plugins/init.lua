@@ -64,6 +64,7 @@ local pluginList = {
   "phaazon/hop.nvim",
   "romgrk/fzy-lua-native",
   "gelguy/wilder.nvim",
+  "kevinhwang91/nvim-bqf",
   { "windwp/nvim-spectre" },
   'folke/which-key.nvim',
   {
