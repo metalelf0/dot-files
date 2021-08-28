@@ -63,6 +63,7 @@ local pluginList = {
   "windwp/nvim-autopairs",
   "phaazon/hop.nvim",
   "romgrk/fzy-lua-native",
+  "nixprime/cpsm",
   "gelguy/wilder.nvim",
   { "windwp/nvim-spectre" },
   'folke/which-key.nvim',
