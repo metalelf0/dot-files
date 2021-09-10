@@ -3,9 +3,9 @@ function LspStatus()
   return require("lsp-status").status()
 end
 
-require('lualine').setup{
+require('lualine').setup({
   options = {
-    theme = "nightfox",
+    theme = 'auto',
     section_separators = {"", ""},
     component_separators = {"", ""},
   },
@@ -25,5 +25,5 @@ require('lualine').setup{
     lualine_y = {},
     lualine_z = {}
   }
-}
+})
 

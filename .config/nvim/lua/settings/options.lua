@@ -28,3 +28,4 @@ vim.opt.swapfile = false
 vim.opt.timeoutlen = 0
 vim.opt.diffopt:append { ",vertical" }
 vim.opt.wrap = true
+vim.opt.cul = true

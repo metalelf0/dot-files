@@ -6,4 +6,4 @@ map('n', '<leader>Ts', ":TestSuite<CR>")
 map('n', '<leader>Tl', ":TestLast<CR>")
 map('n', '<leader>Tv', ":TestVisit<CR>")
 
-g['test#strategy'] = "vimux"
+g['test#strategy'] = "neovim"

@@ -25,7 +25,8 @@ local pluginList = {
   "tpope/vim-dadbod",
   "tpope/vim-rails",
   "tpope/vim-abolish",
-  "tpope/vim-fugitive",
+  -- "tpope/vim-fugitive",
+  { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' } },
   "slim-template/vim-slim",
   "michaeljsmith/vim-indent-object",
   "rktjmp/lush.nvim",
@@ -43,7 +44,7 @@ local pluginList = {
   "nvim-telescope/telescope.nvim" ,
   "nvim-telescope/telescope-symbols.nvim",
   "nvim-telescope/telescope-project.nvim",
-  "hoob3rt/lualine.nvim",
+  "shadmansaleh/lualine.nvim",
   "nvim-lua/lsp-status.nvim",
   "b3nj5m1n/kommentary",
   "RRethy/vim-illuminate",
@@ -64,7 +65,7 @@ local pluginList = {
   "phaazon/hop.nvim",
   "romgrk/fzy-lua-native",
   "gelguy/wilder.nvim",
-  "kevinhwang91/nvim-bqf",
+  -- "kevinhwang91/nvim-bqf",
   { "windwp/nvim-spectre" },
   'folke/which-key.nvim',
   {
@@ -75,9 +76,13 @@ local pluginList = {
     event = "BufWinEnter",
   },
   "akinsho/nvim-toggleterm.lua",
+  { 'rcarriga/vim-ultest', requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" },
+  -- colorschemes start here
   'EdenEast/nightfox.nvim',
   "Pocco81/Catppuccino.nvim",
-  { 'rcarriga/vim-ultest', requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" }
+  "ayu-theme/ayu-vim",
+  'projekt0n/github-nvim-theme',
+  'folke/tokyonight.nvim',
 }
 
 packer.startup(function()
@@ -85,8 +90,6 @@ packer.startup(function()
     use(plugin)
   end
 end)
-
-require('nightfox').load()
 
 for index, plugin in ipairs(pluginList) do
   utils.loadPluginConfig(plugin)

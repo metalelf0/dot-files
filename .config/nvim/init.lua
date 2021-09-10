@@ -6,10 +6,14 @@ CONFIG = { }
 CONFIG.nvim_plugin_config_path = "/Users/metalelf0/.config/nvim/lua/plugins/"
 
 require 'settings'
-require 'utils'
+require "utils"
 require 'plugins'
 
+local witch = require 'witch'
+
 vim.cmd 'nnoremap <nowait><silent> <Esc><Esc> :nohlsearch<CR>'
+
+witch.setColorscheme("nightfox")
 
 -- TODO: eventually rewrite this in lua... someday :)
 -- taken from https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
@@ -31,7 +35,9 @@ augroup END
 
 cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
 cnoreabbrev <expr> gr (getcmdtype() ==# ':' && getcmdline() ==# 'gr') ? 'Grep' : 'gr'
-
 ]], false)
 
--- cmd('colorscheme nightfly')
+vim.api.nvim_exec(
+[[
+  nnoremap <esc> :noh<CR>
+]], false)
