@@ -1,5 +1,25 @@
 local Witch = {}
 
+function Witch.mappings()
+  return {
+    ayu = {
+      name = "ayu",
+      variants = { "mirage", "dark", "light" },
+      mode = "global_variable",
+      global_variable = "ayucolor"
+    }
+  }
+end
+
+function Witch.setColorschemeNew(theme, variant)
+  local colorDefinition = Witch.mappings()[theme]
+  for i, themeVariant in ipairs(colorDefinition['variants']) do
+    if (variant == themeVariant) then
+      print("Found!")
+    end
+  end
+end
+
 function Witch.setColorscheme(colorscheme)
   if colorscheme == "ayu-mirage" then
     vim.cmd('let ayucolor="mirage"')
