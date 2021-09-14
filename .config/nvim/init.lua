@@ -13,7 +13,7 @@ local witch = require 'witch'
 
 vim.cmd 'nnoremap <nowait><silent> <Esc><Esc> :nohlsearch<CR>'
 
-witch.setColorscheme("nightfox")
+witch.set("nightfox", "nightfox")
 
 -- TODO: eventually rewrite this in lua... someday :)
 -- taken from https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3

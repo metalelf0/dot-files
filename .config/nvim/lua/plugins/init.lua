@@ -65,6 +65,7 @@ local pluginList = {
   "phaazon/hop.nvim",
   "romgrk/fzy-lua-native",
   "gelguy/wilder.nvim",
+  "metalelf0/witch-nvim",
   -- "kevinhwang91/nvim-bqf",
   { "windwp/nvim-spectre" },
   'folke/which-key.nvim',
@@ -78,11 +79,12 @@ local pluginList = {
   "akinsho/nvim-toggleterm.lua",
   { 'rcarriga/vim-ultest', requires = {"vim-test/vim-test"}, run = ":UpdateRemotePlugins" },
   -- colorschemes start here
-  'EdenEast/nightfox.nvim',
+  'metalelf0/nightfox.nvim',
   "Pocco81/Catppuccino.nvim",
-  "ayu-theme/ayu-vim",
-  'projekt0n/github-nvim-theme',
-  'folke/tokyonight.nvim',
+  'Shatur/neovim-ayu',
+  { 'metalelf0/github-nvim-theme', branch = 'feature/individual-colorschemes' },
+  'metalelf0/tokyonight.nvim',
+  'sainnhe/everforest'
 }
 
 packer.startup(function()
