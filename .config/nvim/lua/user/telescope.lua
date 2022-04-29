@@ -5,6 +5,8 @@ end
 
 local actions = require "telescope.actions"
 
+-- telescope.load_extension('aerial')
+
 telescope.setup {
   defaults = {
 

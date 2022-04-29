@@ -166,19 +166,21 @@ local mappings = {
     },
     -- l = { function() vim.lsp.codelens.run() end, "CodeLens Action" },
     l = { function() vim.diagnostic.open_float() end, 'Show Line Diagnostics' },
-    q = { function() vim.lsp.diagnostic.set_loclist() end, "Quickfix" },
+    q = { function() vim.diagnostic.setloclist() end, "Quickfix" },
     r = { function() vim.lsp.buf.rename() end, "Rename" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
+    -- s = { "<cmd>Telescope aerial<cr>", "Document Symbols" },
+    s = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
   },
   o = {
-    name = "ne(o)rg",
-    c = { "<cmd>Neorg gtd capture<cr>", "(GTD) capture" },
-    e = { "<cmd>Neorg gtd edit<cr>", "(GTD) edit" },
-    v = { "<cmd>Neorg gtd views<cr>", "(GTD) views" },
+    name = "org",
+    a = { "Org: agenda" },
+    c = { "Org: capture" },
+    -- c = { "<cmd>Neorg gtd capture<cr>", "(GTD) capture" },
+    -- e = { "<cmd>Neorg gtd edit<cr>", "(GTD) edit" },
+    -- v = { "<cmd>Neorg gtd views<cr>", "(GTD) views" },
   },
   s = {
     name = "Search",
@@ -205,9 +207,10 @@ local mappings = {
   },
 
   -- custom settings
-  ["n"] = { "<cmd>:NV<cr>", "Notes" },
+  ["N"] = { "<cmd>:NV<cr>", "Notes" },
   k = { ":lua require('telescope.builtin').grep_string()<CR>", "Find word under cursor" },
   R = { ":lua require('telescope.builtin').resume()<CR>", "Resume last search" },
+  [" "] = { function() require('legendary').find() end, "Legendary" }
 }
 
 which_key.setup(setup)

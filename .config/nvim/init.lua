@@ -17,12 +17,18 @@ require "user.project"
 require "user.impatient"
 require "user.indentline"
 require "user.alpha"
+require "user.legendary"
+-- remember: whichkey must come AFTER legendary!
 require "user.whichkey"
 require "user.autocommands"
 require "user.fzf-notational-velocity"
 require "user.surround"
-require "user.hop"
+-- require "user.hop"
+-- require "user.lightspeed"
+require 'user.leap'
 require "user.todo-comments"
 require "user.neorg"
+require "user.orgmode"
+-- require 'user.aerial'
 require "user.test-nvim"
 require 'user.digraphs'

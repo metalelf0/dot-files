@@ -32,7 +32,7 @@ require('rose-pine').setup({
 	}
 })
 
-vim.o.background = "light"
+vim.o.background = "dark"
 
 -- set colorscheme after options
 vim.cmd('colorscheme rose-pine')

@@ -7,23 +7,19 @@ require("neorg").setup({
 		["core.norg.dirman"] = { -- Manage your directories with Neorg
 			config = {
 				workspaces = {
-					default  = "~/neorg/notes",
+					notes    = "~/neorg/notes",
           gtd      = "~/neorg/gtd",
 				},
-        autochdir = false,
-        index = "index.norg",
-        last_workspace = vim.fn.stdpath("cache") .. "/neorg_last_workspace.txt" -- The location to write and read the workspace cache file
-
 			},
 		},
+    ["core.gtd.base"] = {
+      config = {
+        workspace = "gtd",
+      },
+    },
 		["core.norg.completion"] = {
 			config = {
 				engine = "nvim-cmp",
-			},
-		},
-		["core.gtd.base"] = {
-			config = { -- Note that this table is optional and doesn't need to be provided
-        workspace = 'gtd'
 			},
 		},
 		["core.keybinds"] = { -- Configure core.keybinds
@@ -32,5 +28,7 @@ require("neorg").setup({
 				neorg_leader = "<Leader>o", -- This is the default if unspecified
 			},
 		},
+    ["core.export"] = {},
+    ["core.export.markdown"] = { config = { extensions = "all" } },
 	},
 })

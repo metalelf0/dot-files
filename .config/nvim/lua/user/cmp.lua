@@ -9,6 +9,7 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
+vim.cmd 'source ~/.config/nvim/lua/user/snippets/custom.lua'
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -114,17 +115,20 @@ cmp.setup {
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "orgmode" },
     { name = "neorg" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  },
   experimental = {
     ghost_text = false,
     native_menu = false,
   },
+  window = {
+    documentation = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
+  }
 }

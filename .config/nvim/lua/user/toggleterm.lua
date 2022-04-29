@@ -32,7 +32,7 @@ function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
 end
 
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.api.nvim_create_autocmd('TermOpen', { callback = function() set_terminal_keymaps() end, pattern = 'term://*' })
 
 local Terminal = require("toggleterm.terminal").Terminal
 

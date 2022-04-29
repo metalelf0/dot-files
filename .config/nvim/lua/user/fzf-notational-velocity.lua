@@ -1,1 +1,1 @@
-vim.g.nv_search_paths = { "~/Documents/notes", "~/Documents/notes.md" } 
+vim.g.nv_search_paths = { "~/Notes", "~/Documents/notes.md" }

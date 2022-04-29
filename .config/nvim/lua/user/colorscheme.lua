@@ -1,1 +1,1 @@
-require 'user.colorschemes.rose-pine'
+require 'user.colorschemes.gruvbox-dark'
