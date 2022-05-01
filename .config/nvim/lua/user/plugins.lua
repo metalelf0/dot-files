@@ -94,15 +94,15 @@ return packer.startup(function(use)
   -- use 'projekt0n/github-nvim-theme'
   -- use 'rebelot/kanagawa.nvim'
   -- use 'tjdevries/colorbuddy.vim'
-  -- use { "catppuccin/nvim", as = "catppuccin", branch = "dev" }
+  use { "catppuccin/nvim", as = "catppuccin", branch = "dev" }
   -- use "NTBBloodbath/doombox.nvim"
   -- use "NTBBloodbath/doom-one.nvim"
   -- use "Mofiqul/vscode.nvim"
   -- use 'ChristianChiarulli/nvcode-color-schemes.vim'
   -- use 'rmehri01/onenord.nvim'
-  use 'sainnhe/gruvbox-material'
+  -- use 'sainnhe/gruvbox-material'
   -- use 'marko-cerovac/material.nvim'
-  use 'tjdevries/gruvbuddy.nvim'
+  -- use 'tjdevries/gruvbuddy.nvim'
   -- use 'mvpopuk/inspired-github.vim'
   -- use 'kvrohit/substrata.nvim'
   -- use { 'metalelf0/jellybeans-nvim', requires = "rktjmp/lush.nvim" }

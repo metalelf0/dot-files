@@ -1,1 +1,1 @@
-require 'user.colorschemes.gruvbox-dark'
+require 'user.colorschemes.catppuccin'
