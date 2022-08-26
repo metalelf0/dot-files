@@ -135,7 +135,7 @@ require("aerial").setup({
 
   -- Automatically open aerial when entering supported buffers.
   -- This can be a function (see :help aerial-open-automatic)
-  open_automatic = true,
+  open_automatic = false,
 
   -- Set to true to only open aerial at the far right/left of the editor
   -- Default behavior opens aerial relative to current window
@@ -210,3 +210,5 @@ require("aerial").setup({
     update_delay = 300,
   },
 })
+
+vim.o.winbar = "%{%v:lua.require('user.winbar').winbar()%}"

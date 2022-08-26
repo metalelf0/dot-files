@@ -9,7 +9,7 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
-vim.cmd 'source ~/.config/nvim/lua/user/snippets/custom.lua'
+vim.cmd 'source ~/.config/nvim.metalelf0/lua/user/snippets/custom.lua'
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1

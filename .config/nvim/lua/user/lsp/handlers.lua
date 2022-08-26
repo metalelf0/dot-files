@@ -1,4 +1,5 @@
 local M = {}
+-- local navic = require("nvim-navic")
 
 -- TODO: backfill this to template
 M.setup = function()
@@ -83,6 +84,7 @@ M.on_attach = function(client, bufnr)
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
+  -- navic.attach(client, bufnr)
   -- require("aerial").on_attach(client, bufnr)
 end
 

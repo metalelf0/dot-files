@@ -3,16 +3,18 @@ if not status_ok then
   return
 end
 
-local actions = require "telescope.actions"
+local actions = require("telescope.actions")
+
+local fb_actions = require("telescope").extensions.file_browser.actions
 
 -- telescope.load_extension('aerial')
 
-telescope.setup {
+telescope.setup({
   defaults = {
-
     prompt_prefix = " ",
     selection_caret = " ",
-    path_display = { "smart" },
+    path_display = { shorten = 3, truncate = 3 },
+    dynamic_preview_title = true,
 
     mappings = {
       i = {
@@ -46,10 +48,10 @@ telescope.setup {
         ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
         -- allow using C-w to delete word in prompt
         ["<C-w>"] = function()
-          vim.cmd [[normal! bcw]]
+          vim.cmd([[normal! bcw]])
         end,
-        ["<C-g>"] = function() 
-          require('telescope.builtin').symbols{ sources = {'gitmoji'} }
+        ["<C-g>"] = function()
+          require("telescope.builtin").symbols({ sources = { "gitmoji" } })
         end,
       },
 
@@ -87,32 +89,55 @@ telescope.setup {
     },
   },
   pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
+    help_tags = { jump_type = "tab" },
+    current_buffer_fuzzy_find = { theme = "dropdown" },
+    colorscheme = {
+      enable_preview = true,
+    },
+    lsp_definitions = { theme = "ivy" },
+    lsp_references = {
+      theme = "ivy",
+      include_declaration = false,
+    },
     buffers = {
       show_all_buffers = true,
       sort_lastused = true,
       theme = "dropdown",
-      previewer = false,
       mappings = {
         i = {
           ["<c-d>"] = "delete_buffer",
-        }
-      }
-    }
+        },
+      },
+    },
   },
   extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
+    file_browser = {
+      -- initial_mode='normal',
+      -- files = false,
+      theme = "ivy",
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          ["n"] = fb_actions.create,
+          ["r"] = fb_actions.rename,
+          ["m"] = fb_actions.move,
+          ["c"] = fb_actions.copy,
+          ["d"] = fb_actions.remove,
+          ["o"] = fb_actions.open,
+          ["-"] = fb_actions.goto_parent_dir,
+          ["~"] = fb_actions.goto_home_dir,
+          ["w"] = fb_actions.goto_cwd,
+          ["t"] = fb_actions.change_cwd,
+          ["f"] = fb_actions.toggle_browser,
+          ["."] = fb_actions.toggle_hidden,
+          ["a"] = fb_actions.toggle_all,
+        },
+      },
+    },
   },
-}
+})
 
-telescope.load_extension "file_browser"
+telescope.load_extension("file_browser")
+telescope.load_extension("neoclip")

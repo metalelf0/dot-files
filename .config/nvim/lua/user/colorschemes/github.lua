@@ -1,6 +1,7 @@
 require("github-theme").setup({
   theme_style = "dark_default",
   function_style = "italic",
+  transparent = "true", -- this allows black bg when using the matching kitty theme
   sidebars = {"qf", "vista_kind", "terminal", "packer", "aerial"},
 
   -- Change the "hint" color to the "orange" color, and make the "error" color bright red

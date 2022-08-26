@@ -96,6 +96,8 @@ local function get_username() return os.getenv('USER') end
 -- get home dir ($HOME)
 local function get_homedir() return os.getenv('HOME') end
 
+local function get_configdir() return get_homedir() .. "/.config/nvim.metalelf0" end
+
 -- get operating system name
 local function get_os(table)
     if table == nil then table = {macOS = 'macOS', linux = 'Linux'} end
@@ -117,6 +119,7 @@ return {
     lua_system = lua_system,
     get_python = get_python,
     get_username = get_username,
+    get_configdir = get_configdir,
     get_homedir = get_homedir,
     get_os = get_os
 }
