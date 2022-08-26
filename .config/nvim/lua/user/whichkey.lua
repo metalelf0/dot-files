@@ -5,6 +5,129 @@ if not status_ok then
 	return
 end
 
+local find_files = function ()
+  require("telescope.builtin").find_files(
+    require("telescope.themes").get_dropdown({ path_display = { truncate = 5 } })
+  )
+end
+
+local telescope_colorscheme = function()
+  require("telescope.builtin").colorscheme({ enable_preview = true })
+end
+
+local insert_emoji = function()
+  require("telescope.builtin").symbols({ sources = { "emoji" } })
+end
+
+local insert_gitmoji = function()
+  require("telescope.builtin").symbols({ sources = { "gitmoji" } })
+end
+
+-- == Normal mode mappings == --
+
+-- Top-level mappings --
+vim.keymap.set("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
+vim.keymap.set("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
+vim.keymap.set("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text" })
+vim.keymap.set("n", "<leader>p", find_files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>q", "<cmd>q!<cr>", { desc = "Force quit" })
+vim.keymap.set("n", "<leader>k", require('telescope.builtin').grep_string, { desc = "Find word under cursor" })
+vim.keymap.set("n", "<leader>R", require('telescope.builtin').resume, { desc = "Resume last search" })
+vim.keymap.set("n", "<leader><leader>", require('legendary').find, { desc = "Legendary" })
+vim.keymap.set("n", "<leader>N", function() utils.search_files_in_dir("~/Notes") end, { desc = "Notes" })
+
+-- Buffers --
+vim.keymap.set("n", "<leader>bb", require("telescope.builtin").buffers, { desc = "Buffers" })
+vim.keymap.set("n", "<leader>bcl", "<cmd>BufferLineCloseLeft<CR>", { desc = "Close left" })
+vim.keymap.set("n", "<leader>bcr", "<cmd>BufferLineCloseRight<CR>", { desc = "Close right" })
+vim.keymap.set("n", "<leader>bca", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all" })
+vim.keymap.set("n", "<leader>b1", "<cmd>BufferLineGoToBuffer 1<CR>", { desc = "Buffer 1" })
+vim.keymap.set("n", "<leader>b2", "<cmd>BufferLineGoToBuffer 2<CR>", { desc = "Buffer 2" })
+vim.keymap.set("n", "<leader>b3", "<cmd>BufferLineGoToBuffer 3<CR>", { desc = "Buffer 3" })
+vim.keymap.set("n", "<leader>b4", "<cmd>BufferLineGoToBuffer 4<CR>", { desc = "Buffer 4" })
+vim.keymap.set("n", "<leader>b5", "<cmd>BufferLineGoToBuffer 5<CR>", { desc = "Buffer 5" })
+vim.keymap.set("n", "<leader>b6", "<cmd>BufferLineGoToBuffer 6<CR>", { desc = "Buffer 6" })
+vim.keymap.set("n", "<leader>b7", "<cmd>BufferLineGoToBuffer 7<CR>", { desc = "Buffer 7" })
+vim.keymap.set("n", "<leader>b8", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "Buffer 8" })
+vim.keymap.set("n", "<leader>b9", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Buffer 9" })
+
+-- Git --
+vim.keymap.set("n", "<leader>gR", require('gitsigns').reset_buffer, { desc = "Reset buffer" })
+vim.keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Checkout branch" })
+vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Checkout commit" })
+vim.keymap.set("n", "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", { desc = "Diff" })
+vim.keymap.set("n", "<leader>gg", function() _LAZYGIT_TOGGLE() end, { desc = "Lazygit" })
+vim.keymap.set("n", "<leader>gj", require('gitsigns').next_hunk, { desc = "Next hunk" })
+vim.keymap.set("n", "<leader>gk", require('gitsigns').prev_hunk, { desc = "Prev hunk" })
+vim.keymap.set("n", "<leader>gl", require('gitsigns').blame_line, { desc = "Blame line" })
+vim.keymap.set("n", "<leader>go", "<cmd>Telescope git_status<cr>", { desc = "Open changed file" })
+vim.keymap.set("n", "<leader>gp", require('gitsigns').preview_hunk, { desc = "Preview hunk" })
+vim.keymap.set("n", "<leader>gr", require('gitsigns').reset_hunk, { desc = "Reset hunk" })
+vim.keymap.set("n", "<leader>gs", require('gitsigns').stage_hunk, { desc = "Stage hunk" })
+vim.keymap.set("n", "<leader>gu", require('gitsigns').undo_stage_hunk, { desc = "Undo stage hunk" })
+
+-- Helpers --
+vim.keymap.set("n", "<leader>ht", telescope_colorscheme, { desc = "Colorschemes" })
+
+-- Insert --
+vim.keymap.set("n", "<leader>ie", insert_emoji, { desc = "Emoji" })
+vim.keymap.set("n", "<leader>ig", insert_gitmoji, { desc = "Gitmoji" })
+
+-- Test --
+
+vim.keymap.set("n", "<leader>jl", "<cmd>TestLast<CR>", { desc = "Last" })
+vim.keymap.set("n", "<leader>jn", "<cmd>TestNearest<CR>", { desc = "Nearest" })
+vim.keymap.set("n", "<leader>jf", "<cmd>TestFile<CR>", { desc = "File" })
+vim.keymap.set("n", "<leader>js", "<cmd>TestSuite<CR>", { desc = "Suite" })
+
+-- LSP --
+vim.keymap.set("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Document diagnostics" })
+vim.keymap.set("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer info" })
+vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Action" })
+vim.keymap.set("n", "<leader>ld", function() require("telescope.builtin").lsp_definitions({ jump_type = "never"}) end, { desc = "Saga finder" })
+vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format" })
+vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
+vim.keymap.set("n", "<leader>lj", function() vim.lsp.diagnostic.goto_next() end, { desc = "Next diagnostic" })
+vim.keymap.set("n", "<leader>lk", function() vim.lsp.diagnostic.goto_prev() end, { desc = "Prev diagnostic" })
+vim.keymap.set("n", "<leader>ll", function() vim.lsp.diagnostic.open_float() end, { desc = "Line diagnostic" })
+vim.keymap.set("n", "<leader>lr", function() require("telescope.builtin").lsp_references({ jump_type = "never"}) end, { desc = "Saga finder" })
+vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { desc = "Workspace symbols" })
+vim.keymap.set("n", "<leader>lw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace diagnostics" })
+
+-- Packer and projects --
+
+vim.keymap.set("n", "<leader>Pc", "<cmd>PackerCompile<cr>", { desc = "Packer - compile" })
+vim.keymap.set("n", "<leader>Pi", "<cmd>PackerInstall<cr>", { desc = "Packer - install" })
+vim.keymap.set("n", "<leader>Ps", "<cmd>PackerSync<cr>", { desc = "Packer - sync" })
+vim.keymap.set("n", "<leader>PS", "<cmd>PackerStatus<cr>", { desc = "Packer - status" })
+vim.keymap.set("n", "<leader>Pu", "<cmd>PackerUpdate<cr>", { desc = "Packer - update" })
+vim.keymap.set("n", "<leader>Pp", require("telescope").extensions.projects.projects, { desc = "Projects" })
+
+-- Search --
+
+vim.keymap.set("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
+vim.keymap.set("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
+vim.keymap.set("n", "<leader>sR", "<cmd>Telescope registers<cr>", { desc = "Registers" })
+vim.keymap.set("n", "<leader>sb", function() require("telescope.builtin").live_grep({ grep_open_files = true }) end, { desc = "Search in buffers" })
+vim.keymap.set("n", "<leader>sf", function() require("spectre").open_file_search() end, { desc = "Search in file" })
+vim.keymap.set("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Find Help" })
+vim.keymap.set("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
+vim.keymap.set("n", "<leader>sp", "<cmd>Telescope neoclip<cr>", { desc = "Clipboard (aka pastes)" })
+vim.keymap.set("n", "<leader>sr", "<cmd>Telescope oldfiles<cr>", { desc = "Open recent File" })
+vim.keymap.set("n", "<leader>ss", function() require("spectre").open() end, { desc = "Spectre" })
+
+-- Terminal --
+
+vim.keymap.set("n", "<leader>tn", function() _NODE_TOGGLE() end, { desc = "Node" })
+vim.keymap.set("n", "<leader>tu", function() _NCDU_TOGGLE() end, { desc = "NCDU" })
+vim.keymap.set("n", "<leader>tt", function() _HTOP_TOGGLE() end, { desc = "Htop" })
+vim.keymap.set("n", "<leader>tp", function() _PYTHON_TOGGLE() end, { desc = "Python" })
+vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
+vim.keymap.set("n", "<leader>th", "<cmd>ToggleTerm size=15 direction=horizontal<cr>", { desc = "Horizontal" })
+vim.keymap.set("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
+
 local setup = {
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
@@ -57,7 +180,7 @@ local setup = {
 		spacing = 3, -- spacing between columns
 		align = "left", -- align columns left, center or right
 	},
-	ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+	ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
 	hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
 	show_help = true, -- show help message on the command line when the popup is visible
 	triggers = "auto", -- automatically setup triggers
@@ -81,223 +204,13 @@ local opts = {
 }
 
 local mappings = {
-	["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-	["b"] = {
-    name = "Buffers",
-    ["b"] = { function() require("telescope.builtin").buffers() end, "Buffers" },
-    ["1"] = { "<cmd>BufferLineGoToBuffer 1<CR>", "Buffer 1" },
-    ["2"] = { "<cmd>BufferLineGoToBuffer 2<CR>", "Buffer 2" },
-    ["3"] = { "<cmd>BufferLineGoToBuffer 3<CR>", "Buffer 3" },
-    ["4"] = { "<cmd>BufferLineGoToBuffer 4<CR>", "Buffer 4" },
-    ["5"] = { "<cmd>BufferLineGoToBuffer 5<CR>", "Buffer 5" },
-    ["6"] = { "<cmd>BufferLineGoToBuffer 6<CR>", "Buffer 6" },
-    ["7"] = { "<cmd>BufferLineGoToBuffer 7<CR>", "Buffer 7" },
-    ["8"] = { "<cmd>BufferLineGoToBuffer 8<CR>", "Buffer 8" },
-    ["9"] = { "<cmd>BufferLineGoToBuffer 9<CR>", "Buffer 9" },
-    ["c"] = {
-      name = "Close",
-      ["a"] = { "<cmd>BufferLineCloseLeft<CR>", "All" },
-      ["l"] = { "<cmd>BufferLineCloseLeft<CR>", "Left" },
-      ["r"] = { "<cmd>BufferLineCloseRight<CR>", "Right" }
-
-    }
-	},
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	["w"] = { "<cmd>w!<CR>", "Save" },
-	["q"] = { "<cmd>q!<CR>", "Quit" },
-	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-	["C"] = { "<cmd>%bd|e#|bd#<CR>", "Close all buffers" },
-	["p"] = {
-		function()
-			require("telescope.builtin").find_files(
-				require("telescope.themes").get_dropdown({ path_display = { truncate = 5 } })
-			)
-		end,
-		"Find files",
-	},
-	["f"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-	P = {
-		name = "Packer / Projects",
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-		p = {
-			function()
-				require("telescope").extensions.projects.projects()
-			end,
-			"Projects",
-		},
-	},
-	g = {
-		name = "Git",
-		g = {
-			function()
-				_LAZYGIT_TOGGLE()
-			end,
-			"Lazygit",
-		},
-		j = {
-			function()
-				require("gitsigns").next_hunk()
-			end,
-			"Next Hunk",
-		},
-		k = {
-			function()
-				require("gitsigns").prev_hunk()
-			end,
-			"Prev Hunk",
-		},
-		l = {
-			function()
-				require("gitsigns").blame_line()
-			end,
-			"Blame",
-		},
-		p = {
-			function()
-				require("gitsigns").preview_hunk()
-			end,
-			"Preview Hunk",
-		},
-		r = {
-			function()
-				require("gitsigns").reset_hunk()
-			end,
-			"Reset Hunk",
-		},
-		R = {
-			function()
-				require("gitsigns").reset_buffer()
-			end,
-			"Reset Buffer",
-		},
-		s = {
-			function()
-				require("gitsigns").stage_hunk()
-			end,
-			"Stage Hunk",
-		},
-		u = {
-			function()
-				require("gitsigns").undo_stage_hunk()
-			end,
-			"Undo Stage Hunk",
-		},
-		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-		d = {
-			"<cmd>Gitsigns diffthis HEAD<cr>",
-			"Diff",
-		},
-	},
-	h = {
-		name = "helpers",
-		t = {
-			function()
-				require("telescope.builtin").colorscheme({ enable_preview = true })
-			end,
-			"Theme",
-		},
-	},
-	i = {
-		name = "Insert",
-		e = {
-			function()
-				require("telescope.builtin").symbols({ sources = { "emoji" } })
-			end,
-			"Emoji",
-		},
-		g = {
-			function()
-				require("telescope.builtin").symbols({ sources = { "gitmoji" } })
-			end,
-			"Gitmoji",
-		},
-	},
-	j = {
-		name = "Test",
-		l = { "<cmd>TestLast<CR>", "Last" },
-		n = { "<cmd>TestNearest<CR>", "Nearest" },
-		f = { "<cmd>TestFile<CR>", "File" },
-		s = { "<cmd>TestSuite<CR>", "Suite" },
-		L = { "<cmd>TestLast -strategy=tterm_close<CR>", "Last (and close)" },
-		N = { "<cmd>TestNearest -strategy=tterm_close<CR>", "Nearest (and close)" },
-		F = { "<cmd>TestFile -strategy=tterm_close<CR>", "File (and close)" },
-		S = { "<cmd>TestSuite -strategy=tterm_close<CR>", "Suite (and close)" },
-	},
-	l = {
-		name = "LSP",
-		a = {
-			function()
-				vim.lsp.buf.code_action()
-			end,
-			"Code Action",
-		},
-		d = {
-			function()
-				require("telescope.builtin").lsp_definitions({ jump_type = "never" })
-			end,
-			"Find definition",
-		},
-		D = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
-		w = {
-			"<cmd>Telescope diagnostics<cr>",
-			"Workspace Diagnostics",
-		},
-		f = {
-			function()
-				vim.lsp.buf.format({ async = true })
-			end,
-			"Format",
-		},
-		i = { "<cmd>LspInfo<cr>", "Info" },
-		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-		j = {
-			function()
-				vim.lsp.diagnostic.goto_next()
-			end,
-			"Next Diagnostic",
-		},
-		k = {
-			function()
-				vim.lsp.diagnostic.goto_prev()
-			end,
-			"Prev Diagnostic",
-		},
-		-- l = { function() vim.lsp.codelens.run() end, "CodeLens Action" },
-		l = {
-			function()
-				vim.diagnostic.open_float()
-			end,
-			"Show Line Diagnostics",
-		},
-		q = {
-			function()
-				vim.diagnostic.setloclist()
-			end,
-			"Quickfix",
-		},
-		r = {
-			function()
-				require("telescope.builtin").lsp_references({ jump_type = "never" })
-			end,
-			"Find references",
-		},
-		R = {
-			function()
-				vim.lsp.buf.rename()
-			end,
-			"Rename",
-		},
-		s = {
-			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-			"Workspace Symbols",
-		},
-	},
+	["b"] = { name = "Buffers", ["c"] = { name = "Close" } },
+	P = { name = "Packer / Projects" },
+	g = { name = "Git" },
+	h = { name = "helpers", },
+	i = { name = "Insert", },
+	j = { name = "Test", },
+	l = { name = "LSP" },
 	o = {
 		name = "org",
 		a = { "Org: agenda" },
@@ -314,74 +227,11 @@ local mappings = {
 	},
 	s = {
 		name = "Search",
-		C = { "<cmd>Telescope commands<cr>", "Commands" },
-		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		R = { "<cmd>Telescope registers<cr>", "Registers" },
-		b = {
-			function()
-				require("telescope.builtin").live_grep({ grep_open_files = true })
-			end,
-			"Search in buffers",
-		},
-		f = {
-			function()
-				require("spectre").open_file_search()
-			end,
-			"Search in file",
-		},
-		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-		p = { "<cmd>Telescope neoclip<cr>", "Clipboard (aka pastes)" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		s = {
-			function()
-				require("spectre").open()
-			end,
-			"Open spectre",
-		},
 	},
 	t = {
 		name = "Terminal",
-		n = {
-			function()
-				_NODE_TOGGLE()
-			end,
-			"Node",
-		},
-		u = {
-			function()
-				_NCDU_TOGGLE()
-			end,
-			"NCDU",
-		},
-		t = {
-			function()
-				_HTOP_TOGGLE()
-			end,
-			"Htop",
-		},
-		p = {
-			function()
-				_PYTHON_TOGGLE()
-			end,
-			"Python",
-		},
-		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-		h = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "Horizontal" },
-		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 	},
 
-	-- custom settings
-	-- ["N"] = { "<cmd>:NV<cr>", "Notes" },
-  ["N"] = { function() utils.search_files_in_dir("~/Notes") end, "Notes" },
-	k = { ":lua require('telescope.builtin').grep_string()<CR>", "Find word under cursor" },
-	R = { ":lua require('telescope.builtin').resume()<CR>", "Resume last search" },
-	[" "] = {
-		function()
-			require("legendary").find()
-		end,
-		"Legendary",
-	},
 }
 
 if vim.g.neovide then
@@ -435,3 +285,4 @@ local visualModeOpts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 which_key.register(visualModeMappings, visualModeOpts)
+

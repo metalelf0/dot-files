@@ -23,3 +23,5 @@ require('orgmode').setup({
     j = { description = 'Journal', template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?', target = '~/Dropbox/org/journal.org' }
   }
 })
+
+require('org-bullets').setup()

@@ -18,19 +18,19 @@ require "user.project"
 require "user.indentline"
 require "user.alpha"
 require "user.legendary"
-require 'user.neovide'
+require "user.neovide"
 -- remember: whichkey must come AFTER legendary and neovide!
 require "user.whichkey"
 require "user.autocommands"
 require "user.fzf-notational-velocity"
-require 'user.leap'
+require "user.leap"
 require "user.todo-comments"
 -- require "user.neorg"
 require "user.orgmode"
-require 'user.aerial'
+require "user.aerial"
 require "user.test-nvim"
-require 'user.neotest'
-require 'user.digraphs'
+require "user.neotest"
+require "user.digraphs"
 require "user.toggleterm"
-require 'user.gh-nvim'
-require 'user.fvim'
+require "user.gh-nvim"
+require "user.fvim"

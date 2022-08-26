@@ -24,4 +24,8 @@ M.search_files_in_dir = function(directory)
   require('telescope.builtin').live_grep({cwd= directory, search_dirs={ directory }})
 end
 
+M.nvim_config_base_path = function()
+  return "~/.config/nvim.nvim-from-scratch"
+end
+
 return M

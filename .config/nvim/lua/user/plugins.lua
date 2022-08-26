@@ -65,55 +65,34 @@ return packer.startup(function(use)
 	use("moll/vim-bbye")
 	use("nvim-lualine/lualine.nvim")
 	use({ "akinsho/toggleterm.nvim", branch = "main" })
-	use("ahmedkhalf/project.nvim")
+	--[[ use("ahmedkhalf/project.nvim") ]]
+	use("jakemason/project.nvim")
 	use("lewis6991/impatient.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("goolord/alpha-nvim")
 	use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
 	use("folke/which-key.nvim")
-	use "stevearc/aerial.nvim"
+	use("stevearc/aerial.nvim")
 
 	-- Colorschemes
-	use "folke/tokyonight.nvim"
-  use { "mcchrish/zenbones.nvim", requires = { 'rktjmp/lush.nvim' }}
+	use("folke/tokyonight.nvim")
+	use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
 	use("EdenEast/nightfox.nvim")
 	use("bluz71/vim-moonfly-colors")
 	use("bluz71/vim-nightfly-guicolors")
 	use("projekt0n/github-nvim-theme")
 	use("rebelot/kanagawa.nvim")
-	use({ "catppuccin/nvim", as = "catppuccin", branch = "dev" })
-	use "NTBBloodbath/doom-one.nvim"
-	use "~/sources/vscode.nvim"
+	use({ "catppuccin/nvim", as = "catppuccin" })
+	use("NTBBloodbath/doom-one.nvim")
+	use("~/sources/vscode.nvim")
 	use("sainnhe/gruvbox-material")
 	use("rmehri01/onenord.nvim")
-
-	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-	-- use "lunarvim/darkplus.nvim"
-	-- use "rktjmp/lush.nvim"
-	-- use "shaunsingh/moonlight.nvim"
-	-- use 'doums/darcula'
-	-- use 'glepnir/zephyr-nvim'
-	-- use 'tjdevries/colorbuddy.vim'
-	-- use("Mofiqul/vscode.nvim")
-	-- use 'Th3Whit3Wolf/onebuddy'
-	-- use 'Th3Whit3Wolf/space-nvim'
-	-- use 'ThemerCorp/themer.lua'
-	-- use "NTBBloodbath/doombox.nvim"
-	-- use 'marko-cerovac/material.nvim'
-	-- use 'ChristianChiarulli/nvcode-color-schemes.vim'
-	-- use 'rmehri01/onenord.nvim'
-	-- use 'tjdevries/gruvbuddy.nvim'
-	-- use 'mvpopuk/inspired-github.vim'
-	-- use 'kvrohit/substrata.nvim'
-	-- use { 'metalelf0/jellybeans-nvim', requires = "rktjmp/lush.nvim" }
-	-- use { 'blackbirdtheme/vim', as = "blackbird" }
-	-- use 'ayu-theme/ayu-vim'
-	-- use 'YorickPeterse/vim-paper'
-	-- use 'yorickpeterse/happy_hacking.vim'
-	-- use 'mrjones2014/lighthaus.nvim'
-	-- use 'Mofiqul/adwaita.nvim'
-	-- use 'cocopon/iceberg.vim'
-	-- use { "rose-pine/neovim", as = "rose-pine" }
+	use({ "meliora-theme/neovim", requires = { "rktjmp/lush.nvim" }, as = "meliora" })
+	use("TheNiteCoder/mountaineer.vim")
+	use("Yazeed1s/minimal.nvim")
+	use("B4mbus/oxocarbon-lua.nvim")
+	use("glepnir/zephyr-nvim")
+	use("marko-cerovac/material.nvim")
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -122,7 +101,6 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
-  -- use("SmiteshP/nvim-navic")
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
@@ -130,7 +108,8 @@ return packer.startup(function(use)
 
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
-	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
@@ -150,7 +129,7 @@ return packer.startup(function(use)
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
-  use { 'ldelossa/gh.nvim', requires = { 'ldelossa/litee.nvim' } }
+	use({ "ldelossa/gh.nvim", requires = { "ldelossa/litee.nvim" } })
 
 	-- Fzf
 	use("junegunn/fzf")
@@ -175,6 +154,7 @@ return packer.startup(function(use)
 	use({ "nvim-neorg/neorg" })
 	use({ "nvim-neorg/neorg-telescope" })
 	use("nvim-orgmode/orgmode")
+	use("akinsho/org-bullets.nvim")
 	use("ellisonleao/glow.nvim") -- a markdown previewer built into nvim
 
 	use("tpope/vim-abolish")
@@ -183,11 +163,25 @@ return packer.startup(function(use)
 	use("tpope/vim-fugitive")
 	use("tpope/vim-repeat")
 	use("tpope/vim-unimpaired")
-  use("tpope/vim-surround")
-	use("rktjmp/shipwright.nvim")
+	use("tpope/vim-eunuch")
 
 	use({
-		"cenk1cenk2/nvim-spectre",
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({
+				surrounds = {
+					[":"] = {
+						add = { ":", "" },
+						delete = function() end,
+						change = { target = function() end },
+					},
+				},
+			})
+		end,
+	})
+
+	use({
+		"nvim-pack/nvim-spectre",
 		config = function()
 			require("spectre").setup()
 		end,
@@ -200,7 +194,7 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use { 'vim-test/vim-test' }
+	use({ "vim-test/vim-test" })
 
 	use({
 		"rcarriga/neotest",
@@ -208,22 +202,15 @@ return packer.startup(function(use)
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
-      "rcarriga/neotest-python",
-      "rcarriga/neotest-plenary"
+			"rcarriga/neotest-python",
+			"rcarriga/neotest-plenary",
 		},
 	})
-  use("rcarriga/neotest-vim-test")
+	use("rcarriga/neotest-vim-test")
 
 	use("michaeljsmith/vim-indent-object")
 	use("folke/zen-mode.nvim")
 	use("AndrewRadev/writable_search.vim")
-	use({
-		"AckslD/nvim-neoclip.lua",
-		requires = { "tami5/sqlite.lua", module = "sqlite" },
-		config = function()
-			require("neoclip").setup()
-		end,
-	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

@@ -4,7 +4,7 @@ leap.setup({
 })
 -- leap.set_default_keymaps()
 local function leap_bidirectional()
-  require("leap").leap({ ["target-windows"] = { vim.api.nvim_get_current_win() } })
+  require("leap").leap({ target_windows = { vim.fn.win_getid() } })
 end
 
 -- vim.keymap.set("n", "s", "<Plug>(leap-forward)", { silent = true })

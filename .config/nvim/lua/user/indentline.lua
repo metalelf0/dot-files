@@ -52,9 +52,9 @@ vim.wo.colorcolumn = "99999"
 -- vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
-vim.opt.list = true
-vim.opt.listchars:append "eol:↲"
-vim.opt.listchars:append "trail:·"
+-- vim.opt.list = false
+-- vim.opt.listchars:append "eol:↲"
+-- vim.opt.listchars:append "trail:·"
 
 indent_blankline.setup({
 	-- show_end_of_line = true,
