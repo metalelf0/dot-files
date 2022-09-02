@@ -44,11 +44,11 @@ M.setup = function()
   })
 end
 
-function enable_virtual_text()
+local function enable_virtual_text()
   vim.diagnostic.config({virtual_text = true})
 end
 
-function disable_virtual_text()
+local function disable_virtual_text()
   vim.diagnostic.config({virtual_text = false})
 end
 

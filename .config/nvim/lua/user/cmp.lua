@@ -33,7 +33,7 @@ end
 local core = require 'lib.core'
 
 require("luasnip/loaders/from_vscode").lazy_load()
-vim.cmd('source ' .. core.get_configdir() .. '/lua/user/snippets/custom.lua')
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim.nvim-from-scratch/lua/user/snippets"})
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1

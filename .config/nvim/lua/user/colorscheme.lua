@@ -1,1 +1,1 @@
-require 'user.colorschemes.vscode'
+require 'user.colorschemes.catppuccin'
