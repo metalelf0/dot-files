@@ -93,6 +93,8 @@ return packer.startup(function(use)
 	use("B4mbus/oxocarbon-lua.nvim")
 	use("glepnir/zephyr-nvim")
 	use("marko-cerovac/material.nvim")
+  use("sam4llis/nvim-tundra")
+  use("cocopon/iceberg.vim")
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -155,7 +157,12 @@ return packer.startup(function(use)
 	use({ "nvim-neorg/neorg-telescope" })
 	use("nvim-orgmode/orgmode")
 	use("akinsho/org-bullets.nvim")
-	use("ellisonleao/glow.nvim") -- a markdown previewer built into nvim
+  use { "lukas-reineke/headlines.nvim",
+    config = function()
+      require('headlines').setup()
+    end
+  }
+  use { 'epwalsh/obsidian.nvim' }
 
 	use("tpope/vim-abolish")
 	use("tpope/vim-dadbod")

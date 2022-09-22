@@ -1,8 +1,6 @@
-vim.o.termguicolors = true
-
 vim.cmd [[
   try
-    colorscheme carbonfox
+    colorscheme moonfly
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

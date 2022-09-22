@@ -1,36 +1,37 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.utils"
-require "user.impatient"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp"
-require "user.telescope"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.gitsigns"
-require "user.nvim-tree"
-require "user.bufferline"
-require "user.lualine"
-require "user.project"
-require "user.indentline"
-require "user.alpha"
-require "user.legendary"
-require "user.neovide"
+require("user.options")
+require("user.keymaps")
+require("user.plugins")
+require("user.utils")
+require("user.impatient")
+require("user.colorscheme")
+require("user.cmp")
+require("user.lsp")
+require("user.telescope")
+require("user.treesitter")
+require("user.autopairs")
+require("user.comment")
+require("user.gitsigns")
+require("user.nvim-tree")
+require("user.bufferline")
+require("user.lualine")
+require("user.project")
+require("user.indentline")
+require("user.alpha")
+require("user.legendary")
+require("user.neovide")
 -- remember: whichkey must come AFTER legendary and neovide!
-require "user.whichkey"
-require "user.autocommands"
-require "user.fzf-notational-velocity"
-require "user.leap"
-require "user.todo-comments"
+require("user.whichkey")
+require("user.autocommands")
+require("user.fzf-notational-velocity")
+require("user.leap")
+require("user.todo-comments")
 -- require "user.neorg"
-require "user.orgmode"
-require "user.aerial"
-require "user.test-nvim"
-require "user.neotest"
-require "user.digraphs"
-require "user.toggleterm"
-require "user.gh-nvim"
-require "user.fvim"
+require("user.orgmode")
+require("user.aerial")
+require("user.test-nvim")
+require("user.neotest")
+require("user.digraphs")
+require("user.toggleterm")
+require("user.gh-nvim")
+require("user.fvim")
+require("user.obsidian")
