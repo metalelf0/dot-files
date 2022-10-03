@@ -1,8 +1,7 @@
-vim.o.termguicolors = true
-
-vim.cmd [[
+  vim.cmd [[
   try
-    colorscheme nordfox
+    set termguicolors
+    colorscheme sherbet
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

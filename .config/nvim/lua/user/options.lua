@@ -1,7 +1,7 @@
 local options = {
   backup = false,                               -- creates a backup file
   clipboard = "unnamedplus",                    -- allows neovim to access the system clipboard
-  cmdheight = 0,                                -- only show cmdline when needed!
+  cmdheight = 1,                                -- only show cmdline when needed!
   completeopt = { "menuone", "noselect" },      -- mostly just for cmp
   conceallevel = 0,                             -- so that `` is visible in markdown files
   cursorline = false,                            -- highlight the current line
@@ -18,7 +18,7 @@ local options = {
   numberwidth = 4,                              -- set number column width to 2 {default 4}
   pumblend = 10,                                -- fake transparency in popup menu
   pumheight = 10,                               -- pop up menu height
-  relativenumber = false,                       -- set relative numbered lines
+  relativenumber = true,                       -- set relative numbered lines
   scrolloff = 8,                                -- is one of my fav
   shiftwidth = 2,                               -- the number of spaces inserted for each indentation
   showmode = false,                             -- we don't need to see things like -- INSERT -- anymore
@@ -42,6 +42,7 @@ local options = {
 }
 
 vim.opt.shortmess:append "c"
+vim.opt.shortmess:append "F"
 
 for k, v in pairs(options) do
   vim.opt[k] = v

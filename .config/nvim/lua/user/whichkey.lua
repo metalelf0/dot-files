@@ -28,14 +28,14 @@ end
 -- Top-level mappings --
 vim.keymap.set("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
 vim.keymap.set("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Explorer" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text" })
 vim.keymap.set("n", "<leader>p", find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>q", "<cmd>q!<cr>", { desc = "Force quit" })
 vim.keymap.set("n", "<leader>k", require('telescope.builtin').grep_string, { desc = "Find word under cursor" })
 vim.keymap.set("n", "<leader>R", require('telescope.builtin').resume, { desc = "Resume last search" })
 vim.keymap.set("n", "<leader><leader>", require('legendary').find, { desc = "Legendary" })
-vim.keymap.set("n", "<leader>N", function() utils.search_files_in_dir("~/Notes") end, { desc = "Notes" })
+vim.keymap.set("n", "<leader>N", function() utils.search_files_in_dir("~/iCloud-Obsidian") end, { desc = "Notes" })
 
 -- Buffers --
 vim.keymap.set("n", "<leader>bb", require("telescope.builtin").buffers, { desc = "Buffers" })
@@ -75,7 +75,6 @@ vim.keymap.set("n", "<leader>ie", insert_emoji, { desc = "Emoji" })
 vim.keymap.set("n", "<leader>ig", insert_gitmoji, { desc = "Gitmoji" })
 
 -- Test --
-
 vim.keymap.set("n", "<leader>jl", "<cmd>TestLast<CR>", { desc = "Last" })
 vim.keymap.set("n", "<leader>jn", "<cmd>TestNearest<CR>", { desc = "Nearest" })
 vim.keymap.set("n", "<leader>jf", "<cmd>TestFile<CR>", { desc = "File" })
@@ -96,8 +95,10 @@ vim.keymap.set("n", "<leader>lr", function() require("telescope.builtin").lsp_re
 vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { desc = "Workspace symbols" })
 vim.keymap.set("n", "<leader>lw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace diagnostics" })
 
--- Packer and projects --
+-- Org, obsidian and friends --
+vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Obsidian - today" })
 
+-- Packer and projects --
 vim.keymap.set("n", "<leader>Pc", "<cmd>PackerCompile<cr>", { desc = "Packer - compile" })
 vim.keymap.set("n", "<leader>Pi", "<cmd>PackerInstall<cr>", { desc = "Packer - install" })
 vim.keymap.set("n", "<leader>Ps", "<cmd>PackerSync<cr>", { desc = "Packer - sync" })
@@ -106,7 +107,6 @@ vim.keymap.set("n", "<leader>Pu", "<cmd>PackerUpdate<cr>", { desc = "Packer - up
 vim.keymap.set("n", "<leader>Pp", require("telescope").extensions.projects.projects, { desc = "Projects" })
 
 -- Search --
-
 vim.keymap.set("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
 vim.keymap.set("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
 vim.keymap.set("n", "<leader>sR", "<cmd>Telescope registers<cr>", { desc = "Registers" })
@@ -119,7 +119,6 @@ vim.keymap.set("n", "<leader>sr", "<cmd>Telescope oldfiles<cr>", { desc = "Open 
 vim.keymap.set("n", "<leader>ss", function() require("spectre").open() end, { desc = "Spectre" })
 
 -- Terminal --
-
 vim.keymap.set("n", "<leader>tn", function() _NODE_TOGGLE() end, { desc = "Node" })
 vim.keymap.set("n", "<leader>tu", function() _NCDU_TOGGLE() end, { desc = "NCDU" })
 vim.keymap.set("n", "<leader>tt", function() _HTOP_TOGGLE() end, { desc = "Htop" })

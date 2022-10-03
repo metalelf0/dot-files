@@ -19,6 +19,8 @@ require("material").setup({
 		"terminal", -- Darker terminal background
 		"packer", -- Darker packer background
 		"qf", -- Darker qf list background
+    "neo-tree",
+    "neo-tree-popup"
 	},
 
 	high_visibility = {
@@ -43,20 +45,20 @@ require("material").setup({
 	plugins = { -- Here, you can disable(set to false) plugins that you don't use or don't want to apply the theme to
 		trouble = true,
 		nvim_cmp = true,
-		neogit = true,
+		neogit = false,
 		gitsigns = true,
-		git_gutter = true,
+		git_gutter = false,
 		telescope = true,
-		nvim_tree = true,
+		nvim_tree = false,
 		sidebar_nvim = true,
-		lsp_saga = true,
+		lsp_saga = false,
 		nvim_dap = true,
 		which_key = true,
-		sneak = true,
+		sneak = false,
 		hop = true,
 		indent_blankline = true,
 		nvim_illuminate = true,
-		mini = true,
+		mini = false,
 	},
 })
 
