@@ -60,39 +60,8 @@ return packer.startup(function(use)
   use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
   use("numToStr/Comment.nvim") -- Easily comment stuff
   use("kyazdani42/nvim-web-devicons")
-  --[[ use({ "kyazdani42/nvim-tree.lua" }) ]]
 
-  use({
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-      {
-        -- only needed if you want to use the commands with "_with_window_picker" suffix
-        "s1n7ax/nvim-window-picker",
-        tag = "v1.*",
-        config = function()
-          require("window-picker").setup({
-            autoselect_one = true,
-            include_current = false,
-            filter_rules = {
-              -- filter using buffer options
-              bo = {
-                -- if the file type is one of following, the window will be ignored
-                filetype = { "neo-tree", "neo-tree-popup", "notify", "quickfix" },
-
-                -- if the buffer type is one of following, the window will be ignored
-                buftype = { "terminal" },
-              },
-            },
-            other_win_hl_color = "#e35e4f",
-          })
-        end,
-      },
-    },
-  })
+  require('user.tree').setupPlugin(use)
 
   use({ "akinsho/bufferline.nvim", branch = "main" })
   use("moll/vim-bbye")
@@ -106,6 +75,14 @@ return packer.startup(function(use)
   use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
   use("folke/which-key.nvim")
   use("stevearc/aerial.nvim")
+  use({
+    "folke/noice.nvim",
+    event = "VimEnter",
+    config = function()
+      require("noice").setup()
+    end,
+    requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify", "hrsh7th/nvim-cmp" },
+  })
 
   -- Colorschemes
   use("folke/tokyonight.nvim")
@@ -146,6 +123,7 @@ return packer.startup(function(use)
   use("williamboman/mason-lspconfig.nvim")
   use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  use("folke/trouble.nvim")
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
@@ -164,10 +142,10 @@ return packer.startup(function(use)
   -- Git
   use("lewis6991/gitsigns.nvim")
   use({ "ldelossa/gh.nvim", requires = { "ldelossa/litee.nvim" } })
+  use("TimUntersberger/neogit")
 
   -- Fzf
   use("junegunn/fzf")
-  use("alok/notational-fzf-vim")
 
   -- Languages
   use("tpope/vim-rails")
@@ -184,7 +162,7 @@ return packer.startup(function(use)
   use("mrjones2014/legendary.nvim")
   use("stevearc/dressing.nvim")
 
-  -- ORG and markdown stuff
+  -- org and markdown stuff
   use({ "nvim-neorg/neorg" })
   use({ "nvim-neorg/neorg-telescope" })
   use("nvim-orgmode/orgmode")
@@ -196,7 +174,6 @@ return packer.startup(function(use)
     end,
   })
   use("epwalsh/obsidian.nvim")
-  --[[ use("~/Documents/codice_elf0/obsidian.nvim") ]]
 
   use("tpope/vim-abolish")
   use("tpope/vim-dadbod")
@@ -206,20 +183,7 @@ return packer.startup(function(use)
   use("tpope/vim-unimpaired")
   use("tpope/vim-eunuch")
 
-  use({
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({
-        surrounds = {
-          [":"] = {
-            add = { ":", "" },
-            delete = function() end,
-            change = { target = function() end },
-          },
-        },
-      })
-    end,
-  })
+  use("kylechui/nvim-surround")
 
   use({
     "nvim-pack/nvim-spectre",
@@ -251,7 +215,6 @@ return packer.startup(function(use)
 
   use("michaeljsmith/vim-indent-object")
   use("folke/zen-mode.nvim")
-  use("AndrewRadev/writable_search.vim")
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

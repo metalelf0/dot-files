@@ -14,7 +14,7 @@ M.setup = function()
   end
 
   local config = {
-    -- disable virtual text
+    -- enable virtual text
     virtual_text = true,
     -- show signs
     signs = {
@@ -42,14 +42,6 @@ M.setup = function()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
-end
-
-local function enable_virtual_text()
-  vim.diagnostic.config({virtual_text = true})
-end
-
-local function disable_virtual_text()
-  vim.diagnostic.config({virtual_text = false})
 end
 
 local function lsp_highlight_document(client)

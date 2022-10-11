@@ -1,4 +1,5 @@
 local utils = require("user.utils")
+local config = require("user.config")
 
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
@@ -28,7 +29,9 @@ end
 -- Top-level mappings --
 vim.keymap.set("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
 vim.keymap.set("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+
+require('user.tree').setupMappings()
+
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text" })
 vim.keymap.set("n", "<leader>p", find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>q", "<cmd>q!<cr>", { desc = "Force quit" })
@@ -90,10 +93,11 @@ vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }
 vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
 vim.keymap.set("n", "<leader>lj", function() vim.lsp.diagnostic.goto_next() end, { desc = "Next diagnostic" })
 vim.keymap.set("n", "<leader>lk", function() vim.lsp.diagnostic.goto_prev() end, { desc = "Prev diagnostic" })
-vim.keymap.set("n", "<leader>ll", function() vim.lsp.diagnostic.open_float() end, { desc = "Line diagnostic" })
+vim.keymap.set("n", "<leader>ll",  "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Line diagnostic" })
 vim.keymap.set("n", "<leader>lr", function() require("telescope.builtin").lsp_references({ jump_type = "never"}) end, { desc = "Show references" })
 vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { desc = "Workspace symbols" })
 vim.keymap.set("n", "<leader>lw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace diagnostics" })
+vim.keymap.set("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble toggle" })
 
 -- Org, obsidian and friends --
 vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Obsidian - today" })

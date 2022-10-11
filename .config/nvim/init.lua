@@ -11,8 +11,7 @@ require("user.treesitter")
 require("user.autopairs")
 require("user.comment")
 require("user.gitsigns")
---[[ require("user.nvim-tree") ]]
-require('user.neo-tree')
+require("user.tree").requirePlugin()
 require("user.bufferline")
 require("user.lualine")
 require("user.project")
@@ -23,7 +22,6 @@ require("user.neovide")
 -- remember: whichkey must come AFTER legendary and neovide!
 require("user.whichkey")
 require("user.autocommands")
-require("user.fzf-notational-velocity")
 require("user.leap")
 require("user.todo-comments")
 -- require "user.neorg"
@@ -36,3 +34,5 @@ require("user.toggleterm")
 require("user.gh-nvim")
 require("user.fvim")
 require("user.obsidian")
+require("user.surround")
+--[[ require("user.noice") ]]

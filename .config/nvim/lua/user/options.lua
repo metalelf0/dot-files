@@ -18,7 +18,7 @@ local options = {
   numberwidth = 4,                              -- set number column width to 2 {default 4}
   pumblend = 10,                                -- fake transparency in popup menu
   pumheight = 10,                               -- pop up menu height
-  relativenumber = true,                       -- set relative numbered lines
+  relativenumber = true,                        -- set relative numbered lines
   scrolloff = 8,                                -- is one of my fav
   shiftwidth = 2,                               -- the number of spaces inserted for each indentation
   showmode = false,                             -- we don't need to see things like -- INSERT -- anymore
@@ -28,9 +28,11 @@ local options = {
   smartcase = true,                             -- smart case
   smartindent = true,                           -- make indenting smarter again
   splitbelow = true,                            -- force all horizontal splits to go below current window
+  splitkeep = "screen",                         -- stabilize text when splitting
   splitright = true,                            -- force all vertical splits to go to the right of current window
   swapfile = false,                             -- creates a swapfile
   tabstop = 2,                                  -- insert 2 spaces for a tab
+  termguicolors = true,
   timeoutlen = 200,                             -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,                              -- enable persistent undo
   updatetime = 300,                             -- faster completion (4000ms default)
@@ -38,7 +40,6 @@ local options = {
   winblend = 10,                                -- fake transparency for popup windows
   wrap = true,                                  -- wrap long lines, please
   writebackup = false,                          -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-  termguicolors = true
 }
 
 vim.opt.shortmess:append "c"
