@@ -51,174 +51,186 @@ packer.init({
   },
 })
 
--- Install your plugins here
-return packer.startup(function(use)
-  -- My plugins here
-  use("wbthomason/packer.nvim") -- Have packer manage itself
-  use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-  use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-  use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-  use("numToStr/Comment.nvim") -- Easily comment stuff
-  use("kyazdani42/nvim-web-devicons")
+local use = packer.use
 
-  require('user.tree').setupPlugin(use)
+use("nvim-lualine/lualine.nvim")
 
-  use({ "akinsho/bufferline.nvim", branch = "main" })
-  use("moll/vim-bbye")
-  use("nvim-lualine/lualine.nvim")
-  use({ "akinsho/toggleterm.nvim", branch = "main" })
-  --[[ use("ahmedkhalf/project.nvim") ]]
-  use("jakemason/project.nvim")
-  use("lewis6991/impatient.nvim")
-  use("lukas-reineke/indent-blankline.nvim")
-  use("goolord/alpha-nvim")
-  use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
-  use("folke/which-key.nvim")
-  use("stevearc/aerial.nvim")
-  use({
-    "folke/noice.nvim",
-    event = "VimEnter",
-    config = function()
-      require("noice").setup()
-    end,
-    requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify", "hrsh7th/nvim-cmp" },
-  })
+-- My plugins here
+use("wbthomason/packer.nvim") -- Have packer manage itself
+use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
+use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
+use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+use("numToStr/Comment.nvim") -- Easily comment stuff
+use("kyazdani42/nvim-web-devicons")
 
-  -- Colorschemes
-  use("folke/tokyonight.nvim")
-  use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
-  use("EdenEast/nightfox.nvim")
-  use("bluz71/vim-moonfly-colors")
-  use("bluz71/vim-nightfly-guicolors")
-  use("projekt0n/github-nvim-theme")
-  use("rebelot/kanagawa.nvim")
-  use({ "catppuccin/nvim", as = "catppuccin" })
-  use("NTBBloodbath/doom-one.nvim")
-  use("~/sources/vscode.nvim")
-  use("sainnhe/gruvbox-material")
-  use("rmehri01/onenord.nvim")
-  use({ "meliora-theme/neovim", requires = { "rktjmp/lush.nvim" }, as = "meliora" })
-  use("TheNiteCoder/mountaineer.vim")
-  use("glepnir/zephyr-nvim")
-  use("marko-cerovac/material.nvim")
-  use("sam4llis/nvim-tundra")
-  use("cocopon/iceberg.vim")
-  use("Mofiqul/dracula.nvim")
+require("user.tree").setupPlugin()
 
-  -- cmp plugins
-  use("hrsh7th/nvim-cmp") -- The completion plugin
-  use("hrsh7th/cmp-buffer") -- buffer completions
-  use("hrsh7th/cmp-path") -- path completions
-  use("hrsh7th/cmp-cmdline") -- cmdline completions
-  use("saadparwaiz1/cmp_luasnip") -- snippet completions
-  use("hrsh7th/cmp-nvim-lsp")
+use({ "akinsho/bufferline.nvim", branch = "main" })
+use("moll/vim-bbye")
+--[[ use("nvim-lualine/lualine.nvim") ]]
+use({ "akinsho/toggleterm.nvim", branch = "main" })
+--[[ use("ahmedkhalf/project.nvim") ]]
+use("jakemason/project.nvim")
+use("lewis6991/impatient.nvim")
+use("lukas-reineke/indent-blankline.nvim")
+use("goolord/alpha-nvim")
+use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
+use("folke/which-key.nvim")
+use("stevearc/aerial.nvim")
+use({
+  "folke/noice.nvim",
+  event = "VimEnter",
+  config = function()
+    require("noice").setup({
+      routes = {
+        {
+          filter = { event = "msg_show", find = "not a git repository" },
+          opts = { skip = true },
+        },
+        {
+          filter = { event = "msg_show", find = "is outside repository at" },
+          opts = { skip = true },
+        },
+      },
+    })
+  end,
+  requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify", "hrsh7th/nvim-cmp" },
+})
 
-  -- snippets
-  use("L3MON4D3/LuaSnip") --snippet engine
-  use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+-- Colorschemes
+use("EdenEast/nightfox.nvim")
+use("Mofiqul/dracula.nvim")
+use("NTBBloodbath/doom-one.nvim")
+use("TheNiteCoder/mountaineer.vim")
+use("bluz71/vim-moonfly-colors")
+use("bluz71/vim-nightfly-guicolors")
+use("cocopon/iceberg.vim")
+use("folke/tokyonight.nvim")
+use("glepnir/zephyr-nvim")
+use("marko-cerovac/material.nvim")
+use("projekt0n/github-nvim-theme")
+use("rebelot/kanagawa.nvim")
+use("rmehri01/onenord.nvim")
+use("sainnhe/gruvbox-material")
+use("sam4llis/nvim-tundra")
+use("~/sources/vscode.nvim")
+use({ "catppuccin/nvim", as = "catppuccin" })
+use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
+use({ "meliora-theme/neovim", requires = { "rktjmp/lush.nvim" }, as = "meliora" })
 
-  -- LSP
-  use("neovim/nvim-lspconfig") -- enable LSP
-  use("williamboman/mason.nvim")
-  use("williamboman/mason-lspconfig.nvim")
-  use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
-  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-  use("folke/trouble.nvim")
+-- cmp plugins
+use("hrsh7th/nvim-cmp") -- The completion plugin
+use("hrsh7th/cmp-buffer") -- buffer completions
+use("hrsh7th/cmp-path") -- path completions
+use("hrsh7th/cmp-cmdline") -- cmdline completions
+use("saadparwaiz1/cmp_luasnip") -- snippet completions
+use("hrsh7th/cmp-nvim-lsp")
 
-  -- Telescope
-  use("nvim-telescope/telescope.nvim")
-  use("nvim-telescope/telescope-symbols.nvim")
-  use("nvim-telescope/telescope-file-browser.nvim")
+-- snippets
+use("L3MON4D3/LuaSnip") --snippet engine
+use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-  -- Treesitter
-  use({
+-- LSP
+use("neovim/nvim-lspconfig") -- enable LSP
+use("williamboman/mason.nvim")
+use("williamboman/mason-lspconfig.nvim")
+use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
+use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+use("folke/trouble.nvim")
+
+-- Telescope
+use("nvim-telescope/telescope.nvim")
+use("nvim-telescope/telescope-symbols.nvim")
+use("nvim-telescope/telescope-file-browser.nvim")
+
+-- Treesitter
+use({
+  "nvim-treesitter/nvim-treesitter",
+  run = ":TSUpdate",
+})
+use("JoosepAlviste/nvim-ts-context-commentstring")
+use("nvim-treesitter/nvim-treesitter-textobjects")
+use("nvim-treesitter/playground")
+
+-- Git
+use("lewis6991/gitsigns.nvim")
+use({ "ldelossa/gh.nvim", requires = { "ldelossa/litee.nvim" } })
+use("TimUntersberger/neogit")
+
+-- Fzf
+use("junegunn/fzf")
+
+-- Languages
+use("tpope/vim-rails")
+use("slim-template/vim-slim")
+
+-- other tools
+use("junegunn/vim-easy-align")
+use("ggandor/leap.nvim")
+use("mg979/vim-visual-multi")
+use("norcalli/nvim-colorizer.lua")
+use("folke/todo-comments.nvim")
+use("tommcdo/vim-exchange") -- cxiw - cxiw to swap two words etc.
+
+use("mrjones2014/legendary.nvim")
+use("stevearc/dressing.nvim")
+
+-- org and markdown stuff
+use({ "nvim-neorg/neorg" })
+use({ "nvim-neorg/neorg-telescope" })
+use("nvim-orgmode/orgmode")
+use("akinsho/org-bullets.nvim")
+use({
+  "lukas-reineke/headlines.nvim",
+  config = function()
+    require("headlines").setup()
+  end,
+})
+use("epwalsh/obsidian.nvim")
+
+use("tpope/vim-abolish")
+use("tpope/vim-dadbod")
+use("tpope/vim-rsi")
+use("tpope/vim-fugitive")
+use("tpope/vim-repeat")
+use("tpope/vim-unimpaired")
+use("tpope/vim-eunuch")
+
+use("kylechui/nvim-surround")
+
+use({
+  "nvim-pack/nvim-spectre",
+  config = function()
+    require("spectre").setup()
+  end,
+})
+
+use({
+  "danymat/neogen",
+  config = function()
+    require("neogen").setup({ enabled = true })
+  end,
+})
+
+use({ "vim-test/vim-test" })
+
+use({
+  "rcarriga/neotest",
+  requires = {
+    "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  })
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("nvim-treesitter/nvim-treesitter-textobjects")
-  use("nvim-treesitter/playground")
+    "antoinemadec/FixCursorHold.nvim",
+    "rcarriga/neotest-python",
+    "rcarriga/neotest-plenary",
+  },
+})
+use("rcarriga/neotest-vim-test")
 
-  -- Git
-  use("lewis6991/gitsigns.nvim")
-  use({ "ldelossa/gh.nvim", requires = { "ldelossa/litee.nvim" } })
-  use("TimUntersberger/neogit")
+use("michaeljsmith/vim-indent-object")
+use("folke/zen-mode.nvim")
 
-  -- Fzf
-  use("junegunn/fzf")
-
-  -- Languages
-  use("tpope/vim-rails")
-  use("slim-template/vim-slim")
-
-  -- other tools
-  use("junegunn/vim-easy-align")
-  use("ggandor/leap.nvim")
-  use("mg979/vim-visual-multi")
-  use("norcalli/nvim-colorizer.lua")
-  use("folke/todo-comments.nvim")
-  use("tommcdo/vim-exchange") -- cxiw - cxiw to swap two words etc.
-
-  use("mrjones2014/legendary.nvim")
-  use("stevearc/dressing.nvim")
-
-  -- org and markdown stuff
-  use({ "nvim-neorg/neorg" })
-  use({ "nvim-neorg/neorg-telescope" })
-  use("nvim-orgmode/orgmode")
-  use("akinsho/org-bullets.nvim")
-  use({
-    "lukas-reineke/headlines.nvim",
-    config = function()
-      require("headlines").setup()
-    end,
-  })
-  use("epwalsh/obsidian.nvim")
-
-  use("tpope/vim-abolish")
-  use("tpope/vim-dadbod")
-  use("tpope/vim-rsi")
-  use("tpope/vim-fugitive")
-  use("tpope/vim-repeat")
-  use("tpope/vim-unimpaired")
-  use("tpope/vim-eunuch")
-
-  use("kylechui/nvim-surround")
-
-  use({
-    "nvim-pack/nvim-spectre",
-    config = function()
-      require("spectre").setup()
-    end,
-  })
-
-  use({
-    "danymat/neogen",
-    config = function()
-      require("neogen").setup({ enabled = true })
-    end,
-  })
-
-  use({ "vim-test/vim-test" })
-
-  use({
-    "rcarriga/neotest",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim",
-      "rcarriga/neotest-python",
-      "rcarriga/neotest-plenary",
-    },
-  })
-  use("rcarriga/neotest-vim-test")
-
-  use("michaeljsmith/vim-indent-object")
-  use("folke/zen-mode.nvim")
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
+-- Automatically set up your configuration after cloning packer.nvim
+-- Put this at the end after all plugins
+if PACKER_BOOTSTRAP then
+  require("packer").sync()
+end

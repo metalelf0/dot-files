@@ -35,4 +35,3 @@ require("user.gh-nvim")
 require("user.fvim")
 require("user.obsidian")
 require("user.surround")
---[[ require("user.noice") ]]

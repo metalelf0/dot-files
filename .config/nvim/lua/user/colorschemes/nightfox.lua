@@ -2,7 +2,7 @@ vim.o.termguicolors = true
 
 vim.cmd [[
   try
-    colorscheme nordfox
+    colorscheme terafox
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

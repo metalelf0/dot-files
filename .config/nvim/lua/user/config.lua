@@ -2,7 +2,7 @@ local M = {}
 
 M.config = {
   plugins = {
-    tree = "nvim-tree"
+    tree = "neo-tree"
   }
 }
 

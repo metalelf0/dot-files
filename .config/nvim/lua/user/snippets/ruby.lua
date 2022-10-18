@@ -7,4 +7,12 @@ return {
 			return snip.env.TM_FILENAME or {}
 		end, {})
 	),
+  s(
+    "asc",
+    fmt('assert_changes -> {{ {} }} do\n\nend', { i(1, "something")})
+  ),
+  s(
+    "asnc",
+    fmt('assert_no_changes -> {{ {} }} do\n\nend', { i(1, "something")})
+  )
 }

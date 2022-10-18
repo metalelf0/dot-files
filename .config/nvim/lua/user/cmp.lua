@@ -30,8 +30,6 @@ cmp_window.info = function(self)
   return info
 end
 
-local core = require 'lib.core'
-
 require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim.nvim-from-scratch/lua/user/snippets"})
 
@@ -152,16 +150,17 @@ cmp.setup {
     select = false,
   },
   experimental = {
-    ghost_text = false,
-    native_menu = false,
+    ghost_text = true,
   },
   window = {
-    completion = {
-      border = border "CmpBorder",
-      winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-    },
-    documentation = {
-      border = border "CmpDocBorder",
-    },
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+    --[[ completion = { ]]
+    --[[   border = border "CmpBorder", ]]
+    --[[   winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None", ]]
+    --[[ }, ]]
+    --[[ documentation = { ]]
+    --[[   border = border "CmpDocBorder", ]]
+    --[[ }, ]]
   }
 }

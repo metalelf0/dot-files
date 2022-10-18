@@ -1,4 +1,7 @@
 local config = require("user.config")
+local packer = require("packer")
+local use = packer.use
+
 local M = {}
 
 M.requirePlugin = function()
@@ -9,7 +12,7 @@ M.requirePlugin = function()
 	end
 end
 
-M.setupPlugin = function(use)
+M.setupPlugin = function()
 	if config.config.plugins.tree == "neo-tree" then
 		use({
 			"nvim-neo-tree/neo-tree.nvim",
