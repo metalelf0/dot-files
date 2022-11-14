@@ -37,7 +37,7 @@ end
 dashboard.section.footer.val = footer()
 
 dashboard.section.footer.opts.hl = "Type"
-dashboard.section.header.opts.hl = "Include"
+dashboard.section.header.opts.hl = "CursorLineNr"
 dashboard.section.buttons.opts.hl = "Keyword"
 
 dashboard.opts.opts.noautocmd = true

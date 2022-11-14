@@ -34,7 +34,6 @@ require('user.tree').setupMappings()
 
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text" })
 vim.keymap.set("n", "<leader>p", find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>q", "<cmd>q!<cr>", { desc = "Force quit" })
 vim.keymap.set("n", "<leader>k", require('telescope.builtin').grep_string, { desc = "Find word under cursor" })
 vim.keymap.set("n", "<leader>R", require('telescope.builtin').resume, { desc = "Resume last search" })
 vim.keymap.set("n", "<leader><leader>", require('legendary').find, { desc = "Legendary" })
@@ -71,7 +70,13 @@ vim.keymap.set("n", "<leader>gs", require('gitsigns').stage_hunk, { desc = "Stag
 vim.keymap.set("n", "<leader>gu", require('gitsigns').undo_stage_hunk, { desc = "Undo stage hunk" })
 
 -- Helpers --
-vim.keymap.set("n", "<leader>ht", telescope_colorscheme, { desc = "Colorschemes" })
+vim.keymap.set("n", "<leader>Ht", telescope_colorscheme, { desc = "Colorschemes" })
+
+-- harpoon
+vim.keymap.set("n", "<leader>ha", function() require('harpoon.mark').add_file() end, { desc = "Add file" })
+vim.keymap.set("n", "<leader>hh", function() require('harpoon.ui').toggle_quick_menu() end, { desc = "Menu" })
+vim.keymap.set("n", "<leader>hn", function() require('harpoon.ui').nav_next() end, { desc = "Nav next" })
+vim.keymap.set("n", "<leader>hp", function() require('harpoon.ui').nav_prev() end, { desc = "Nav prev" })
 
 -- Insert --
 vim.keymap.set("n", "<leader>ie", insert_emoji, { desc = "Emoji" })
@@ -101,6 +106,8 @@ vim.keymap.set("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble to
 
 -- Org, obsidian and friends --
 vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Obsidian - today" })
+vim.keymap.set("n", "<leader>os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian - search" })
+vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "Obsidian - new" })
 
 -- Packer and projects --
 vim.keymap.set("n", "<leader>Pc", "<cmd>PackerCompile<cr>", { desc = "Packer - compile" })
@@ -210,7 +217,8 @@ local mappings = {
 	["b"] = { name = "Buffers", ["c"] = { name = "Close" } },
 	P = { name = "Packer / Projects" },
 	g = { name = "Git" },
-	h = { name = "helpers", },
+	h = { name = "Harpoon", },
+	H = { name = "Helpers", },
 	i = { name = "Insert", },
 	j = { name = "Test", },
 	l = { name = "LSP" },

@@ -28,7 +28,6 @@ local options = {
   smartcase = true,                             -- smart case
   smartindent = true,                           -- make indenting smarter again
   splitbelow = true,                            -- force all horizontal splits to go below current window
-  splitkeep = "screen",                         -- stabilize text when splitting
   splitright = true,                            -- force all vertical splits to go to the right of current window
   swapfile = false,                             -- creates a swapfile
   tabstop = 2,                                  -- insert 2 spaces for a tab
@@ -47,6 +46,10 @@ vim.opt.shortmess:append "F"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
+end
+
+if not (vim.g.neovide) then
+  vim.opt['splitkeep'] = "screen"                         -- stabilize text when splitting
 end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"

@@ -64,7 +64,7 @@ require("material").setup({
 
 vim.cmd([[
   try
-    let g:material_style="deep ocean"
+    let g:material_style="lighter"
     colorscheme material
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default

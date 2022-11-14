@@ -18,7 +18,7 @@ mason.setup({
 	},
 })
 
-local servers = { "jsonls", "sumneko_lua", "marksman", "solargraph" }
+local servers = { "jsonls", "sumneko_lua", "marksman", "solargraph", "elixirls" }
 
 mason_lspconfig.setup({
 	ensure_installed = servers,

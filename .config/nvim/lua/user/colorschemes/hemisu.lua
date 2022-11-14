@@ -1,8 +1,7 @@
-vim.o.termguicolors = true
-
 vim.cmd [[
   try
-    colorscheme dayfox
+    colorscheme hemisu
+    syntax on
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

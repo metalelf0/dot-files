@@ -58,7 +58,14 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
-vim.cmd 'nnoremap <Esc><Esc> :nohlsearch<CR>'
+--[[ vim.cmd 'nnoremap <Esc><Esc> :nohlsearch<CR>' ]]
+
+local clearStuff = function()
+  vim.cmd("noh")
+  require('notify').dismiss()
+end
+
+keymap("n", "<Esc><Esc>", clearStuff)
 
 -- change text related mappings
 keymap("n", "cg*", "*Ncgn", opts)

@@ -1,6 +1,6 @@
 require("tokyonight").setup({
   -- allowed values are 'storm', 'moon', day' and 'night'
-  style = "moon",
+  style = "night",
   sidebars = { "qf", "vista_kind", "terminal", "packer", "aerial", "toggleterm" },
   dim_inactive = false,
   styles = {

@@ -8,6 +8,10 @@ require('rose-pine').setup({
 	disable_float_background = false,
 	disable_italics = false,
 	---@usage string hex value or named color from rosepinetheme.com/palette
+  highlight_groups = {
+      TSConstant = { fg = 'gold' },
+      rubyConstant = { fg = 'gold' },
+  },
 	groups = {
 		border = 'highlight_med',
 		comment = 'muted',
@@ -26,7 +30,7 @@ require('rose-pine').setup({
 			h4 = 'gold',
 			h5 = 'pine',
 			h6 = 'foam',
-		}
+		},
 		-- or set all headings at once
 		-- headings = 'subtle'
 	}

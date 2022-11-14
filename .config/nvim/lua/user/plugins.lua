@@ -77,24 +77,18 @@ use("goolord/alpha-nvim")
 use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
 use("folke/which-key.nvim")
 use("stevearc/aerial.nvim")
+
+require("user.noice").setupPlugin()
+
 use({
-  "folke/noice.nvim",
-  event = "VimEnter",
+  'ThePrimeagen/harpoon',
   config = function()
-    require("noice").setup({
-      routes = {
-        {
-          filter = { event = "msg_show", find = "not a git repository" },
-          opts = { skip = true },
-        },
-        {
-          filter = { event = "msg_show", find = "is outside repository at" },
-          opts = { skip = true },
-        },
-      },
+    require('harpoon').setup({
+      global_settings = {
+        mark_branch = true, -- set marks specific to each git branch inside git repository
+      }
     })
-  end,
-  requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify", "hrsh7th/nvim-cmp" },
+  end
 })
 
 -- Colorschemes
@@ -117,6 +111,9 @@ use("~/sources/vscode.nvim")
 use({ "catppuccin/nvim", as = "catppuccin" })
 use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
 use({ "meliora-theme/neovim", requires = { "rktjmp/lush.nvim" }, as = "meliora" })
+use({ "rose-pine/neovim", as = "rose-pine" } )
+use("Yazeed1s/oh-lucy.nvim")
+use("igorepst/hemisu.nvim")
 
 -- cmp plugins
 use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -195,6 +192,7 @@ use("tpope/vim-fugitive")
 use("tpope/vim-repeat")
 use("tpope/vim-unimpaired")
 use("tpope/vim-eunuch")
+use("tpope/vim-endwise")
 
 use("kylechui/nvim-surround")
 
