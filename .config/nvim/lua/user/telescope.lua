@@ -138,7 +138,7 @@ telescope.setup({
 		},
 		buffers = {
 			show_all_buffers = true,
-			sort_lastused = true,
+			sort_mru = true,
 			theme = "dropdown",
 			mappings = {
 				i = {

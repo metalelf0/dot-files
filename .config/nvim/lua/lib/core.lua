@@ -96,6 +96,7 @@ local function get_username() return os.getenv('USER') end
 -- get home dir ($HOME)
 local function get_homedir() return os.getenv('HOME') end
 
+-- get neovim config dir
 local function get_configdir() return get_homedir() .. "/.config/nvim.nvim-from-scratch" end
 
 -- get operating system name

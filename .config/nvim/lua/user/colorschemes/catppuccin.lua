@@ -12,17 +12,18 @@ require("catppuccin").setup({
 			base = "#E1EEF5",
 		},
 		mocha = {
-			--[[ base = "#000000", ]]
+			base = "#000000",
 		},
 	},
 	highlight_overrides = {
-		latte = function(_latte)
+		latte = function(_)
 			return {
 				NvimTreeNormal = { bg = "#D1E5F0" },
 			}
 		end,
 		mocha = function(mocha)
 			return {
+				TabLineSel = { bg = mocha.pink },
 				NvimTreeNormal = { bg = mocha.none },
 				CmpBorder = { fg = mocha.surface2 },
 			}
