@@ -19,12 +19,14 @@ require("catppuccin").setup({
 		latte = function(_)
 			return {
 				NvimTreeNormal = { bg = "#D1E5F0" },
+				NeoTreeNormal = { bg = "#D1E5F0" },
 			}
 		end,
 		mocha = function(mocha)
 			return {
+				NvimTreeNormal = { bg = "#000000" },
+				NeoTreeNormal = { bg = "#000000" },
 				TabLineSel = { bg = mocha.pink },
-				NvimTreeNormal = { bg = mocha.none },
 				CmpBorder = { fg = mocha.surface2 },
 			}
 		end,

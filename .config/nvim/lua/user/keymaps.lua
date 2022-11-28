@@ -102,7 +102,6 @@ keymap("n", "-", function() require"telescope".extensions.file_browser.file_brow
 keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
 keymap("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
 
-print("Setting up tree mappings...")
 require("user.tree").setupMappings()
 
 keymap("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text" })

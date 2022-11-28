@@ -64,7 +64,14 @@ use({
 use("wbthomason/packer.nvim") -- Have packer manage itself
 use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+
+use({
+  "windwp/nvim-autopairs",
+  config = function()
+    require("user.plugins.autopairs").setup()
+  end,
+}) -- Autopairs, integrates with both cmp and treesitter
+
 use("numToStr/Comment.nvim") -- Easily comment stuff
 use("kyazdani42/nvim-web-devicons")
 
@@ -154,6 +161,7 @@ use({ "meliora-theme/neovim", requires = { "rktjmp/lush.nvim" }, as = "meliora" 
 use({ "rose-pine/neovim", as = "rose-pine" })
 use("Yazeed1s/oh-lucy.nvim")
 use("igorepst/hemisu.nvim")
+use("metalelf0/jellybeans-nvim")
 
 -- cmp plugins
 use("hrsh7th/nvim-cmp") -- The completion plugin
