@@ -2,6 +2,7 @@ vim.o.termguicolors = true
 
 require 'meliora'.setup({
     neutral = false, -- set this to `true` for neutral background and greys.
+    color_set = 'mellifluous',
     styles = {
         comments = 'italic',
         conditionals = 'NONE',

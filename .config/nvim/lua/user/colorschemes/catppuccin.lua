@@ -11,9 +11,9 @@ require("catppuccin").setup({
 		latte = {
 			base = "#E1EEF5",
 		},
-		mocha = {
-			base = "#000000",
-		},
+		--[[ mocha = { ]]
+		--[[ 	base = "#000000", ]]
+		--[[ }, ]]
 	},
 	highlight_overrides = {
 		latte = function(_)
@@ -24,8 +24,8 @@ require("catppuccin").setup({
 		end,
 		mocha = function(mocha)
 			return {
-				NvimTreeNormal = { bg = "#000000" },
-				NeoTreeNormal = { bg = "#000000" },
+				--[[ NvimTreeNormal = { bg = "#000000" }, ]]
+				--[[ NeoTreeNormal = { bg = "#000000" }, ]]
 				TabLineSel = { bg = mocha.pink },
 				CmpBorder = { fg = mocha.surface2 },
 			}
@@ -65,3 +65,22 @@ vim.cmd([[
     set background=dark
   endtry
 ]])
+
+-- mocha terminal colors
+vim.g.terminal_color_0 = "#43465A"
+vim.g.terminal_color_8 = "#43465A"
+vim.g.terminal_color_1 = "#F38BA8"
+vim.g.terminal_color_9 = "#F38BA8"
+vim.g.terminal_color_2 = "#A6E3A1"
+vim.g.terminal_color_10 = "#A6E3A1"
+vim.g.terminal_color_3 = "#F9E2AF"
+vim.g.terminal_color_11 = "#F9E2AF"
+vim.g.terminal_color_4 = "#87B0F9"
+vim.g.terminal_color_12 = "#87B0F9"
+vim.g.terminal_color_5 = "#F5C2E7"
+vim.g.terminal_color_13 = "#F5C2E7"
+vim.g.terminal_color_6 = "#94E2D5"
+vim.g.terminal_color_14 = "#94E2D5"
+vim.g.terminal_color_7 = "#CDD6F4"
+vim.g.terminal_color_15 = "#A1A8C9"
+

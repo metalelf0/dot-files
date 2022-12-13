@@ -4,7 +4,7 @@ M.setup = function()
 	local core = require("lib/core")
 
 	local commands = {
-		{ ":EditNeovimConfig", ":e " .. core.get_configdir() .. "init.lua", description = "Edit neovim config" },
+		{ ":EditNeovimConfig", ":e " .. core.get_configdir() .. "/init.lua", description = "Edit neovim config" },
 		{ ":EditKittyConfig", ":e ~/.config/kitty/kitty.conf", description = "Edit kitty config" },
 		{
 			":EditLazygitConfig",
@@ -21,9 +21,6 @@ M.setup = function()
 
 	require("legendary").setup({
 		commands = commands,
-    which_key = {
-      auto_register = true
-    }
 	})
 end
 

@@ -63,7 +63,7 @@ keymap("i", "kj", "<ESC>", opts)
 
 local clearStuff = function()
   vim.cmd("noh")
-  require('notify').dismiss()
+  --[[ require('notify').dismiss() ]]
 end
 
 keymap("n", "<Esc><Esc>", clearStuff)
@@ -108,7 +108,7 @@ keymap("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Fin
 keymap("n", "<leader>p", find_files, { desc = "Find files" })
 keymap("n", "<leader>k", require("telescope.builtin").grep_string, { desc = "Find word under cursor" })
 keymap("n", "<leader>R", require("telescope.builtin").resume, { desc = "Resume last search" })
-keymap("n", "<leader><leader>", require("legendary").find, { desc = "Legendary" })
+keymap("n", "<leader><leader>", function() require("legendary").find() end, { desc = "Legendary" })
 keymap("n", "<leader>N", function() utils.search_files_in_dir("~/iCloud-Obsidian") end, { desc = "Notes" })
 
 -- Buffers --
@@ -143,6 +143,9 @@ keymap("n", "<leader>gp", require("gitsigns").preview_hunk, { desc = "Preview hu
 keymap("n", "<leader>gr", require("gitsigns").reset_hunk, { desc = "Reset hunk" })
 keymap("n", "<leader>gs", require("gitsigns").stage_hunk, { desc = "Stage hunk" })
 keymap("n", "<leader>gu", require("gitsigns").undo_stage_hunk, { desc = "Undo stage hunk" })
+
+-- GIT --
+keymap("n", "<leader>Gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- Helpers --
 keymap("n", "<leader>Ht", telescope_colorscheme, { desc = "Colorschemes" })
@@ -181,6 +184,7 @@ keymap("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble toggle" })
 
 -- Org, obsidian and friends --
 keymap("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Obsidian - today" })
+keymap("n", "<leader>oy", "<cmd>ObsidianYesterday<cr>", { desc = "Obsidian - yesterday" })
 keymap("n", "<leader>os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian - search" })
 keymap("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "Obsidian - new" })
 
@@ -190,7 +194,7 @@ keymap("n", "<leader>Pi", "<cmd>PackerInstall<cr>", { desc = "Packer - install" 
 keymap("n", "<leader>Ps", "<cmd>PackerSync<cr>", { desc = "Packer - sync" })
 keymap("n", "<leader>PS", "<cmd>PackerStatus<cr>", { desc = "Packer - status" })
 keymap("n", "<leader>Pu", "<cmd>PackerUpdate<cr>", { desc = "Packer - update" })
-keymap("n", "<leader>Pp", require("telescope").extensions.projects.projects, { desc = "Projects" })
+keymap("n", "<leader>Pp", function() require("telescope").extensions.projects.projects() end, { desc = "Projects" })
 
 -- Search --
 keymap("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })

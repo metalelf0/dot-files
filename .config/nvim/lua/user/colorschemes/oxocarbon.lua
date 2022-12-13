@@ -1,1 +1,1 @@
-vim.cmd.colorscheme "oxocarbon-lua"
+vim.cmd.colorscheme "oxocarbon"

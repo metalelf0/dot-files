@@ -31,6 +31,7 @@ vim.g.doom_one_plugin_lspsaga = false
 vim.cmd([[
   try
     set termguicolors
+    set bg=dark
     colorscheme doom-one
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default

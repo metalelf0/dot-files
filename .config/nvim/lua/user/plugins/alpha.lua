@@ -41,7 +41,7 @@ M.setup = function()
 	dashboard.section.footer.val = M.footer()
 
 	dashboard.section.footer.opts.hl = "Type"
-	dashboard.section.header.opts.hl = "CursorLineNr"
+	dashboard.section.header.opts.hl = "Character"
 	dashboard.section.buttons.opts.hl = "Keyword"
 
 	dashboard.opts.opts.noautocmd = true

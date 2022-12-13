@@ -28,4 +28,8 @@ M.nvim_config_base_path = function()
   return "~/.config/nvim.nvim-from-scratch"
 end
 
+M.merge_tables = function(first_table, second_table)
+  for k,v in pairs(second_table) do first_table[k] = v end
+end
+
 return M

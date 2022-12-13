@@ -95,12 +95,8 @@ use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highligh
 
 vim.keymap.set("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Document diagnostics" })
 
-use({
-	"mrjones2014/legendary.nvim",
-	config = function()
-		require("user.plugins.legendary").setup()
-	end
-})
+use("mrjones2014/legendary.nvim")
+require("user.plugins.legend").setup()
 
 use({
   "folke/which-key.nvim",
@@ -118,13 +114,14 @@ use({
 
 vim.o.winbar = "%{%v:lua.require('user.winbar').winbar()%}"
 
-use({
-  "folke/noice.nvim",
-  requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify", "hrsh7th/nvim-cmp" },
-  config = function()
-    require("user.plugins.noice").setup()
-  end
-})
+--[[ use({ ]]
+--[[   "folke/noice.nvim", ]]
+--[[   requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify", "hrsh7th/nvim-cmp" }, ]]
+--[[   config = function() ]]
+--[[     require("user.plugins.noice").setup() ]]
+--[[   end ]]
+--[[ }) ]]
+--[[]]
 
 use({
 	"ThePrimeagen/harpoon",
@@ -136,6 +133,8 @@ use({
 		})
 	end,
 })
+
+use 'eandrju/cellular-automaton.nvim'
 
 -- Colorschemes
 use("EdenEast/nightfox.nvim")
@@ -162,6 +161,9 @@ use({ "rose-pine/neovim", as = "rose-pine" })
 use("Yazeed1s/oh-lucy.nvim")
 use("igorepst/hemisu.nvim")
 use("metalelf0/jellybeans-nvim")
+use("sainnhe/everforest")
+use("nyoom-engineering/oxocarbon.nvim")
+use("shaunsingh/moonlight.nvim")
 
 -- cmp plugins
 use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -253,7 +255,9 @@ use({
 })
 
 use({
-	"epwalsh/obsidian.nvim",
+	--[[ "~/Documents/codice_elf0/obsidian.nvim", ]]
+	"metalelf0/obsidian.nvim",
+  branch = "feat/obsidian-yesterday",
 	config = function()
 		require("user.plugins.obsidian").setup()
 	end,
