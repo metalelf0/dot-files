@@ -155,6 +155,11 @@ keymap("n", "<leader>ha", function() require("harpoon.mark").add_file() end, { d
 keymap("n", "<leader>hh", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "Menu" })
 keymap("n", "<leader>hn", function() require("harpoon.ui").nav_next() end, { desc = "Nav next" })
 keymap("n", "<leader>hp", function() require("harpoon.ui").nav_prev() end, { desc = "Nav prev" })
+keymap("n", "<Leader>h1", function() require("harpoon.ui").nav_file(1) end, { desc = "Goto file 1"})
+keymap("n", "<Leader>h2", function() require("harpoon.ui").nav_file(2) end, { desc = "Goto file 2"})
+keymap("n", "<Leader>h3", function() require("harpoon.ui").nav_file(3) end, { desc = "Goto file 3"})
+keymap("n", "<Leader>h4", function() require("harpoon.ui").nav_file(4) end, { desc = "Goto file 4"})
+
 
 -- Insert --
 keymap("n", "<leader>ie", insert_emoji, { desc = "Emoji" })

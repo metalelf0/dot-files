@@ -126,44 +126,14 @@ vim.o.winbar = "%{%v:lua.require('user.winbar').winbar()%}"
 use({
 	"ThePrimeagen/harpoon",
 	config = function()
-		require("harpoon").setup({
-			global_settings = {
-				mark_branch = true, -- set marks specific to each git branch inside git repository
-			},
-		})
+    require("user.plugins.harpoon").setup()
 	end,
 })
 
 use 'eandrju/cellular-automaton.nvim'
 
 -- Colorschemes
-use("EdenEast/nightfox.nvim")
-use("Mofiqul/dracula.nvim")
-use("NTBBloodbath/doom-one.nvim")
-use("TheNiteCoder/mountaineer.vim")
-use("bluz71/vim-moonfly-colors")
-use("bluz71/vim-nightfly-guicolors")
-use("cocopon/iceberg.vim")
-use("folke/tokyonight.nvim")
-use("glepnir/zephyr-nvim")
-use("marko-cerovac/material.nvim")
-use("projekt0n/github-nvim-theme")
-use("rebelot/kanagawa.nvim")
-use("rmehri01/onenord.nvim")
-use("sainnhe/gruvbox-material")
-use('ellisonleao/gruvbox.nvim')
-use("sam4llis/nvim-tundra")
-use("~/sources/vscode.nvim")
-use({ "catppuccin/nvim", as = "catppuccin" })
-use({ "mcchrish/zenbones.nvim", requires = { "rktjmp/lush.nvim" } })
-use({ "meliora-theme/neovim", requires = { "rktjmp/lush.nvim" }, as = "meliora" })
-use({ "rose-pine/neovim", as = "rose-pine" })
-use("Yazeed1s/oh-lucy.nvim")
-use("igorepst/hemisu.nvim")
-use("metalelf0/jellybeans-nvim")
-use("sainnhe/everforest")
-use("nyoom-engineering/oxocarbon.nvim")
-use("shaunsingh/moonlight.nvim")
+require("user.plugins.colorschemes")
 
 -- cmp plugins
 use("hrsh7th/nvim-cmp") -- The completion plugin

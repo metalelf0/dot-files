@@ -3,6 +3,7 @@
 
 require("catppuccin").setup({
 	flavour = "mocha", -- latte, frappe, macchiato, mocha
+  transparent_background = true,
 	background = { -- :h background
 		light = "latte",
 		dark = "mocha",
@@ -11,23 +12,12 @@ require("catppuccin").setup({
 		latte = {
 			base = "#E1EEF5",
 		},
-		--[[ mocha = { ]]
-		--[[ 	base = "#000000", ]]
-		--[[ }, ]]
 	},
 	highlight_overrides = {
 		latte = function(_)
 			return {
 				NvimTreeNormal = { bg = "#D1E5F0" },
 				NeoTreeNormal = { bg = "#D1E5F0" },
-			}
-		end,
-		mocha = function(mocha)
-			return {
-				--[[ NvimTreeNormal = { bg = "#000000" }, ]]
-				--[[ NeoTreeNormal = { bg = "#000000" }, ]]
-				TabLineSel = { bg = mocha.pink },
-				CmpBorder = { fg = mocha.surface2 },
 			}
 		end,
 	},

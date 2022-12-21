@@ -3,20 +3,6 @@ if not status_ok then
 	return
 end
 
-local function swapNodeWithNext()
-	local utils = require("nvim-treesitter.ts_utils")
-	local currentNode = utils.get_node_at_cursor()
-	local nextNode = utils.get_next_node(currentNode, false, false)
-	utils.swap_nodes(currentNode, nextNode, 0, true)
-end
-
-local function swapNodeWithPrev()
-	local utils = require("nvim-treesitter.ts_utils")
-	local currentNode = utils.get_node_at_cursor()
-	local nextNode = utils.get_previous_node(currentNode, false, false)
-	utils.swap_nodes(currentNode, nextNode, 0, true)
-end
-
 configs.setup({
 	ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)

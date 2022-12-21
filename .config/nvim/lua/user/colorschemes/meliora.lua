@@ -18,11 +18,19 @@ require 'meliora'.setup({
         types = 'NONE',
         operators = 'NONE',
     },
+    transparent_background = {
+        enabled = true,
+        floating_windows = false,
+        telescope = true,
+        file_tree = true,
+        cursor_line = true,
+        status_line = false,
+    },
     plugins = {
         cmp = true,
         indent_blankline = true,
         nvim_tree = {
-            enabled = true,
+            enabled = false,
             show_root = false,
         },
         telescope = {
@@ -34,7 +42,7 @@ require 'meliora'.setup({
 
 vim.cmd [[
 try
-  colorscheme meliora
+  colorscheme mellifluous
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark

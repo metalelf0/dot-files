@@ -22,17 +22,11 @@ vim.api.nvim_create_autocmd('FileType', { command = 'setlocal spell', group = gi
 local markdown_group = vim.api.nvim_create_augroup('markdown', { clear = true })
 vim.api.nvim_create_autocmd('FileType', { command = 'setlocal wrap', group = markdown_group, pattern = 'markdown' })
 vim.api.nvim_create_autocmd('FileType', { command = 'setlocal nospell', group = markdown_group, pattern = 'markdown' })
+vim.api.nvim_create_autocmd('FileType', { command = 'setlocal shiftwidth=2', group = markdown_group, pattern = 'markdown' })
 vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, { command = 'call MarkdownHighlights()', group = markdown_group, pattern = "*.md" })
 
 local auto_resize_group = vim.api.nvim_create_augroup('auto_resize', { clear = true })
 vim.api.nvim_create_autocmd('VimResized', { command = 'tabdo wincmd = ', group = auto_resize_group })
-
--- local alpha_group = vim.api.nvim_create_augroup('alpha', { clear = true })
--- vim.api.nvim_create_autocmd('BufEnter', { command = 'echo "Hiding" | set showtabline=0', group = alpha_group, pattern = 'alpha' })
--- vim.api.nvim_create_autocmd('BufUnload <buffer>', { command = 'echo "Showing" | set showtabline=2', group = alpha_group })
-
--- vim.api.nvim_create_autocmd({ 'User AlphaReady' }, { callback = function(args) print('Baaaabbo!'); vim.o.showtabline = 0 end })
--- vim.api.nvim_create_autocmd('BufUnload <buffer>', { callback = function(args) print('Gianni!'); vim.o.showtabline = 2 end })
 
 local ruby_group = vim.api.nvim_create_augroup('ruby', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', { command = [[ :%s/\s\+$//e ]], group = ruby_group, pattern = '*.rb' })

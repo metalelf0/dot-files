@@ -8,7 +8,7 @@ vim.cmd [[
       autocmd ColorScheme carbonfox highlight link @boolean @variable.builtin
     augroup END
 
-    colorscheme carbonfox
+    colorscheme terafox
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark
