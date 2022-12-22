@@ -101,6 +101,7 @@ end
 keymap("n", "-", function() require"telescope".extensions.file_browser.file_browser({path = "%:p:h"}) end, opts)
 keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
 keymap("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
+keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
 
 require("user.tree").setupMappings()
 

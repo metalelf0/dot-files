@@ -1,8 +1,8 @@
 require("user.options")
 require("user.keymaps")
-require("user.plugins")
+require("user.lazy")
+--[[ require("user.plugins") ]]
 require("user.utils")
-require("user.impatient")
 require("user.colorscheme")
 require("user.cmp")
 require("user.lsp")
