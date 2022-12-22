@@ -202,6 +202,8 @@ M.setup = function()
       update_delay = 300,
     },
   })
+
+  vim.o.winbar = "%{%v:lua.require('user.winbar').winbar()%}"
 end
 
 return M

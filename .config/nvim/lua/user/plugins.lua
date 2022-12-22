@@ -226,15 +226,4 @@ return {
   { "ldelossa/gh.nvim", dependencies = { "ldelossa/litee.nvim" } },
 }
 
---[[ vim.keymap.set("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Document diagnostics" }, ]]
---[[ require("user.tree").setupPlugin() ]]
 --[[ require("user.plugin-confs.legend").setup() ]]
---[[ vim.o.winbar = "%{%v:lua.require('user.winbar').winbar()%}" ]]
--- Colorschemes
---[[ require("user.plugin-confs.colorschemes") ]]
-
--- cmp plugins
-
--- Git
-
-
