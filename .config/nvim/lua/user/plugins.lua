@@ -161,12 +161,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
   },
-  {
-    "folke/which-key.nvim",
-    config = function()
-      require("user.plugin-confs.whichkey").setup()
-    end
-  },
   { "ldelossa/gh.nvim", dependencies = { "ldelossa/litee.nvim" } },
   {
     'eandrju/cellular-automaton.nvim',
