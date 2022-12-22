@@ -1,12 +1,10 @@
 return {
   "numToStr/Comment.nvim",
   "kyazdani42/nvim-web-devicons",
-  "akinsho/bufferline.nvim",
   "moll/vim-bbye",
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
   "jakemason/project.nvim",
-  "lukas-reineke/indent-blankline.nvim",
   "antoinemadec/FixCursorHold.nvim",
   "hrsh7th/nvim-cmp",
   "hrsh7th/cmp-buffer",
@@ -35,7 +33,6 @@ return {
   "junegunn/vim-easy-align",
   "mg979/vim-visual-multi",
   "norcalli/nvim-colorizer.lua",
-  "folke/todo-comments.nvim",
   "tommcdo/vim-exchange",
   "stevearc/dressing.nvim",
   "nvim-neorg/neorg",
@@ -49,8 +46,6 @@ return {
   "tpope/vim-unimpaired",
   "tpope/vim-eunuch",
   "tpope/vim-endwise",
-  "kylechui/nvim-surround",
-  "nvim-neo-tree/neo-tree.nvim",
   "vim-test/vim-test",
 
   -- colorschemes
