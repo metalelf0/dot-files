@@ -1,6 +1,8 @@
-local M = {}
+local M = {
+  "mrjones2014/legendary.nvim"
+}
 
-M.setup = function()
+function M.config()
 	local core = require("lib/core")
 
 	local commands = {
@@ -14,8 +16,6 @@ M.setup = function()
 		{ ":EditWeztermConfig", ":e ~/.config/wezterm/wezterm.lua", description = "Edit wezterm config" },
 		{ ":Neorg gtd capture", description = "Neorg gtd: capture task" },
 		{ ":Neorg gtd views", description = "Neorg gtd: views" },
-		{ ":PackerSync", description = "Sync packages" },
-		{ ":PackerInstall", description = "Install packages" },
 		{ ":luafile %", description = "Lua: source current file" },
 	}
 

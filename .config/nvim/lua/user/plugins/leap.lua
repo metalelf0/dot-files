@@ -1,6 +1,8 @@
-local M = {}
+local M = {
+    "ggandor/leap.nvim"
+}
 
-M.setup = function()
+M.config = function()
   local leap = M.requireLeap()
   leap.setup({
     case_insensitive = true,

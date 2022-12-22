@@ -25,7 +25,7 @@ M.search_files_in_dir = function(directory)
 end
 
 M.nvim_config_base_path = function()
-  return "~/.config/nvim.nvim-from-scratch"
+  return "~/.config/nvim"
 end
 
 M.merge_tables = function(first_table, second_table)

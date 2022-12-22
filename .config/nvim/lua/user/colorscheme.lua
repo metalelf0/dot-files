@@ -1,2 +1,2 @@
-require("user.colorschemes.catppuccin")
+require("user.colorschemes.tokyonight")
 vim.opt["syntax"] = "on"

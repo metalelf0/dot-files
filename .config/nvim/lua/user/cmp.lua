@@ -31,7 +31,7 @@ cmp_window.info = function(self)
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
-require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim.nvim-from-scratch/lua/user/snippets"})
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/user/snippets"})
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1

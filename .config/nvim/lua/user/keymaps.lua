@@ -194,12 +194,7 @@ keymap("n", "<leader>oy", "<cmd>ObsidianYesterday<cr>", { desc = "Obsidian - yes
 keymap("n", "<leader>os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian - search" })
 keymap("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "Obsidian - new" })
 
--- Packer and projects --
-keymap("n", "<leader>Pc", "<cmd>PackerCompile<cr>", { desc = "Packer - compile" })
-keymap("n", "<leader>Pi", "<cmd>PackerInstall<cr>", { desc = "Packer - install" })
-keymap("n", "<leader>Ps", "<cmd>PackerSync<cr>", { desc = "Packer - sync" })
-keymap("n", "<leader>PS", "<cmd>PackerStatus<cr>", { desc = "Packer - status" })
-keymap("n", "<leader>Pu", "<cmd>PackerUpdate<cr>", { desc = "Packer - update" })
+-- Projects --
 keymap("n", "<leader>Pp", function() require("telescope").extensions.projects.projects() end, { desc = "Projects" })
 
 -- Search --
