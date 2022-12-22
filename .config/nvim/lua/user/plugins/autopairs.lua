@@ -1,10 +1,10 @@
-local M = {}
+local M = {
+  "windwp/nvim-autopairs",
+  event = "InsertEnter"
+}
 
-M.setup = function()
-	local status_ok, npairs = pcall(require, "nvim-autopairs")
-	if not status_ok then
-		return
-	end
+M.config = function()
+	local npairs = require("nvim-autopairs")
 
 	npairs.setup({
 		check_ts = true,

@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+    "goolord/alpha-nvim"
+}
 
 M.footer = function()
 	-- NOTE: requires the fortune-mod package to work
@@ -9,7 +11,7 @@ M.footer = function()
 	return "metalelf0"
 end
 
-M.setup = function()
+M.config = function()
 	local core = require("lib/core")
 
 	local status_ok, alpha = pcall(require, "alpha")

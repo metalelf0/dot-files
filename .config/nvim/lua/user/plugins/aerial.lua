@@ -1,6 +1,8 @@
-local M = {}
+local M = {
+  "stevearc/aerial.nvim"
+}
 
-M.setup = function()
+function M.config()
   require("aerial").setup({
     -- Priority list of preferred backends for aerial.
     -- This can be a filetype map (see :help aerial-filetype-map)

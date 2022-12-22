@@ -51,6 +51,7 @@ return {
   "tpope/vim-endwise",
   "kylechui/nvim-surround",
   "nvim-neo-tree/neo-tree.nvim",
+  "vim-test/vim-test",
 
   -- colorschemes
 
@@ -115,22 +116,9 @@ return {
     },
   },
   {
-    "nvim-orgmode/orgmode",
-    config = function()
-      require("user.plugin-confs.orgmode").setup()
-    end,
-  },
-  {
     "lukas-reineke/headlines.nvim",
     config = function()
       require("headlines").setup()
-    end,
-  },
-  {
-    "metalelf0/obsidian.nvim",
-    branch = "feat/obsidian-yesterday",
-    config = function()
-      require("user.plugin-confs.obsidian").setup()
     end,
   },
   {
@@ -143,12 +131,6 @@ return {
     "danymat/neogen",
     config = function()
       require("neogen").setup({ enabled = true })
-    end,
-  },
-  {
-    "vim-test/vim-test",
-    config = function()
-      require("user.plugin-confs.test").setup()
     end,
   },
   {
@@ -180,50 +162,10 @@ return {
     build = ":TSUpdate",
   },
   {
-    "nvim-lualine/lualine.nvim",
-    config = function()
-      require("user.plugin-confs.lualine").setup()
-    end,
-  },
-  {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("user.plugin-confs.autopairs").setup()
-    end,
-  },
-  {
-    "goolord/alpha-nvim",
-    config = function()
-      require("user.plugin-confs.alpha").setup()
-    end,
-  },
-  {
-    "akinsho/toggleterm.nvim",
-    branch = "main"
-  },
-  {
     "folke/which-key.nvim",
     config = function()
       require("user.plugin-confs.whichkey").setup()
     end
-  },
-  {
-    "stevearc/aerial.nvim",
-    config = function()
-      require("user.plugin-confs.aerial").setup()
-    end
-  },
-  {
-    "ThePrimeagen/harpoon",
-    config = function()
-      require("user.plugin-confs.harpoon").setup()
-    end,
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("user.plugin-confs.gitsigns").setup()
-    end,
   },
   { "ldelossa/gh.nvim", dependencies = { "ldelossa/litee.nvim" } },
   {

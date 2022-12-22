@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+    "nvim-lualine/lualine.nvim",
+}
 
 local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
@@ -59,7 +61,7 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-M.setup = function()
+M.config = function()
 	local status_ok, lualine = pcall(require, "lualine")
 	if not status_ok then
 		return

@@ -1,13 +1,14 @@
-local M = {}
+local M = {
+  "ThePrimeagen/harpoon",
+  event = "BufReadPost"
+}
 
-M.setup = function()
+M.config = function()
   require("harpoon").setup({
     global_settings = {
       mark_branch = true, -- set marks specific to each git branch inside git repository
     },
   })
 end
-
-
 
 return M

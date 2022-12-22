@@ -1,6 +1,9 @@
-local M = {}
+local M = {
+	"lewis6991/gitsigns.nvim",
+    event = "BufReadPre"
+}
 
-local config = {
+local plugin_config = {
 	signs = {
 		add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 		change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
@@ -44,9 +47,9 @@ local config = {
 	},
 }
 
-M.setup = function()
-	local gitsigns = require('gitsigns')
-	gitsigns.setup(config)
+M.config = function()
+	local gitsigns = require("gitsigns")
+	gitsigns.setup(plugin_config)
 end
 
 return M

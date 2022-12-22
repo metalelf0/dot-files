@@ -1,6 +1,9 @@
-local M = {}
+local M = {
+  "folke/noice.nvim",
+  event = "VeryLazy"
+}
 
-M.setup = function()
+M.config = function()
 	require("noice").setup({
 		routes = {
 			{

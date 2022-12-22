@@ -1,6 +1,9 @@
-local M = {}
+local M = {
+  "epwalsh/obsidian.nvim",
+  cmd = { 'ObsidianOpen', 'ObsidianToday', 'ObsidianYesterday', 'ObsidianSearch', 'ObsidianNew' }
+}
 
-M.setup = function()
+M.config = function()
 	require("obsidian").setup({
 		dir = "~/iCloud-Obsidian",
 		daily_notes = {

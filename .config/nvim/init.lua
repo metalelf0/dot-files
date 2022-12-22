@@ -18,7 +18,6 @@ require("user.todo-comments")
 -- require "user.neorg"
 require("user.neotest")
 require("user.digraphs")
-require("user.toggleterm")
 require("user.gh-nvim")
 require("user.fvim")
 require("user.surround")
