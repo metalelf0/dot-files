@@ -14,5 +14,5 @@ vim.api.nvim_command("digraph do 10004")
 vim.api.nvim_command("digraph ch 10065")
 -- bu for bug 🐛
 vim.api.nvim_command("digraph bu 128027")
--- sh for... well, you know 💩 
+-- sh for... well, you know 💩
 vim.api.nvim_command("digraph sh 128169")
