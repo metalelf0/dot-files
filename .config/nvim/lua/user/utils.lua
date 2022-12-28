@@ -32,4 +32,16 @@ M.merge_tables = function(first_table, second_table)
   for k,v in pairs(second_table) do first_table[k] = v end
 end
 
+function M.warn(msg, name)
+  vim.notify(msg, vim.log.levels.WARN, { title = name or "init.lua" })
+end
+
+function M.error(msg, name)
+  vim.notify(msg, vim.log.levels.ERROR, { title = name or "init.lua" })
+end
+
+function M.info(msg, name)
+  vim.notify(msg, vim.log.levels.INFO, { title = name or "init.lua" })
+end
+
 return M

@@ -19,7 +19,7 @@ require 'meliora'.setup({
         operators = 'NONE',
     },
     transparent_background = {
-        enabled = true,
+        enabled = false,
         floating_windows = false,
         telescope = true,
         file_tree = true,
