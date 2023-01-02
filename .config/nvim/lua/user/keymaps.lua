@@ -5,9 +5,10 @@ local utils = require("user.utils")
 local keymap = vim.keymap.set
 
 local function merge_opts(first, second)
-  for k,v in pairs(second) do first[k] = v end
+	for k, v in pairs(second) do
+		first[k] = v
+	end
 end
-
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -62,22 +63,23 @@ keymap("i", "kj", "<ESC>", opts)
 --[[ vim.cmd 'nnoremap <Esc><Esc> :nohlsearch<CR>' ]]
 
 local clearStuff = function()
-  vim.cmd("noh")
-  --[[ require('notify').dismiss() ]]
+	vim.cmd("noh")
+	--[[ require('notify').dismiss() ]]
 end
 
 keymap("n", "<Esc><Esc>", clearStuff)
 
 -- change text related mappings
 keymap("n", "cg*", "*Ncgn", opts)
-vim.cmd [[ nnoremap g. /\V<C-r>"<CR>cgn<C-a><Esc> ]]
+vim.cmd([[ nnoremap g. /\V<C-r>"<CR>cgn<C-a><Esc> ]])
 
 -- alt + s to sort across commas in visual selection
 vim.api.nvim_exec(
-[[
+	[[
 xnoremap ß s<c-r>=join(sort(split(@", '\s*,\s*')), ', ')<cr><esc>
 ]],
-true)
+	true
+)
 
 local find_files = function()
 	require("telescope.builtin").find_files(
@@ -98,23 +100,29 @@ local insert_gitmoji = function()
 end
 
 -- - to open file browser
-keymap("n", "-", function() require"telescope".extensions.file_browser.file_browser({path = "%:p:h"}) end, opts)
+keymap("n", "-", function()
+	require("telescope").extensions.file_browser.file_browser({ path = "%:p:h" })
+end, opts)
 keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
 keymap("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
 keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
-
-require("user.tree").setupMappings()
 
 keymap("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text" })
 keymap("n", "<leader>p", find_files, { desc = "Find files" })
 keymap("n", "<leader>k", require("telescope.builtin").grep_string, { desc = "Find word under cursor" })
 keymap("n", "<leader>R", require("telescope.builtin").resume, { desc = "Resume last search" })
-keymap("n", "<leader><leader>", function() require("legendary").find() end, { desc = "Legendary" })
-keymap("n", "<leader>N", function() utils.search_files_in_dir("~/iCloud-Obsidian") end, { desc = "Notes" })
+keymap("n", "<leader><leader>", function()
+	require("legendary").find()
+end, { desc = "Legendary" })
+keymap("n", "<leader>N", function()
+	utils.search_files_in_dir("~/iCloud-Obsidian")
+end, { desc = "Notes" })
 
 -- Buffers --
 keymap("n", "<leader>bb", require("telescope.builtin").buffers, { desc = "Buffers" })
-keymap("n", "<leader>bl", function() require("telescope.builtin").buffers({ cwd_only = true }) end, { desc = "Buffers (cwd)" })
+keymap("n", "<leader>bl", function()
+	require("telescope.builtin").buffers({ cwd_only = true })
+end, { desc = "Buffers (cwd)" })
 keymap("n", "<leader>bcl", "<cmd>BufferLineCloseLeft<CR>", { desc = "Close left" })
 keymap("n", "<leader>bcr", "<cmd>BufferLineCloseRight<CR>", { desc = "Close right" })
 keymap("n", "<leader>bca", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all" })
@@ -134,7 +142,7 @@ keymap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Checkout 
 keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Checkout commit" })
 keymap("n", "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", { desc = "Diff" })
 keymap("n", "<leader>gg", function()
-  _LAZYGIT_TOGGLE()
+	_LAZYGIT_TOGGLE()
 end, { desc = "Lazygit" })
 keymap("n", "<leader>gj", require("gitsigns").next_hunk, { desc = "Next hunk" })
 keymap("n", "<leader>gk", require("gitsigns").prev_hunk, { desc = "Prev hunk" })
@@ -152,15 +160,30 @@ keymap("n", "<leader>Gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 keymap("n", "<leader>Ht", telescope_colorscheme, { desc = "Colorschemes" })
 
 -- harpoon
-keymap("n", "<leader>ha", function() require("harpoon.mark").add_file() end, { desc = "Add file" })
-keymap("n", "<leader>hh", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "Menu" })
-keymap("n", "<leader>hn", function() require("harpoon.ui").nav_next() end, { desc = "Nav next" })
-keymap("n", "<leader>hp", function() require("harpoon.ui").nav_prev() end, { desc = "Nav prev" })
-keymap("n", "<Leader>h1", function() require("harpoon.ui").nav_file(1) end, { desc = "Goto file 1"})
-keymap("n", "<Leader>h2", function() require("harpoon.ui").nav_file(2) end, { desc = "Goto file 2"})
-keymap("n", "<Leader>h3", function() require("harpoon.ui").nav_file(3) end, { desc = "Goto file 3"})
-keymap("n", "<Leader>h4", function() require("harpoon.ui").nav_file(4) end, { desc = "Goto file 4"})
-
+keymap("n", "<leader>ha", function()
+	require("harpoon.mark").add_file()
+end, { desc = "Add file" })
+keymap("n", "<leader>hh", function()
+	require("harpoon.ui").toggle_quick_menu()
+end, { desc = "Menu" })
+keymap("n", "<leader>hn", function()
+	require("harpoon.ui").nav_next()
+end, { desc = "Nav next" })
+keymap("n", "<leader>hp", function()
+	require("harpoon.ui").nav_prev()
+end, { desc = "Nav prev" })
+keymap("n", "<Leader>h1", function()
+	require("harpoon.ui").nav_file(1)
+end, { desc = "Goto file 1" })
+keymap("n", "<Leader>h2", function()
+	require("harpoon.ui").nav_file(2)
+end, { desc = "Goto file 2" })
+keymap("n", "<Leader>h3", function()
+	require("harpoon.ui").nav_file(3)
+end, { desc = "Goto file 3" })
+keymap("n", "<Leader>h4", function()
+	require("harpoon.ui").nav_file(4)
+end, { desc = "Goto file 4" })
 
 -- Insert --
 keymap("n", "<leader>ie", insert_emoji, { desc = "Emoji" })
@@ -177,13 +200,23 @@ keymap("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Do
 keymap("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer info" })
 keymap("n", "<leader>lR", vim.lsp.buf.rename, { desc = "Rename" })
 keymap("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Action" })
-keymap("n", "<leader>ld", function() require("telescope.builtin").lsp_definitions({ jump_type = "never" }) end, { desc = "Show definition" })
-keymap("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, { desc = "Format" })
+keymap("n", "<leader>ld", function()
+	require("telescope.builtin").lsp_definitions({ jump_type = "never" })
+end, { desc = "Show definition" })
+keymap("n", "<leader>lf", function()
+	vim.lsp.buf.format({ async = true })
+end, { desc = "Format" })
 keymap("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
-keymap("n", "<leader>lj", function() vim.lsp.diagnostic.goto_next() end, { desc = "Next diagnostic" })
-keymap("n", "<leader>lk", function() vim.lsp.diagnostic.goto_prev() end, { desc = "Prev diagnostic" })
+keymap("n", "<leader>lj", function()
+	vim.lsp.diagnostic.goto_next()
+end, { desc = "Next diagnostic" })
+keymap("n", "<leader>lk", function()
+	vim.lsp.diagnostic.goto_prev()
+end, { desc = "Prev diagnostic" })
 keymap("n", "<leader>ll", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Line diagnostic" })
-keymap("n", "<leader>lr", function() require("telescope.builtin").lsp_references({ jump_type = "never" }) end, { desc = "Show references" })
+keymap("n", "<leader>lr", function()
+	require("telescope.builtin").lsp_references({ jump_type = "never" })
+end, { desc = "Show references" })
 keymap("n", "<leader>ls", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { desc = "Workspace symbols" })
 keymap("n", "<leader>lw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace diagnostics" })
 keymap("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble toggle" })
@@ -195,25 +228,41 @@ keymap("n", "<leader>os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian - search
 keymap("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "Obsidian - new" })
 
 -- Projects --
-keymap("n", "<leader>Pp", function() require("telescope").extensions.projects.projects() end, { desc = "Projects" })
+keymap("n", "<leader>Pp", function()
+	require("telescope").extensions.projects.projects()
+end, { desc = "Projects" })
 
 -- Search --
 keymap("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
 keymap("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
 keymap("n", "<leader>sR", "<cmd>Telescope registers<cr>", { desc = "Registers" })
-keymap("n", "<leader>sb", function() require("telescope.builtin").live_grep({ grep_open_files = true }) end, { desc = "Search in buffers" })
-keymap("n", "<leader>sf", function() require("spectre").open_file_search() end, { desc = "Search in file" })
+keymap("n", "<leader>sb", function()
+	require("telescope.builtin").live_grep({ grep_open_files = true })
+end, { desc = "Search in buffers" })
+keymap("n", "<leader>sf", function()
+	require("spectre").open_file_search()
+end, { desc = "Search in file" })
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Find Help" })
 keymap("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
 keymap("n", "<leader>sp", "<cmd>Telescope neoclip<cr>", { desc = "Clipboard (aka pastes)" })
 keymap("n", "<leader>sr", "<cmd>Telescope oldfiles<cr>", { desc = "Open recent File" })
-keymap("n", "<leader>ss", function() require("spectre").open() end, { desc = "Spectre" })
+keymap("n", "<leader>ss", function()
+	require("spectre").open()
+end, { desc = "Spectre" })
 
 -- Terminal --
-keymap("n", "<leader>tn", function() _NODE_TOGGLE() end, { desc = "Node" })
-keymap("n", "<leader>tu", function() _NCDU_TOGGLE() end, { desc = "NCDU" })
-keymap("n", "<leader>tt", function() _HTOP_TOGGLE() end, { desc = "Htop" })
-keymap("n", "<leader>tp", function() _PYTHON_TOGGLE() end, { desc = "Python" })
+keymap("n", "<leader>tn", function()
+	_NODE_TOGGLE()
+end, { desc = "Node" })
+keymap("n", "<leader>tu", function()
+	_NCDU_TOGGLE()
+end, { desc = "NCDU" })
+keymap("n", "<leader>tt", function()
+	_HTOP_TOGGLE()
+end, { desc = "Htop" })
+keymap("n", "<leader>tp", function()
+	_PYTHON_TOGGLE()
+end, { desc = "Python" })
 
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
 keymap("n", "<leader>th", "<cmd>ToggleTerm size=15 direction=horizontal<cr>", { desc = "Horizontal" })

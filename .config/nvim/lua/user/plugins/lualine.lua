@@ -1,6 +1,6 @@
 local M = {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy"
+	"nvim-lualine/lualine.nvim",
+	event = "VeryLazy",
 }
 
 local hide_in_width = function()
@@ -71,7 +71,7 @@ M.config = function()
 	lualine.setup({
 		options = {
 			icons_enabled = true,
-			theme = "auto",
+			theme = "onedark",
 			component_separators = { left = "", right = "" },
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
