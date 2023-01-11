@@ -8,6 +8,7 @@ local M = {
 		"rcarriga/neotest-python",
 		"rcarriga/neotest-plenary",
 		"rcarriga/neotest-vim-test",
+		"vim-test/vim-test",
 	},
 }
 

@@ -1,6 +1,6 @@
 local M = {
-  "epwalsh/obsidian.nvim",
-  cmd = { 'ObsidianOpen', 'ObsidianToday', 'ObsidianYesterday', 'ObsidianSearch', 'ObsidianNew' }
+	"epwalsh/obsidian.nvim",
+	cmd = { "ObsidianOpen", "ObsidianToday", "ObsidianYesterday", "ObsidianSearch", "ObsidianNew" },
 }
 
 M.config = function()

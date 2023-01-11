@@ -88,7 +88,7 @@ function M.config()
 		},
 		refactor = {
 			smart_rename = {
-				enable = true,
+				enable = false,
 				client = {
 					smart_rename = "<leader>cr",
 				},

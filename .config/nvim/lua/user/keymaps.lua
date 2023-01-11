@@ -101,8 +101,8 @@ end
 
 -- - to open file browser
 keymap("n", "-", function()
-	require("telescope").extensions.file_browser.file_browser({ path = "%:p:h" })
-end, opts)
+	require("oil").open()
+end, { desc = "Oil" })
 keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
 keymap("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
 keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
@@ -158,6 +158,7 @@ keymap("n", "<leader>Gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- Helpers --
 keymap("n", "<leader>Ht", telescope_colorscheme, { desc = "Colorschemes" })
+keymap("n", "<leader>Hl", function() require("lazy").show() end, { desc = "Lazy" })
 
 -- harpoon
 keymap("n", "<leader>ha", function()
@@ -231,6 +232,11 @@ keymap("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "Obsidian - new" })
 keymap("n", "<leader>Pp", function()
 	require("telescope").extensions.projects.projects()
 end, { desc = "Projects" })
+
+-- Refactorings --
+keymap("n", "<leader>ra", function()
+	require("ts-node-action").node_action()
+end, { desc = "Action" })
 
 -- Search --
 keymap("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })

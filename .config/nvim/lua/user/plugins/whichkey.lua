@@ -1,10 +1,10 @@
 local M = {
-  "folke/which-key.nvim",
-  event = "VeryLazy"
+	"folke/which-key.nvim",
+	event = "VeryLazy",
 }
 
 M.config = function()
-  local which_key = require('which-key')
+	local which_key = require("which-key")
 	local setup = {
 		plugins = {
 			marks = true, -- shows a list of your marks on ' and `
@@ -103,12 +103,9 @@ M.config = function()
 			-- 	w = { "<cmd>Telescope neorg switch_workspace<cr>", "Switch workspace" },
 			-- },
 		},
-		s = {
-			name = "Search",
-		},
-		t = {
-			name = "Terminal",
-		},
+		r = { name = "Refactorings" },
+		s = { name = "Search" },
+		t = { name = "Terminal" },
 	}
 
 	if vim.g.neovide then

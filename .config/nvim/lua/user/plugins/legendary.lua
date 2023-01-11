@@ -1,5 +1,5 @@
 local M = {
-  "mrjones2014/legendary.nvim"
+	"mrjones2014/legendary.nvim",
 }
 
 function M.config()
@@ -8,6 +8,7 @@ function M.config()
 	local commands = {
 		{ ":EditNeovimConfig", ":e " .. core.get_configdir() .. "/init.lua", description = "Edit neovim config" },
 		{ ":EditKittyConfig", ":e ~/.config/kitty/kitty.conf", description = "Edit kitty config" },
+		{ ":EditInbox", ":e ~/iCloud-Obsidian/work/inbox.md", description = "Inbox" },
 		{
 			":EditLazygitConfig",
 			":e ~/Library/Application Support/lazygit/config.yml",

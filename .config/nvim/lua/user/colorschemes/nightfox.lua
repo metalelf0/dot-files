@@ -1,11 +1,19 @@
 vim.o.termguicolors = true
 
-vim.cmd [[
+require("nightfox").setup({
+	options = {
+		styles = {
+			comments = "italic",
+		},
+	},
+})
+
+vim.cmd([[
   try
     augroup CustomHighlight
       autocmd!
-      autocmd ColorScheme carbonfox highlight link @symbol String
-      autocmd ColorScheme carbonfox highlight link @boolean @variable.builtin
+      autocmd ColorScheme terafox highlight link @symbol String
+      autocmd ColorScheme terafox highlight link @boolean @variable.builtin
     augroup END
 
     colorscheme terafox
@@ -13,5 +21,4 @@ vim.cmd [[
     colorscheme default
     set background=dark
   endtry
-]]
-
+]])

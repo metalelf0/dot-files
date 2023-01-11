@@ -20,7 +20,7 @@ return {
 		"nvim-telescope/telescope-symbols.nvim",
 	},
 	keys = {
-		{ "<leader><space>", project_files, desc = "Find File" },
+		-- { "<leader><space>", project_files, desc = "Find File" },
 	},
 	config = function()
 		-- local actions = require("telescope.actions")

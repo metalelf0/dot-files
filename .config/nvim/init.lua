@@ -5,6 +5,5 @@ require("user.utils")
 require("user.colorscheme")
 require("user.neovide")
 require("user.autocommands")
--- require "user.neorg"
 require("user.digraphs")
 require("user.fvim")

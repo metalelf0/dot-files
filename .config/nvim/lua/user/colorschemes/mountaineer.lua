@@ -1,10 +1,10 @@
 vim.o.termguicolors = true
 
-vim.cmd [[
+vim.cmd([[
 try
-  colorscheme mountaineer-grey
+  colorscheme mountaineer
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark
 endtry
-]]
+]])

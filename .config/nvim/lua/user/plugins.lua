@@ -2,16 +2,12 @@ return {
 	"jose-elias-alvarez/typescript.nvim",
 	"kyazdani42/nvim-web-devicons",
 	"nvim-lua/popup.nvim",
-	"antoinemadec/FixCursorHold.nvim",
-	"folke/trouble.nvim",
 	"junegunn/fzf",
 	"tpope/vim-rails",
 	"slim-template/vim-slim",
 	"junegunn/vim-easy-align",
 	"mg979/vim-visual-multi",
-	"norcalli/nvim-colorizer.lua",
 	"tommcdo/vim-exchange",
-	"stevearc/dressing.nvim",
 	"tpope/vim-abolish",
 	"tpope/vim-dadbod",
 	"tpope/vim-rsi",
@@ -20,13 +16,13 @@ return {
 	"tpope/vim-unimpaired",
 	"tpope/vim-eunuch",
 	"tpope/vim-endwise",
-	"vim-test/vim-test",
 	"williamboman/mason-lspconfig.nvim",
 
 	-- colorschemes
 
 	-- "EdenEast/nightfox.nvim",
 	-- "Mofiqul/dracula.nvim",
+	"Mofiqul/vscode.nvim",
 	-- "NTBBloodbath/doom-one.nvim",
 	-- "TheNiteCoder/mountaineer.vim",
 	-- "bluz71/vim-moonfly-colors",
@@ -43,7 +39,7 @@ return {
 	-- "sam4llis/nvim-tundra",
 	-- { "catppuccin/nvim", name = "catppuccin" },
 	-- { "mcchrish/zenbones.nvim", dependencies = { "rktjmp/lush.nvim" } },
-	-- { "meliora-theme/neovim", dependencies = { "rktjmp/lush.nvim" }, name = "meliora" },
+	{ "meliora-theme/neovim", dependencies = { "rktjmp/lush.nvim" }, name = "meliora" },
 	-- { "rose-pine/neovim", name = "rose-pine" },
 	-- "Yazeed1s/oh-lucy.nvim",
 	-- "igorepst/hemisu.nvim",
@@ -52,9 +48,42 @@ return {
 	-- "nyoom-engineering/oxocarbon.nvim",
 	-- "shaunsingh/moonlight.nvim",
 	-- "shatur/neovim-ayu",
-	"navarasu/onedark.nvim",
+	-- "navarasu/onedark.nvim",
 
 	-- end colorschemes
+	{
+		"norcalli/nvim-colorizer.lua",
+		cmd = { "ColorizerAttachToBuffer" },
+	},
+	{
+		"folke/trouble.nvim",
+		cmd = { "TroubleToggle", "Trouble" },
+		config = {
+			auto_open = false,
+			use_diagnostic_signs = true,
+		},
+	},
+	{
+		"stevearc/dressing.nvim",
+		init = function()
+			---@diagnostic disable-next-line: duplicate-set-field
+			vim.ui.select = function(...)
+				require("lazy").load({ plugins = { "dressing.nvim" } })
+				return vim.ui.select(...)
+			end
+			---@diagnostic disable-next-line: duplicate-set-field
+			vim.ui.input = function(...)
+				require("lazy").load({ plugins = { "dressing.nvim" } })
+				return vim.ui.input(...)
+			end
+		end,
+	},
+	{
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	},
 	{
 		"SmiteshP/nvim-navic",
 		config = function()
@@ -134,10 +163,50 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
-	-- { "ldelossa/gh.nvim", dependencies = { "ldelossa/litee.nvim" } },
 	{
-		"eandrju/cellular-automaton.nvim",
-		cmd = { "CellularAutomaton" },
+		"ckolkey/ts-node-action",
+		dependencies = { "nvim-treesitter" },
+		config = function() -- Optional
+			require("ts-node-action").setup({})
+		end,
+	},
+	-- { "ldelossa/gh.nvim", dependencies = { "ldelossa/litee.nvim" } },
+
+	-- git signs
+	{
+		"lewis6991/gitsigns.nvim",
+		event = "BufReadPre",
+		opts = {
+			signs = {
+				add = { text = "▎" },
+				change = { text = "▎" },
+				delete = { text = "契" },
+				topdelete = { text = "契" },
+				changedelete = { text = "▎" },
+				untracked = { text = "▎" },
+			},
+			on_attach = function(buffer)
+				local gs = package.loaded.gitsigns
+
+				local function map(mode, l, r, desc)
+					vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+				end
+
+        -- stylua: ignore start
+        map("n", "]h", gs.next_hunk, "Next Hunk")
+        map("n", "[h", gs.prev_hunk, "Prev Hunk")
+        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+        map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+        map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+        map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+        map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
+        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+        map("n", "<leader>ghd", gs.diffthis, "Diff This")
+        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+			end,
+		},
 	},
 }
 
