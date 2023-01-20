@@ -16,7 +16,7 @@ vim.cmd([[
       autocmd ColorScheme terafox highlight link @boolean @variable.builtin
     augroup END
 
-    colorscheme terafox
+    colorscheme dayfox
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

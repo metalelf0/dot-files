@@ -1,2 +1,2 @@
-require("user.colorschemes.meliora")
+require("user.colorschemes.mellifluous")
 vim.opt["syntax"] = "on"

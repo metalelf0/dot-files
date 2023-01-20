@@ -78,12 +78,12 @@ function M.config()
 		indent = { enable = false },
 		context_commentstring = { enable = true, enable_autocmd = false },
 		incremental_selection = {
-			enable = false,
+			enable = true,
 			keymaps = {
-				init_selection = "<C-n>",
-				node_incremental = "<C-n>",
-				scope_incremental = "<C-s>",
-				node_decremental = "<C-r>",
+				init_selection = "<CR>",
+				node_incremental = "<CR>",
+				scope_incremental = "<S-CR>",
+				node_decremental = "<BS>",
 			},
 		},
 		refactor = {

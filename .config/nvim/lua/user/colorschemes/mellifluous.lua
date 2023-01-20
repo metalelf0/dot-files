@@ -2,7 +2,7 @@ vim.o.termguicolors = true
 
 require("mellifluous").setup({
 	neutral = false, -- set this to `true` for neutral background and greys.
-	color_set = "mountain",
+	color_set = "mellifluous", -- available options are mellifluous, alduin and mountain
 	styles = {
 		comments = "italic",
 		conditionals = "NONE",
@@ -15,7 +15,7 @@ require("mellifluous").setup({
 		numbers = "NONE",
 		booleans = "NONE",
 		properties = "NONE",
-		types = "NONE",
+		types = "bold",
 		operators = "NONE",
 	},
 	transparent_background = {
@@ -43,6 +43,7 @@ require("mellifluous").setup({
 
 vim.cmd([[
 try
+  set bg=dark
   colorscheme mellifluous
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default

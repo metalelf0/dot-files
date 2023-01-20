@@ -117,10 +117,10 @@ end
 function mini.init()
 	vim.keymap.set("n", "<leader>bd", function()
 		require("mini.bufremove").delete(0, false)
-	end)
+	end, { desc = "Close buffer" })
 	vim.keymap.set("n", "<leader>bD", function()
 		require("mini.bufremove").delete(0, true)
-	end)
+	end, { desc = "Force close buffer" })
 end
 
 return specs

@@ -1,5 +1,5 @@
 local M = {
-    "goolord/alpha-nvim"
+	"goolord/alpha-nvim",
 }
 
 M.footer = function()

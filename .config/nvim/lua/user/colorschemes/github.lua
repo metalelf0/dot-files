@@ -1,5 +1,5 @@
 require("github-theme").setup({
-	theme_style = "light_default",
+	theme_style = "dark_default",
 	function_style = "italic",
 	transparent = false, -- this allows black bg when using the matching kitty theme
 	dark_sidebar = true,

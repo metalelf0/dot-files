@@ -4,12 +4,10 @@ return {
 	"nvim-lua/popup.nvim",
 	"junegunn/fzf",
 	"tpope/vim-rails",
-	"slim-template/vim-slim",
 	"junegunn/vim-easy-align",
 	"mg979/vim-visual-multi",
 	"tommcdo/vim-exchange",
 	"tpope/vim-abolish",
-	"tpope/vim-dadbod",
 	"tpope/vim-rsi",
 	"tpope/vim-fugitive",
 	"tpope/vim-repeat",
@@ -17,29 +15,30 @@ return {
 	"tpope/vim-eunuch",
 	"tpope/vim-endwise",
 	"williamboman/mason-lspconfig.nvim",
-
+	-- "slim-template/vim-slim",
 	-- colorschemes
 
-	-- "EdenEast/nightfox.nvim",
+	-- "Mofiqul/vscode.nvim",
+	{ "meliora-theme/neovim", dependencies = { "rktjmp/lush.nvim" }, name = "meliora" },
+	"EdenEast/nightfox.nvim",
+	{ "catppuccin/nvim", name = "catppuccin" },
+	-- { "savq/melange-nvim" },
+
 	-- "Mofiqul/dracula.nvim",
-	"Mofiqul/vscode.nvim",
+	-- "projekt0n/github-nvim-theme",
 	-- "NTBBloodbath/doom-one.nvim",
-	-- "TheNiteCoder/mountaineer.vim",
 	-- "bluz71/vim-moonfly-colors",
 	-- "bluz71/vim-nightfly-guicolors",
 	-- "cocopon/iceberg.vim",
 	-- "folke/tokyonight.nvim",
 	-- "glepnir/zephyr-nvim",
 	-- "marko-cerovac/material.nvim",
-	-- "projekt0n/github-nvim-theme",
 	-- "rebelot/kanagawa.nvim",
 	-- "rmehri01/onenord.nvim",
 	-- "sainnhe/gruvbox-material",
 	-- "ellisonleao/gruvbox.nvim",
 	-- "sam4llis/nvim-tundra",
-	-- { "catppuccin/nvim", name = "catppuccin" },
 	-- { "mcchrish/zenbones.nvim", dependencies = { "rktjmp/lush.nvim" } },
-	{ "meliora-theme/neovim", dependencies = { "rktjmp/lush.nvim" }, name = "meliora" },
 	-- { "rose-pine/neovim", name = "rose-pine" },
 	-- "Yazeed1s/oh-lucy.nvim",
 	-- "igorepst/hemisu.nvim",
@@ -51,6 +50,15 @@ return {
 	-- "navarasu/onedark.nvim",
 
 	-- end colorschemes
+
+	-- better diffing
+	{
+		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+		config = true,
+		keys = { { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffView" } },
+	},
+	{ "tpope/vim-dadbod", cmd = { "DB" } },
 	{
 		"norcalli/nvim-colorizer.lua",
 		cmd = { "ColorizerAttachToBuffer" },
@@ -175,7 +183,7 @@ return {
 	-- git signs
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "BufReadPre",
+		-- event = "BufReadPre",
 		opts = {
 			signs = {
 				add = { text = "▎" },

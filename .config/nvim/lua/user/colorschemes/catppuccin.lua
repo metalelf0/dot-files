@@ -3,15 +3,15 @@
 
 require("catppuccin").setup({
 	flavour = "mocha", -- latte, frappe, macchiato, mocha
-  transparent_background = true,
+	transparent_background = false,
 	background = { -- :h background
 		light = "latte",
 		dark = "mocha",
 	},
 	color_overrides = {
-		latte = {
-			base = "#E1EEF5",
-		},
+		-- latte = {
+		-- 	base = "#E1EEF5",
+		-- },
 	},
 	highlight_overrides = {
 		latte = function(_)
@@ -49,7 +49,6 @@ require("catppuccin").setup({
 vim.cmd([[
   try
     colorscheme catppuccin
-    syntax on
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark
@@ -73,4 +72,3 @@ vim.g.terminal_color_6 = "#94E2D5"
 vim.g.terminal_color_14 = "#94E2D5"
 vim.g.terminal_color_7 = "#CDD6F4"
 vim.g.terminal_color_15 = "#A1A8C9"
-

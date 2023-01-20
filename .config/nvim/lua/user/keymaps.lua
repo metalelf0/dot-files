@@ -109,8 +109,12 @@ keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
 
 keymap("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text" })
 keymap("n", "<leader>p", find_files, { desc = "Find files" })
-keymap("n", "<leader>k", require("telescope.builtin").grep_string, { desc = "Find word under cursor" })
-keymap("n", "<leader>R", require("telescope.builtin").resume, { desc = "Resume last search" })
+keymap("n", "<leader>k", function()
+	require("telescope.builtin").grep_string()
+end, { desc = "Find word under cursor" })
+keymap("n", "<leader>R", function()
+	require("telescope.builtin").resume()
+end, { desc = "Resume last search" })
 keymap("n", "<leader><leader>", function()
 	require("legendary").find()
 end, { desc = "Legendary" })
@@ -119,7 +123,9 @@ keymap("n", "<leader>N", function()
 end, { desc = "Notes" })
 
 -- Buffers --
-keymap("n", "<leader>bb", require("telescope.builtin").buffers, { desc = "Buffers" })
+keymap("n", "<leader>bb", function()
+	require("telescope.builtin").buffers()
+end, { desc = "Buffers" })
 keymap("n", "<leader>bl", function()
 	require("telescope.builtin").buffers({ cwd_only = true })
 end, { desc = "Buffers (cwd)" })
@@ -137,28 +143,20 @@ keymap("n", "<leader>b8", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "Buffer 8"
 keymap("n", "<leader>b9", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Buffer 9" })
 
 -- Git --
-keymap("n", "<leader>gR", require("gitsigns").reset_buffer, { desc = "Reset buffer" })
 keymap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Checkout branch" })
 keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Checkout commit" })
-keymap("n", "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", { desc = "Diff" })
 keymap("n", "<leader>gg", function()
 	_LAZYGIT_TOGGLE()
 end, { desc = "Lazygit" })
-keymap("n", "<leader>gj", require("gitsigns").next_hunk, { desc = "Next hunk" })
-keymap("n", "<leader>gk", require("gitsigns").prev_hunk, { desc = "Prev hunk" })
-keymap("n", "<leader>gl", require("gitsigns").blame_line, { desc = "Blame line" })
 keymap("n", "<leader>go", "<cmd>Telescope git_status<cr>", { desc = "Open changed file" })
-keymap("n", "<leader>gp", require("gitsigns").preview_hunk, { desc = "Preview hunk" })
-keymap("n", "<leader>gr", require("gitsigns").reset_hunk, { desc = "Reset hunk" })
-keymap("n", "<leader>gs", require("gitsigns").stage_hunk, { desc = "Stage hunk" })
-keymap("n", "<leader>gu", require("gitsigns").undo_stage_hunk, { desc = "Undo stage hunk" })
-
--- GIT --
 keymap("n", "<leader>Gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- Helpers --
+keymap("n", "<leader>Hl", function()
+	require("lazy").show()
+end, { desc = "Lazy" })
+keymap("n", "<leader>Hm", "<cmd>Mason<CR>", { desc = "Mason" })
 keymap("n", "<leader>Ht", telescope_colorscheme, { desc = "Colorschemes" })
-keymap("n", "<leader>Hl", function() require("lazy").show() end, { desc = "Lazy" })
 
 -- harpoon
 keymap("n", "<leader>ha", function()

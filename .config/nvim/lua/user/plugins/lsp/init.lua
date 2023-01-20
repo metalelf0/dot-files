@@ -1,3 +1,5 @@
+local utils = require("user.utils")
+
 local M = {
 	"neovim/nvim-lspconfig",
 	event = "BufReadPre",
@@ -41,6 +43,9 @@ function M.config()
 		svelte = {},
 		eslint = {},
 		html = {},
+		elixirls = {
+			cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/elixir-ls" },
+		},
 		jsonls = {
 			on_new_config = function(new_config)
 				new_config.settings.json.schemas = new_config.settings.json.schemas or {}

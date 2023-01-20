@@ -1,6 +1,6 @@
 local M = {
 	"nvim-orgmode/orgmode",
-	ft = "org"
+	ft = "org",
 }
 
 local setup_treesitter = function()
