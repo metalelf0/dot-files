@@ -49,6 +49,7 @@ require("catppuccin").setup({
 vim.cmd([[
   try
     colorscheme catppuccin
+    syntax on
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

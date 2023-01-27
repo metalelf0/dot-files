@@ -18,7 +18,7 @@ return {
 	-- "slim-template/vim-slim",
 	-- colorschemes
 
-	-- "Mofiqul/vscode.nvim",
+	"Mofiqul/vscode.nvim",
 	{ "meliora-theme/neovim", dependencies = { "rktjmp/lush.nvim" }, name = "meliora" },
 	"EdenEast/nightfox.nvim",
 	{ "catppuccin/nvim", name = "catppuccin" },
@@ -40,6 +40,7 @@ return {
 	-- "sam4llis/nvim-tundra",
 	-- { "mcchrish/zenbones.nvim", dependencies = { "rktjmp/lush.nvim" } },
 	-- { "rose-pine/neovim", name = "rose-pine" },
+	-- "lunarvim/colorschemes",
 	-- "Yazeed1s/oh-lucy.nvim",
 	-- "igorepst/hemisu.nvim",
 	-- "metalelf0/jellybeans-nvim",
@@ -60,8 +61,15 @@ return {
 	},
 	{ "tpope/vim-dadbod", cmd = { "DB" } },
 	{
-		"norcalli/nvim-colorizer.lua",
+		"NvChad/nvim-colorizer.lua",
 		cmd = { "ColorizerAttachToBuffer" },
+		config = function()
+			require("colorizer").setup({
+				user_default_options = {
+					mode = "background", -- can be "background", "foreground" or "virtualtext"
+				},
+			})
+		end,
 	},
 	{
 		"folke/trouble.nvim",

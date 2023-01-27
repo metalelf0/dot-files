@@ -10,10 +10,8 @@ require("vscode").setup({
 		--[[ vscLineNumber = '#FFFFFF', ]]
 	},
 	group_overrides = {
-		["@symbol"] = { fg = c.vscDarkBlue },
+		["@label"] = { fg = c.vscDarkBlue },
 	},
 })
 
 vim.cmd("colorscheme vscode")
-
-vim.api.nvim_set_hl(0, "@symbol", { fg = c.vscMediumBlue })

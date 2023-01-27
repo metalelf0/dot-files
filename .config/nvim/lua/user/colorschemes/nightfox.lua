@@ -5,6 +5,15 @@ require("nightfox").setup({
 		styles = {
 			comments = "italic",
 		},
+		colorblind = {
+			enable = true,
+			simulate_only = false,
+			severity = {
+				protan = 0.2,
+				deutan = 0.2,
+				tritan = 0.2,
+			},
+		},
 	},
 })
 
@@ -16,7 +25,7 @@ vim.cmd([[
       autocmd ColorScheme terafox highlight link @boolean @variable.builtin
     augroup END
 
-    colorscheme dayfox
+    colorscheme terafox
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

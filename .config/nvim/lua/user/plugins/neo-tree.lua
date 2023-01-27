@@ -1,6 +1,6 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	cmd = "Neotree",
+	cmd = { "NeoTree", "Neotree", "NeoTreeFocus", "NeoTreeToggle" },
 	config = function()
 		vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 

@@ -21,9 +21,9 @@ require("mellifluous").setup({
 	transparent_background = {
 		enabled = false,
 		floating_windows = false,
-		telescope = true,
-		file_tree = true,
-		cursor_line = true,
+		telescope = false,
+		file_tree = false,
+		cursor_line = false,
 		status_line = false,
 	},
 	plugins = {

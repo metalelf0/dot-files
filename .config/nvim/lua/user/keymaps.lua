@@ -103,6 +103,9 @@ end
 keymap("n", "-", function()
 	require("oil").open()
 end, { desc = "Oil" })
+
+keymap("n", "<leader>.", "<cmd>NeoTreeFocus<cr>", { desc = "Focus file in tree" })
+
 keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
 keymap("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
 keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
@@ -157,6 +160,7 @@ keymap("n", "<leader>Hl", function()
 end, { desc = "Lazy" })
 keymap("n", "<leader>Hm", "<cmd>Mason<CR>", { desc = "Mason" })
 keymap("n", "<leader>Ht", telescope_colorscheme, { desc = "Colorschemes" })
+keymap("n", "<leader>Hi", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
 
 -- harpoon
 keymap("n", "<leader>ha", function()
