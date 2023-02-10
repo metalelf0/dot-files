@@ -118,6 +118,9 @@ end, { desc = "Find word under cursor" })
 keymap("n", "<leader>R", function()
 	require("telescope.builtin").resume()
 end, { desc = "Resume last search" })
+
+keymap("n", "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
+
 keymap("n", "<leader><leader>", function()
 	require("legendary").find()
 end, { desc = "Legendary" })

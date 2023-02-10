@@ -9,9 +9,9 @@ require("nightfox").setup({
 			enable = true,
 			simulate_only = false,
 			severity = {
-				protan = 0.2,
-				deutan = 0.2,
-				tritan = 0.2,
+				protan = 0.3,
+				deutan = 0.3,
+				tritan = 0.3,
 			},
 		},
 	},

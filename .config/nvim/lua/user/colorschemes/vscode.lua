@@ -15,3 +15,7 @@ require("vscode").setup({
 })
 
 vim.cmd("colorscheme vscode")
+
+vim.api.nvim_set_hl(0, "@symbol", { fg = c.vscBlue })
+-- vim.api.nvim_set_hl(0, "@label", { bold = true })
+vim.api.nvim_set_hl(0, "@type", { bold = true })

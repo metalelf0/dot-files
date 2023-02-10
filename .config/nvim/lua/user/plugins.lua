@@ -22,33 +22,34 @@ return {
 	{ "meliora-theme/neovim", dependencies = { "rktjmp/lush.nvim" }, name = "meliora" },
 	"EdenEast/nightfox.nvim",
 	{ "catppuccin/nvim", name = "catppuccin" },
+	{ "RRethy/nvim-base16" },
 	-- { "savq/melange-nvim" },
 
 	-- "Mofiqul/dracula.nvim",
-	-- "projekt0n/github-nvim-theme",
+	"projekt0n/github-nvim-theme",
 	-- "NTBBloodbath/doom-one.nvim",
 	-- "bluz71/vim-moonfly-colors",
 	-- "bluz71/vim-nightfly-guicolors",
-	-- "cocopon/iceberg.vim",
-	-- "folke/tokyonight.nvim",
+	"cocopon/iceberg.vim",
+	"folke/tokyonight.nvim",
 	-- "glepnir/zephyr-nvim",
 	-- "marko-cerovac/material.nvim",
-	-- "rebelot/kanagawa.nvim",
+	"rebelot/kanagawa.nvim",
 	-- "rmehri01/onenord.nvim",
 	-- "sainnhe/gruvbox-material",
-	-- "ellisonleao/gruvbox.nvim",
+	"ellisonleao/gruvbox.nvim",
 	-- "sam4llis/nvim-tundra",
 	-- { "mcchrish/zenbones.nvim", dependencies = { "rktjmp/lush.nvim" } },
 	-- { "rose-pine/neovim", name = "rose-pine" },
 	-- "lunarvim/colorschemes",
 	-- "Yazeed1s/oh-lucy.nvim",
 	-- "igorepst/hemisu.nvim",
-	-- "metalelf0/jellybeans-nvim",
+	"metalelf0/jellybeans-nvim",
 	-- "sainnhe/everforest",
 	-- "nyoom-engineering/oxocarbon.nvim",
 	-- "shaunsingh/moonlight.nvim",
 	-- "shatur/neovim-ayu",
-	-- "navarasu/onedark.nvim",
+	"navarasu/onedark.nvim",
 
 	-- end colorschemes
 
@@ -148,7 +149,11 @@ return {
 		"lukas-reineke/headlines.nvim",
 		ft = { "norg", "org", "markdown" },
 		config = function()
-			require("headlines").setup()
+			require("headlines").setup({
+				markdown = {
+					fat_headlines = false,
+				},
+			})
 		end,
 	},
 	{

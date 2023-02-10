@@ -6,36 +6,11 @@ end
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 
-local fb_actions = require("telescope").extensions.file_browser.actions
-
 local ts_select_dir_for_grep = function(prompt_bufnr)
 	local action_state = require("telescope.actions.state")
-	local fb = require("telescope").extensions.file_browser
 	local live_grep = require("telescope.builtin").live_grep
 	local current_line = action_state.get_current_line()
-
-	fb.file_browser({
-		files = false,
-		depth = false,
-		attach_mappings = function(prompt_bufnr)
-			require("telescope.actions").select_default:replace(function()
-				local entry_path = action_state.get_selected_entry().Path
-				local dir = entry_path:is_dir() and entry_path or entry_path:parent()
-				local relative = dir:make_relative(vim.fn.getcwd())
-				local absolute = dir:absolute()
-
-				live_grep({
-					results_title = relative .. "/",
-					cwd = absolute,
-					default_text = current_line,
-				})
-			end)
-
-			return true
-		end,
-	})
 end
--- telescope.load_extension('aerial')
 
 telescope.setup({
 	defaults = {
@@ -148,34 +123,7 @@ telescope.setup({
 			},
 		},
 	},
-	extensions = {
-		file_browser = {
-			-- initial_mode='normal',
-			-- files = false,
-			theme = "ivy",
-			mappings = {
-				["i"] = {
-					-- your custom insert mode mappings
-				},
-				["n"] = {
-					["n"] = fb_actions.create,
-					["r"] = fb_actions.rename,
-					["m"] = fb_actions.move,
-					["c"] = fb_actions.copy,
-					["d"] = fb_actions.remove,
-					["o"] = fb_actions.open,
-					["-"] = fb_actions.goto_parent_dir,
-					["~"] = fb_actions.goto_home_dir,
-					["w"] = fb_actions.goto_cwd,
-					["t"] = fb_actions.change_cwd,
-					["f"] = fb_actions.toggle_browser,
-					["."] = fb_actions.toggle_hidden,
-					["a"] = fb_actions.toggle_all,
-				},
-			},
-		},
-	},
+	extensions = {},
 })
 
-telescope.load_extension("file_browser")
 -- telescope.load_extension("neoclip")

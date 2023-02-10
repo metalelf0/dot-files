@@ -9,6 +9,11 @@ require("catppuccin").setup({
 		dark = "mocha",
 	},
 	color_overrides = {
+		-- mocha = {
+		-- 	crust = "#000000",
+		-- 	mantle = "#000000",
+		-- 	base = "#000000",
+		-- },
 		-- latte = {
 		-- 	base = "#E1EEF5",
 		-- },
@@ -18,6 +23,12 @@ require("catppuccin").setup({
 			return {
 				NvimTreeNormal = { bg = "#D1E5F0" },
 				NeoTreeNormal = { bg = "#D1E5F0" },
+			}
+		end,
+		mocha = function(C)
+			return {
+				VertSplit = { fg = C.surface2 },
+				CmpBorder = { fg = C.surface2 },
 			}
 		end,
 	},

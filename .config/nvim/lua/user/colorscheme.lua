@@ -1,2 +1,2 @@
-require("user.colorschemes.vscode")
+require("user.colorschemes.custom_gruvbox")
 vim.opt["syntax"] = "on"
