@@ -109,6 +109,11 @@ api.nvim_command("hi NotifyERRORBorder " .. set_fg(colors.bright_red))
 api.nvim_command("hi NotifyERRORIcon " .. set_fg(colors.bright_red))
 api.nvim_command("hi NotifyERRORTitle " .. set_fg(colors.bright_red))
 
+api.nvim_command("hi NeoTreeTitleBar " .. set_fg(colors.light1))
+api.nvim_command("hi NeoTreeMessage " .. set_fg(colors.light1))
+
+api.nvim_command("hi UfoFoldedBg " .. set_bg(colors.dark2))
+
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
 	vim.notify("colorscheme " .. colorscheme .. " not found!")

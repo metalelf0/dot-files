@@ -64,7 +64,7 @@ keymap("i", "kj", "<ESC>", opts)
 
 local clearStuff = function()
 	vim.cmd("noh")
-	--[[ require('notify').dismiss() ]]
+	require("notify").dismiss()
 end
 
 keymap("n", "<Esc><Esc>", clearStuff)
@@ -124,9 +124,6 @@ keymap("n", "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 keymap("n", "<leader><leader>", function()
 	require("legendary").find()
 end, { desc = "Legendary" })
-keymap("n", "<leader>N", function()
-	utils.search_files_in_dir("~/iCloud-Obsidian")
-end, { desc = "Notes" })
 
 -- Buffers --
 keymap("n", "<leader>bb", function()
@@ -232,6 +229,13 @@ keymap("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Obsidian - today" 
 keymap("n", "<leader>oy", "<cmd>ObsidianYesterday<cr>", { desc = "Obsidian - yesterday" })
 keymap("n", "<leader>os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian - search" })
 keymap("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "Obsidian - new" })
+keymap("n", "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Obsidian - quick switch" })
+keymap("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Obsidian - follow link" })
+keymap("v", "<leader>ol", "<cmd>ObsidianLink<cr>", { desc = "Obsidian - link" })
+keymap("v", "<leader>oL", "<cmd>ObsidianLinkNew<cr>", { desc = "Obsidian - new link" })
+keymap("n", "<leader>oh", function()
+	require("user.plugins.telescope.custom_pickers").pick_hashtags()
+end, { desc = "Obsidian - pick hashtag" })
 
 -- Projects --
 keymap("n", "<leader>Pp", function()

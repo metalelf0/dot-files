@@ -39,6 +39,7 @@ local options = {
 	winblend = 10, -- fake transparency for popup windows
 	wrap = true, -- wrap long lines, please
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+	laststatus = 3,
 }
 
 vim.opt.shortmess:append("c")
