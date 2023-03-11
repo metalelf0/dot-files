@@ -12,7 +12,6 @@ require("kanagawa").setup({
 	dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 	globalStatus = true,
 	colors = {},
-	overrides = {},
 	theme = "default", -- or "light" for the experimental light variant
 })
 
@@ -20,7 +19,7 @@ require("kanagawa").setup({
 vim.cmd([[
 try
   set background=dark
-  colorscheme kanagawa
+  colorscheme kanagawa-dragon
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark

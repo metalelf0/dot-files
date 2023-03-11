@@ -1,6 +1,6 @@
 return {
 	"jose-elias-alvarez/typescript.nvim",
-	"kyazdani42/nvim-web-devicons",
+	"nvim-tree/nvim-web-devicons",
 	"nvim-lua/popup.nvim",
 	"junegunn/fzf",
 	"tpope/vim-rails",
@@ -39,8 +39,8 @@ return {
 	-- "sainnhe/gruvbox-material",
 	"ellisonleao/gruvbox.nvim",
 	-- "sam4llis/nvim-tundra",
-	-- { "mcchrish/zenbones.nvim", dependencies = { "rktjmp/lush.nvim" } },
-	-- { "rose-pine/neovim", name = "rose-pine" },
+	{ "mcchrish/zenbones.nvim", dependencies = { "rktjmp/lush.nvim" } },
+	{ "rose-pine/neovim", name = "rose-pine" },
 	-- "lunarvim/colorschemes",
 	-- "Yazeed1s/oh-lucy.nvim",
 	-- "igorepst/hemisu.nvim",
@@ -49,8 +49,8 @@ return {
 	-- "nyoom-engineering/oxocarbon.nvim",
 	-- "shaunsingh/moonlight.nvim",
 	-- "shatur/neovim-ayu",
-	"navarasu/onedark.nvim",
-
+	-- "navarasu/onedark.nvim",
+	"askfiy/visual_studio_code",
 	-- end colorschemes
 
 	-- better diffing
@@ -96,12 +96,6 @@ return {
 		end,
 	},
 	{
-		"stevearc/oil.nvim",
-		config = function()
-			require("oil").setup()
-		end,
-	},
-	{
 		"SmiteshP/nvim-navic",
 		config = function()
 			vim.g.navic_silence = true
@@ -113,7 +107,7 @@ return {
 		branch = "v2.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 			{
 				-- only needed if you want to use the commands with "_with_window_picker" suffix
@@ -151,7 +145,7 @@ return {
 		config = function()
 			require("headlines").setup({
 				markdown = {
-					fat_headlines = false,
+					fat_headlines = true,
 				},
 			})
 		end,
@@ -206,6 +200,13 @@ return {
 				changedelete = { text = "▎" },
 				untracked = { text = "▎" },
 			},
+			current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+			current_line_blame_opts = {
+				virt_text = true,
+				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+				delay = 100,
+				ignore_whitespace = false,
+			},
 			on_attach = function(buffer)
 				local gs = package.loaded.gitsigns
 
@@ -229,6 +230,8 @@ return {
 			end,
 		},
 	},
+
+	{ dir = "~/Documents/codice_elf0/nvim-colorscheme-convert" },
 }
 
 --[[ require("user.plugin-confs.legend").setup() ]]

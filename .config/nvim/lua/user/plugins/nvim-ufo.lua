@@ -10,6 +10,14 @@ function M.config()
 	vim.o.foldenable = true
 
 	require("ufo").setup()
+
+	vim.keymap.set("n", "K", function()
+		local winid = require("ufo").peekFoldedLinesUnderCursor()
+		if not winid then
+			-- choose one of coc.nvim and nvim lsp
+			vim.lsp.buf.hover()
+		end
+	end)
 end
 
 return M

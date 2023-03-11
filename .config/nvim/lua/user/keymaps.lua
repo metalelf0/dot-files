@@ -106,7 +106,8 @@ end, { desc = "Oil" })
 
 keymap("n", "<leader>.", "<cmd>NeoTreeFocus<cr>", { desc = "Focus file in tree" })
 
-keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
+-- keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
+keymap("n", "<leader>a", "<cmd>Dashboard<cr>", { desc = "Dashboard" })
 keymap("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
 keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
 
@@ -158,9 +159,14 @@ keymap("n", "<leader>Gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 keymap("n", "<leader>Hl", function()
 	require("lazy").show()
 end, { desc = "Lazy" })
+keymap("n", "<leader>Hi", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
 keymap("n", "<leader>Hm", "<cmd>Mason<CR>", { desc = "Mason" })
 keymap("n", "<leader>Ht", telescope_colorscheme, { desc = "Colorschemes" })
-keymap("n", "<leader>Hi", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
+keymap("n", "<leader>Hw", function()
+	require("user.colorscheme_utils").export_colors_to_wezterm()
+end, { desc = "Export colors to Wezterm" })
+keymap("n", "<leader>Hb", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
+keymap("n", "<leader>Hd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
 
 -- harpoon
 keymap("n", "<leader>ha", function()
@@ -282,3 +288,8 @@ end, { desc = "Python" })
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
 keymap("n", "<leader>th", "<cmd>ToggleTerm size=15 direction=horizontal<cr>", { desc = "Horizontal" })
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
+
+local status_ok, fun = pcall(require, "user.fun")
+if status_ok then
+	fun.set_keymaps()
+end

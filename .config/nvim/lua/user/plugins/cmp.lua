@@ -28,6 +28,11 @@ function M.config()
 				require("luasnip").lsp_expand(args.body)
 			end,
 		},
+		filetype = {
+			eruby = {
+				enabled = false,
+			},
+		},
 		mapping = cmp.mapping.preset.insert({
 			["<C-k>"] = cmp.mapping.select_prev_item(),
 			["<C-j>"] = cmp.mapping.select_next_item(),

@@ -8,18 +8,29 @@ M.pick_hashtags = function(opts)
 	local action_state = require("telescope.actions.state")
 
 	opts = opts or {}
-	local input = {
-		"rg",
-		"--no-heading",
-		"--trim",
-		"-NIo",
-		"\\s+#([\\w-]+)",
-	}
+
+	local temp = vim.split(
+		vim.fn.system({
+			"rg",
+			"--no-heading",
+			"--trim",
+			"-NIo",
+			"\\s+#([\\w-]+)",
+		}),
+		"\n",
+		{ plain = true }
+	)
+	-- remove last item from the list
+	table.remove(temp, #temp)
+	local results = {}
+	for _, item in ipairs(temp) do
+		results[item] = true
+	end
 
 	pickers
 		.new(opts, {
 			prompt_title = "Hashtags",
-			finder = finders.new_oneshot_job(input, {}),
+			finder = finders.new_table(vim.tbl_keys(results)),
 			sorter = conf.generic_sorter(opts),
 			attach_mappings = function(prompt_bufnr, map)
 				actions.select_default:replace(function()
