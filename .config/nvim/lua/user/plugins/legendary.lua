@@ -1,5 +1,6 @@
 local M = {
 	"mrjones2014/legendary.nvim",
+	lazy = true,
 }
 
 function M.config()

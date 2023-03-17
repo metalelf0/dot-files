@@ -149,11 +149,11 @@ keymap("n", "<leader>b9", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Buffer 9"
 -- Git --
 keymap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Checkout branch" })
 keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Checkout commit" })
-keymap("n", "<leader>gg", function()
+keymap("n", "<leader>gG", function()
 	_LAZYGIT_TOGGLE()
 end, { desc = "Lazygit" })
 keymap("n", "<leader>go", "<cmd>Telescope git_status<cr>", { desc = "Open changed file" })
-keymap("n", "<leader>Gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
+keymap("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- Helpers --
 keymap("n", "<leader>Hl", function()
@@ -199,6 +199,9 @@ keymap("n", "<leader>ie", insert_emoji, { desc = "Emoji" })
 keymap("n", "<leader>ig", insert_gitmoji, { desc = "Gitmoji" })
 
 -- Test --
+keymap("n", "<leader>jj", function()
+	require("treesj").toggle()
+end, { desc = "Join (toggle)" })
 keymap("n", "<leader>jl", "<cmd>TestLast<CR>", { desc = "Last" })
 keymap("n", "<leader>jn", "<cmd>TestNearest<CR>", { desc = "Nearest" })
 keymap("n", "<leader>jf", "<cmd>TestFile<CR>", { desc = "File" })

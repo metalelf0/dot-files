@@ -87,7 +87,7 @@ M.config = function()
 		h = { name = "Harpoon" },
 		H = { name = "Helpers" },
 		i = { name = "Insert" },
-		j = { name = "Test" },
+		j = { name = "Test / join" },
 		l = { name = "LSP" },
 		o = {
 			name = "org",

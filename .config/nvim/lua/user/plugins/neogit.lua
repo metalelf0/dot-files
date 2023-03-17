@@ -10,5 +10,6 @@ return {
 			hunk = { "", "" },
 		},
 		integrations = { diffview = true },
+		disable_commit_confirmation = true,
 	},
 }

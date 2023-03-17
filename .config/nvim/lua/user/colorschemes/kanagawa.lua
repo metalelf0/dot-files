@@ -19,7 +19,7 @@ require("kanagawa").setup({
 vim.cmd([[
 try
   set background=dark
-  colorscheme kanagawa-dragon
+  colorscheme kanagawa-wave
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark

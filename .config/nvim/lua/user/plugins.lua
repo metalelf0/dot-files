@@ -22,11 +22,11 @@ return {
 	{ "meliora-theme/neovim", dependencies = { "rktjmp/lush.nvim" }, name = "meliora" },
 	"EdenEast/nightfox.nvim",
 	{ "catppuccin/nvim", name = "catppuccin" },
-	{ "RRethy/nvim-base16" },
+	-- { "RRethy/nvim-base16" },
 	-- { "savq/melange-nvim" },
 
 	-- "Mofiqul/dracula.nvim",
-	"projekt0n/github-nvim-theme",
+	{ "projekt0n/github-nvim-theme", tag = "v0.0.7" },
 	-- "NTBBloodbath/doom-one.nvim",
 	-- "bluz71/vim-moonfly-colors",
 	-- "bluz71/vim-nightfly-guicolors",
@@ -190,6 +190,7 @@ return {
 	-- git signs
 	{
 		"lewis6991/gitsigns.nvim",
+		enabled = vim.fn.executable("git") == 1,
 		-- event = "BufReadPre",
 		opts = {
 			signs = {

@@ -62,6 +62,18 @@ return {
 				winblend = borderless and 0 or 10,
 				dynamic_preview_title = true,
 			},
+			pickers = {
+				buffers = {
+					show_all_buffers = true,
+					sort_mru = true,
+					theme = "dropdown",
+					mappings = {
+						i = {
+							["<c-d>"] = "delete_buffer",
+						},
+					},
+				},
+			},
 		})
 		telescope.load_extension("fzf")
 	end,

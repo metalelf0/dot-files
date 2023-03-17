@@ -9,5 +9,3 @@ require("user.autocommands")
 require("user.digraphs")
 require("user.fvim")
 require("user.fun")
-
-require("ui").load_ui_plugins()
