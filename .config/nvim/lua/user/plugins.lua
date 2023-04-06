@@ -49,7 +49,7 @@ return {
 	-- "nyoom-engineering/oxocarbon.nvim",
 	-- "shaunsingh/moonlight.nvim",
 	-- "shatur/neovim-ayu",
-	-- "navarasu/onedark.nvim",
+	"navarasu/onedark.nvim",
 	"askfiy/visual_studio_code",
 	-- end colorschemes
 
@@ -194,12 +194,12 @@ return {
 		-- event = "BufReadPre",
 		opts = {
 			signs = {
-				add = { text = "▎" },
-				change = { text = "▎" },
+				add = { text = "▌" },
+				change = { text = "▌" },
 				delete = { text = "契" },
 				topdelete = { text = "契" },
-				changedelete = { text = "▎" },
-				untracked = { text = "▎" },
+				changedelete = { text = "▌" },
+				untracked = { text = "▌" },
 			},
 			current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
 			current_line_blame_opts = {

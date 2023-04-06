@@ -2,7 +2,12 @@ require("gruvbox").setup({
 	undercurl = true,
 	underline = true,
 	bold = true,
-	italic = true,
+	italic = {
+		strings = false,
+		comments = true,
+		operators = false,
+		folds = true,
+	},
 	strikethrough = true,
 	invert_selection = false,
 	invert_signs = false,
@@ -113,6 +118,8 @@ api.nvim_command("hi NeoTreeTitleBar " .. set_fg(colors.light1))
 api.nvim_command("hi NeoTreeMessage " .. set_fg(colors.light1))
 
 api.nvim_command("hi UfoFoldedBg " .. set_bg(colors.dark2))
+
+api.nvim_command("hi GitSignsCurrentLineBlame " .. set_fg(colors.dark4))
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then

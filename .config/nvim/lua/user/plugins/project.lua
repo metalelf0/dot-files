@@ -1,5 +1,5 @@
 local M = {
-	"jakemason/project.nvim",
+	"ahmedkhalf/project.nvim",
 	event = "VeryLazy",
 }
 

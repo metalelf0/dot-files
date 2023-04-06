@@ -37,8 +37,9 @@ M.config = function()
 		},
 		icons = {
 			breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-			separator = "➜", -- symbol used between a key and it's label
-			group = "+", -- symbol prepended to a group
+			separator = "➜", -- symbol used between a key and its label
+			-- group = "+", -- symbol prepended to a group
+			group = "", -- symbol prepended to a group
 		},
 		popup_mappings = {
 			scroll_down = "<c-d>", -- binding to scroll down inside the popup
@@ -81,31 +82,18 @@ M.config = function()
 	}
 
 	local mappings = {
-		["b"] = { name = "Buffers", ["c"] = { name = "Close" } },
-		P = { name = "Packer / Projects" },
-		g = { name = "Git" },
-		h = { name = "Harpoon" },
-		H = { name = "Helpers" },
-		i = { name = "Insert" },
-		j = { name = "Test / join" },
-		l = { name = "LSP" },
-		o = {
-			name = "org",
-			a = { "Org: agenda" },
-			c = { "Org: capture" },
-			-- n = {
-			-- 	name = "neorg",
-			-- 	c = { "<cmd>Neorg gtd capture<cr>", "(GTD) capture" },
-			-- 	e = { "<cmd>Neorg gtd edit<cr>", "(GTD) edit" },
-			-- 	l = { "<cmd>Telescope neorg insert_file_link<cr>", "Insert file link" },
-			-- 	s = { "<cmd>NeorgStart<cr>", "Start neorg" },
-			-- 	v = { "<cmd>Neorg gtd views<cr>", "(GTD) views" },
-			-- 	w = { "<cmd>Telescope neorg switch_workspace<cr>", "Switch workspace" },
-			-- },
-		},
-		r = { name = "Refactorings" },
-		s = { name = "Search" },
-		t = { name = "Terminal" },
+		b = { name = "󰓩 Buffers", ["c"] = { name = " Close" } },
+		P = { name = " Packer / Projects" },
+		g = { name = " Git" },
+		h = { name = "󰋖 Helpers" },
+		i = { name = " Insert" },
+		j = { name = "󰙨 Test / join" },
+		l = { name = " LSP" },
+		o = { name = " Obsidian" },
+		r = { name = "󰬢 Refactorings" },
+		s = { name = "󰍉 Search" },
+		t = { name = " Terminal" },
+		u = { name = " UI" },
 	}
 
 	if vim.g.neovide then

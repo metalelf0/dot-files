@@ -11,15 +11,23 @@ require("kanagawa").setup({
 	transparent = false, -- do not set background color
 	dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 	globalStatus = true,
-	colors = {},
-	theme = "default", -- or "light" for the experimental light variant
+	colors = {
+		theme = {
+			all = {
+				ui = {
+					bg_gutter = "none",
+				},
+			},
+		},
+	},
+	theme = "light", -- or "light" for the experimental light variant
 })
 
 -- setup must be called before loading
 vim.cmd([[
 try
   set background=dark
-  colorscheme kanagawa-wave
+  colorscheme kanagawa-dragon
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
   set background=dark

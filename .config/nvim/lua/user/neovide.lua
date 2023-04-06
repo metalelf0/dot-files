@@ -1,7 +1,6 @@
 vim.g.gui_font_default_size = 14
 vim.g.gui_font_size = vim.g.gui_font_default_size
--- vim.g.gui_font_face = "JetBrainsMono Nerd Font"
-vim.g.gui_font_face = "Rec Mono Linear"
+vim.g.gui_font_face = "JetBrainsMono Nerd Font"
 vim.g.linespace = 5
 
 RefreshGuiFont = function()

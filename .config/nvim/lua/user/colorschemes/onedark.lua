@@ -1,6 +1,6 @@
 local onedark = require("onedark")
 onedark.setup({
-	style = "deep",
+	style = "light",
 	highlights = {
 		rainbowcol1 = { fg = "Black" },
 		rainbowcol2 = { fg = "DarkGreen" },

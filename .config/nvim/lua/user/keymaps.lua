@@ -1,5 +1,7 @@
 local opts = { noremap = true, silent = true }
 local utils = require("user.utils")
+local buffer_utils = require("user.buffer_utils")
+buffer_utils.setup()
 
 -- Shorten function name
 local keymap = vim.keymap.set
@@ -36,6 +38,10 @@ keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+
+-- Split utils
+keymap("n", "|", "<cmd>vsplit<cr>", { desc = "Vertical split" })
+keymap("n", "\\", "<cmd>split<cr>", { desc = "Horizontal split" })
 
 -- Insert --
 -- Press jk fast to enter
@@ -106,21 +112,9 @@ end, { desc = "Oil" })
 
 keymap("n", "<leader>.", "<cmd>NeoTreeFocus<cr>", { desc = "Focus file in tree" })
 
--- keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Alpha dashboard" })
-keymap("n", "<leader>a", "<cmd>Dashboard<cr>", { desc = "Dashboard" })
-keymap("n", "<leader>c", "<cmd>Bdelete!<cr>", { desc = "Close buffer" })
-keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+keymap("n", "<leader>a", "<cmd>Dashboard<cr>", { desc = "󰕮 Dashboard" })
 
-keymap("n", "<leader>f", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find text" })
 keymap("n", "<leader>p", find_files, { desc = "Find files" })
-keymap("n", "<leader>k", function()
-	require("telescope.builtin").grep_string()
-end, { desc = "Find word under cursor" })
-keymap("n", "<leader>R", function()
-	require("telescope.builtin").resume()
-end, { desc = "Resume last search" })
-
-keymap("n", "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 
 keymap("n", "<leader><leader>", function()
 	require("legendary").find()
@@ -133,6 +127,11 @@ end, { desc = "Buffers" })
 keymap("n", "<leader>bl", function()
 	require("telescope.builtin").buffers({ cwd_only = true })
 end, { desc = "Buffers (cwd)" })
+
+vim.keymap.set("n", "<Leader>bu", function()
+	require("user.buffer_utils").clear_unused()
+end, { silent = true, desc = "Close unused buffers" })
+
 keymap("n", "<leader>bcl", "<cmd>BufferLineCloseLeft<CR>", { desc = "Close left" })
 keymap("n", "<leader>bcr", "<cmd>BufferLineCloseRight<CR>", { desc = "Close right" })
 keymap("n", "<leader>bca", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all" })
@@ -156,43 +155,24 @@ keymap("n", "<leader>go", "<cmd>Telescope git_status<cr>", { desc = "Open change
 keymap("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- Helpers --
-keymap("n", "<leader>Hl", function()
+keymap("n", "<leader>hl", function()
 	require("lazy").show()
 end, { desc = "Lazy" })
-keymap("n", "<leader>Hi", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
-keymap("n", "<leader>Hm", "<cmd>Mason<CR>", { desc = "Mason" })
-keymap("n", "<leader>Ht", telescope_colorscheme, { desc = "Colorschemes" })
-keymap("n", "<leader>Hw", function()
+keymap("n", "<leader>hm", "<cmd>Mason<CR>", { desc = "Mason" })
+
+-- Ui --
+keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
+keymap("n", "<leader>ue", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+keymap("n", "<leader>ud", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
+keymap("n", "<leader>ui", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
+keymap("n", "<leader>uk", function()
+	require("user.colorscheme_utils").export_colors_to_kitty()
+end, { desc = "Export colors to Kitty" })
+keymap("n", "<leader>ut", telescope_colorscheme, { desc = "Colorschemes" })
+keymap("n", "<leader>uw", function()
 	require("user.colorscheme_utils").export_colors_to_wezterm()
 end, { desc = "Export colors to Wezterm" })
-keymap("n", "<leader>Hb", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
-keymap("n", "<leader>Hd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
-
--- harpoon
-keymap("n", "<leader>ha", function()
-	require("harpoon.mark").add_file()
-end, { desc = "Add file" })
-keymap("n", "<leader>hh", function()
-	require("harpoon.ui").toggle_quick_menu()
-end, { desc = "Menu" })
-keymap("n", "<leader>hn", function()
-	require("harpoon.ui").nav_next()
-end, { desc = "Nav next" })
-keymap("n", "<leader>hp", function()
-	require("harpoon.ui").nav_prev()
-end, { desc = "Nav prev" })
-keymap("n", "<Leader>h1", function()
-	require("harpoon.ui").nav_file(1)
-end, { desc = "Goto file 1" })
-keymap("n", "<Leader>h2", function()
-	require("harpoon.ui").nav_file(2)
-end, { desc = "Goto file 2" })
-keymap("n", "<Leader>h3", function()
-	require("harpoon.ui").nav_file(3)
-end, { desc = "Goto file 3" })
-keymap("n", "<Leader>h4", function()
-	require("harpoon.ui").nav_file(4)
-end, { desc = "Goto file 4" })
+keymap("n", "<leader>uz", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 
 -- Insert --
 keymap("n", "<leader>ie", insert_emoji, { desc = "Emoji" })
@@ -257,6 +237,9 @@ keymap("n", "<leader>ra", function()
 end, { desc = "Action" })
 
 -- Search --
+keymap("n", "<leader>s<CR>", function()
+	require("telescope.builtin").resume()
+end, { desc = "Resume previous search" })
 keymap("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
 keymap("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
 keymap("n", "<leader>sR", "<cmd>Telescope registers<cr>", { desc = "Registers" })
@@ -273,6 +256,10 @@ keymap("n", "<leader>sr", "<cmd>Telescope oldfiles<cr>", { desc = "Open recent F
 keymap("n", "<leader>ss", function()
 	require("spectre").open()
 end, { desc = "Spectre" })
+keymap("n", "<leader>st", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Search text" })
+keymap("n", "<leader>sw", function()
+	require("telescope.builtin").grep_string()
+end, { desc = "Search word under cursor" })
 
 -- Terminal --
 keymap("n", "<leader>tn", function()
