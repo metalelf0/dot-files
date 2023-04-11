@@ -2,7 +2,7 @@ vim.o.termguicolors = true
 
 require("mellifluous").setup({
 	neutral = false, -- set this to `true` for neutral background and greys.
-	color_set = "mellifluous", -- available options are mellifluous, alduin and mountain
+	color_set = "mellifluous", -- available options are mellifluous, alduin, mountain and tender
 	styles = {
 		comments = "italic",
 		conditionals = "NONE",
@@ -41,9 +41,19 @@ require("mellifluous").setup({
 	},
 })
 
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
+
 vim.cmd([[
 try
   set bg=dark
+
+  augroup CustomHighlight
+    autocmd!
+    autocmd ColorScheme mellifluous highlight clear CursorLineNr
+    autocmd ColorScheme mellifluous highlight link CursorLineNr String
+  augroup END
+
   colorscheme mellifluous
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
