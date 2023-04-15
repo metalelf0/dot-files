@@ -52,6 +52,8 @@ try
     autocmd!
     autocmd ColorScheme mellifluous highlight clear CursorLineNr
     autocmd ColorScheme mellifluous highlight link CursorLineNr String
+    autocmd ColorScheme mellifluous highlight clear Headline
+    autocmd ColorScheme mellifluous highlight link Headline TermCursorNC
   augroup END
 
   colorscheme mellifluous

@@ -136,7 +136,7 @@ function M.config()
 		},
 		textobjects = {
 			select = {
-				enable = false,
+				enable = true,
 				lookahead = true,
 				keymaps = {
 					-- You can use the capture groups defined in textobjects.scm
@@ -145,9 +145,10 @@ function M.config()
 					["ac"] = "@class.outer",
 					["ic"] = "@class.inner",
 				},
+				include_surrounding_whitespace = true,
 			},
 			move = {
-				enable = false,
+				enable = true,
 				set_jumps = true, -- whether to set jumps in the jumplist
 				goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
 				goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },

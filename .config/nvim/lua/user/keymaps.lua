@@ -112,7 +112,9 @@ end, { desc = "Oil" })
 
 keymap("n", "<leader>.", "<cmd>NeoTreeFocus<cr>", { desc = "Focus file in tree" })
 
-keymap("n", "<leader>a", "<cmd>Dashboard<cr>", { desc = "󰕮 Dashboard" })
+keymap("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "Search text" })
+-- keymap("n", "<leader>a", "<cmd>Dashboard<cr>", { desc = "󰕮 Dashboard" })
+keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "󰕮 Dashboard" })
 
 keymap("n", "<leader>p", find_files, { desc = "Find files" })
 

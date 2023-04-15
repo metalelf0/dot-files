@@ -1,6 +1,6 @@
 local M = {
 	"goolord/alpha-nvim",
-	enabled = false,
+	enabled = true,
 }
 
 M.footer = function()

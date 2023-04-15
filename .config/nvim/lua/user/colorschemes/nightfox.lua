@@ -1,4 +1,6 @@
 vim.o.termguicolors = true
+vim.o.cursorline = true
+vim.o.cursorlineopt = "number"
 
 require("nightfox").setup({
 	options = {
@@ -7,7 +9,7 @@ require("nightfox").setup({
 		},
 		-- transparent = true,
 		colorblind = {
-			enable = false,
+			enable = true,
 			simulate_only = false,
 			severity = {
 				protan = 0.3,
@@ -22,8 +24,12 @@ vim.cmd([[
   try
     augroup CustomHighlight
       autocmd!
-      autocmd ColorScheme terafox highlight link @symbol String
-      autocmd ColorScheme terafox highlight link @boolean @variable.builtin
+      autocmd ColorScheme dawnfox highlight link @symbol String
+      autocmd ColorScheme dawnfox highlight link @boolean @variable.builtin
+      autocmd ColorScheme dawnfox highlight clear CursorLineNr
+      autocmd ColorScheme dawnfox highlight link CursorLineNr String
+      autocmd ColorScheme dawnfox highlight clear VertSplit
+      autocmd ColorScheme dawnfox highlight link VertSplit String
     augroup END
 
     colorscheme dawnfox
