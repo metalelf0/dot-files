@@ -46,8 +46,16 @@ vim.api.nvim_create_autocmd("VimResized", { command = "tabdo wincmd = ", group =
 local ruby_group = vim.api.nvim_create_augroup("ruby", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", { command = [[ :%s/\s\+$//e ]], group = ruby_group, pattern = "*.rb" })
 
--- Autoformat
--- augroup _lsp
---   autocmd!
---   autocmd BufWritePre * lua vim.lsp.buf.formatting()
--- augroup end
+vim.api.nvim_create_autocmd("RecordingEnter", {
+	callback = function()
+		local recording_register = vim.fn.reg_recording()
+		require("notify")("Recording @" .. recording_register, vim.log.levels.INFO, { title = "Macro" })
+	end,
+})
+
+vim.api.nvim_create_autocmd("RecordingLeave", {
+	callback = function()
+		local recording_register = vim.fn.reg_recording()
+		require("notify")("Recording @" .. recording_register .. " done!", vim.log.levels.INFO, { title = "Macro" })
+	end,
+})
