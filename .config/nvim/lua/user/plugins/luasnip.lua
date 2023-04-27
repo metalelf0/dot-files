@@ -20,6 +20,8 @@ function M.config()
 		-- updateevents = "TextChanged,TextChangedI",
 	})
 
+	luasnip.filetype_extend("ruby", { "rails" })
+
 	vim.cmd([[
     " press <Tab> to expand or jump in a snippet. These can also be mapped separately
     " via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.

@@ -2,7 +2,7 @@ return {
 	"nvim-neorg/neorg",
 	ft = "norg",
 	dependencies = { "akinsho/org-bullets.nvim" },
-	config = {
+	opts = {
 		load = {
 			["core.defaults"] = {},
 			["core.norg.concealer"] = {},

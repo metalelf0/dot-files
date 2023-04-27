@@ -24,15 +24,15 @@ vim.cmd([[
   try
     augroup CustomHighlight
       autocmd!
-      autocmd ColorScheme dawnfox highlight link @symbol String
-      autocmd ColorScheme dawnfox highlight link @boolean @variable.builtin
-      autocmd ColorScheme dawnfox highlight clear CursorLineNr
-      autocmd ColorScheme dawnfox highlight link CursorLineNr String
-      autocmd ColorScheme dawnfox highlight clear VertSplit
-      autocmd ColorScheme dawnfox highlight link VertSplit String
+      autocmd ColorScheme terafox highlight link @symbol String
+      autocmd ColorScheme terafox highlight link @boolean @variable.builtin
+      autocmd ColorScheme terafox highlight clear CursorLineNr
+      autocmd ColorScheme terafox highlight link CursorLineNr String
+      autocmd ColorScheme terafox highlight clear VertSplit
+      autocmd ColorScheme terafox highlight link VertSplit String
     augroup END
 
-    colorscheme dawnfox
+    colorscheme terafox
   catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme default
     set background=dark

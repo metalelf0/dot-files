@@ -3,7 +3,7 @@ return {
 	"nvim-tree/nvim-web-devicons",
 	"nvim-lua/popup.nvim",
 	"junegunn/fzf",
-	"tpope/vim-rails",
+	"metalelf0/vim-rails",
 	"junegunn/vim-easy-align",
 	"mg979/vim-visual-multi",
 	"tommcdo/vim-exchange",
@@ -33,7 +33,7 @@ return {
 	"cocopon/iceberg.vim",
 	"folke/tokyonight.nvim",
 	-- "glepnir/zephyr-nvim",
-	-- "marko-cerovac/material.nvim",
+	"marko-cerovac/material.nvim",
 	"rebelot/kanagawa.nvim",
 	-- "rmehri01/onenord.nvim",
 	-- "sainnhe/gruvbox-material",
@@ -75,7 +75,7 @@ return {
 	{
 		"folke/trouble.nvim",
 		cmd = { "TroubleToggle", "Trouble" },
-		config = {
+		opts = {
 			auto_open = false,
 			use_diagnostic_signs = true,
 		},

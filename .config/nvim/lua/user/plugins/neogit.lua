@@ -1,7 +1,7 @@
 return {
 	"TimUntersberger/neogit",
 	cmd = "Neogit",
-	config = {
+	opts = {
 		kind = "split",
 		signs = {
 			-- { CLOSED, OPENED }
