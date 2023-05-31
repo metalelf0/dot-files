@@ -9,6 +9,7 @@ function M.config()
 	local commands = {
 		{ ":EditNeovimConfig", ":e " .. core.get_configdir() .. "/init.lua", description = "Edit neovim config" },
 		{ ":EditKittyConfig", ":e ~/.config/kitty/kitty.conf", description = "Edit kitty config" },
+		{ ":EditBatConfig", ":e ~/.config/bat/config", description = "Edit bat config" },
 		{ ":EditInbox", ":e ~/iCloud-Obsidian/work/inbox.md", description = "Inbox" },
 		{
 			":EditLazygitConfig",

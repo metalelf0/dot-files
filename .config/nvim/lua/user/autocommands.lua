@@ -12,10 +12,12 @@ vim.cmd([[
 ]])
 
 local general_group = vim.api.nvim_create_augroup("general", { clear = true })
+
 vim.api.nvim_create_autocmd(
 	"FileType",
 	{ command = "nnoremap <silent> <buffer> q :close<CR> ", group = general_group, pattern = "qf,jelp,man,lspinfo" }
 )
+
 vim.api.nvim_create_autocmd("BufWinEnter", { command = ":set formatoptions-=cro", group = general_group })
 vim.api.nvim_create_autocmd("FileType", { command = "set nobuflisted", group = general_group, pattern = "qf" })
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -59,3 +61,7 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
 		require("notify")("Recording @" .. recording_register .. " done!", vim.log.levels.INFO, { title = "Macro" })
 	end,
 })
+
+local fold_group = vim.api.nvim_create_augroup("folds", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", { command = "mkview", group = fold_group, pattern = "*.*" })
+vim.api.nvim_create_autocmd("BufWritePost", { command = "silent! loadview", group = fold_group, pattern = "*.*" })

@@ -1,9 +1,3 @@
-local M = {}
-
-M.config = {
-  plugins = {
-    tree = "neo-tree"
-  }
+return {
+	colorscheme = "everforest",
 }
-
-return M

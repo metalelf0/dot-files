@@ -15,7 +15,7 @@ end
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = ","
 
 -- Modes
 --   normal_mode = "n",
@@ -214,6 +214,11 @@ end, { desc = "Show references" })
 keymap("n", "<leader>ls", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { desc = "Workspace symbols" })
 keymap("n", "<leader>lw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace diagnostics" })
 keymap("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble toggle" })
+
+-- Neorg
+keymap("n", "<leader>njt", "<cmd>Neorg journal today<cr>", { desc = "Neorg journal today" })
+keymap("n", "<leader>ni", "<cmd>Neorg index<cr>", { desc = "Neorg index" })
+keymap("n", "<leader>nr", "<cmd>Neorg return<cr>", { desc = "Neorg return" })
 
 -- Org, obsidian and friends --
 keymap("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Obsidian - today" })
