@@ -34,6 +34,16 @@ M.merge_tables = function(first_table, second_table)
 	end
 end
 
+M.contains = function(tab, val)
+	for index, value in ipairs(tab) do
+		if value == val then
+			return true
+		end
+	end
+
+	return false
+end
+
 function M.warn(msg, name)
 	vim.notify(msg, vim.log.levels.WARN, { title = name or "init.lua" })
 end

@@ -2,6 +2,7 @@
 -- #1E1E2E,#272C33,#1E1E2E,#CDD6F4,#585B70,#CDD6F4,#A6E3A1,#89B4FA,#1E1E2E,#CDD6F4
 
 local config = require("user.config")
+local utils = require("user.utils")
 
 local M = {
 	"catppuccin/nvim",
@@ -11,12 +12,23 @@ local M = {
 	enabled = (config.colorscheme == "catppuccin"),
 }
 
+M.supported_variants = { "mocha", "latte", "frappe", "macchiato" }
+M.default_variant = "mocha"
+
+M.variant = function()
+	if not utils.contains(M.supported_variants, config.variant) then
+		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
+	end
+
+	return (config.variant or M.default_variant)
+end
+
 M.config = function()
 	vim.o.cursorline = true
 	vim.o.cursorlineopt = "number"
 
 	require("catppuccin").setup({
-		flavour = "mocha", -- latte, frappe, macchiato, mocha
+		flavour = M.variant(), -- latte, frappe, macchiato, mocha
 		transparent_background = false,
 		show_end_of_buffer = false,
 		term_colors = true,

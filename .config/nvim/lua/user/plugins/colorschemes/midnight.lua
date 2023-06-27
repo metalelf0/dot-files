@@ -1,14 +1,14 @@
 local config = require("user.config")
 
 local M = {
-	"ishan9299/modus-theme-vim",
+	"dasupradyumna/midnight.nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "modus"),
+	enabled = (config.colorscheme == "midnight"),
 }
 
 M.config = function()
-	vim.cmd("colorscheme modus-vivendi")
+	vim.cmd("colorscheme midnight")
 end
 
 return M

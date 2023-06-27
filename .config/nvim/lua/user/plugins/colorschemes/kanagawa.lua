@@ -7,6 +7,14 @@ local M = {
 	enabled = (config.colorscheme == "kanagawa"),
 }
 
+M.variant = function()
+	return (config.variant or "wave")
+end
+
+M.colorscheme = function()
+	return "kanagawa-" .. M.variant()
+end
+
 M.config = function()
 	require("kanagawa").setup({
 		undercurl = true, -- enable undercurls
@@ -21,7 +29,7 @@ M.config = function()
 		transparent = false, -- do not set background color
 		dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 		globalStatus = true,
-		theme = "dragon", -- or "light" for the experimental light variant
+		theme = M.variant(), -- or "light" for the experimental light variant
 		colors = {
 			theme = {
 				all = {
@@ -66,15 +74,7 @@ M.config = function()
 		end,
 	})
 	-- setup must be called before loading
-	vim.cmd([[
-try
-  set background=dark
-  colorscheme kanagawa-dragon
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-  set background=dark
-endtry
-]])
+	vim.cmd("colorscheme " .. M.colorscheme())
 end
 
 return M

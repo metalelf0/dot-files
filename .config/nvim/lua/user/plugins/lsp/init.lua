@@ -20,6 +20,9 @@ local M = {
 		},
 	},
 	pin = true,
+	opts = {
+		inlay_hints = { enabled = true },
+	},
 }
 
 function M.config()
@@ -30,6 +33,8 @@ function M.config()
 		require("nvim-navic").attach(client, bufnr)
 		require("user.plugins.lsp.formatting").setup(client, bufnr)
 		require("user.plugins.lsp.keys").setup(client, bufnr)
+		-- metalelf0 customization - force definitionProvider to true to work around dynamicRegistration for solargraph
+		client.server_capabilities.definitionProvider = true
 	end
 
 	---@type lspconfig.options
@@ -137,6 +142,8 @@ function M.config()
 				},
 			},
 		},
+		-- sorbet = {},
+		-- ruby_ls = {},
 		-- tailwindcss = {},
 	}
 

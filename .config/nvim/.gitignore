@@ -40,4 +40,6 @@ luac.out
 *.hex
 
 
-plugin/packer_compiled.lualua/user/fun.lua
+plugin/packer_compiled.lua
+lua/user/fun.lua
+lua/user/sensible.lua

@@ -154,6 +154,16 @@ return {
 		end,
 	},
 	-- { "ldelossa/gh.nvim", dependencies = { "ldelossa/litee.nvim" } },
+	{
+		"svermeulen/text-to-colorscheme",
+		config = function()
+			require("text-to-colorscheme").setup({
+				ai = {
+					openai_api_key = os.getenv("OPENAI_API_KEY"),
+				},
+			})
+		end,
+	},
 
 	-- git signs
 	{

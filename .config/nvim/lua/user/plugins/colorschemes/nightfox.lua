@@ -7,6 +7,10 @@ local M = {
 	enabled = (config.colorscheme == "nightfox"),
 }
 
+function M.variant()
+	return config.variant or "github_dark"
+end
+
 M.config = function()
 	vim.o.termguicolors = true
 	vim.o.cursorline = true
@@ -35,7 +39,6 @@ M.config = function()
 	})
 
 	vim.cmd([[
-  try
     augroup CustomHighlight
       autocmd!
       autocmd ColorScheme dawnfox highlight link @symbol String
@@ -45,13 +48,9 @@ M.config = function()
       autocmd ColorScheme dawnfox highlight clear VertSplit
       autocmd ColorScheme dawnfox highlight link VertSplit String
     augroup END
+  ]])
 
-    colorscheme dawnfox
-  catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme default
-    set background=dark
-  endtry
-]])
+	vim.cmd("colorscheme " .. M.variant())
 end
 
 return M

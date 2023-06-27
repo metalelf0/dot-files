@@ -1,5 +1,6 @@
 return {
 	require("user.plugins.colorschemes.arctic"),
+	require("user.plugins.colorschemes.bamboo"),
 	require("user.plugins.colorschemes.catppuccin"),
 	require("user.plugins.colorschemes.everforest"),
 	require("user.plugins.colorschemes.github-nvim-theme"),
@@ -9,9 +10,11 @@ return {
 	require("user.plugins.colorschemes.kanagawa"),
 	require("user.plugins.colorschemes.material"),
 	require("user.plugins.colorschemes.mellifluous"),
+	require("user.plugins.colorschemes.midnight"),
 	require("user.plugins.colorschemes.modus"),
 	require("user.plugins.colorschemes.monokai-pro"),
 	require("user.plugins.colorschemes.nightfox"),
+	require("user.plugins.colorschemes.oak"),
 	require("user.plugins.colorschemes.onedark"),
 	require("user.plugins.colorschemes.rose-pine"),
 	require("user.plugins.colorschemes.seoul256"),

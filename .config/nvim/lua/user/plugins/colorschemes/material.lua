@@ -7,6 +7,11 @@ local M = {
 	enabled = (config.colorscheme == "material"),
 }
 
+M.variant = function()
+	-- oceanic, palenight, deep ocean, lighter, darker
+	return config.variant or "darker"
+end
+
 M.config = function()
 	require("material").setup({
 		contrast = {
@@ -59,6 +64,7 @@ M.config = function()
 			gitsigns = true,
 			git_gutter = false,
 			telescope = true,
+			neorg = true,
 			nvim_tree = false,
 			sidebar_nvim = true,
 			lsp_saga = false,
@@ -72,15 +78,8 @@ M.config = function()
 		},
 	})
 
-	vim.cmd([[
-  try
-    let g:material_style="lighter"
-    colorscheme material
-  catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme default
-    set background=dark
-  endtry
-]])
+	vim.cmd('let g:material_style="' .. M.variant() .. '"')
+	vim.cmd("colorscheme material")
 end
 
 return M
