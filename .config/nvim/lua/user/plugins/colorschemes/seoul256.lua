@@ -4,10 +4,13 @@ local M = {
 	"junegunn/seoul256.vim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "seoul256"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "seoul256" then
+		return false
+	end
+
 	vim.cmd([[
   try
     augroup CustomHighlight

@@ -4,7 +4,6 @@ local M = {
 	"projekt0n/github-nvim-theme",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "github"),
 }
 
 function M.variant()
@@ -12,6 +11,10 @@ function M.variant()
 end
 
 function M.config()
+	if config.colorscheme ~= "github" then
+		return false
+	end
+
 	local palette = require("github-theme.palette").load(M.variant())
 	local Color = require("github-theme.lib.color")
 	local api = vim.api

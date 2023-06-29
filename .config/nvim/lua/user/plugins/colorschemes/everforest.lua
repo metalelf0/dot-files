@@ -4,10 +4,13 @@ local M = {
 	"neanias/everforest-nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "everforest"),
 }
 
 function M.config()
+	if config.colorscheme ~= "everforest" then
+		return false
+	end
+
 	require("everforest").setup({
 		transparent_background_level = 0,
 	})

@@ -9,7 +9,6 @@ local M = {
 	name = "catppuccin",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "catppuccin"),
 }
 
 M.supported_variants = { "mocha", "latte", "frappe", "macchiato" }
@@ -24,6 +23,9 @@ M.variant = function()
 end
 
 M.config = function()
+	if config.colorscheme ~= "catppuccin" then
+		return false
+	end
 	vim.o.cursorline = true
 	vim.o.cursorlineopt = "number"
 

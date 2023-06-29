@@ -4,10 +4,13 @@ local M = {
 	"ramojus/mellifluous.nvim",
 	dependencies = { "rktjmp/lush.nvim" },
 	lazy = false,
-	enabled = (config.colorscheme == "mellifluous"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "mellifluous" then
+		return false
+	end
+
 	vim.o.termguicolors = true
 
 	require("mellifluous").setup({

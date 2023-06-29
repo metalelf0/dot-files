@@ -5,10 +5,13 @@ local M = {
 	dependencies = { "rktjmp/lush.nvim" },
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "zenbones"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "zenbones" then
+		return false
+	end
+
 	vim.cmd("colorscheme zenwritten")
 end
 

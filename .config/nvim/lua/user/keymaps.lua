@@ -1,6 +1,7 @@
 local opts = { noremap = true, silent = true }
 local utils = require("user.utils")
 local buffer_utils = require("user.buffer_utils")
+local config = require("user.config")
 buffer_utils.setup()
 
 -- Shorten function name
@@ -107,7 +108,11 @@ end
 
 -- - to open file browser
 keymap("n", "-", function()
-	require("oil").open()
+	if config.filemanager == "oil" then
+		require("oil").open()
+	elseif config.filemanager == "mini.files" then
+		MiniFiles.open(vim.api.nvim_buf_get_name(0))
+	end
 end, { desc = "Oil" })
 
 keymap("n", "<leader>.", "<cmd>NeoTreeFocus<cr>", { desc = "Focus file in tree" })

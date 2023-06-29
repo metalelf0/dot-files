@@ -4,10 +4,12 @@ local M = {
 	"ellisonleao/gruvbox.nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "gruvbox"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "gruvbox" then
+		return false
+	end
 	require("gruvbox").setup({
 		undercurl = true,
 		underline = true,

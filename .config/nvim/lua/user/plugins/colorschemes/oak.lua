@@ -4,10 +4,12 @@ local M = {
 	"vigoux/oak",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "oak"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "oak" then
+		return false
+	end
 	vim.cmd([[
     augroup CustomHighlight
       autocmd!

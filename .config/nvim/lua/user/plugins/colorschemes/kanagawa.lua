@@ -4,7 +4,6 @@ local M = {
 	"rebelot/kanagawa.nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "kanagawa"),
 }
 
 M.variant = function()
@@ -16,6 +15,9 @@ M.colorscheme = function()
 end
 
 M.config = function()
+	if config.colorscheme ~= "kanagawa" then
+		return false
+	end
 	require("kanagawa").setup({
 		undercurl = true, -- enable undercurls
 		commentStyle = { italic = true },

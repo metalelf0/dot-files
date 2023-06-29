@@ -4,7 +4,6 @@ local M = {
 	"EdenEast/nightfox.nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "nightfox"),
 }
 
 function M.variant()
@@ -12,6 +11,10 @@ function M.variant()
 end
 
 M.config = function()
+	if config.colorscheme ~= "nightfox" then
+		return false
+	end
+
 	vim.o.termguicolors = true
 	vim.o.cursorline = true
 	vim.o.cursorlineopt = "number"

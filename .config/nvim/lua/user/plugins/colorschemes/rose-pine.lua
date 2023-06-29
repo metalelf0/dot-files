@@ -5,10 +5,13 @@ local M = {
 	name = "rose-pine",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "rose-pine"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "rose-pine" then
+		return false
+	end
+
 	require("rose-pine").setup({
 		---@usage 'main'|'moon'
 		dark_variant = "moon",

@@ -5,10 +5,12 @@ local M = {
 	branch = "v2",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "arctic"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "arctic" then
+		return false
+	end
 	vim.o.cursorline = true
 	vim.o.cursorlineopt = "number"
 

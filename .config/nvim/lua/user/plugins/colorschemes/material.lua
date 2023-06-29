@@ -4,7 +4,6 @@ local M = {
 	"marko-cerovac/material.nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "material"),
 }
 
 M.variant = function()
@@ -13,6 +12,10 @@ M.variant = function()
 end
 
 M.config = function()
+	if config.colorscheme ~= "material" then
+		return false
+	end
+
 	require("material").setup({
 		contrast = {
 			sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )

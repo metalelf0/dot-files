@@ -4,10 +4,13 @@ local M = {
 	"metalelf0/jellybeans-nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "jellybeans"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "jellybeans" then
+		return false
+	end
+
 	vim.cmd([[
   try
     set termguicolors

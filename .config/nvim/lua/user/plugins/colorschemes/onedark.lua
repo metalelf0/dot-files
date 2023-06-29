@@ -4,10 +4,13 @@ local M = {
 	"navarasu/onedark.nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "onedark"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "onedark" then
+		return false
+	end
+
 	local onedark = require("onedark")
 	onedark.setup({
 		style = "light",

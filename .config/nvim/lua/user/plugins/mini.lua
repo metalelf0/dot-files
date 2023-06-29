@@ -1,3 +1,5 @@
+local config = require("user.config")
+
 local mini = {
 	"echasnovski/mini.nvim",
 	event = "VeryLazy",
@@ -35,6 +37,12 @@ function mini.comment()
 			end,
 		},
 	})
+end
+
+function mini.files()
+	if config.filemanager == "mini.files" then
+		require("mini.files").setup()
+	end
 end
 
 function mini.ai()
@@ -78,6 +86,7 @@ function mini.config()
 	mini.ai()
 	mini.pairs()
 	mini.comment()
+	mini.files()
 	-- mini.animate()
 end
 

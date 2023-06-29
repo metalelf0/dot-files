@@ -4,10 +4,13 @@ local M = {
 	"cocopon/iceberg.vim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "iceberg"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "iceberg" then
+		return false
+	end
+
 	local function set_fg(fg)
 		return "guifg=" .. fg
 	end

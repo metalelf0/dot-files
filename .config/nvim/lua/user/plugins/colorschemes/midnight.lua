@@ -4,10 +4,12 @@ local M = {
 	"dasupradyumna/midnight.nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "midnight"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "midnight" then
+		return false
+	end
 	vim.cmd("colorscheme midnight")
 end
 

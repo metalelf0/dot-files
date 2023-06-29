@@ -4,10 +4,13 @@ local M = {
 	"folke/tokyonight.nvim",
 	lazy = false,
 	priority = 1000,
-	enabled = (config.colorscheme == "tokyonight"),
 }
 
 M.config = function()
+	if config.colorscheme ~= "tokyonight" then
+		return false
+	end
+
 	require("tokyonight").setup({
 		-- allowed values are 'storm', 'moon', day' and 'night'
 		style = "night",
