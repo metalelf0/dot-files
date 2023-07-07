@@ -41,7 +41,15 @@ end
 
 function mini.files()
 	if config.filemanager == "mini.files" then
-		require("mini.files").setup()
+		require("mini.files").setup({
+			windows = {
+				preview = true,
+				width_preview = 120,
+			},
+			mappings = {
+				go_in_plus = "<CR>",
+			},
+		})
 	end
 end
 

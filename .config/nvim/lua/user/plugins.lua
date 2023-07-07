@@ -1,3 +1,5 @@
+local config = require("user.config")
+
 return {
 	"jose-elias-alvarez/typescript.nvim",
 	"nvim-tree/nvim-web-devicons",
@@ -179,7 +181,7 @@ return {
 				changedelete = { text = "▌" },
 				untracked = { text = "▌" },
 			},
-			current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+			current_line_blame = config.startup.show_git_blame, -- Toggle with `:Gitsigns toggle_current_line_blame`
 			current_line_blame_opts = {
 				virt_text = true,
 				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'

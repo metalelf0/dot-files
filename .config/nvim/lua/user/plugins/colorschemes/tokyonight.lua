@@ -1,10 +1,22 @@
 local config = require("user.config")
+local utils = require("user.utils")
 
 local M = {
 	"folke/tokyonight.nvim",
 	lazy = false,
 	priority = 1000,
 }
+
+M.supported_variants = { "storm", "night", "moon", "day" }
+M.default_variant = "night"
+
+M.variant = function()
+	if not utils.contains(M.supported_variants, config.variant) then
+		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
+	end
+
+	return (config.variant or M.default_variant)
+end
 
 M.config = function()
 	if config.colorscheme ~= "tokyonight" then
@@ -13,7 +25,7 @@ M.config = function()
 
 	require("tokyonight").setup({
 		-- allowed values are 'storm', 'moon', day' and 'night'
-		style = "night",
+		style = M.variant(),
 		sidebars = { "neo-tree", "qf", "vista_kind", "terminal", "packer", "aerial", "toggleterm" },
 		dim_inactive = false,
 		styles = {

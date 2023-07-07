@@ -32,13 +32,13 @@ M.config = function()
 		[[ \/_/\/_/\/_/\/____/ \/__/\/__/\/_/\/____/\/____/\/____/ \/_/   \/___/ ]],
 	}
 	dashboard.section.buttons.val = {
-		dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
+		dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
 		dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
 		dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
-		dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
-		dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
+		dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
+		dashboard.button("t", "󰈙  Find text", ":Telescope live_grep <CR>"),
 		dashboard.button("c", "  Configuration", ":e " .. core.get_configdir() .. "/init.lua <CR>"),
-		dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+		dashboard.button("q", "󰗼  Quit Neovim", ":qa<CR>"),
 	}
 
 	dashboard.section.footer.val = M.footer()

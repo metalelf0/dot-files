@@ -1,4 +1,5 @@
 local config = require("user.config")
+local utils = require("user.utils")
 
 local M = {
 	"EdenEast/nightfox.nvim",
@@ -6,8 +7,15 @@ local M = {
 	priority = 1000,
 }
 
-function M.variant()
-	return config.variant or "github_dark"
+M.supported_variants = { "carbonfox", "dawnfox", "dayfox", "duskfox", "nightfox", "nordfox", "terafox" }
+M.default_variant = "nightfox"
+
+M.variant = function()
+	if not utils.contains(M.supported_variants, config.variant) then
+		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
+	end
+
+	return (config.variant or M.default_variant)
 end
 
 M.config = function()
@@ -41,19 +49,18 @@ M.config = function()
 		},
 	})
 
-	vim.cmd([[
-    augroup CustomHighlight
-      autocmd!
-      autocmd ColorScheme dawnfox highlight link @symbol String
-      autocmd ColorScheme dawnfox highlight link @boolean @variable.builtin
-      autocmd ColorScheme dawnfox highlight clear CursorLineNr
-      autocmd ColorScheme dawnfox highlight link CursorLineNr String
-      autocmd ColorScheme dawnfox highlight clear VertSplit
-      autocmd ColorScheme dawnfox highlight link VertSplit String
-    augroup END
-  ]])
+	local setup = [[
+       colorscheme @variant@
 
-	vim.cmd("colorscheme " .. M.variant())
+	     highlight link @symbol String
+	     highlight link @boolean @variable.builtin
+	     highlight clear CursorLineNr
+	     highlight link CursorLineNr String
+	     highlight clear VertSplit
+	     highlight link VertSplit String
+	 ]]
+
+	vim.cmd(string.gsub(setup, "@variant@", M.variant()))
 end
 
 return M

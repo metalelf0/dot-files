@@ -37,7 +37,7 @@ M.config = function()
 		},
 		icons = {
 			breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-			separator = "➜", -- symbol used between a key and its label
+			separator = "->", -- symbol used between a key and its label
 			-- group = "+", -- symbol prepended to a group
 			group = "", -- symbol prepended to a group
 		},
@@ -82,17 +82,17 @@ M.config = function()
 	}
 
 	local mappings = {
-		b = { name = "󰓩 Buffers", ["c"] = { name = " Close" } },
+		b = { name = "󰓩 Buffers", ["c"] = { name = "  Close" } },
 		P = { name = " Packer / Projects" },
 		g = { name = " Git" },
 		h = { name = "󰋖 Helpers" },
 		i = { name = " Insert" },
 		j = { name = "󰙨 Test / join" },
-		l = { name = " LSP" },
+		l = { name = "󰢻 LSP" },
 		o = { name = " Obsidian" },
 		r = { name = "󰬢 Refactorings" },
 		s = { name = "󰍉 Search" },
-		t = { name = " Terminal" },
+		t = { name = " Terminal" },
 		u = { name = " UI" },
 	}
 

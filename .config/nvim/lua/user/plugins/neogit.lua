@@ -1,5 +1,5 @@
 return {
-	"TimUntersberger/neogit",
+	"NeogitOrg/neogit",
 	cmd = "Neogit",
 	opts = {
 		kind = "split",
