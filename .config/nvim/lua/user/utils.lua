@@ -56,4 +56,48 @@ function M.info(msg, name)
 	vim.notify(msg, vim.log.levels.INFO, { title = name or "init.lua" })
 end
 
+M.read_file = function(file_name)
+	local file = io.open(file_name, "r")
+	if file then
+		local lines = {}
+		for line in file:lines() do
+			table.insert(lines, line)
+		end
+		file:close()
+		return lines
+	else
+		print("Failed to open the file for reading:", file_name)
+	end
+end
+
+M.write_file = function(file_name, lines)
+	local file = io.open(file_name, "w")
+	if file then
+		file:write(table.concat(lines, "\n"))
+		file:close()
+	else
+		print("Failed to open the file for writing:", file_name)
+	end
+end
+
+M.last_journal_file_in_dir = function(path)
+	local lfs = require("lfs")
+	local files = {}
+
+	for file in lfs.dir(path) do
+		if file ~= "." and file ~= ".." and string.match(file, "%d+%-%d+%-%d+%.md$") then
+			table.insert(files, file)
+		end
+	end
+
+	table.sort(files)
+
+	local lastChar = path:sub(#path, #path)
+	if lastChar ~= "/" then
+		path = path .. "/"
+	end
+
+	return path .. files[#files]
+end
+
 return M

@@ -42,4 +42,3 @@ luac.out
 
 plugin/packer_compiled.lua
 lua/user/fun.lua
-lua/user/sensible.lua

@@ -143,7 +143,10 @@ function M.config()
 			},
 		},
 		-- sorbet = {},
+
+		-- ruby_ls is commented out because it aint working
 		-- ruby_ls = {},
+
 		-- tailwindcss = {},
 	}
 

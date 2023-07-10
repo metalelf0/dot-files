@@ -295,3 +295,8 @@ local status_ok, fun = pcall(require, "user.fun")
 if status_ok then
 	fun.set_keymaps()
 end
+
+local status_ok, event_logger = pcall(require, "user.event_logger")
+if status_ok then
+	event_logger.set_keymaps()
+end
