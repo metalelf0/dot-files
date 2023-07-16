@@ -123,6 +123,8 @@ keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "󰕮 Dashboard" })
 
 keymap("n", "<leader>p", find_files, { desc = "Find files" })
 
+keymap("n", "<leader>m", require("user.supermover").supamove, { desc = "Move file" })
+
 keymap("n", "<leader><leader>", function()
 	require("legendary").find()
 end, { desc = "Legendary" })
