@@ -1,10 +1,22 @@
 local config = require("user.config")
+local utils = require("user.utils")
 
 local M = {
 	"ellisonleao/gruvbox.nvim",
 	lazy = false,
 	priority = 1000,
 }
+
+M.supported_variants = { "hard", "soft", "" }
+M.default_variant = "dark"
+
+M.variant = function()
+	if not utils.contains(M.supported_variants, config.variant) then
+		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
+	end
+
+	return (config.variant or M.default_variant)
+end
 
 M.config = function()
 	if config.colorscheme ~= "gruvbox" then
@@ -21,7 +33,7 @@ M.config = function()
 		invert_tabline = false,
 		invert_intend_guides = false,
 		inverse = true, -- invert background for search, diffs, statuslines and errors
-		contrast = "hard", -- can be "hard", "soft" or empty string
+		contrast = M.variant(), -- can be "hard", "soft" or empty string
 		overrides = {},
 		dim_inactive = false,
 		transparent_mode = true,

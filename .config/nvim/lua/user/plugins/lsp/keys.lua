@@ -1,8 +1,33 @@
-local wk = require("which-key")
+local config = require("user.config")
 
 local M = {}
 
 function M.setup(client, buffer)
+	if config.keymapper == "which-key" then
+		setup_whichkey(client, buffer)
+		-- elseif config.keymapper == "mini.clue" then
+		-- 	setup_miniclue(client, buffer)
+	end
+end
+
+-- function setup_miniclue(client, buffer)
+-- 	local cap = client.server_capabilities
+-- 	local keymap = vim.keymap.set
+--
+-- 	keymap("n", "<leader>cr", function()
+-- 		require("inc_rename")
+-- 		return ":IncRename " .. vim.fn.expand("<cword>")
+-- 	end, { expr = true, desc = "Rename variable" })
+--
+-- 	keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+-- 	keymap("n", "<leader>cf", require("user.plugins.lsp.formatting").format, { desc = "Format" })
+-- 	keymap("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Diagnostics" })
+-- 	keymap("n", "<leader>cgd", "<cmd>Telescope lsp_definitions<cr>", { desc = "Definition" })
+-- 	keymap("n", "<leader>cgr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
+-- end
+
+function setup_whichkey(client, buffer)
+	local wk = require("which-key")
 	local cap = client.server_capabilities
 
 	local keymap = {
@@ -67,8 +92,14 @@ function M.setup(client, buffer)
 		["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
 		["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Next Diagnostic" },
 		["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Prev Diagnostic" },
-		["[e"] = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Next Error" },
-		["]e"] = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev Error" },
+		["[e"] = {
+			"<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>",
+			"Next Error",
+		},
+		["]e"] = {
+			"<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>",
+			"Prev Error",
+		},
 		["[w"] = {
 			"<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>",
 			"Next Warning",

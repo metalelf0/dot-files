@@ -1,10 +1,22 @@
 local config = require("user.config")
+local utils = require("user.utils")
 
 local M = {
 	"ramojus/mellifluous.nvim",
 	dependencies = { "rktjmp/lush.nvim" },
 	lazy = false,
 }
+
+M.supported_variants = { "alduin", "mellifluous", "mountain", "tender" }
+M.default_variant = "mellifluous"
+
+M.variant = function()
+	if not utils.contains(M.supported_variants, config.variant) then
+		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
+	end
+
+	return (config.variant or M.default_variant)
+end
 
 M.config = function()
 	if config.colorscheme ~= "mellifluous" then
@@ -14,67 +26,27 @@ M.config = function()
 	vim.o.termguicolors = true
 
 	require("mellifluous").setup({
-		neutral = false, -- set this to `true` for neutral background and greys.
-		color_set = "mellifluous", -- available options are mellifluous, alduin, mountain and tender
-		styles = {
-			comments = "italic",
-			conditionals = "NONE",
-			folds = "NONE",
-			loops = "NONE",
-			functions = "NONE",
-			keywords = "NONE",
-			strings = "NONE",
-			variables = "NONE",
-			numbers = "NONE",
-			booleans = "NONE",
-			properties = "NONE",
-			types = "bold",
-			operators = "NONE",
+		mellifluous = {
+			neutral = true, -- set this to false and bg_contrast to 'medium' for original mellifluous (then it was called meliora theme)
+			bg_contrast = "medium", -- options: 'soft', 'medium', 'hard'
 		},
-		transparent_background = {
-			enabled = false,
-			floating_windows = false,
-			telescope = false,
-			file_tree = false,
-			cursor_line = false,
-			status_line = false,
-		},
-		plugins = {
-			cmp = true,
-			gitsigns = true,
-			indent_blankline = true,
-			nvim_tree = {
-				enabled = false,
-				show_root = false,
-			},
-			telescope = {
-				enabled = true,
-				nvchad_like = true,
-			},
-		},
+		color_set = M.variant(),
 	})
 
 	vim.opt.cursorline = true
 	vim.opt.cursorlineopt = "number"
 
-	vim.cmd([[
-  try
-    set bg=dark
+	local setup = [[
+     colorscheme mellifluous
 
-    augroup CustomHighlight
-      autocmd!
-      autocmd ColorScheme mellifluous highlight clear CursorLineNr
-      autocmd ColorScheme mellifluous highlight link CursorLineNr String
-      autocmd ColorScheme mellifluous highlight clear Headline
-      autocmd ColorScheme mellifluous highlight link Headline TermCursorNC
-    augroup END
+     highlight clear CursorLineNr
+     highlight link CursorLineNr String
+     highlight clear Headline
+     highlight link Headline TermCursorNC
+     j
+	 ]]
 
-    colorscheme mellifluous
-  catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme default
-    set background=dark
-  endtry
-  ]])
+	vim.cmd(setup)
 end
 
 return M

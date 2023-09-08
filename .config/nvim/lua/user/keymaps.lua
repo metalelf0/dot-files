@@ -112,10 +112,12 @@ keymap("n", "-", function()
 		require("oil").open()
 	elseif config.filemanager == "mini.files" then
 		MiniFiles.open(vim.api.nvim_buf_get_name(0))
+	elseif config.filemanager == "neo-tree" then
+		vim.cmd([[Neotree position=current reveal=true <CR>]])
 	end
 end, { desc = "Oil" })
 
-keymap("n", "<leader>.", "<cmd>NeoTreeFocus<cr>", { desc = "Focus file in tree" })
+keymap("n", "<leader>.", "<cmd>Neotree focus<cr>", { desc = "Focus file in tree" })
 
 keymap("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "Search text" })
 -- keymap("n", "<leader>a", "<cmd>Dashboard<cr>", { desc = "󰕮 Dashboard" })
@@ -123,7 +125,7 @@ keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "󰕮 Dashboard" })
 
 keymap("n", "<leader>p", find_files, { desc = "Find files" })
 
-keymap("n", "<leader>m", require("user.supermover").supamove, { desc = "Move file" })
+-- keymap("n", "<leader>m", require("user.supermover").supamove, { desc = "Move file" })
 
 keymap("n", "<leader><leader>", function()
 	require("legendary").find()
@@ -163,6 +165,28 @@ end, { desc = "Lazygit" })
 keymap("n", "<leader>go", "<cmd>Telescope git_status<cr>", { desc = "Open changed file" })
 keymap("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
+-- harpoon --
+keymap("n", "<leader>`", function()
+	require("harpoon.ui").toggle_quick_menu()
+end, { desc = "Harpoon menu" })
+
+keymap("n", "<leader>~", function()
+	require("harpoon.mark").add_file()
+end, { desc = "Add file" })
+
+keymap("n", "<leader>1", function()
+	require("harpoon.ui").nav_file(1)
+end, { desc = "Goto file 1" })
+keymap("n", "<leader>2", function()
+	require("harpoon.ui").nav_file(2)
+end, { desc = "Goto file 2" })
+keymap("n", "<leader>3", function()
+	require("harpoon.ui").nav_file(3)
+end, { desc = "Goto file 3" })
+keymap("n", "<leader>4", function()
+	require("harpoon.ui").nav_file(4)
+end, { desc = "Goto file 4" })
+
 -- Helpers --
 keymap("n", "<leader>hl", function()
 	require("lazy").show()
@@ -172,6 +196,7 @@ keymap("n", "<leader>hm", "<cmd>Mason<CR>", { desc = "Mason" })
 -- Ui --
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
 keymap("n", "<leader>ue", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
 keymap("n", "<leader>ud", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
 keymap("n", "<leader>ui", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
 keymap("n", "<leader>uk", function()
@@ -222,23 +247,20 @@ keymap("n", "<leader>ls", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { 
 keymap("n", "<leader>lw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace diagnostics" })
 keymap("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble toggle" })
 
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Definition", noremap = true, silent = true })
+-- keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "References", noremap = true, silent = true })
+
+keymap("n", "gr", function()
+	require("telescope.builtin").lsp_references({ jump_type = "never" })
+end, { desc = "References" })
+
 -- Neorg
 keymap("n", "<leader>njt", "<cmd>Neorg journal today<cr>", { desc = "Neorg journal today" })
 keymap("n", "<leader>ni", "<cmd>Neorg index<cr>", { desc = "Neorg index" })
 keymap("n", "<leader>nr", "<cmd>Neorg return<cr>", { desc = "Neorg return" })
 
 -- Org, obsidian and friends --
-keymap("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Obsidian - today" })
-keymap("n", "<leader>oy", "<cmd>ObsidianYesterday<cr>", { desc = "Obsidian - yesterday" })
-keymap("n", "<leader>os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian - search" })
-keymap("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "Obsidian - new" })
-keymap("n", "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Obsidian - quick switch" })
-keymap("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Obsidian - follow link" })
-keymap("v", "<leader>ol", "<cmd>ObsidianLink<cr>", { desc = "Obsidian - link" })
-keymap("v", "<leader>oL", "<cmd>ObsidianLinkNew<cr>", { desc = "Obsidian - new link" })
-keymap("n", "<leader>oh", function()
-	require("user.plugins.telescope.custom_pickers").pick_hashtags()
-end, { desc = "Obsidian - pick hashtag" })
+-- see lua/user/plugins/obsidian.nvim
 
 -- Projects --
 keymap("n", "<leader>Pp", function()
@@ -263,6 +285,7 @@ end, { desc = "Search in buffers" })
 keymap("n", "<leader>sf", function()
 	require("spectre").open_file_search()
 end, { desc = "Search in file" })
+keymap("n", "<leader>sg", "<cmd>AdvancedGitSearch<cr>", { desc = "Search inside git" })
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Find Help" })
 keymap("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
 keymap("n", "<leader>sp", "<cmd>Telescope neoclip<cr>", { desc = "Clipboard (aka pastes)" })

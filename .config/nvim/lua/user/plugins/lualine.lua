@@ -49,6 +49,8 @@ local location = {
 	padding = 0,
 }
 
+local root_dir = require("user.utils").rootdir
+
 M.config = function()
 	local status_ok, lualine = pcall(require, "lualine")
 	if not status_ok then
@@ -77,7 +79,7 @@ M.config = function()
 			-- lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_x = { diff, "encoding", filetype },
 			lualine_y = { location },
-			lualine_z = {},
+			lualine_z = { root_dir },
 		},
 		inactive_sections = {
 			lualine_a = {},

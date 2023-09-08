@@ -3,9 +3,10 @@ local M = {
 	event = "VeryLazy",
 	enabled = true,
 	opts = {
+		render = "compact",
 		timeout = 3000,
 		level = vim.log.levels.INFO,
-		fps = 20,
+		fps = 30,
 		max_height = function()
 			return math.floor(vim.o.lines * 0.75)
 		end,

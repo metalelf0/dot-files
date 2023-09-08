@@ -1,17 +1,3 @@
-local function project_files()
-	local opts = {}
-	if vim.loop.fs_stat(".git") then
-		opts.show_untracked = true
-		require("telescope.builtin").git_files(opts)
-	else
-		local client = vim.lsp.get_active_clients()[1]
-		if client then
-			opts.cwd = client.config.root_dir
-		end
-		require("telescope.builtin").find_files(opts)
-	end
-end
-
 return {
 	"nvim-telescope/telescope.nvim",
 	cmd = { "Telescope" },
@@ -19,12 +5,7 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-telescope/telescope-symbols.nvim",
 	},
-	keys = {
-		-- { "<leader><space>", project_files, desc = "Find File" },
-	},
 	config = function()
-		-- local actions = require("telescope.actions")
-
 		local telescope = require("telescope")
 		local borderless = true
 		telescope.setup({
@@ -48,11 +29,15 @@ return {
 						["<C-Up>"] = function(...)
 							return require("telescope.actions").cycle_history_prev(...)
 						end,
-						["<C-w>"] = function()
-							vim.cmd([[normal! bcw]])
-						end,
-						["<C-g>"] = function()
-							require("telescope.builtin").symbols({ sources = { "gitmoji" } })
+						["<C-a>"] = function(prompt_bufnr)
+							local selection = require("telescope.actions.state").get_selected_entry()
+							local target_dir = vim.fn.fnamemodify(selection.path, ":p:h")
+							local current_file_name = vim.fn.expand("%:t")
+							local current_file_path = vim.fn.expand("%:p:h")
+							print("Moving " .. current_file_name .. " to " .. target_dir)
+							local new_file_path = vim.fs.joinpath(target_dir, current_file_name)
+							local command = "Rename " .. new_file_path
+							vim.api.nvim_command("Rename " .. new_file_path)
 						end,
 					},
 				},

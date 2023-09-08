@@ -2,7 +2,7 @@ local config = require("user.config")
 
 local mini = {
 	"echasnovski/mini.nvim",
-	event = "VeryLazy",
+	-- event = "VeryLazy",
 }
 
 local specs = { mini, "JoosepAlviste/nvim-ts-context-commentstring" }
@@ -21,12 +21,84 @@ function mini.surround()
 	})
 end
 
+function mini.align()
+	require("mini.align").setup({})
+end
+
 function mini.jump()
 	require("mini.jump").setup({})
 end
 
 function mini.pairs()
 	require("mini.pairs").setup({})
+end
+
+function mini.clue()
+	if config.keymapper == "mini.clue" then
+		local miniclue = require("mini.clue")
+		miniclue.setup({
+			triggers = {
+				-- Leader triggers
+				{ mode = "n", keys = "<Leader>" },
+				{ mode = "x", keys = "<Leader>" },
+
+				-- Built-in completion
+				{ mode = "i", keys = "<C-x>" },
+
+				-- `g` key
+				{ mode = "n", keys = "g" },
+				{ mode = "x", keys = "g" },
+
+				-- Marks
+				{ mode = "n", keys = "'" },
+				{ mode = "n", keys = "`" },
+				{ mode = "x", keys = "'" },
+				{ mode = "x", keys = "`" },
+
+				-- Registers
+				{ mode = "n", keys = '"' },
+				{ mode = "x", keys = '"' },
+				{ mode = "i", keys = "<C-r>" },
+				{ mode = "c", keys = "<C-r>" },
+
+				-- Window commands
+				{ mode = "n", keys = "<C-w>" },
+
+				-- `z` key
+				{ mode = "n", keys = "z" },
+				{ mode = "x", keys = "z" },
+			},
+
+			clues = {
+				-- Enhance this by adding descriptions for <Leader> mapping groups
+				{ mode = "n", keys = "<Leader>P", desc = " Packer / Projects" },
+				{ mode = "n", keys = "<Leader>b", desc = "󰓩 Buffers" },
+				{ mode = "n", keys = "<Leader>c", desc = "󰓩 Code" },
+				{ mode = "n", keys = "<Leader>g", desc = " Git" },
+				{ mode = "n", keys = "<Leader>h", desc = "󰋖 Helpers" },
+				{ mode = "n", keys = "<Leader>i", desc = " Insert" },
+				{ mode = "n", keys = "<Leader>j", desc = "󰙨 Test / join" },
+				{ mode = "n", keys = "<Leader>l", desc = "󰢻 LSP" },
+				{ mode = "n", keys = "<Leader>o", desc = " Obsidian" },
+				{ mode = "n", keys = "<Leader>r", desc = "󰬢 Refactorings" },
+				{ mode = "n", keys = "<Leader>s", desc = "󰍉 Search" },
+				{ mode = "n", keys = "<Leader>t", desc = " Terminal" },
+				{ mode = "n", keys = "<Leader>u", desc = " UI" },
+				miniclue.gen_clues.builtin_completion(),
+				miniclue.gen_clues.g(),
+				miniclue.gen_clues.marks(),
+				miniclue.gen_clues.registers(),
+				miniclue.gen_clues.windows(),
+				miniclue.gen_clues.z(),
+			},
+			window = {
+				delay = 0,
+				config = {
+					width = "auto",
+				},
+			},
+		})
+	end
 end
 
 function mini.comment()
@@ -95,6 +167,8 @@ function mini.config()
 	mini.pairs()
 	mini.comment()
 	mini.files()
+	mini.clue()
+	mini.align()
 	-- mini.animate()
 end
 

@@ -23,13 +23,13 @@ M.config = function()
 	local dashboard = require("alpha.themes.dashboard")
 
 	dashboard.section.header.val = {
-		[[                  __             ___           ___       ___    __     ]],
-		[[                 /\ \__         /\_ \         /\_ \    /'___\ /'__`\   ]],
-		[[  ___ ___      __\ \ ,_\    __  \//\ \      __\//\ \  /\ \__//\ \/\ \  ]],
-		[[/' __` __`\  /'__`\ \ \/  /'__`\  \ \ \   /'__`\\ \ \ \ \ ,__\ \ \ \ \ ]],
-		[[/\ \/\ \/\ \/\  __/\ \ \_/\ \L\.\_ \_\ \_/\  __/ \_\ \_\ \ \_/\ \ \_\ \]],
-		[[\ \_\ \_\ \_\ \____\\ \__\ \__/.\_\/\____\ \____\/\____\\ \_\  \ \____/]],
-		[[ \/_/\/_/\/_/\/____/ \/__/\/__/\/_/\/____/\/____/\/____/ \/_/   \/___/ ]],
+		[[ ███╗   ███╗███████╗████████╗ █████╗ ██╗     ███████╗██╗     ███████╗ ██████╗  ]],
+		[[ ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██║     ██╔════╝██║     ██╔════╝██╔═████╗ ]],
+		[[ ██╔████╔██║█████╗     ██║   ███████║██║     █████╗  ██║     █████╗  ██║██╔██║ ]],
+		[[ ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║     ██╔══╝  ██║     ██╔══╝  ████╔╝██║ ]],
+		[[ ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║███████╗███████╗███████╗██║     ╚██████╔╝ ]],
+		[[ ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝      ╚═════╝  ]],
+		[[                                                                               ]],
 	}
 	dashboard.section.buttons.val = {
 		dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
@@ -37,7 +37,7 @@ M.config = function()
 		dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
 		dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
 		dashboard.button("t", "󰈙  Find text", ":Telescope live_grep <CR>"),
-		dashboard.button("c", "  Configuration", ":e " .. core.get_configdir() .. "/init.lua <CR>"),
+		dashboard.button("c", "  Configuration", ":e " .. core.get_configdir() .. "/lua/user/config.lua <CR>"),
 		dashboard.button("q", "󰗼  Quit Neovim", ":qa<CR>"),
 	}
 

@@ -1,4 +1,5 @@
 local config = require("user.config")
+local utils = require("user.utils")
 
 local M = {
 	"rebelot/kanagawa.nvim",
@@ -6,8 +7,15 @@ local M = {
 	priority = 1000,
 }
 
+M.supported_variants = { "wave", "dragon", "lotus" }
+M.default_variant = "wave"
+
 M.variant = function()
-	return (config.variant or "wave")
+	if not utils.contains(M.supported_variants, config.variant) then
+		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
+	end
+
+	return (config.variant or M.default_variant)
 end
 
 M.colorscheme = function()
@@ -18,14 +26,16 @@ M.config = function()
 	if config.colorscheme ~= "kanagawa" then
 		return false
 	end
+
 	require("kanagawa").setup({
-		undercurl = true, -- enable undercurls
+		undercurl = false, -- enable undercurls
 		commentStyle = { italic = true },
 		functionStyle = {},
-		keywordStyle = { italic = true },
+		keywordStyle = { italic = false },
 		statementStyle = { bold = true },
 		typeStyle = {},
 		variablebuiltinStyle = { italic = true },
+		terminalColors = true,
 		specialReturn = true, -- special highlight for the return keyword
 		specialException = true, -- special highlight for exception handling keywords
 		transparent = false, -- do not set background color
@@ -58,7 +68,8 @@ M.config = function()
 				PmenuThumb = { bg = theme.ui.bg_p2 },
 				["@text.todo.checked.markdown"] = { bg = theme.ui.bg_p1, fg = palette.dragonGreen },
 				["@text.todo.unchecked.markdown"] = { bg = theme.ui.bg_p1, fg = palette.peachRed },
-				VertSplit = { fg = palette.dragonGreen },
+				-- VertSplit = { fg = palette.dragonGreen },
+				VertSplit = { fg = "#FFFFFF" },
 			}
 		end,
 	})

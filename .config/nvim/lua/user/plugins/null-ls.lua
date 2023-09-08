@@ -17,9 +17,11 @@ function M.setup(options)
 			nls.builtins.formatting.shfmt,
 			-- nls.builtins.diagnostics.markdownlint,
 			-- nls.builtins.diagnostics.luacheck,
-			nls.builtins.formatting.prettierd.with({
-				filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
-			}),
+
+			-- nls.builtins.formatting.prettierd.with({
+			-- 	filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
+			-- }),
+
 			nls.builtins.diagnostics.selene.with({
 				condition = function(utils)
 					return utils.root_has_file({ "selene.toml" })

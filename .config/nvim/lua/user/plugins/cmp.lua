@@ -10,6 +10,8 @@ local M = {
 		{ "dmitmel/cmp-cmdline-history", enabled = cmdline },
 		"hrsh7th/cmp-path",
 		"saadparwaiz1/cmp_luasnip",
+		"dcampos/cmp-emmet-vim",
+		"mattn/emmet-vim",
 	},
 }
 
@@ -44,7 +46,15 @@ function M.config()
 		}),
 		sources = cmp.config.sources({
 			{ name = "nvim_lsp" },
-			{ name = "luasnip" },
+			{
+				name = "luasnip",
+				group_index = 1,
+				option = { use_show_condition = true },
+				entry_filter = function()
+					local context = require("cmp.config.context")
+					return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
+				end,
+			},
 			{
 				name = "buffer",
 				option = {
@@ -57,6 +67,25 @@ function M.config()
 			{ name = "emoji" },
 			{ name = "neorg" },
 			{ name = "orgmode" },
+			{
+				name = "emmet_vim",
+				option = {
+					filetypes = {
+						"html",
+						"xml",
+						"typescriptreact",
+						"javascriptreact",
+						"css",
+						"sass",
+						"scss",
+						"less",
+						"heex",
+						"tsx",
+						"jsx",
+						"eruby",
+					},
+				},
+			},
 		}),
 		formatting = {
 			format = require("user.plugins.lsp.kind").cmp_format(),

@@ -6,12 +6,13 @@ return {
 	"nvim-lua/popup.nvim",
 	"junegunn/fzf",
 	"metalelf0/vim-rails",
-	"junegunn/vim-easy-align",
 	"mg979/vim-visual-multi",
 	"tommcdo/vim-exchange",
 	"tpope/vim-abolish",
 	"tpope/vim-rsi",
 	"tpope/vim-fugitive",
+	-- rhubarb enables C-x C-o to omnicomplete github stuff!
+	"tpope/vim-rhubarb",
 	"tpope/vim-repeat",
 	"tpope/vim-unimpaired",
 	"tpope/vim-eunuch",
@@ -121,6 +122,12 @@ return {
 		end,
 	},
 	{
+		"smjonas/inc-rename.nvim",
+		config = function()
+			require("inc_rename").setup()
+		end,
+	},
+	{
 		"nvim-pack/nvim-spectre",
 		config = function()
 			require("spectre").setup()
@@ -213,6 +220,44 @@ return {
 	},
 
 	{ dir = "~/Documents/codice_elf0/nvim-colorscheme-convert" },
+	-- {
+	-- 	config = function()
+	-- 		require("treesitter-renamer").config()
+	-- 	end,
+	-- },
+	{
+		dir = "~/Documents/codice_elf0/treesitter-renamer",
+		-- "metalelf0/treesitter-renamer.nvim",
+		dependencies = {
+			"tpope/vim-eunuch",
+		},
+		opts = {
+			bindings = {
+				rename_file = "<leader>rr",
+			},
+		},
+
+		-- config = function()
+		-- 	require("treesitter-renamer").config()
+		-- end,
+	},
+	{
+		dir = "~/Documents/codice_elf0/supermover.nvim",
+		-- "metalelf0/treesitter-renamer.nvim",
+		dependencies = {
+			"tpope/vim-eunuch",
+			"nvim-telescope/telescope.nvim",
+		},
+		opts = {
+			bindings = {
+				move_file = "<leader>fm",
+			},
+		},
+
+		-- config = function()
+		-- 	require("treesitter-renamer").config()
+		-- end,
+	},
 }
 
 --[[ require("user.plugin-confs.legend").setup() ]]

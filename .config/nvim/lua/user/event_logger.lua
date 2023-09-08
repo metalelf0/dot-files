@@ -1,6 +1,9 @@
 local utils = require("user.utils")
 
-local EventLogger = {}
+local EventLogger = {
+	enabled = false,
+}
+
 local journal_dir = require("user.config").journal_dir
 
 local list_item = "^%- .+$"

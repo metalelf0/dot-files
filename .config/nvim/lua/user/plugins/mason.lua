@@ -4,7 +4,7 @@ local M = {
 }
 
 M.tools = {
-	"prettierd",
+	-- "prettierd",
 	"stylua",
 	"selene",
 	"luacheck",

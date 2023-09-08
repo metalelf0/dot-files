@@ -42,7 +42,7 @@ M.config = function()
 				{
 					desc = "  Configuration",
 					group = "DiagnosticHint",
-					action = ":e " .. core.get_configdir() .. "/init.lua",
+					action = ":e " .. core.get_configdir() .. "/lua/user/config.lua",
 					key = "c",
 				},
 			},

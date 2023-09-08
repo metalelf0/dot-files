@@ -7,7 +7,6 @@ function M.config()
 		-- Priority list of preferred backends for aerial.
 		-- This can be a filetype map (see :help aerial-filetype-map)
 		backends = { "treesitter", "lsp", "markdown" },
-
 		close_automatic_events = { "unsupported" },
 
 		-- Set to false to remove the default keybindings for the aerial buffer
@@ -205,7 +204,7 @@ function M.config()
 		},
 	})
 
-	vim.o.winbar = "%{%v:lua.require('user.winbar').winbar()%}"
+	-- vim.o.winbar = "%{%v:lua.require('user.winbar').winbar()%}"
 end
 
 return M

@@ -27,8 +27,7 @@ M.config = function()
 	local bg = vim.api.nvim_get_option("background")
 	local light_foreground = "#33374c"
 
-	if bg == "dark" then
-	elseif bg == "light" then
+	if bg == "light" then
 		vim.api.nvim_command("hi NotifyERRORBorder " .. set_fg(light_foreground))
 		vim.api.nvim_command("hi NotifyERRORIcon " .. set_fg(light_foreground))
 		vim.api.nvim_command("hi NotifyERRORTitle " .. set_fg(light_foreground))
