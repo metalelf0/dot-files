@@ -51,7 +51,7 @@ return {
 				buffers = {
 					show_all_buffers = true,
 					sort_mru = true,
-					theme = "dropdown",
+					-- theme = "dropdown",
 					mappings = {
 						i = {
 							["<c-d>"] = "delete_buffer",

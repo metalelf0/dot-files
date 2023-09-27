@@ -3,6 +3,7 @@ local config = require("user.config")
 local M = {
 	"rockyzhang24/arctic.nvim",
 	branch = "v2",
+	dependencies = { "rktjmp/lush.nvim" },
 	lazy = false,
 	priority = 1000,
 }

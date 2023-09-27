@@ -11,12 +11,21 @@ M.config = function()
 		return false
 	end
 
+	vim.o.cursorline = true
+	vim.o.cursorlineopt = "number"
+
 	local function set_fg(fg)
 		return "guifg=" .. fg
 	end
 
 	vim.cmd([[
     try
+      augroup CustomHighlight
+        autocmd!
+        autocmd ColorScheme iceberg highlight clear CursorLineNr
+        autocmd ColorScheme iceberg highlight link CursorLineNr String
+      augroup END
+
       colorscheme iceberg
     catch /^Vim\%((\a\+)\)\=:E185/
       colorscheme default

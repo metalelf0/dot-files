@@ -56,8 +56,8 @@ M.config = function()
 	     highlight link @boolean @variable.builtin
 	     highlight clear CursorLineNr
 	     highlight link CursorLineNr String
-	     highlight clear VertSplit
-	     highlight link VertSplit String
+       highlight clear VertSplit
+       highlight link VertSplit String
 	 ]]
 
 	vim.cmd(string.gsub(setup, "@variant@", M.variant()))

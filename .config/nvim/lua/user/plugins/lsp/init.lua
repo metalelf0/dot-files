@@ -127,6 +127,7 @@ function M.config()
 							continuation_indent_size = "2",
 						},
 					},
+					hint = { enable = true },
 				},
 			},
 		},
@@ -136,6 +137,7 @@ function M.config()
 			root_dir = require("lspconfig").util.root_pattern(".git", "Gemfile", vim.fn.getcwd()),
 			settings = {
 				solargraph = {
+					hint = { enable = true },
 					diagnostics = true,
 					completion = true,
 					useBundler = true,

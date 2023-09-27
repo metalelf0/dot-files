@@ -7,6 +7,7 @@ return {
 	require("user.plugins.colorschemes.everforest"),
 	require("user.plugins.colorschemes.github-nvim-theme"),
 	require("user.plugins.colorschemes.gruvbox"),
+	require("user.plugins.colorschemes.gruvbox-material"),
 	require("user.plugins.colorschemes.iceberg"),
 	require("user.plugins.colorschemes.jellybeans"),
 	require("user.plugins.colorschemes.kanagawa"),
@@ -23,6 +24,7 @@ return {
 	require("user.plugins.colorschemes.onedark"),
 	require("user.plugins.colorschemes.rose-pine"),
 	require("user.plugins.colorschemes.seoul256"),
+	require("user.plugins.colorschemes.serenity"),
 	require("user.plugins.colorschemes.tokyonight"),
 	require("user.plugins.colorschemes.zenbones"),
 }

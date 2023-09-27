@@ -162,7 +162,7 @@ keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Checkout c
 keymap("n", "<leader>gG", function()
 	_LAZYGIT_TOGGLE()
 end, { desc = "Lazygit" })
-keymap("n", "<leader>go", "<cmd>Telescope git_status<cr>", { desc = "Open changed file" })
+-- keymap("n", "<leader>go", "<cmd>Telescope git_status<cr>", { desc = "Open changed file" })
 keymap("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- harpoon --

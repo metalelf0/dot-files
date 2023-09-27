@@ -12,6 +12,9 @@ M.config = function()
 		completion = {
 			nvim_cmp = true,
 		},
+		templates = {
+			subdir = "templates",
+		},
 	})
 
 	M.set_keymaps()

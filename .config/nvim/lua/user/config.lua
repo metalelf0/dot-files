@@ -1,6 +1,6 @@
 return {
-	colorscheme = "mellifluous",
-	variant = "mountain",
+	colorscheme = "kanagawa",
+	variant = "dragon",
 	filemanager = "neo-tree", -- supported: mini.files, oil, neo-tree
 	keymapper = "mini.clue",
 	journal_dir = os.getenv("HOME") .. "/iCloud-Obsidian/work/dailies/",

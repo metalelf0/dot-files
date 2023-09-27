@@ -26,6 +26,15 @@ function M.config()
 	api.nvim_command("hi clear @text.title.3.markdown")
 
 	require("github-theme").setup({
+		options = {
+			darken = {
+				floats = true,
+				sidebars = {
+					enabled = true,
+					list = { "neo-tree", "term", "toggle-term" },
+				},
+			},
+		},
 		groups = {
 			all = {
 				["@text.title.1.markdown"] = { fg = palette.blue.base },
