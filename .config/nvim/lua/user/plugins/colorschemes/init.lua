@@ -22,6 +22,7 @@ return {
 	require("user.plugins.colorschemes.nordic"),
 	require("user.plugins.colorschemes.oak"),
 	require("user.plugins.colorschemes.onedark"),
+	require("user.plugins.colorschemes.oxocarbon"),
 	require("user.plugins.colorschemes.rose-pine"),
 	require("user.plugins.colorschemes.seoul256"),
 	require("user.plugins.colorschemes.serenity"),

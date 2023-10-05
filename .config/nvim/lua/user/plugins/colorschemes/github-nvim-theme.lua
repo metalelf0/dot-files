@@ -27,13 +27,14 @@ function M.config()
 
 	require("github-theme").setup({
 		options = {
-			darken = {
-				floats = true,
-				sidebars = {
-					enabled = true,
-					list = { "neo-tree", "term", "toggle-term" },
-				},
-			},
+			transparent = true,
+			-- darken = {
+			-- 	floats = true,
+			-- 	sidebars = {
+			-- 		enabled = true,
+			-- 		list = { "neo-tree", "term", "toggle-term" },
+			-- 	},
+			-- },
 		},
 		groups = {
 			all = {

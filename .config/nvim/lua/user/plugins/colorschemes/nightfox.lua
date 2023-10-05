@@ -33,7 +33,7 @@ M.config = function()
 				comments = "italic",
 			},
 			colorblind = {
-				enable = true,
+				enable = false,
 				simulate_only = false,
 				severity = {
 					protan = 0.3,
