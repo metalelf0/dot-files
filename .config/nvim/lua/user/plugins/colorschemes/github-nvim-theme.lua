@@ -6,8 +6,27 @@ local M = {
 	priority = 1000,
 }
 
-function M.variant()
-	return config.variant or "github_dark"
+M.supported_variants = {
+	"github_dark",
+	"github_dark_colorblind",
+	"github_dark_default",
+	"github_dark_dimmed",
+	"github_dark_high_contrast",
+	"github_dark_tritanopia",
+	"github_dimmed",
+	"github_light",
+	"github_light_colorblind",
+	"github_light_default",
+	"github_light_high_contrast",
+}
+M.default_variant = "github_dark"
+
+M.variant = function()
+	if not utils.contains(M.supported_variants, config.variant) then
+		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
+	end
+
+	return (config.variant or M.default_variant)
 end
 
 function M.config()
@@ -27,14 +46,14 @@ function M.config()
 
 	require("github-theme").setup({
 		options = {
-			transparent = true,
-			-- darken = {
-			-- 	floats = true,
-			-- 	sidebars = {
-			-- 		enabled = true,
-			-- 		list = { "neo-tree", "term", "toggle-term" },
-			-- 	},
-			-- },
+			-- transparent = true,
+			darken = {
+				floats = true,
+				sidebars = {
+					enabled = true,
+					list = { "neo-tree", "term", "toggle-term" },
+				},
+			},
 		},
 		groups = {
 			all = {
@@ -46,17 +65,20 @@ function M.config()
 		},
 	})
 
-	vim.cmd([[
+	local setup = [[
     augroup CustomHighlight
       autocmd!
-      autocmd ColorScheme github_dark_high_contrast highlight clear CursorLineNr
-      autocmd ColorScheme github_dark_high_contrast highlight link CursorLineNr Normal
-      autocmd ColorScheme github_dark_high_contrast highlight clear VertSplit
-      autocmd ColorScheme github_dark_high_contrast highlight link VertSplit Function
+      autocmd ColorScheme @variant@ highlight clear CursorLineNr
+      autocmd ColorScheme @variant@ highlight link CursorLineNr Normal
+      autocmd ColorScheme @variant@ highlight clear VertSplit
+      autocmd ColorScheme @variant@ highlight link VertSplit Function
+      autocmd ColorScheme @variant@ highlight link NotifyBackground Normal
     augroup END
-  ]])
 
-	vim.cmd("colorscheme " .. M.variant())
+    colorscheme @variant@
+	]]
+
+	vim.cmd(string.gsub(setup, "@variant@", M.variant()))
 end
 
 return M

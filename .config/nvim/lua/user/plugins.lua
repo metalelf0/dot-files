@@ -18,7 +18,7 @@ return {
 	"tpope/vim-eunuch",
 	"tpope/vim-endwise",
 	"williamboman/mason-lspconfig.nvim",
-	"aduros/ai.vim",
+	-- "aduros/ai.vim",
 	-- "slim-template/vim-slim",
 
 	require("user.plugins.colorschemes"),
@@ -115,7 +115,7 @@ return {
 		config = function()
 			require("headlines").setup({
 				markdown = {
-					fat_headlines = true,
+					fat_headlines = false,
 				},
 			})
 		end,

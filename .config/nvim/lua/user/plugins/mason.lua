@@ -16,7 +16,7 @@ M.tools = {
 	"black",
 	"isort",
 	"flake8",
-	"solargraph",
+	-- "solargraph",
 }
 
 function M.check()

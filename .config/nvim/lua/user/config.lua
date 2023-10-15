@@ -1,8 +1,8 @@
 return {
-	colorscheme = "github",
-	variant = "github_dark_high_contrast",
-	filemanager = "neo-tree", -- supported: mini.files, oil, neo-tree
-	keymapper = "mini.clue",
+	colorscheme = "nightfox",
+	variant = "carbonfox",
+	filemanager = "oil", -- supported: mini.files, oil, neo-tree
+	keymapper = "which-key", -- supported: mini.clue, which-key
 	journal_dir = os.getenv("HOME") .. "/iCloud-Obsidian/work/dailies/",
 	startup = {
 		show_diagnostics = true,
