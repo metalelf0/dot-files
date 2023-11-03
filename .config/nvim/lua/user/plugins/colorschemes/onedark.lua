@@ -1,5 +1,6 @@
 local config = require("user.config")
 local utils = require("user.utils")
+local themer = require("user.themer")
 
 local M = {
 	"navarasu/onedark.nvim",
@@ -9,14 +10,6 @@ local M = {
 
 M.supported_variants = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }
 M.default_variant = "dark"
-
-M.variant = function()
-	if not utils.contains(M.supported_variants, config.variant) then
-		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
-	end
-
-	return (config.variant or M.default_variant)
-end
 
 M.config = function()
 	if config.colorscheme ~= "onedark" then
@@ -29,7 +22,7 @@ M.config = function()
 
 	local onedark = require("onedark")
 	onedark.setup({
-		style = M.variant(),
+		style = themer.variant(M),
 		highlights = {
 			rainbowcol1 = { fg = "Black" },
 			rainbowcol2 = { fg = "DarkGreen" },

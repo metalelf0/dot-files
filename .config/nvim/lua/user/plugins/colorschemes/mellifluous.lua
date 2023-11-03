@@ -1,5 +1,6 @@
 local config = require("user.config")
 local utils = require("user.utils")
+local themer = require("user.themer")
 
 local M = {
 	"ramojus/mellifluous.nvim",
@@ -9,14 +10,6 @@ local M = {
 
 M.supported_variants = { "alduin", "mellifluous", "mountain", "tender" }
 M.default_variant = "mellifluous"
-
-M.variant = function()
-	if not utils.contains(M.supported_variants, config.variant) then
-		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
-	end
-
-	return (config.variant or M.default_variant)
-end
 
 M.config = function()
 	if config.colorscheme ~= "mellifluous" then
@@ -30,7 +23,7 @@ M.config = function()
 			neutral = true, -- set this to false and bg_contrast to 'medium' for original mellifluous (then it was called meliora theme)
 			bg_contrast = "medium", -- options: 'soft', 'medium', 'hard'
 		},
-		color_set = M.variant(),
+		color_set = themer.variant(M),
 	})
 
 	vim.opt.cursorline = true

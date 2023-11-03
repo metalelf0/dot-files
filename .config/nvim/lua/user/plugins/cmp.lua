@@ -1,6 +1,7 @@
 local cmdline = false
 local M = {
 	"hrsh7th/nvim-cmp",
+	version = false,
 	event = "InsertEnter",
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
@@ -90,35 +91,18 @@ function M.config()
 		formatting = {
 			format = require("user.plugins.lsp.kind").cmp_format(),
 		},
-		-- documentation = {
-		--   border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-		--   winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
-		-- },
 		experimental = {
 			ghost_text = {
 				hl_group = "LspCodeLens",
 			},
 		},
-		-- sorting = {
-		--   comparators = {
-		--     cmp.config.compare.sort_text,
-		--     cmp.config.compare.offset,
-		--     -- cmp.config.compare.exact,
-		--     cmp.config.compare.score,
-		--     -- cmp.config.compare.kind,
-		--     -- cmp.config.compare.length,
-		--     cmp.config.compare.order,
-		--   },
-		-- },
 	})
 	if cmdline then
 		cmp.setup.cmdline(":", {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({
-				-- { name = "noice_popupmenu" },
 				{ name = "path" },
 				{ name = "cmdline" },
-				-- { name = "cmdline_history" },
 			}),
 		})
 	end

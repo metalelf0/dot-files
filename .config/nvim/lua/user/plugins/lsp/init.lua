@@ -65,7 +65,7 @@ function M.config()
 				},
 			},
 		},
-		gopls = {},
+		-- gopls = {},
 		marksman = {},
 		pyright = {},
 		rust_analyzer = {
@@ -147,7 +147,7 @@ function M.config()
 		-- sorbet = {},
 
 		-- ruby_ls is commented out because it aint working
-		-- ruby_ls = {},
+		ruby_ls = {},
 
 		-- tailwindcss = {},
 	}

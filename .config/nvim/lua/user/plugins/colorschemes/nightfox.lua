@@ -1,5 +1,6 @@
 local config = require("user.config")
 local utils = require("user.utils")
+local themer = require("user.themer")
 
 local M = {
 	"EdenEast/nightfox.nvim",
@@ -9,14 +10,6 @@ local M = {
 
 M.supported_variants = { "carbonfox", "dawnfox", "dayfox", "duskfox", "nightfox", "nordfox", "terafox" }
 M.default_variant = "nightfox"
-
-M.variant = function()
-	if not utils.contains(M.supported_variants, config.variant) then
-		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
-	end
-
-	return (config.variant or M.default_variant)
-end
 
 M.config = function()
 	if config.colorscheme ~= "nightfox" then
@@ -60,7 +53,7 @@ M.config = function()
        highlight link VertSplit String
 	 ]]
 
-	vim.cmd(string.gsub(setup, "@variant@", M.variant()))
+	vim.cmd(string.gsub(setup, "@variant@", themer.variant(M)))
 end
 
 return M

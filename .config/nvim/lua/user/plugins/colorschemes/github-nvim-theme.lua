@@ -1,4 +1,6 @@
 local config = require("user.config")
+local utils = require("user.utils")
+local themer = require("user.themer")
 
 local M = {
 	"projekt0n/github-nvim-theme",
@@ -21,20 +23,12 @@ M.supported_variants = {
 }
 M.default_variant = "github_dark"
 
-M.variant = function()
-	if not utils.contains(M.supported_variants, config.variant) then
-		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
-	end
-
-	return (config.variant or M.default_variant)
-end
-
 function M.config()
 	if config.colorscheme ~= "github" then
 		return false
 	end
 
-	local palette = require("github-theme.palette").load(M.variant())
+	local palette = require("github-theme.palette").load(themer.variant(M))
 	local Color = require("github-theme.lib.color")
 	local api = vim.api
 	vim.o.cursorline = true
@@ -78,7 +72,7 @@ function M.config()
     colorscheme @variant@
 	]]
 
-	vim.cmd(string.gsub(setup, "@variant@", M.variant()))
+	vim.cmd(string.gsub(setup, "@variant@", themer.variant(M)))
 end
 
 return M

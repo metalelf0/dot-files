@@ -1,4 +1,5 @@
 local config = require("user.config")
+local themer = require("user.themer")
 
 local M = {
 	"marko-cerovac/material.nvim",
@@ -6,10 +7,8 @@ local M = {
 	priority = 1000,
 }
 
-M.variant = function()
-	-- oceanic, palenight, deep ocean, lighter, darker
-	return config.variant or "darker"
-end
+M.supported_variants = { "darker", "lighter", "oceanic", "palenight", "deep_ocean" }
+M.default_variant = "darker"
 
 M.config = function()
 	if config.colorscheme ~= "material" then
@@ -81,7 +80,7 @@ M.config = function()
 		},
 	})
 
-	vim.cmd('let g:material_style="' .. M.variant() .. '"')
+	vim.cmd('let g:material_style="' .. themer.variant(M) .. '"')
 	vim.cmd("colorscheme material")
 end
 

@@ -1,8 +1,9 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
-	dev = false,
+	version = false,
 	build = ":TSUpdate",
-	event = "BufReadPost",
+	event = { "VeryLazy" },
+	cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
@@ -74,7 +75,7 @@ function M.config()
 		sync_install = false,
 		auto_install = false,
 		highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
-		indent = { enable = false },
+		indent = { enable = true },
 		context_commentstring = { enable = true, enable_autocmd = false },
 		incremental_selection = {
 			enable = true,

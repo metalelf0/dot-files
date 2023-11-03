@@ -3,6 +3,7 @@
 
 local config = require("user.config")
 local utils = require("user.utils")
+local themer = require("user.themer")
 
 local M = {
 	"catppuccin/nvim",
@@ -14,14 +15,6 @@ local M = {
 M.supported_variants = { "mocha", "latte", "frappe", "macchiato" }
 M.default_variant = "mocha"
 
-M.variant = function()
-	if not utils.contains(M.supported_variants, config.variant) then
-		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
-	end
-
-	return (config.variant or M.default_variant)
-end
-
 M.config = function()
 	if config.colorscheme ~= "catppuccin" then
 		return false
@@ -30,7 +23,7 @@ M.config = function()
 	vim.o.cursorlineopt = "number"
 
 	require("catppuccin").setup({
-		flavour = M.variant(), -- latte, frappe, macchiato, mocha
+		flavour = themer.variant(M), -- latte, frappe, macchiato, mocha
 		transparent_background = false,
 		show_end_of_buffer = false,
 		term_colors = true,

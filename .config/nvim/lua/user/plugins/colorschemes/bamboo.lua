@@ -11,9 +11,7 @@ M.config = function()
 		return false
 	end
 
-	require("bamboo").setup({
-		-- optional configuration here
-	})
+	require("bamboo").setup({})
 	require("bamboo").load()
 end
 

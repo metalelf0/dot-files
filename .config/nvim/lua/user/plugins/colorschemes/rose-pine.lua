@@ -1,5 +1,6 @@
 local config = require("user.config")
 local utils = require("user.utils")
+local themer = require("user.themer")
 
 local M = {
 	"rose-pine/neovim",
@@ -12,24 +13,12 @@ M.supported_variants = { "moon", "main", "dawn" }
 M.dark_variants = { "moon", "main" }
 M.default_variant = "main"
 
-M.variant = function()
-	if not utils.contains(M.supported_variants, config.variant) then
-		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
-	end
-
-	return (config.variant or M.default_variant)
-end
-
 M.dark_variant = function()
-	if M.is_dark() then
+	if themer.is_dark(M) then
 		return config.variant
 	else
 		return "main"
 	end
-end
-
-M.is_dark = function()
-	return utils.contains(M.dark_variants, config.variant)
 end
 
 M.config = function()

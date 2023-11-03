@@ -17,7 +17,7 @@ return {
 	require("user.plugins.colorschemes.midnight"),
 	require("user.plugins.colorschemes.modus"),
 	require("user.plugins.colorschemes.monokai-pro"),
-	require("user.plugins.colorschemes.nano"),
+	require("user.plugins.colorschemes.nano-theme"),
 	require("user.plugins.colorschemes.nightfox"),
 	require("user.plugins.colorschemes.nordic"),
 	require("user.plugins.colorschemes.oak"),

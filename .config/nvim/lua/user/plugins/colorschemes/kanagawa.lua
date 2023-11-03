@@ -1,5 +1,6 @@
 local config = require("user.config")
 local utils = require("user.utils")
+local themer = require("user.themer")
 
 local M = {
 	"rebelot/kanagawa.nvim",
@@ -10,17 +11,8 @@ local M = {
 M.supported_variants = { "wave", "dragon", "lotus" }
 M.default_variant = "wave"
 
-M.variant = function()
-	if not utils.contains(M.supported_variants, config.variant) then
-		vim.notify("Variant " .. config.variant .. " not supported, defaulting to " .. M.default_variant)
-		return M.default_variant
-	end
-
-	return (config.variant or M.default_variant)
-end
-
 M.colorscheme = function()
-	return "kanagawa-" .. M.variant()
+	return "kanagawa-" .. themer.variant(M)
 end
 
 M.config = function()
@@ -42,7 +34,7 @@ M.config = function()
 		transparent = false, -- do not set background color
 		dimInactive = false, -- dim inactive window `:h hl-NormalNC`
 		globalStatus = true,
-		theme = M.variant(), -- or "light" for the experimental light variant
+		theme = themer.variant(M), -- or "light" for the experimental light variant
 		colors = {
 			theme = {
 				all = {

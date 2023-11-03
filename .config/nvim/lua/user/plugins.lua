@@ -18,7 +18,6 @@ return {
 	"tpope/vim-eunuch",
 	"tpope/vim-endwise",
 	"williamboman/mason-lspconfig.nvim",
-	-- "aduros/ai.vim",
 	-- "slim-template/vim-slim",
 
 	require("user.plugins.colorschemes"),
@@ -140,39 +139,12 @@ return {
 	},
 	"michaeljsmith/vim-indent-object",
 	{
-		"folke/zen-mode.nvim",
-		cmd = "ZenMode",
-		config = function()
-			require("zen-mode").setup({
-				plugins = {
-					gitsigns = true,
-				},
-			})
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-	},
-	{
 		"ckolkey/ts-node-action",
 		dependencies = { "nvim-treesitter" },
 		config = function() -- Optional
 			require("ts-node-action").setup({})
 		end,
 	},
-	-- { "ldelossa/gh.nvim", dependencies = { "ldelossa/litee.nvim" } },
-	{
-		"svermeulen/text-to-colorscheme",
-		config = function()
-			require("text-to-colorscheme").setup({
-				ai = {
-					openai_api_key = os.getenv("OPENAI_API_KEY"),
-				},
-			})
-		end,
-	},
-
 	-- git signs
 	{
 		"lewis6991/gitsigns.nvim",
