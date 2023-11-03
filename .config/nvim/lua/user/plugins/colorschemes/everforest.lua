@@ -6,6 +6,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "everforest"
 function M.config()
 	if config.colorscheme ~= "everforest" then
 		return false

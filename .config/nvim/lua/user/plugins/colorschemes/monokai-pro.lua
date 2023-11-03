@@ -6,6 +6,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "monokai-pro"
 function M.config()
 	if config.colorscheme ~= "monokai-pro" then
 		return false

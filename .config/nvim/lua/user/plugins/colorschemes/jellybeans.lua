@@ -6,6 +6,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "jellybeans"
 M.config = function()
 	if config.colorscheme ~= "jellybeans" then
 		return false

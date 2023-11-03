@@ -9,6 +9,7 @@ local M = {
 	priority = 1001,
 }
 
+M.colorscheme = "nano-theme"
 function M.config()
 	if config.colorscheme ~= "nano-theme" then
 		return false

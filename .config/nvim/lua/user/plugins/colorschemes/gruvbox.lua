@@ -8,6 +8,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "gruvbox"
 M.supported_variants = { "hard", "soft", "" }
 M.default_variant = "dark"
 

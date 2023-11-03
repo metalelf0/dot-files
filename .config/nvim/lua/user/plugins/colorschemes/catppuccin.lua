@@ -12,6 +12,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "catppuccin"
 M.supported_variants = { "mocha", "latte", "frappe", "macchiato" }
 M.default_variant = "mocha"
 

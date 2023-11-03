@@ -6,6 +6,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "serenity"
 M.palette = {
 	black = "#000000",
 }

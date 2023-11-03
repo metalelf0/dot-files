@@ -7,6 +7,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "oxocarbon"
 M.config = function()
 	if config.colorscheme ~= "oxocarbon" then
 		return false

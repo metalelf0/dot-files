@@ -8,6 +8,7 @@ local M = {
 	priority = 1001,
 }
 
+M.colorscheme = "cockatoo"
 M.palette_variants = {
 	dark = {
 		yellow = "#e6bb86",

@@ -8,6 +8,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "github"
 M.supported_variants = {
 	"github_dark",
 	"github_dark_colorblind",

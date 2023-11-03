@@ -8,6 +8,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "nightfox"
 M.supported_variants = { "carbonfox", "dawnfox", "dayfox", "duskfox", "nightfox", "nordfox", "terafox" }
 M.default_variant = "nightfox"
 

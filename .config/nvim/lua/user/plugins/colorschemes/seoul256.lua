@@ -6,6 +6,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "seoul256"
 M.config = function()
 	if config.colorscheme ~= "seoul256" then
 		return false

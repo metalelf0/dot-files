@@ -6,6 +6,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "iceberg"
 M.config = function()
 	if config.colorscheme ~= "iceberg" then
 		return false

@@ -9,6 +9,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "rose-pine"
 M.supported_variants = { "moon", "main", "dawn" }
 M.dark_variants = { "moon", "main" }
 M.default_variant = "main"

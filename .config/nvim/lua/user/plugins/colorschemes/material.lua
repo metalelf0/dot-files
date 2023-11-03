@@ -7,6 +7,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "material"
 M.supported_variants = { "darker", "lighter", "oceanic", "palenight", "deep_ocean" }
 M.default_variant = "darker"
 

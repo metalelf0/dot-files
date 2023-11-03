@@ -8,6 +8,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "arctic"
 M.config = function()
 	if config.colorscheme ~= "arctic" then
 		return false

@@ -8,6 +8,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "kanagawa"
 M.supported_variants = { "wave", "dragon", "lotus" }
 M.default_variant = "wave"
 

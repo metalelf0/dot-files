@@ -7,6 +7,8 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "zenbones"
+
 M.config = function()
 	if config.colorscheme ~= "zenbones" then
 		return false

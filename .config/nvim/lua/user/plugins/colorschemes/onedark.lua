@@ -8,6 +8,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "onedark"
 M.supported_variants = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }
 M.default_variant = "dark"
 

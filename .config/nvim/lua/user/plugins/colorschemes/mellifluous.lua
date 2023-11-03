@@ -8,6 +8,7 @@ local M = {
 	lazy = false,
 }
 
+M.colorscheme = "mellifluous"
 M.supported_variants = { "alduin", "mellifluous", "mountain", "tender" }
 M.default_variant = "mellifluous"
 

@@ -8,6 +8,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "tokyonight"
 M.supported_variants = { "storm", "night", "moon", "day" }
 M.default_variant = "night"
 

@@ -8,6 +8,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "boo"
 M.supported_variants = { "boo", "sunset_cloud", "radioactive_waste", "forest_stream", "crimson_moonlight" }
 M.default_variant = "boo"
 

@@ -6,6 +6,7 @@ local M = {
 	priority = 1000,
 }
 
+M.colorscheme = "gruvbox-material"
 function M.config()
 	if config.colorscheme ~= "gruvbox-material" then
 		return false
