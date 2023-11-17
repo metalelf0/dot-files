@@ -1,12 +1,16 @@
 local config = require("user.config")
+local utils = require("user.utils")
+local themer = require("user.themer")
+
+local colorscheme = "everforest"
 
 local M = {
 	"neanias/everforest-nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "everforest"
 function M.config()
 	if config.colorscheme ~= "everforest" then
 		return false

@@ -2,13 +2,15 @@ local config = require("user.config")
 local utils = require("user.utils")
 local themer = require("user.themer")
 
+local colorscheme = "onedark"
+
 local M = {
 	"navarasu/onedark.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "onedark"
 M.supported_variants = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }
 M.default_variant = "dark"
 

@@ -66,7 +66,7 @@ function M.config()
 			},
 		},
 		-- gopls = {},
-		marksman = {},
+		-- marksman = {},
 		pyright = {},
 		rust_analyzer = {
 			settings = {

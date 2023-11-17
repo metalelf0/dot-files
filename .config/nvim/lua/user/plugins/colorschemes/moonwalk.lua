@@ -1,22 +1,19 @@
 local config = require("user.config")
 local themer = require("user.themer")
 
-local colorscheme = "zenbones"
-
 local M = {
-	"mcchrish/zenbones.nvim",
-	dependencies = { "rktjmp/lush.nvim" },
+	"theJian/nvim-moonwalk",
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
 }
 
-M.config = function()
-	if config.colorscheme ~= "zenbones" then
+function M.config()
+	if config.colorscheme ~= "nano-theme" then
 		return false
 	end
 
-	vim.cmd("colorscheme zenwritten")
+	vim.cmd("colorscheme " .. config.colorscheme)
 end
 
 return M

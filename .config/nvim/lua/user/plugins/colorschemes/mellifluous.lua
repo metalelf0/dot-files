@@ -2,13 +2,15 @@ local config = require("user.config")
 local utils = require("user.utils")
 local themer = require("user.themer")
 
+local colorscheme = "mellifluous"
+
 local M = {
 	"ramojus/mellifluous.nvim",
 	dependencies = { "rktjmp/lush.nvim" },
-	lazy = false,
+	lazy = themer.lazy_load(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "mellifluous"
 M.supported_variants = { "alduin", "mellifluous", "mountain", "tender" }
 M.default_variant = "mellifluous"
 

@@ -19,4 +19,34 @@ M.is_dark = function(context)
 	return utils.contains(dark_variants, config.variant)
 end
 
+M.lazy_load = function(colorscheme)
+	-- return false
+	return colorscheme ~= config.colorscheme
+end
+
+M.priority_for = function(colorscheme)
+	-- return 1000
+	if colorscheme ~= config.colorscheme then
+		return 1000
+	else
+		return 500
+	end
+end
+
+M.keys = function(colorscheme)
+	if colorscheme ~= config.colorscheme then
+		return {
+			{
+				"<leader>uc",
+				function()
+					require("telescope.builtin").colorscheme({ enable_preview = true })
+				end,
+				desc = "Colorscheme with preview",
+			},
+		}
+	else
+		return {}
+	end
+end
+
 return M

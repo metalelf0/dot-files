@@ -41,18 +41,18 @@ M.config = function()
 		icons = {
 			breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
 			separator = "->", -- symbol used between a key and its label
-			-- group = "+", -- symbol prepended to a group
-			group = "", -- symbol prepended to a group
+			group = "+", -- symbol prepended to a group
+			-- group = "", -- symbol prepended to a group
 		},
 		popup_mappings = {
 			scroll_down = "<c-d>", -- binding to scroll down inside the popup
 			scroll_up = "<c-u>", -- binding to scroll up inside the popup
 		},
 		window = {
-			border = "rounded", -- none, single, double, shadow
+			border = "none", -- none, single, double, shadow
 			position = "bottom", -- bottom, top
 			margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-			padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+			padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
 			winblend = 0,
 		},
 		layout = {
@@ -85,18 +85,18 @@ M.config = function()
 	}
 
 	local mappings = {
-		b = { name = "󰓩 Buffers", ["c"] = { name = "  Close" } },
-		P = { name = " Packer / Projects" },
-		g = { name = " Git" },
-		h = { name = "󰋖 Helpers" },
-		i = { name = " Insert" },
-		j = { name = "󰙨 Test / join" },
-		l = { name = "󰢻 LSP" },
-		o = { name = " Obsidian" },
-		r = { name = "󰬢 Refactorings" },
-		s = { name = "󰍉 Search" },
-		t = { name = " Terminal" },
-		u = { name = " UI" },
+		b = { name = "Buffers", ["c"] = { name = "Close" } },
+		P = { name = "Packer / Projects" },
+		g = { name = "Git" },
+		h = { name = "Helpers" },
+		i = { name = "Insert" },
+		j = { name = "Test / join" },
+		l = { name = "LSP" },
+		o = { name = "Obsidian" },
+		r = { name = "Refactorings" },
+		s = { name = "Search" },
+		t = { name = "Terminal" },
+		u = { name = "UI" },
 	}
 
 	if vim.g.neovide then

@@ -1,16 +1,18 @@
 local config = require("user.config")
-local utils = require("user.utils")
 local themer = require("user.themer")
+
+local colorscheme = "gruvbox"
 
 local M = {
 	"ellisonleao/gruvbox.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "gruvbox"
+-- FIXME wtf?!
 M.supported_variants = { "hard", "soft", "" }
-M.default_variant = "dark"
+M.default_variant = "hard"
 
 M.config = function()
 	if config.colorscheme ~= "gruvbox" then

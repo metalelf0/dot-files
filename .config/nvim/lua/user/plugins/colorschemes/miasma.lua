@@ -1,12 +1,15 @@
 local config = require("user.config")
+local themer = require("user.themer")
+
+local colorscheme = "miasma"
 
 local M = {
 	"xero/miasma.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "miasma"
 M.config = function()
 	if config.colorscheme ~= "miasma" then
 		return false

@@ -1,12 +1,15 @@
 local config = require("user.config")
+local themer = require("user.themer")
+
+local colorscheme = "serenity"
 
 local M = {
 	"Wansmer/serenity.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "serenity"
 M.palette = {
 	black = "#000000",
 }
@@ -20,7 +23,8 @@ M.config = function()
 		return "guifg=" .. fg .. " guibg=" .. bg
 	end
 
-	require("serenity").load()
+	require("serenity").setup()
+	vim.cmd("colorscheme serenity")
 
 	local api = vim.api
 	api.nvim_command("hi clear @text.todo.checked.markdown")

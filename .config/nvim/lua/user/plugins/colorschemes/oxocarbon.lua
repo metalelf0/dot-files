@@ -1,13 +1,16 @@
 local config = require("user.config")
 local utils = require("user.utils")
+local themer = require("user.themer")
+
+local colorscheme = "oxocarbon"
 
 local M = {
 	"nyoom-engineering/oxocarbon.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "oxocarbon"
 M.config = function()
 	if config.colorscheme ~= "oxocarbon" then
 		return false

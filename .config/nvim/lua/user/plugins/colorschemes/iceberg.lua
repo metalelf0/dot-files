@@ -1,12 +1,15 @@
 local config = require("user.config")
+local themer = require("user.themer")
+
+local colorscheme = "iceberg"
 
 local M = {
 	"cocopon/iceberg.vim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "iceberg"
 M.config = function()
 	if config.colorscheme ~= "iceberg" then
 		return false

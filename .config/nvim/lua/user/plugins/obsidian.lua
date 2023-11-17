@@ -1,5 +1,6 @@
 local M = {
 	"epwalsh/obsidian.nvim",
+	version = "*",
 	-- cmd = { "ObsidianOpen", "ObsidianToday", "ObsidianYesterday", "ObsidianSearch", "ObsidianNew" },
 }
 

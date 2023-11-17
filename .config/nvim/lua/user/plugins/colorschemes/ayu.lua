@@ -1,22 +1,27 @@
 local config = require("user.config")
+local utils = require("user.utils")
 local themer = require("user.themer")
 
-local colorscheme = "zenbones"
+local colorscheme = "ayu"
 
 local M = {
-	"mcchrish/zenbones.nvim",
-	dependencies = { "rktjmp/lush.nvim" },
+	"Shatur/neovim-ayu",
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
 }
 
 M.config = function()
-	if config.colorscheme ~= "zenbones" then
+	if config.colorscheme ~= "ayu" then
 		return false
 	end
 
-	vim.cmd("colorscheme zenwritten")
+	require("ayu").setup({
+		mirage = false,
+		overrides = {},
+	})
+
+	require("ayu").colorscheme()
 end
 
 return M

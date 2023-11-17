@@ -2,14 +2,16 @@ local config = require("user.config")
 local utils = require("user.utils")
 local themer = require("user.themer")
 
+local colorscheme = "rose-pine"
+
 local M = {
 	"rose-pine/neovim",
 	name = "rose-pine",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "rose-pine"
 M.supported_variants = { "moon", "main", "dawn" }
 M.dark_variants = { "moon", "main" }
 M.default_variant = "main"

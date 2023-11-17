@@ -7,12 +7,10 @@ return {
 	"junegunn/fzf",
 	"metalelf0/vim-rails",
 	"mg979/vim-visual-multi",
-	"tommcdo/vim-exchange",
+	"tommcdo/vim-exchange", -- swap words with cxiw - cxiw
 	"tpope/vim-abolish",
 	"tpope/vim-rsi",
-	"tpope/vim-fugitive",
-	-- rhubarb enables C-x C-o to omnicomplete github stuff!
-	"tpope/vim-rhubarb",
+	"tpope/vim-rhubarb", -- rhubarb enables C-x C-o to omnicomplete github stuff!
 	"tpope/vim-repeat",
 	"tpope/vim-unimpaired",
 	"tpope/vim-eunuch",
@@ -40,14 +38,6 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"folke/trouble.nvim",
-		cmd = { "TroubleToggle", "Trouble" },
-		opts = {
-			auto_open = false,
-			use_diagnostic_signs = true,
-		},
 	},
 	{
 		"stevearc/dressing.nvim",

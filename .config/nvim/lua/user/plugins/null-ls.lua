@@ -15,7 +15,7 @@ function M.setup(options)
 			-- nls.builtins.formatting.eslint_d,
 			-- nls.builtins.diagnostics.shellcheck,
 			nls.builtins.formatting.shfmt,
-			-- nls.builtins.diagnostics.markdownlint,
+			nls.builtins.diagnostics.markdownlint,
 			-- nls.builtins.diagnostics.luacheck,
 
 			-- nls.builtins.formatting.prettierd.with({

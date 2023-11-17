@@ -2,13 +2,15 @@ local config = require("user.config")
 local utils = require("user.utils")
 local themer = require("user.themer")
 
+local colorscheme = "github"
+
 local M = {
 	"projekt0n/github-nvim-theme",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "github"
 M.supported_variants = {
 	"github_dark",
 	"github_dark_colorblind",

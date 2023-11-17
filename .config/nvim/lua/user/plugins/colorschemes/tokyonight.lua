@@ -2,13 +2,15 @@ local config = require("user.config")
 local utils = require("user.utils")
 local themer = require("user.themer")
 
+local colorscheme = "tokyonight"
+
 local M = {
 	"folke/tokyonight.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "tokyonight"
 M.supported_variants = { "storm", "night", "moon", "day" }
 M.default_variant = "night"
 

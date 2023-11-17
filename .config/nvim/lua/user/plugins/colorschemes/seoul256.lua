@@ -1,12 +1,15 @@
 local config = require("user.config")
+local themer = require("user.themer")
+
+local colorscheme = "seoul256"
 
 local M = {
 	"junegunn/seoul256.vim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "seoul256"
 M.config = function()
 	if config.colorscheme ~= "seoul256" then
 		return false

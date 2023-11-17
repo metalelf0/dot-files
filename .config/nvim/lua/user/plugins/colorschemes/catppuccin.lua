@@ -5,14 +5,16 @@ local config = require("user.config")
 local utils = require("user.utils")
 local themer = require("user.themer")
 
+local colorscheme = "catppuccin"
+
 local M = {
 	"catppuccin/nvim",
 	name = "catppuccin",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "catppuccin"
 M.supported_variants = { "mocha", "latte", "frappe", "macchiato" }
 M.default_variant = "mocha"
 

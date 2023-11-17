@@ -1,13 +1,15 @@
 local config = require("user.config")
 local themer = require("user.themer")
 
+local colorscheme = "material"
+
 local M = {
 	"marko-cerovac/material.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "material"
 M.supported_variants = { "darker", "lighter", "oceanic", "palenight", "deep_ocean" }
 M.default_variant = "darker"
 

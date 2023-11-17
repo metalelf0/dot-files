@@ -1,12 +1,15 @@
 local config = require("user.config")
+local themer = require("user.themer")
+
+local colorscheme = "monokai-pro"
 
 local M = {
 	"loctvl842/monokai-pro.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "monokai-pro"
 function M.config()
 	if config.colorscheme ~= "monokai-pro" then
 		return false

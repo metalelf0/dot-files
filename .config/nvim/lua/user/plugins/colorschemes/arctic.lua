@@ -1,14 +1,18 @@
 local config = require("user.config")
+local utils = require("user.utils")
+local themer = require("user.themer")
+
+local colorscheme = "arctic"
 
 local M = {
 	"rockyzhang24/arctic.nvim",
 	branch = "v2",
 	dependencies = { "rktjmp/lush.nvim" },
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "arctic"
 M.config = function()
 	if config.colorscheme ~= "arctic" then
 		return false

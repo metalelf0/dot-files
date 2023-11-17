@@ -1,12 +1,15 @@
 local config = require("user.config")
+local themer = require("user.themer")
+
+local colorscheme = "gruvbox-material"
 
 local M = {
 	"sainnhe/gruvbox-material",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "gruvbox-material"
 function M.config()
 	if config.colorscheme ~= "gruvbox-material" then
 		return false

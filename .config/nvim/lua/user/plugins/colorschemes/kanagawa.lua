@@ -2,13 +2,15 @@ local config = require("user.config")
 local utils = require("user.utils")
 local themer = require("user.themer")
 
+local colorscheme = "kanagawa"
+
 local M = {
 	"rebelot/kanagawa.nvim",
-	lazy = false,
-	priority = 1000,
+	lazy = themer.lazy_load(colorscheme),
+	priority = themer.priority_for(colorscheme),
+	keys = themer.keys(colorscheme),
 }
 
-M.colorscheme = "kanagawa"
 M.supported_variants = { "wave", "dragon", "lotus" }
 M.default_variant = "wave"
 
