@@ -2,6 +2,7 @@ return {
 	require("user.plugins.colorschemes.arctic"),
 	require("user.plugins.colorschemes.ayu"),
 	require("user.plugins.colorschemes.bamboo"),
+	require("user.plugins.colorschemes.base16"),
 	require("user.plugins.colorschemes.boo"),
 	require("user.plugins.colorschemes.catppuccin"),
 	require("user.plugins.colorschemes.everforest"),

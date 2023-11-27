@@ -16,9 +16,16 @@ M.config = function()
 		return false
 	end
 
+  vim.opt.cursorline = true
+
+	local colors = require("ayu.colors")
+	colors.generate(false)
+
 	require("ayu").setup({
 		mirage = false,
-		overrides = {},
+		overrides = {
+			["@symbol"] = { fg = colors.tag },
+		},
 	})
 
 	require("ayu").colorscheme()

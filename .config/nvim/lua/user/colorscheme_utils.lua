@@ -53,7 +53,8 @@ M.export_colors_to_wezterm = function()
 		local var = "g:terminal_color_" .. tostring(i)
 		if fn.exists(var) == 1 then
 			local tc = fn.eval(var)
-			if (i % 2) == 0 then
+			-- if (i % 2) == 0 then
+			if i < 8 then
 				table.insert(colors.ansi, tc)
 			else
 				table.insert(colors.brights, tc)

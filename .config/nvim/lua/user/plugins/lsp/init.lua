@@ -31,7 +31,7 @@ function M.config()
 
 	local function on_attach(client, bufnr)
 		require("nvim-navic").attach(client, bufnr)
-		require("user.plugins.lsp.formatting").setup(client, bufnr)
+		-- require("user.plugins.lsp.formatting").setup(client, bufnr)
 		require("user.plugins.lsp.keys").setup(client, bufnr)
 		-- metalelf0 customization - force definitionProvider to true to work around dynamicRegistration for solargraph
 		client.server_capabilities.definitionProvider = true
@@ -146,7 +146,6 @@ function M.config()
 		},
 		-- sorbet = {},
 
-		-- ruby_ls is commented out because it aint working
 		ruby_ls = {},
 
 		-- tailwindcss = {},
@@ -177,7 +176,7 @@ function M.config()
 		end
 	end
 
-	require("user.plugins.null-ls").setup(options)
+	-- require("user.plugins.null-ls").setup(options)
 end
 
 return M

@@ -26,6 +26,9 @@ M.config = function()
 				opts = { noremap = false, expr = true, buffer = true },
 			},
 		},
+		follow_url_func = function(url)
+			vim.fn.jobstart({ "open", url }) -- Mac OS
+		end,
 	})
 
 	M.set_keymaps()

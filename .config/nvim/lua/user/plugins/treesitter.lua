@@ -22,6 +22,9 @@ function M.init()
 end
 
 function M.config()
+	vim.g.skip_ts_context_commentstring_module = true
+	require("ts_context_commentstring").setup({})
+
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
 			"bash",
@@ -76,7 +79,7 @@ function M.config()
 		auto_install = false,
 		highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
 		indent = { enable = true },
-		context_commentstring = { enable = true, enable_autocmd = false },
+		-- context_commentstring = { enable = true, enable_autocmd = false },
 		incremental_selection = {
 			enable = true,
 			keymaps = {
