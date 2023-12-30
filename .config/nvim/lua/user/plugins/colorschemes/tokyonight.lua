@@ -26,6 +26,7 @@ M.config = function()
 		style = themer.variant(M),
 		sidebars = { "neo-tree", "qf", "vista_kind", "terminal", "packer", "aerial", "toggleterm" },
 		dim_inactive = false,
+		transparent = config.transparent,
 		styles = {
 			sidebars = "dark",
 		},
@@ -38,7 +39,6 @@ M.config = function()
 			hl["@exception.ruby"] = { fg = cl.red }
 		end,
 		day_brightness = 0.3,
-		dim_inactive = true,
 	})
 
 	vim.cmd([[

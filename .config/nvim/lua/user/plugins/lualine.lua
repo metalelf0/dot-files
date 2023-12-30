@@ -79,7 +79,7 @@ M.config = function()
 			-- lualine_x = { "encoding", "fileformat", "filetype" },
 			lualine_x = { diff, "encoding", filetype },
 			lualine_y = { location },
-			lualine_z = { root_dir },
+			lualine_z = { root_dir, { "datetime", style = "%H:%M" } },
 		},
 		inactive_sections = {
 			lualine_a = {},
@@ -92,10 +92,12 @@ M.config = function()
 		},
 		tabline = {},
 		extensions = {
+			"aerial",
+			"fugitive",
 			"lazy",
+			"mason",
 			"neo-tree",
 			"quickfix",
-			"aerial",
 			"toggleterm",
 			"trouble",
 		},

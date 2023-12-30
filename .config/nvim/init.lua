@@ -11,3 +11,5 @@ require("user.digraphs")
 require("user.fvim")
 require("user.fun")
 -- require("user.event_logger")
+
+vim.cmd([[ packadd cfilter ]])

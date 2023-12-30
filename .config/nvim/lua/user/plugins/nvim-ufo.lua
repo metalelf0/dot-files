@@ -1,6 +1,7 @@
 local M = {
 	"kevinhwang91/nvim-ufo",
 	dependencies = { "kevinhwang91/promise-async" },
+	event = "BufReadPost", -- needed for folds to load in time
 	enabled = true,
 }
 

@@ -30,8 +30,7 @@ function M.config()
 	require("user.plugins.lsp.diagnostics").setup()
 
 	local function on_attach(client, bufnr)
-		require("nvim-navic").attach(client, bufnr)
-		-- require("user.plugins.lsp.formatting").setup(client, bufnr)
+		require("user.plugins.lsp.formatting").setup(client, bufnr)
 		require("user.plugins.lsp.keys").setup(client, bufnr)
 		-- metalelf0 customization - force definitionProvider to true to work around dynamicRegistration for solargraph
 		client.server_capabilities.definitionProvider = true
@@ -169,14 +168,10 @@ function M.config()
 
 	for server, opts in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", {}, options, opts or {})
-		if server == "tsserver" then
-			require("typescript").setup({ server = opts })
-		else
-			require("lspconfig")[server].setup(opts)
-		end
+		require("lspconfig")[server].setup(opts)
 	end
 
-	-- require("user.plugins.null-ls").setup(options)
+	require("user.plugins.null-ls").setup(options)
 end
 
 return M

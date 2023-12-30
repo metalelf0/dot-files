@@ -13,7 +13,7 @@ return {
 			close_if_last_window = true,
 			sources = { "filesystem", "buffers", "git_status" },
 			window = {
-				position = "right",
+				position = "left",
 				mappings = {
 					["<space>"] = false, -- disable space until we figure out which-key disabling
 					["[b"] = "prev_source",

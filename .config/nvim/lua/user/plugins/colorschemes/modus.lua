@@ -20,6 +20,7 @@ M.config = function()
 		-- `auto` will automatically set style based on background set with vim.o.background
 		style = "auto",
 		variant = "default", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
+		dim_inactive = false,
 		styles = {
 			-- Style to be applied to different syntax groups
 			-- Value is any valid attr-list value for `:help nvim_set_hl`

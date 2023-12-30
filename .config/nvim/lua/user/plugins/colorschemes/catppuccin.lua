@@ -27,7 +27,7 @@ M.config = function()
 
 	require("catppuccin").setup({
 		flavour = themer.variant(M), -- latte, frappe, macchiato, mocha
-		transparent_background = false,
+		transparent_background = config.transparent,
 		show_end_of_buffer = false,
 		term_colors = true,
 		background = { -- :h background

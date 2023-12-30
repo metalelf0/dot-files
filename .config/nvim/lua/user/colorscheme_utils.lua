@@ -1,3 +1,4 @@
+---@diagnostic disable: param-type-mismatch, no-unknown
 local M = {}
 
 M.config = {

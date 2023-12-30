@@ -17,11 +17,15 @@ M.dark_variants = { "moon", "main" }
 M.default_variant = "main"
 
 M.dark_variant = function()
-	if themer.is_dark(M) then
+	if M.is_dark_variant() then
 		return config.variant
 	else
-		return "main"
+		return M.dark_variants[0]
 	end
+end
+
+M.is_dark_variant = function()
+	return utils.contains(M.dark_variants, config.variant)
 end
 
 M.config = function()
@@ -36,7 +40,7 @@ M.config = function()
 		dim_nc_background = false,
 		disable_background = false,
 		disable_float_background = false,
-		disable_italics = true,
+		disable_italics = false,
 		groups = {
 			headings = {
 				h1 = "iris",
@@ -52,7 +56,7 @@ M.config = function()
 		},
 	})
 
-	if not M.is_dark() then
+	if not M.is_dark_variant() then
 		vim.o.background = "light"
 	end
 

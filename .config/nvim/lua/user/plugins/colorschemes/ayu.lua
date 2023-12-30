@@ -16,7 +16,8 @@ M.config = function()
 		return false
 	end
 
-  vim.opt.cursorline = true
+	vim.opt.cursorline = true
+	vim.opt.cursorlineopt = "number"
 
 	local colors = require("ayu.colors")
 	colors.generate(false)
@@ -25,6 +26,15 @@ M.config = function()
 		mirage = false,
 		overrides = {
 			["@symbol"] = { fg = colors.tag },
+			-- Normal = { bg = "None" },
+			-- ColorColumn = { bg = "None" },
+			-- SignColumn = { bg = "None" },
+			-- Folded = { bg = "None" },
+			-- FoldColumn = { bg = "None" },
+			-- CursorLine = { bg = "None" },
+			-- CursorColumn = { bg = "None" },
+			-- WhichKeyFloat = { bg = "None" },
+			-- VertSplit = { bg = "None" },
 		},
 	})
 

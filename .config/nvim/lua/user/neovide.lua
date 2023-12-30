@@ -1,16 +1,16 @@
 vim.g.gui_font_default_size = 16
 vim.g.gui_font_size = vim.g.gui_font_default_size
-vim.g.gui_font_face = "JetBrainsMono NFM"
+vim.g.gui_font_face = "Rec Mono Semicasual"
 
 local alpha = function()
 	local vim_transparency = 255 * vim.g.transparency
 	return string.format("%x", math.floor(vim_transparency or 0.8))
 end
 
-vim.g.neovide_transparency = 0.0
-vim.g.transparency = 0.9
-vim.g.neovide_background_color = "#000000" .. alpha()
-vim.g.linespace = 10
+-- vim.g.neovide_transparency = 0.0
+-- vim.g.transparency = 0.9
+-- vim.g.neovide_background_color = "#000000" .. alpha()
+vim.g.linespace = 14
 
 RefreshGuiFont = function()
 	vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)

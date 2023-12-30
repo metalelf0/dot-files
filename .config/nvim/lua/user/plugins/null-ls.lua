@@ -1,6 +1,6 @@
 local M = {
-	enabled = false,
-	"jose-elias-alvarez/null-ls.nvim",
+	enabled = true,
+	"nvimtools/none-ls.nvim",
 }
 
 function M.setup(options)

@@ -65,7 +65,6 @@ function M.config()
 			"teal",
 			"toml",
 			"tsx",
-			"typescript",
 			"vhs",
 			"vim",
 			"vue",

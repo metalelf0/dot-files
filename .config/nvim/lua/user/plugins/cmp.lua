@@ -65,7 +65,6 @@ function M.config()
 				},
 			},
 			{ name = "path" },
-			{ name = "emoji" },
 			{ name = "neorg" },
 			{ name = "orgmode" },
 			{

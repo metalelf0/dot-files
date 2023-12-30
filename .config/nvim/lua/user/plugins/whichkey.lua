@@ -123,33 +123,33 @@ M.config = function()
 	which_key.setup(setup)
 	which_key.register(mappings, opts)
 
-	local visualModeMappings = {
-		S = {
-			name = "Spectre",
-			v = {
-				function()
-					require("spectre").open_visual()
-				end,
-				"Open spectre",
-			},
-			w = {
-				function()
-					require("spectre").open_visual({ select_word = true })
-				end,
-				"Search word",
-			},
-		},
-	}
-
-	local visualModeOpts = {
-		mode = "v", -- NORMAL mode
-		prefix = "<leader>",
-		buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-		silent = true, -- use `silent` when creating keymaps
-		noremap = true, -- use `noremap` when creating keymaps
-		nowait = true, -- use `nowait` when creating keymaps
-	}
-	which_key.register(visualModeMappings, visualModeOpts)
+	-- local visualModeMappings = {
+	-- 	S = {
+	-- 		name = "Spectre",
+	-- 		v = {
+	-- 			function()
+	-- 				require("spectre").open_visual()
+	-- 			end,
+	-- 			"Open spectre",
+	-- 		},
+	-- 		w = {
+	-- 			function()
+	-- 				require("spectre").open_visual({ select_word = true })
+	-- 			end,
+	-- 			"Search word",
+	-- 		},
+	-- 	},
+	-- }
+	--
+	-- local visualModeOpts = {
+	-- 	mode = "v", -- NORMAL mode
+	-- 	prefix = "<leader>",
+	-- 	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	-- 	silent = true, -- use `silent` when creating keymaps
+	-- 	noremap = true, -- use `noremap` when creating keymaps
+	-- 	nowait = true, -- use `nowait` when creating keymaps
+	-- }
+	-- which_key.register(visualModeMappings, visualModeOpts)
 end
 
 return M
