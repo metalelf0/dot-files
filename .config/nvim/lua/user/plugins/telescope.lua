@@ -24,10 +24,10 @@ return {
 						["<c-t>"] = function(...)
 							return require("trouble.providers.telescope").open_with_trouble(...)
 						end,
-						["<C-Down>"] = function(...)
+						["<S-Down>"] = function(...)
 							return require("telescope.actions").cycle_history_next(...)
 						end,
-						["<C-Up>"] = function(...)
+						["<S-Up>"] = function(...)
 							return require("telescope.actions").cycle_history_prev(...)
 						end,
 						["<C-a>"] = function(prompt_bufnr)
@@ -66,6 +66,7 @@ return {
 				},
 			},
 		})
+		telescope.load_extension("enhanced_find_files")
 		telescope.load_extension("fzf")
 	end,
 }

@@ -1,12 +1,20 @@
 local M = {
 	"epwalsh/obsidian.nvim",
 	version = "*",
+	lazy = true,
+	ft = "markdown",
 	-- cmd = { "ObsidianOpen", "ObsidianToday", "ObsidianYesterday", "ObsidianSearch", "ObsidianNew" },
 }
 
 M.config = function()
 	require("obsidian").setup({
-		dir = "~/iCloud-Obsidian",
+		workspaces = {
+			{
+				name = "Andrea",
+				path = "~/iCloud-Obsidian",
+			},
+		},
+		-- dir = "~/iCloud-Obsidian",
 		daily_notes = {
 			folder = "work/dailies",
 		},

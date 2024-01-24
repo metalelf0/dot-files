@@ -1,6 +1,6 @@
 return {
-	colorscheme = "nightfox",
-	variant = "terafox",
+	colorscheme = "tokyonight",
+	variant = "night",
 	transparent = false,
 	filemanager = "oil", -- supported: mini.files, oil, neo-tree
 	keymapper = "which-key", -- supported: mini.clue, which-key

@@ -37,9 +37,10 @@ M.config = function()
 		---@usage 'main'|'moon'
 		dark_variant = M.dark_variant(),
 		bold_vert_split = false,
-		dim_nc_background = false,
+		dim_inactive_windows = false,
 		disable_background = false,
 		disable_float_background = false,
+		extend_background_behind_borders = true,
 		disable_italics = false,
 		groups = {
 			headings = {

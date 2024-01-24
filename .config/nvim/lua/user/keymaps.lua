@@ -127,9 +127,10 @@ keymap("n", "<leader>p", find_files, { desc = "Find files" })
 
 -- keymap("n", "<leader>m", require("user.supermover").supamove, { desc = "Move file" })
 
-keymap("n", "<leader><leader>", function()
-	require("legendary").find()
-end, { desc = "Legendary" })
+-- keymap("n", "<leader><leader>", function()
+-- require("legendary").find()
+-- end, { desc = "Legendary" })
+vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope enhanced_find_files<cr>")
 
 -- Buffers --
 keymap("n", "<leader>bb", function()
