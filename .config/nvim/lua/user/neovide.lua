@@ -1,8 +1,9 @@
 vim.g.neovide_remember_window_size = true
 vim.opt.linespace = 2
 
-vim.g.gui_font_default_size = 13
+vim.g.gui_font_default_size = 15
 vim.g.gui_font_size = vim.g.gui_font_default_size
+-- vim.g.gui_font_face = "CaskaydiaCove Nerd Font Mono"
 vim.g.gui_font_face = "JetBrainsMono Nerd Font"
 vim.g.neovide_padding_top = 50
 

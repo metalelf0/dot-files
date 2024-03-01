@@ -11,20 +11,27 @@ vim.cmd([[
   endfunction
 ]])
 
+-- general autocommands START
+
 local general_group = vim.api.nvim_create_augroup("general", { clear = true })
 
+-- close qf, lspinfo etc. with just q
 vim.api.nvim_create_autocmd(
 	"FileType",
-	{ command = "nnoremap <silent> <buffer> q :close<CR> ", group = general_group, pattern = "qf,jelp,man,lspinfo" }
+	{ command = "nnoremap <silent> <buffer> q :close<CR> ", group = general_group, pattern = "qf,help,man,lspinfo" }
 )
 
 vim.api.nvim_create_autocmd("BufWinEnter", { command = ":set formatoptions-=cro", group = general_group })
 vim.api.nvim_create_autocmd("FileType", { command = "set nobuflisted", group = general_group, pattern = "qf" })
+
+-- highlight yanked text for a brief while
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		require("vim.highlight").on_yank({ timeout = 200 })
 	end,
 })
+
+-- general autocommands END
 
 local git_group = vim.api.nvim_create_augroup("git", { clear = true })
 vim.api.nvim_create_autocmd("FileType", { command = "setlocal wrap", group = git_group, pattern = "gitcommit" })

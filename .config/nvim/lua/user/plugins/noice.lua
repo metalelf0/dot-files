@@ -17,12 +17,22 @@ M.config = function()
 		},
 		lsp = {
 			-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+			message = {
+				view = "mini",
+			},
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 				["vim.lsp.util.stylize_markdown"] = true,
 				["cmp.entry.get_documentation"] = true,
 			},
 		},
+		-- messages = {
+		-- 	view = "mini",
+		-- 	view_search = false,
+		-- },
+		-- cmdline = {
+		-- 	view = "cmdline",
+		-- },
 		-- you can enable a preset for easier configuration
 		presets = {
 			bottom_search = true, -- use a classic bottom cmdline for search

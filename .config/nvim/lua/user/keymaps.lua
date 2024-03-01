@@ -202,7 +202,22 @@ keymap("n", "<leader>hm", "<cmd>Mason<CR>", { desc = "Mason" })
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
 keymap("n", "<leader>ue", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
 keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
-keymap("n", "<leader>ud", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
+-- keymap("n", "<leader>udd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
+
+keymap("n", "<leader>udu", "<Plug>(toggle-lsp-diag-underline)", { desc = "Diagnostic - toggle underline" })
+keymap("n", "<leader>uds", "<Plug>(toggle-lsp-diag-signs)", { desc = "Diagnostic - toggle signs" })
+keymap("n", "<leader>udv", "<Plug>(toggle-lsp-diag-vtext)", { desc = "Diagnostic - toggle vtext" })
+keymap(
+	"n",
+	"<leader>udp",
+	"<Plug>(toggle-lsp-diag-update_in_insert)",
+	{ desc = "Diagnostic - toggle update in insert" }
+)
+keymap("n", "<leader>udd", "<Plug>(toggle-lsp-diag)", { desc = "Diagnostic - toggle all" })
+keymap("n", "<leader>uddd", "<Plug>(toggle-lsp-diag-default)", { desc = "Diagnostic - toggle default" })
+keymap("n", "<leader>uddo", "<Plug>(toggle-lsp-diag-off)", { desc = "Diagnostic - toggle default off" })
+keymap("n", "<leader>uddf", "<Plug>(toggle-lsp-diag-on)", { desc = "Diagnostic - toggle default on" })
+
 keymap("n", "<leader>ui", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
 keymap("n", "<leader>uk", function()
 	require("user.colorscheme_utils").export_colors_to_kitty()
@@ -210,7 +225,6 @@ end, { desc = "Export colors to Kitty" })
 keymap("n", "<leader>uw", function()
 	require("user.colorscheme_utils").export_colors_to_wezterm()
 end, { desc = "Export colors to Wezterm" })
-keymap("n", "<leader>uz", "<cmd>ZenMode<cr>", { desc = "Zen mode" })
 -- Insert --
 keymap("n", "<leader>ie", insert_emoji, { desc = "Emoji" })
 keymap("n", "<leader>ig", insert_gitmoji, { desc = "Gitmoji" })
@@ -232,9 +246,12 @@ keymap("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Action" })
 keymap("n", "<leader>ld", function()
 	require("telescope.builtin").lsp_definitions({ jump_type = "never" })
 end, { desc = "Show definition" })
+
 keymap("n", "<leader>lf", function()
+	-- require("user.lsp_format").format_with_prompt()
 	vim.lsp.buf.format({ async = true })
 end, { desc = "Format" })
+
 keymap("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
 keymap("n", "<leader>lj", function()
 	vim.lsp.diagnostic.goto_next()
@@ -315,6 +332,10 @@ end, { desc = "Python" })
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
 keymap("n", "<leader>th", "<cmd>ToggleTerm size=15 direction=horizontal<cr>", { desc = "Horizontal" })
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
+
+keymap("v", "<leader>uj", function()
+	require("user.utils").open_jira_task_visual()
+end, { desc = "Open visual selected jira task" })
 
 local status_ok, fun = pcall(require, "user.fun")
 if status_ok then

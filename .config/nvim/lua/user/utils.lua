@@ -100,4 +100,38 @@ M.last_journal_file_in_dir = function(path)
 	return path .. files[#files]
 end
 
+M.open_jira_task_visual = function()
+	local fn = vim.fn
+	local s = fn.getpos("'<")
+	local e = fn.getpos("'>")
+	local line = fn.getline(s[2])
+	local task_name = string.sub(line, s[3], e[3])
+	print("Line is " .. line)
+	print("Task name is " .. task_name)
+	local url = "https://telepass.atlassian.net/browse/" .. task_name
+
+	print("Going to open " .. url)
+	M.open_link_in_browser(url)
+end
+
+M.open_link_in_browser = function(url)
+	local vim = vim
+	local api = vim.api
+	local fn = vim.fn
+
+	local command
+
+	if fn.has("macunix") == 1 then
+		command = "open"
+	elseif fn.has("win32") == 1 or fn.has("win64") == 1 or fn.has("win16") == 1 then
+		command = "start"
+	else
+		command = "xdg-open"
+	end
+
+	local finalCommand = string.format("%s %s", command, url)
+
+	vim.cmd("! " .. finalCommand)
+end
+
 return M

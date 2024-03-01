@@ -29,11 +29,13 @@ return {
 	require("user.plugins.colorschemes.oak"),
 	require("user.plugins.colorschemes.onedark"),
 	require("user.plugins.colorschemes.oxocarbon"),
+	require("user.plugins.colorschemes.papilio-dehaanii"),
 	require("user.plugins.colorschemes.rasmus"),
 	require("user.plugins.colorschemes.rose-pine"),
 	require("user.plugins.colorschemes.seoul256"),
 	require("user.plugins.colorschemes.serenity"),
 	require("user.plugins.colorschemes.tokyonight"),
+	require("user.plugins.colorschemes.vesper"),
 	require("user.plugins.colorschemes.vscode_modern"),
 	require("user.plugins.colorschemes.zenbones"),
 }

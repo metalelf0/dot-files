@@ -1,9 +1,12 @@
 local M = {
 	"epwalsh/obsidian.nvim",
 	version = "*",
-	lazy = true,
+	lazy = false,
 	ft = "markdown",
-	-- cmd = { "ObsidianOpen", "ObsidianToday", "ObsidianYesterday", "ObsidianSearch", "ObsidianNew" },
+	cmd = { "ObsidianOpen", "ObsidianToday", "ObsidianYesterday", "ObsidianSearch", "ObsidianNew" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
 }
 
 M.config = function()
@@ -11,7 +14,7 @@ M.config = function()
 		workspaces = {
 			{
 				name = "Andrea",
-				path = "~/iCloud-Obsidian",
+				path = "/Users/andreaschiavini/Library/Mobile Documents/iCloud~md~obsidian/Documents/Andrea",
 			},
 		},
 		-- dir = "~/iCloud-Obsidian",
@@ -20,6 +23,7 @@ M.config = function()
 		},
 		completion = {
 			nvim_cmp = true,
+			min_chars = 2,
 		},
 		templates = {
 			subdir = "templates",

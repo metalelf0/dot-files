@@ -1,5 +1,6 @@
 local M = {
-	"ahmedkhalf/project.nvim",
+	"metalelf0/project.nvim",
+	dev = true,
 	event = "VeryLazy",
 }
 
