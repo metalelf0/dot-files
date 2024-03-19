@@ -252,6 +252,10 @@ keymap("n", "<leader>lf", function()
 	vim.lsp.buf.format({ async = true })
 end, { desc = "Format" })
 
+keymap("n", "<leader>lF", function()
+	require("user.plugins.lsp.formatting").toggle()
+end, { desc = "Toggle on-save formatting" })
+
 keymap("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
 keymap("n", "<leader>lj", function()
 	vim.lsp.diagnostic.goto_next()

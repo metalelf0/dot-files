@@ -3,6 +3,7 @@ return {
 	require("user.plugins.colorschemes.ayu"),
 	require("user.plugins.colorschemes.bamboo"),
 	require("user.plugins.colorschemes.base16"),
+	require("user.plugins.colorschemes.black-metal"),
 	require("user.plugins.colorschemes.blue-moon"),
 	require("user.plugins.colorschemes.boo"),
 	require("user.plugins.colorschemes.catppuccin"),

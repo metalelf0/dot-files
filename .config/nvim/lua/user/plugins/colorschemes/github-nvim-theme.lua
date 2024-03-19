@@ -59,19 +59,21 @@ function M.config()
 				["@text.title.3.markdown"] = { fg = palette.red.base },
 				["@text.title.4.markdown"] = { fg = palette.green.base },
 			},
+			github_light = {
+				Comment = { fg = "#bbbbbb" },
+			},
 		},
 	})
 
+	-- augroup CustomHighlight
+	--   autocmd!
+	--   autocmd ColorScheme @variant@ highlight clear CursorLineNr
+	--   autocmd ColorScheme @variant@ highlight link CursorLineNr Normal
+	--   autocmd ColorScheme @variant@ highlight clear VertSplit
+	--   autocmd ColorScheme @variant@ highlight link VertSplit Function
+	--   autocmd ColorScheme @variant@ highlight link NotifyBackground Normal
+	-- augroup END
 	local setup = [[
-    augroup CustomHighlight
-      autocmd!
-      autocmd ColorScheme @variant@ highlight clear CursorLineNr
-      autocmd ColorScheme @variant@ highlight link CursorLineNr Normal
-      autocmd ColorScheme @variant@ highlight clear VertSplit
-      autocmd ColorScheme @variant@ highlight link VertSplit Function
-      autocmd ColorScheme @variant@ highlight link NotifyBackground Normal
-    augroup END
-
     colorscheme @variant@
 	]]
 

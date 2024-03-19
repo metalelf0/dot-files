@@ -46,10 +46,10 @@ function M.config()
 			["<Tab>"] = cmp.mapping.confirm({ select = true }),
 		}),
 		sources = cmp.config.sources({
-			{ name = "nvim_lsp" },
 			{
 				name = "luasnip",
 				group_index = 1,
+				max_entries = 5,
 				option = { use_show_condition = true },
 				entry_filter = function()
 					local context = require("cmp.config.context")
@@ -57,18 +57,8 @@ function M.config()
 				end,
 			},
 			{
-				name = "buffer",
-				option = {
-					get_bufnrs = function()
-						return vim.api.nvim_list_bufs()
-					end,
-				},
-			},
-			{ name = "path" },
-			{ name = "neorg" },
-			{ name = "orgmode" },
-			{
 				name = "emmet_vim",
+				max_entries = 5,
 				option = {
 					filetypes = {
 						"html",
@@ -86,6 +76,20 @@ function M.config()
 					},
 				},
 			},
+			{
+				name = "nvim_lsp",
+				max_entries = 5,
+			},
+			{
+				name = "buffer",
+				option = {
+					get_bufnrs = function()
+						return vim.api.nvim_list_bufs()
+					end,
+				},
+			},
+			{ name = "path" },
+			{ name = "neorg" },
 		}),
 		formatting = {
 			format = require("user.plugins.lsp.kind").cmp_format(),

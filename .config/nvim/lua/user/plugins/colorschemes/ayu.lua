@@ -11,6 +11,9 @@ local M = {
 	keys = themer.keys(colorscheme),
 }
 
+M.supported_variants = { "dark", "mirage", "light" }
+M.default_variant = "dark"
+
 M.config = function()
 	if config.colorscheme ~= "ayu" then
 		return false
@@ -20,10 +23,11 @@ M.config = function()
 	vim.opt.cursorlineopt = "number"
 
 	local colors = require("ayu.colors")
-	colors.generate(false)
+	local is_mirage = (themer.variant(M) == "mirage")
+	colors.generate(is_mirage)
 
 	require("ayu").setup({
-		mirage = false,
+		mirage = is_mirage,
 		overrides = {
 			["@symbol"] = { fg = colors.tag },
 			-- Normal = { bg = "None" },

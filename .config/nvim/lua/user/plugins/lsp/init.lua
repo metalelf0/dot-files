@@ -34,6 +34,9 @@ function M.config()
 		require("user.plugins.lsp.keys").setup(client, bufnr)
 		-- metalelf0 customization - force definitionProvider to true to work around dynamicRegistration for solargraph
 		client.server_capabilities.definitionProvider = true
+
+		-- disable semanticTokensProvider cause it's giving me headache with ruby_ls
+		client.server_capabilities.semanticTokensProvider = false
 	end
 
 	---@type lspconfig.options
@@ -145,29 +148,21 @@ function M.config()
 		},
 		-- sorbet = {},
 
-		ruby_ls = {},
-
-		-- tailwindcss = {},
-	}
-
-	if not servers.ruby_lsp then
-		local enabled_features = {
-			"documentHighlights",
-			"documentSymbols",
-			"foldingRanges",
-			"selectionRanges",
-			-- "semanticHighlighting",
-			"formatting",
-			"codeActions",
-		}
-
-		servers.ruby_lsp = {
+		ruby_ls = {
 			default_config = {
 				cmd = { "bundle", "exec", "ruby-lsp" },
 				filetypes = { "ruby" },
 				root_dir = require("lspconfig").util.root_pattern("Gemfile", ".git"),
 				init_options = {
-					enabledFeatures = enabled_features,
+					enabledFeatures = {
+						"documentHighlights",
+						"documentSymbols",
+						"foldingRanges",
+						"selectionRanges",
+						-- "semanticHighlighting",
+						"formatting",
+						"codeActions",
+					},
 				},
 				settings = {},
 			},
@@ -182,8 +177,10 @@ function M.config()
 					description = "Format using ruby-lsp",
 				},
 			},
-		}
-	end
+		},
+
+		-- tailwindcss = {},
+	}
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)

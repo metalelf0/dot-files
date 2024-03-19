@@ -37,6 +37,8 @@ M.config = function()
 			hl["@symbol"] = { fg = cl.green }
 			hl["@label"] = { fg = cl.yellow }
 			hl["@exception.ruby"] = { fg = cl.red }
+			hl["@type.ruby"] = { fg = cl.orange }
+			hl["@string.special.symbol.ruby"] = { fg = cl.green }
 		end,
 		day_brightness = 0.3,
 	})

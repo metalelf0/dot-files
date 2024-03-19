@@ -5,7 +5,7 @@ vim.g.gui_font_default_size = 15
 vim.g.gui_font_size = vim.g.gui_font_default_size
 -- vim.g.gui_font_face = "CaskaydiaCove Nerd Font Mono"
 vim.g.gui_font_face = "JetBrainsMono Nerd Font"
-vim.g.neovide_padding_top = 50
+-- vim.g.neovide_padding_top = 50
 
 local alpha = function()
 	local vim_transparency = 255 * vim.g.transparency
