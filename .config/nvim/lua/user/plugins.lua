@@ -73,5 +73,3 @@ return {
 		-- end,
 	},
 }
-
---[[ require("user.plugin-confs.legend").setup() ]]

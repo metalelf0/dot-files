@@ -278,11 +278,6 @@ keymap("n", "gr", function()
 	require("telescope.builtin").lsp_references({ jump_type = "never" })
 end, { desc = "References" })
 
--- Neorg
-keymap("n", "<leader>njt", "<cmd>Neorg journal today<cr>", { desc = "Neorg journal today" })
-keymap("n", "<leader>ni", "<cmd>Neorg index<cr>", { desc = "Neorg index" })
-keymap("n", "<leader>nr", "<cmd>Neorg return<cr>", { desc = "Neorg return" })
-
 -- Org, obsidian and friends --
 -- see lua/user/plugins/obsidian.nvim
 

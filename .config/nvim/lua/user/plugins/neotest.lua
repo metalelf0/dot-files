@@ -4,6 +4,7 @@ local M = {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
+		"nvim-neotest/nvim-nio",
 		-- "antoinemadec/FixCursorHold.nvim",
 		"rcarriga/neotest-python",
 		"rcarriga/neotest-plenary",

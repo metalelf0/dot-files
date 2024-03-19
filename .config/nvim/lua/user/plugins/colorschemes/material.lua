@@ -69,7 +69,6 @@ M.config = function()
 			gitsigns = true,
 			git_gutter = false,
 			telescope = true,
-			neorg = true,
 			nvim_tree = false,
 			sidebar_nvim = true,
 			lsp_saga = false,

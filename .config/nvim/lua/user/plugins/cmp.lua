@@ -89,7 +89,6 @@ function M.config()
 				},
 			},
 			{ name = "path" },
-			{ name = "neorg" },
 		}),
 		formatting = {
 			format = require("user.plugins.lsp.kind").cmp_format(),

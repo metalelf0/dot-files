@@ -17,8 +17,6 @@ function M.config()
 			description = "Edit lazygit config",
 		},
 		{ ":EditWeztermConfig", ":e ~/.config/wezterm/wezterm.lua", description = "Edit wezterm config" },
-		-- { ":Neorg gtd capture", description = "Neorg gtd: capture task" },
-		-- { ":Neorg gtd views", description = "Neorg gtd: views" },
 		{ ":luafile %", description = "Lua: source current file" },
 	}
 
