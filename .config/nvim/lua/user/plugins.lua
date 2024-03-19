@@ -57,6 +57,7 @@ return {
 	},
 	{
 		dir = "~/Documents/codice_elf0/supermover.nvim",
+		event = "VeryLazy",
 		-- "metalelf0/treesitter-renamer.nvim",
 		dependencies = {
 			"tpope/vim-eunuch",

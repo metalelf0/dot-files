@@ -5,7 +5,10 @@ local mini = {
 	-- event = "VeryLazy",
 }
 
-local specs = { mini, "JoosepAlviste/nvim-ts-context-commentstring" }
+local specs = { mini, {
+	"JoosepAlviste/nvim-ts-context-commentstring",
+	event = "VeryLazy",
+} }
 
 function mini.surround()
 	require("mini.surround").setup({
