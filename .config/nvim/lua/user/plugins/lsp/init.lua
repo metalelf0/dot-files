@@ -148,21 +148,23 @@ function M.config()
 		},
 		-- sorbet = {},
 
-		ruby_ls = {
+		ruby_lsp = {
 			default_config = {
 				cmd = { "bundle", "exec", "ruby-lsp" },
 				filetypes = { "ruby" },
 				root_dir = require("lspconfig").util.root_pattern("Gemfile", ".git"),
 				init_options = {
-					enabledFeatures = {
-						"documentHighlights",
-						"documentSymbols",
-						"foldingRanges",
-						"selectionRanges",
-						-- "semanticHighlighting",
-						"formatting",
-						"codeActions",
-					},
+					formatter = "auto",
+					single_file_support = true,
+					-- enabledFeatures = {
+					-- 	"documentHighlights",
+					-- 	"documentSymbols",
+					-- 	"foldingRanges",
+					-- 	"selectionRanges",
+					-- 	-- "semanticHighlighting",
+					-- 	"formatting",
+					-- 	"codeActions",
+					-- },
 				},
 				settings = {},
 			},

@@ -1,6 +1,6 @@
 local M = {
 	"lukas-reineke/indent-blankline.nvim",
-	cond = false,
+	enabled = false,
 }
 
 M.event = "BufReadPre"

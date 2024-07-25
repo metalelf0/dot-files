@@ -5,6 +5,9 @@ local M = {
 	dependencies = {
 		"tpope/vim-fugitive",
 	},
+	keys = {
+		{ "<leader>gf", "<cmd>Flog<cr>", desc = "Flog" },
+	},
 }
 
 return M

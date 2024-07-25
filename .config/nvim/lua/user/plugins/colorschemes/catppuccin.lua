@@ -75,6 +75,8 @@ M.config = function()
       autocmd ColorScheme catppuccin highlight link CursorLineNr String
       autocmd ColorScheme catppuccin highlight clear VertSplit
       autocmd ColorScheme catppuccin highlight link VertSplit String
+      autocmd ColorScheme catppuccin highlight clear WinSeparator
+      autocmd ColorScheme catppuccin highlight link WinSeparator String
     augroup END
 
     colorscheme catppuccin

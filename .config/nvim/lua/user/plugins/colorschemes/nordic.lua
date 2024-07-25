@@ -22,7 +22,7 @@ M.config = function()
 
 	require("nordic").setup({
 		override = {
-			["@symbol"] = {
+			["@string.special.symbol"] = {
 				fg = palette.blue1,
 			},
 		},

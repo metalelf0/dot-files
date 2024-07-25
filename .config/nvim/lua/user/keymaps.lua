@@ -32,10 +32,6 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
-keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
-keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
-
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
@@ -90,7 +86,7 @@ xnoremap ß s<c-r>=join(sort(split(@", '\s*,\s*')), ', ')<cr><esc>
 
 local find_files = function()
 	require("telescope.builtin").find_files(
-		require("telescope.themes").get_dropdown({ path_display = { truncate = 5 } })
+		require("telescope.themes").get_dropdown({ path_display = { "filename_first", truncate = 5 } })
 	)
 end
 
@@ -113,19 +109,18 @@ keymap("n", "-", function()
 	elseif config.filemanager == "mini.files" then
 		MiniFiles.open(vim.api.nvim_buf_get_name(0))
 	elseif config.filemanager == "neo-tree" then
-		vim.cmd([[Neotree position=current reveal=true <CR>]])
+		vim.cmd([[Neotree position=current reveal=true<CR>]])
 	end
 end, { desc = "Oil" })
 
 keymap("n", "<leader>.", "<cmd>Neotree focus<cr>", { desc = "Focus file in tree" })
 
 keymap("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "Search text" })
+
 -- keymap("n", "<leader>a", "<cmd>Dashboard<cr>", { desc = "󰕮 Dashboard" })
-keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "󰕮 Dashboard" })
+keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Dashboard" })
 
-keymap("n", "<leader>p", find_files, { desc = "Find files" })
-
--- keymap("n", "<leader>m", require("user.supermover").supamove, { desc = "Move file" })
+keymap("n", "<leader>p", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 
 -- keymap("n", "<leader><leader>", function()
 -- require("legendary").find()
@@ -139,9 +134,6 @@ end, { desc = "Buffers" })
 keymap("n", "<leader>,", function()
 	require("telescope.builtin").buffers()
 end, { desc = "Buffers" })
-keymap("n", "<leader>bl", function()
-	require("telescope.builtin").buffers({ cwd_only = true })
-end, { desc = "Buffers (cwd)" })
 
 vim.keymap.set("n", "<Leader>bu", function()
 	require("user.buffer_utils").clear_unused()
@@ -150,16 +142,16 @@ end, { silent = true, desc = "Close unused buffers" })
 keymap("n", "<leader>bcl", "<cmd>BufferLineCloseLeft<CR>", { desc = "Close left" })
 keymap("n", "<leader>bcr", "<cmd>BufferLineCloseRight<CR>", { desc = "Close right" })
 keymap("n", "<leader>bca", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all" })
-keymap("n", "<leader>b1", "<cmd>BufferLineGoToBuffer 1<CR>", { desc = "Buffer 1" })
-keymap("n", "<leader>b2", "<cmd>BufferLineGoToBuffer 2<CR>", { desc = "Buffer 2" })
-keymap("n", "<leader>b3", "<cmd>BufferLineGoToBuffer 3<CR>", { desc = "Buffer 3" })
-keymap("n", "<leader>b4", "<cmd>BufferLineGoToBuffer 4<CR>", { desc = "Buffer 4" })
-keymap("n", "<leader>b5", "<cmd>BufferLineGoToBuffer 5<CR>", { desc = "Buffer 5" })
-keymap("n", "<leader>b6", "<cmd>BufferLineGoToBuffer 6<CR>", { desc = "Buffer 6" })
-keymap("n", "<leader>b7", "<cmd>BufferLineGoToBuffer 7<CR>", { desc = "Buffer 7" })
-keymap("n", "<leader>b8", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "Buffer 8" })
-keymap("n", "<leader>b9", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Buffer 9" })
-
+-- keymap("n", "<leader>b1", "<cmd>BufferLineGoToBuffer 1<CR>", { desc = "Buffer 1" })
+-- keymap("n", "<leader>b2", "<cmd>BufferLineGoToBuffer 2<CR>", { desc = "Buffer 2" })
+-- keymap("n", "<leader>b3", "<cmd>BufferLineGoToBuffer 3<CR>", { desc = "Buffer 3" })
+-- keymap("n", "<leader>b4", "<cmd>BufferLineGoToBuffer 4<CR>", { desc = "Buffer 4" })
+-- keymap("n", "<leader>b5", "<cmd>BufferLineGoToBuffer 5<CR>", { desc = "Buffer 5" })
+-- keymap("n", "<leader>b6", "<cmd>BufferLineGoToBuffer 6<CR>", { desc = "Buffer 6" })
+-- keymap("n", "<leader>b7", "<cmd>BufferLineGoToBuffer 7<CR>", { desc = "Buffer 7" })
+-- keymap("n", "<leader>b8", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "Buffer 8" })
+-- keymap("n", "<leader>b9", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Buffer 9" })
+--
 -- Git --
 keymap("n", "<leader>ga", "<cmd>AdvancedGitSearch<cr>", { desc = "Advanced git search" })
 keymap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Checkout branch" })
@@ -225,6 +217,13 @@ end, { desc = "Export colors to Kitty" })
 keymap("n", "<leader>uw", function()
 	require("user.colorscheme_utils").export_colors_to_wezterm()
 end, { desc = "Export colors to Wezterm" })
+
+-- Git and friends --
+keymap("n", "<leader>goo", "<cmd>Octo pr create<CR>", { desc = "Open PR" })
+keymap("n", "<leader>gol", "<cmd>Octo pr list<CR>", { desc = "List PRs" })
+keymap("n", "<leader>gou", "<cmd>Octo pr url<CR>", { desc = "Copy PR url" })
+keymap("n", "<leader>gop", "<cmd>Octo pr<CR>", { desc = "Open current branch PR" })
+
 -- Insert --
 keymap("n", "<leader>ie", insert_emoji, { desc = "Emoji" })
 keymap("n", "<leader>ig", insert_gitmoji, { desc = "Gitmoji" })
@@ -248,7 +247,6 @@ keymap("n", "<leader>ld", function()
 end, { desc = "Show definition" })
 
 keymap("n", "<leader>lf", function()
-	-- require("user.lsp_format").format_with_prompt()
 	vim.lsp.buf.format({ async = true })
 end, { desc = "Format" })
 
@@ -329,7 +327,7 @@ keymap("n", "<leader>tp", function()
 end, { desc = "Python" })
 
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
-keymap("n", "<leader>th", "<cmd>ToggleTerm size=15 direction=horizontal<cr>", { desc = "Horizontal" })
+keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Horizontal" })
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
 
 keymap("v", "<leader>uj", function()

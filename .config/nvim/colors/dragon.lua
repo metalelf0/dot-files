@@ -316,7 +316,7 @@ local hlgroups = {
   ['@punctuation.special'] = { fg = c_dragonTeal },
   ['@string.escape'] = { fg = c_dragonOrange0 },
   ['@string.regex'] = { fg = c_dragonOrange0 },
-  ['@symbol'] = { fg = c_dragonFg0 },
+  ['@string.special.symbol'] = { fg = c_dragonFg0 },
   ['@tag.attribute'] = { fg = c_dragonFg0 },
   ['@tag.delimiter'] = { fg = c_dragonGray1 },
   ['@text.danger'] = { bg = c_lotusRed1, fg = c_dragonFg0, bold = true },

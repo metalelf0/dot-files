@@ -28,6 +28,10 @@ function mini.align()
 	require("mini.align").setup({})
 end
 
+function mini.icons()
+	require("mini.icons").setup()
+end
+
 function mini.jump()
 	require("mini.jump").setup({})
 end
@@ -170,6 +174,7 @@ function mini.config()
 	mini.pairs()
 	mini.comment()
 	mini.files()
+	mini.icons()
 	mini.clue()
 	mini.align()
 	-- mini.animate()

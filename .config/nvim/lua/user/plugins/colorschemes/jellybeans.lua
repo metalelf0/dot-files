@@ -34,7 +34,7 @@ M.config = function()
   endtry
 ]])
 
-	vim.api.nvim_set_hl(0, "@symbol", { fg = "#7697d6" })
+	vim.api.nvim_set_hl(0, "@string.special.symbol", { fg = "#7697d6" })
 	vim.api.nvim_set_hl(0, "@text.todo.checked.markdown", { fg = "#9aae6b" })
 	vim.api.nvim_set_hl(0, "@text.todo.unchecked.markdown", { fg = "#cf694a" })
 end

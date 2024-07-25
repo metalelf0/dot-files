@@ -1,6 +1,5 @@
 local M = {
 	"metalelf0/project.nvim",
-	dev = true,
 	event = "VeryLazy",
 }
 

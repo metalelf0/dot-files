@@ -305,7 +305,7 @@ local hlgroups = {
 	["@constant.Builtin"] = { link = "Constant" },
 	["@constant.macro"] = { link = "Macro" },
 	["@namespace"] = { link = "Namespace" },
-	["@symbol"] = { link = "Identifier" },
+	["@string.special.symbol"] = { link = "Identifier" },
 	["@text"] = { link = "String" },
 	["@text.title"] = { link = "Title" },
 	["@text.literal"] = { link = "String" },

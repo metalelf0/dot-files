@@ -26,8 +26,8 @@ M.config = function()
       autocmd!
       autocmd ColorScheme arctic highlight clear CursorLineNr
       autocmd ColorScheme arctic highlight link CursorLineNr Function
-      autocmd ColorScheme arctic highlight clear VertSplit
-      autocmd ColorScheme arctic highlight link VertSplit Function
+      autocmd ColorScheme arctic highlight clear WinSeparator
+      autocmd ColorScheme arctic highlight link WinSeparator Function
       autocmd ColorScheme arctic highlight @text.todo.checked.markdown guifg='#6a9955'
       autocmd ColorScheme arctic highlight @text.todo.unchecked.markdown guifg='#f44747'
     augroup END

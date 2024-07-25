@@ -39,21 +39,24 @@ M.config = function()
 			},
 			groups = {
 				nightfox = {
-					["@symbol"] = "palette.orange",
+					["@string.special.symbol"] = "palette.orange",
 				},
 			},
 		},
 	})
+	-- highlight link @string.special.symbol String
+	-- highlight link @boolean @variable.builtin
 
 	local setup = [[
        colorscheme @variant@
 
-	     highlight link @symbol String
-	     highlight link @boolean @variable.builtin
-	     highlight clear CursorLineNr
+       highlight clear @string.special.symbol
+       highlight link @string.special.symbol Character
 	     highlight link CursorLineNr String
        highlight clear VertSplit
-       highlight link VertSplit String
+       highlight link VertSplit Comment
+       highlight clear WinSeparator
+       highlight link WinSeparator Comment
 	 ]]
 
 	vim.cmd(string.gsub(setup, "@variant@", themer.variant(M)))

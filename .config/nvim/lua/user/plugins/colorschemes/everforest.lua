@@ -21,8 +21,13 @@ function M.config()
 	})
 
 	vim.cmd("colorscheme " .. config.colorscheme)
+
+	vim.o.cursorline = true
+	vim.o.cursorlineopt = "number"
 	vim.api.nvim_command("hi clear GitSignsCurrentLineBlame")
 	vim.api.nvim_command("hi link GitSignsCurrentLineBlame NonText")
+	vim.api.nvim_command("hi clear CursorLineNr")
+	vim.api.nvim_command("hi link CursorLineNr String")
 end
 
 return M

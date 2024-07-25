@@ -1,6 +1,6 @@
 return {
-	colorscheme = "rose-pine",
-	variant = "main",
+	colorscheme = "ares",
+	variant = "",
 	transparent = false,
 	filemanager = "oil", -- supported: mini.files, oil, neo-tree
 	keymapper = "which-key", -- supported: mini.clue, which-key

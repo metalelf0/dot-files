@@ -19,30 +19,45 @@ M.config = function()
 		return false
 	end
 
+	if themer.variant(M) == "light" then
+		vim.opt.background = "light"
+	else
+		vim.opt.background = "dark"
+	end
+
 	vim.opt.cursorline = true
 	vim.opt.cursorlineopt = "number"
 
 	local colors = require("ayu.colors")
 	local is_mirage = (themer.variant(M) == "mirage")
 	colors.generate(is_mirage)
+	local use_black = (themer.variant(M) == "dark")
+
+	local overrides = {
+		["@string.special.symbol"] = { fg = colors.tag },
+		-- Normal = { bg = "None" },
+		-- ColorColumn = { bg = "None" },
+		-- SignColumn = { bg = "None" },
+		-- Folded = { bg = "None" },
+		-- FoldColumn = { bg = "None" },
+		-- CursorLine = { bg = "None" },
+		-- CursorColumn = { bg = "None" },
+		-- WhichKeyFloat = { bg = "None" },
+		-- VertSplit = { bg = "None" },
+	}
+
+	if use_black then
+		overrides["Normal"] = { bg = "#000000" }
+	end
 
 	require("ayu").setup({
 		mirage = is_mirage,
-		overrides = {
-			["@symbol"] = { fg = colors.tag },
-			-- Normal = { bg = "None" },
-			-- ColorColumn = { bg = "None" },
-			-- SignColumn = { bg = "None" },
-			-- Folded = { bg = "None" },
-			-- FoldColumn = { bg = "None" },
-			-- CursorLine = { bg = "None" },
-			-- CursorColumn = { bg = "None" },
-			-- WhichKeyFloat = { bg = "None" },
-			-- VertSplit = { bg = "None" },
-		},
+		overrides = overrides,
 	})
 
 	require("ayu").colorscheme()
+	vim.opt.cursorline = true
+	vim.opt.cursorlineopt = "number"
 end
 
 return M

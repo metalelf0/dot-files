@@ -1,5 +1,6 @@
 ---@diagnostic disable: param-type-mismatch, no-unknown
 local M = {}
+local config = require("user.config")
 
 M.config = {
 	kitty_export_path = os.getenv("HOME") .. "/.config/kitty/",
@@ -12,10 +13,11 @@ M.export_colors_to_kitty = function()
 	local file = io.open(filename, "w")
 	io.output(file)
 	io.write("# vim:ft=kitty" .. "\n\n")
-	io.write("# exported from " .. vim.g.colors_name .. "\n\n")
+	io.write("# exported from " .. config.colorscheme .. " (" .. config.variant .. ") \n\n")
 	local fg = fn.synIDattr(fn.hlID("Normal"), "fg")
 	local bg = fn.synIDattr(fn.hlID("Normal"), "bg")
 	io.write("foreground " .. fg .. "\n")
+	io.write("inactive_tab_foreground " .. fg .. "\n")
 	io.write("background " .. bg .. "\n")
 	io.write("selection_foreground " .. bg .. "\n")
 	io.write("selection_background " .. fg .. "\n")
@@ -26,6 +28,10 @@ M.export_colors_to_kitty = function()
 			io.write("color" .. tostring(i) .. " " .. tc .. "\n")
 			if i == 2 then
 				io.write("cursor " .. tc .. "\n")
+				io.write("active_tab_background " .. tc .. "\n")
+			end
+			if i == 15 then
+				io.write("inactive_tab_background " .. tc .. "\n")
 			end
 		end
 	end

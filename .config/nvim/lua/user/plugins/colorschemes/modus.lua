@@ -44,6 +44,7 @@ M.config = function()
 		---@param colors ColorScheme
 		on_highlights = function(highlights, colors)
 			highlights.WhichKeyFloat = { bg = colors.bg_main }
+			highlights.Comment = { fg = "#a0a0a0" }
 		end,
 	})
 

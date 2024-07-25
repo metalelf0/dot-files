@@ -5,7 +5,7 @@ return {
 	config = function()
 		require("headlines").setup({
 			markdown = {
-				fat_headlines = false,
+				fat_headlines = true,
 			},
 		})
 	end,

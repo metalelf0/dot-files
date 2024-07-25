@@ -46,6 +46,7 @@ function M.config()
 			["<Tab>"] = cmp.mapping.confirm({ select = true }),
 		}),
 		sources = cmp.config.sources({
+			{ name = "codeium" },
 			{
 				name = "luasnip",
 				group_index = 1,

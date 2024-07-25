@@ -1,10 +1,10 @@
 vim.g.neovide_remember_window_size = true
-vim.opt.linespace = 2
+vim.opt.linespace = 4
 
 vim.g.gui_font_default_size = 15
 vim.g.gui_font_size = vim.g.gui_font_default_size
--- vim.g.gui_font_face = "CaskaydiaCove Nerd Font Mono"
-vim.g.gui_font_face = "JetBrainsMono Nerd Font"
+vim.g.gui_font_face = "CaskaydiaCove Nerd Font Mono"
+-- vim.g.gui_font_face = "PragmataPro Mono Regular"
 -- vim.g.neovide_padding_top = 50
 
 local alpha = function()
@@ -36,28 +36,29 @@ ResetGuiFont()
 -- Keymaps
 
 local opts = { noremap = true, silent = true }
+local keymap = vim.keymap.set
 
-vim.keymap.set({ "n", "i" }, "<C-+>", function()
+keymap({ "n", "i" }, "<C-+>", function()
 	ResizeGuiFont(1)
 end, opts)
-vim.keymap.set({ "n", "i" }, "<C-->", function()
+keymap({ "n", "i" }, "<C-->", function()
 	ResizeGuiFont(-1)
 end, opts)
-vim.keymap.set({ "n", "i" }, "<C-BS>", function()
+keymap({ "n", "i" }, "<C-BS>", function()
 	ResetGuiFont()
 end, opts)
 
 if vim.g.neovide then
-	vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save
-	vim.keymap.set("v", "<D-c>", '"+y') -- Copy
-	vim.keymap.set("n", "<D-v>", '"+P') -- Paste normal mode
-	vim.keymap.set("v", "<D-v>", '"+P') -- Paste visual mode
-	vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
-	vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
+	keymap("n", "<D-s>", ":w<CR>") -- Save
+	keymap("v", "<D-c>", '"+y') -- Copy
+	keymap("n", "<D-v>", '"+P') -- Paste normal mode
+	keymap("v", "<D-v>", '"+P') -- Paste visual mode
+	keymap("c", "<D-v>", "<C-R>+") -- Paste command mode
+	keymap("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 end
 
 -- Allow clipboard copy paste in neovim
-vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })

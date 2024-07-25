@@ -23,8 +23,8 @@ function M.config()
 	vim.cmd("let g:gruvbox_material_better_performance=1")
 	vim.cmd("let g:gruvbox_material_enable_italic=1")
 	vim.cmd("colorscheme " .. config.colorscheme)
-	vim.cmd("hi clear @symbol")
-	vim.cmd("hi link @symbol Identifier")
+	vim.cmd("hi clear @string.special.symbol")
+	vim.cmd("hi link @string.special.symbol Identifier")
 end
 
 return M

@@ -5,6 +5,7 @@ return {
 		require("text-to-colorscheme").setup({
 			ai = {
 				openai_api_key = os.getenv("OPENAI_API_KEY"),
+				gpt_model = "gpt-4o",
 			},
 			hex_palettes = {
 				{
@@ -22,6 +23,21 @@ return {
 						"#899a5c",
 					},
 				},
+        {
+					name = "Liverpool FC",
+					background_mode = "dark",
+          background = "#0A0A0A",
+          foreground = "#FFFFFF",
+          accents = {
+             "#C8102E", -- Red (Liverpool's primary color)
+             "#00A398", -- Teal (Accent)
+             "#FFD700", -- Gold (Champions League Trophy)
+             "#1D428A", -- Blue (UEFA colors)
+             "#C0C0C0", -- Silver (Medals)
+             "#E6E6E6", -- Light Gray (Neutral accent)
+             "#FFFFFF", -- White (Neutral accent)
+          },
+        }
 			},
 		})
 	end,

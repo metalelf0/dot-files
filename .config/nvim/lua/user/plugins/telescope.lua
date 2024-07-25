@@ -2,7 +2,6 @@ return {
 	"nvim-telescope/telescope.nvim",
 	cmd = { "Telescope" },
 	dependencies = {
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-telescope/telescope-symbols.nvim",
 	},
 
@@ -11,11 +10,27 @@ return {
 		local borderless = true
 		telescope.setup({
 			defaults = {
+				dynamic_preview_title = true,
 				layout_strategy = "horizontal",
-				layout_config = {
-					prompt_position = "top",
-				},
+				path_display = { "filename_first", shorten = 3, truncate = 3 },
+				prompt_prefix = " ",
+				selection_caret = " ",
 				sorting_strategy = "ascending",
+				winblend = borderless and 0 or 10,
+				layout_config = {
+					horizontal = {
+						prompt_position = "bottom",
+						width = { padding = 20 },
+						height = { padding = 2 },
+						preview_width = 0.6,
+					},
+					vertical = {
+						prompt_position = "top",
+						width = { padding = 20 },
+						height = { padding = 2 },
+						preview_height = 0.6,
+					},
+				},
 				mappings = {
 					i = {
 						["<C-j>"] = require("telescope.actions").move_selection_next,
@@ -42,17 +57,14 @@ return {
 						end,
 					},
 				},
-				prompt_prefix = " ",
-				selection_caret = " ",
-				path_display = { shorten = 3, truncate = 3 },
-				winblend = borderless and 0 or 10,
-				dynamic_preview_title = true,
 			},
 			pickers = {
+				oldfiles = {
+					path_display = { shorten = 3, truncate = 3 },
+				},
 				buffers = {
 					show_all_buffers = true,
 					sort_mru = true,
-					-- theme = "dropdown",
 					mappings = {
 						i = {
 							["<c-d>"] = "delete_buffer",
@@ -67,6 +79,5 @@ return {
 			},
 		})
 		telescope.load_extension("enhanced_find_files")
-		telescope.load_extension("fzf")
 	end,
 }

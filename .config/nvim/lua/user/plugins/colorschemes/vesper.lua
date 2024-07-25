@@ -17,7 +17,7 @@ M.config = function()
 	end
 
 	require("vesper").setup({
-		transparent = false, -- Boolean: Sets the background to transparent
+		transparent = true, -- Boolean: Sets the background to transparent
 		italics = {
 			comments = true, -- Boolean: Italicizes comments
 			keywords = false, -- Boolean: Italicizes keywords
