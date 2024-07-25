@@ -1,5 +1,5 @@
 local M = {
-	enabled = true,
+	enabled = false,
 	"nvimtools/none-ls.nvim",
 	event = "VeryLazy",
 	dependencies = {

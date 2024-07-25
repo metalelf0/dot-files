@@ -30,7 +30,6 @@ function M.config()
 	require("user.plugins.lsp.diagnostics").setup()
 
 	local function on_attach(client, bufnr)
-		require("user.plugins.lsp.formatting").setup(client, bufnr)
 		require("user.plugins.lsp.keys").setup(client, bufnr)
 		-- metalelf0 customization - force definitionProvider to true to work around dynamicRegistration for solargraph
 		client.server_capabilities.definitionProvider = true
@@ -205,7 +204,7 @@ function M.config()
 		require("lspconfig")[server].setup(opts)
 	end
 
-	require("user.plugins.null-ls").setup(options)
+	-- require("user.plugins.null-ls").setup(options)
 end
 
 return M

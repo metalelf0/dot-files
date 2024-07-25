@@ -1,59 +1,35 @@
-local util = require("user.utils")
+local config = require("user.config")
+local utils = require("user.utils")
 
 local M = {}
 
--- vim.lsp.handlers["textDocument/hover"] = function(_, method, result)
---   print(vim.inspect(result))
--- end
+M.setup = function()
+	vim.g.disable_autoformat = not config.autoformat_enabled
 
-M.autoformat = true
+	vim.api.nvim_create_user_command("FormatDisable", function(args)
+		if args.bang then
+			-- FormatDisable! will disable formatting just for this buffer
+			vim.b.disable_autoformat = true
+		else
+			vim.g.disable_autoformat = true
+		end
+	end, {
+		desc = "Disable autoformat-on-save",
+		bang = true,
+	})
 
-function M.toggle()
-  M.autoformat = not M.autoformat
-  if M.autoformat then
-    util.info("enabled format on save", "Formatting")
-  else
-    util.warn("disabled format on save", "Formatting")
-  end
+	vim.api.nvim_create_user_command("FormatEnable", function()
+		vim.b.disable_autoformat = false
+		vim.g.disable_autoformat = false
+	end, {
+		desc = "Re-enable autoformat-on-save",
+	})
 end
 
-function M.format()
-  if M.autoformat then
-    if vim.lsp.buf.format then
-      vim.lsp.buf.format()
-    else
-      vim.lsp.buf.formatting_sync()
-    end
-  end
-end
-
-function M.setup(client, buf)
-  local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-  local nls = require("user.plugins.null-ls")
-
-  local enable = false
-  if nls.has_formatter(ft) then
-    enable = client.name == "null-ls"
-  else
-    enable = not (client.name == "null-ls")
-  end
-
-  if client.name == "tsserver" then
-    enable = false
-  end
-
-  -- util.info(client.name .. " " .. (enable and "yes" or "no"), "format")
-
-  client.server_capabilities.documentFormattingProvider = enable
-  -- format on save
-  if client.server_capabilities.documentFormattingProvider then
-    vim.cmd([[
-      augroup LspFormat
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua require("user.plugins.lsp.formatting").format()
-      augroup END
-    ]])
-  end
+M.toggle = function()
+	vim.g.disable_autoformat = not vim.g.disable_autoformat
+  local status = vim.g.disable_autoformat and "disabled" or "enabled"
+	utils.info("Formatting on save is now " .. status)
 end
 
 return M

@@ -122,9 +122,6 @@ keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Dashboard" })
 
 keymap("n", "<leader>p", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 
--- keymap("n", "<leader><leader>", function()
--- require("legendary").find()
--- end, { desc = "Legendary" })
 vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope enhanced_find_files<cr>")
 
 -- Buffers --
@@ -189,6 +186,9 @@ keymap("n", "<leader>hl", function()
 	require("lazy").show()
 end, { desc = "Lazy" })
 keymap("n", "<leader>hm", "<cmd>Mason<CR>", { desc = "Mason" })
+keymap("n", "<leader>hL", function()
+	require("legendary").find()
+end, { desc = "Legendary" })
 
 -- Ui --
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
