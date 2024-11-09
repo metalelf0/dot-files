@@ -1,5 +1,6 @@
 local M = {
 	"ggandor/leap.nvim",
+	enabled = false,
 	dependencies = {
 		"ggandor/flit.nvim",
 	},

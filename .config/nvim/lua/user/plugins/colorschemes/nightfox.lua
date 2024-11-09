@@ -42,6 +42,7 @@ M.config = function()
 					["@string.special.symbol"] = "palette.orange",
 				},
 			},
+			transparent = config.transparent,
 		},
 	})
 	-- highlight link @string.special.symbol String

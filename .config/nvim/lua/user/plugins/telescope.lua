@@ -11,7 +11,7 @@ return {
 		telescope.setup({
 			defaults = {
 				dynamic_preview_title = true,
-				layout_strategy = "horizontal",
+				layout_strategy = "vertical",
 				path_display = { "filename_first", shorten = 3, truncate = 3 },
 				prompt_prefix = " ",
 				selection_caret = " ",
@@ -76,8 +76,15 @@ return {
 				advanced_git_search = {
 					diff_plugin = "diffview",
 				},
+				fzf = {
+					fuzzy = true, -- false will only do exact matching
+					override_generic_sorter = true, -- override the generic sorter
+					override_file_sorter = true, -- override the file sorter
+					case_mode = "smart_case", -- or "ignore_case" or "respect_case". The default case_mode is "smart_case"
+				},
 			},
 		})
 		telescope.load_extension("enhanced_find_files")
+		telescope.load_extension("fzf")
 	end,
 }

@@ -4,7 +4,7 @@ local M = {
 	-- enabled = false,
 }
 
-local hide_in_width = function()
+local only_if_wide_enough = function()
 	return vim.fn.winwidth(0) > 80
 end
 
@@ -22,7 +22,7 @@ local diff = {
 	"diff",
 	colored = true,
 	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
-	cond = hide_in_width,
+	cond = only_if_wide_enough,
 }
 
 local mode = {

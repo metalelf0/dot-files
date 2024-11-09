@@ -1,10 +1,11 @@
 return {
-	colorscheme = "ares",
+	colorscheme = "no-clown-fiesta",
 	variant = "",
-	transparent = false,
+	transparent = true, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	autoformat_enabled = true,
-	filemanager = "oil", -- supported: mini.files, oil, neo-tree
+	filemanager = "mini.files", -- supported: mini.files, oil, neo-tree
 	keymapper = "which-key", -- supported: mini.clue, which-key
+	completion_engine = "nvim-cmp", -- supported: blink-cmp, nvim-cmp
 	journal_dir = os.getenv("HOME") .. "/iCloud-Obsidian/work/dailies/",
 	startup = {
 		show_diagnostics = true,

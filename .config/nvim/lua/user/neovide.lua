@@ -3,7 +3,7 @@ vim.opt.linespace = 4
 
 vim.g.gui_font_default_size = 15
 vim.g.gui_font_size = vim.g.gui_font_default_size
-vim.g.gui_font_face = "CaskaydiaCove Nerd Font Mono"
+vim.g.gui_font_face = "Iosevka Comfy"
 -- vim.g.gui_font_face = "PragmataPro Mono Regular"
 -- vim.g.neovide_padding_top = 50
 

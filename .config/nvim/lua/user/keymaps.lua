@@ -66,6 +66,10 @@ keymap("i", "kj", "<ESC>", opts)
 --[[ vim.cmd 'nnoremap <Esc><Esc> :nohlsearch<CR>' ]]
 
 local clearStuff = function()
+	local mc = require("multicursor-nvim")
+	if mc.hasCursors() then
+		mc.clearCursors()
+	end
 	vim.cmd("noh")
 	require("notify").dismiss()
 end
@@ -109,11 +113,11 @@ keymap("n", "-", function()
 	elseif config.filemanager == "mini.files" then
 		MiniFiles.open(vim.api.nvim_buf_get_name(0))
 	elseif config.filemanager == "neo-tree" then
-		vim.cmd([[Neotree position=current reveal=true<CR>]])
+		vim.cmd([[Neotree toggle reveal_force_cwd]])
 	end
-end, { desc = "Oil" })
+end, { desc = "File manager" })
 
-keymap("n", "<leader>.", "<cmd>Neotree focus<cr>", { desc = "Focus file in tree" })
+keymap("n", "<leader>.", "<cmd>Neotree toggle reveal_force_cwd<cr>", { desc = "Focus file in tree" })
 
 keymap("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "Search text" })
 
@@ -129,7 +133,7 @@ keymap("n", "<leader>bb", function()
 	require("telescope.builtin").buffers()
 end, { desc = "Buffers" })
 keymap("n", "<leader>,", function()
-	require("telescope.builtin").buffers()
+	require("telescope.builtin").buffers({ only_cwd = true })
 end, { desc = "Buffers" })
 
 vim.keymap.set("n", "<Leader>bu", function()
@@ -187,8 +191,8 @@ keymap("n", "<leader>hl", function()
 end, { desc = "Lazy" })
 keymap("n", "<leader>hm", "<cmd>Mason<CR>", { desc = "Mason" })
 keymap("n", "<leader>hL", function()
-	require("legendary").find()
-end, { desc = "Legendary" })
+	require("user.quick-menu").run()
+end, { desc = "Quick menu" })
 
 -- Ui --
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })

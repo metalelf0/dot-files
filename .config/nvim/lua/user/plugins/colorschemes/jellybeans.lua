@@ -37,6 +37,7 @@ M.config = function()
 	vim.api.nvim_set_hl(0, "@string.special.symbol", { fg = "#7697d6" })
 	vim.api.nvim_set_hl(0, "@text.todo.checked.markdown", { fg = "#9aae6b" })
 	vim.api.nvim_set_hl(0, "@text.todo.unchecked.markdown", { fg = "#cf694a" })
+	vim.api.nvim_set_hl(0, "@markup.link.label.markdown_inline", { link = "Label" })
 end
 
 return M

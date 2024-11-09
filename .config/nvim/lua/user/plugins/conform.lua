@@ -23,6 +23,9 @@ M.opts = {
 		lua = { "stylua" },
 		python = { "isort", "black" },
 		javascript = { "prettierd", "prettier", stop_after_first = true },
+		json = { "prettierd", "prettier", stop_after_first = true },
+		eruby = { "erb_format" },
+		html = { "prettierd", "prettier", stop_after_first = true },
 	},
 	default_format_opts = {
 		lsp_format = "fallback",

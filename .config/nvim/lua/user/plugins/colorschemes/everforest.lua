@@ -16,8 +16,12 @@ function M.config()
 		return false
 	end
 
+	local is_transparent = config.transparent and 2 or 0
+
 	require("everforest").setup({
-		transparent_background_level = 0,
+		background = "hard", -- can be "hard", "medium" or "soft"
+		ui_contrast = "high", -- "high" or "low"
+		transparent_background_level = is_transparent,
 	})
 
 	vim.cmd("colorscheme " .. config.colorscheme)

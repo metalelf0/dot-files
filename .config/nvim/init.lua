@@ -11,11 +11,15 @@ require("user.autocommands")
 require("user.digraphs")
 require("user.fvim")
 require("user.fun")
+require("user.git")
 
 vim.cmd([[ packadd cfilter ]])
 
 local function create_missing_dirs()
 	local dir = vim.fn.expand("<afile>:p:h")
+	if vim.tbl_contains({ "oil" }, dir) then
+		return
+	end
 	if vim.fn.isdirectory(dir) == 0 then
 		vim.fn.mkdir(dir, "p")
 	end
@@ -31,7 +35,7 @@ local mappings = {
 	{ "<leader>P", group = "Packer / Projects", nowait = true, remap = false },
 	{ "<leader>b", group = "Buffers", nowait = true, remap = false },
 	{ "<leader>bc", group = "Close", nowait = true, remap = false },
-	{ "<leader>c", group = "Code", nowait = true, remap = false },
+	{ "<leader>c", group = "Cursors", nowait = true, remap = false },
 	{ "<leader>g", group = "Git", nowait = true, remap = false },
 	{ "<leader>h", group = "Helpers", nowait = true, remap = false },
 	{ "<leader>i", group = "Insert", nowait = true, remap = false },
@@ -44,4 +48,3 @@ local mappings = {
 	{ "<leader>u", group = "UI", nowait = true, remap = false },
 }
 which_key.add(mappings)
-

@@ -19,7 +19,7 @@ M.config = function()
 		-- Theme comes in two styles `modus_operandi` and `modus_vivendi`
 		-- `auto` will automatically set style based on background set with vim.o.background
 		style = "auto",
-		variant = "default", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
+		variant = "tinted", -- Theme comes in four variants `default`, `tinted`, `deuteranopia`, and `tritanopia`
 		dim_inactive = false,
 		styles = {
 			-- Style to be applied to different syntax groups
@@ -45,6 +45,9 @@ M.config = function()
 		on_highlights = function(highlights, colors)
 			highlights.WhichKeyFloat = { bg = colors.bg_main }
 			highlights.Comment = { fg = "#a0a0a0" }
+			-- highlights["@string.special.symbol.ruby"] = { fg = colors.blue_cooler }
+			highlights["@string.special.symbol.ruby"] = { fg = "#55bbfa" }
+			highlights["@variable.member.ruby"] = { fg = "#5fd0cf" }
 		end,
 	})
 

@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields, assign-type-mismatch
 local utils = require("user.utils")
 
 local M = {
@@ -35,7 +36,7 @@ function M.config()
 		client.server_capabilities.definitionProvider = true
 
 		-- disable semanticTokensProvider cause it's giving me headache with ruby_ls
-		client.server_capabilities.semanticTokensProvider = false
+		client.server_capabilities.semanticTokensProvider = nil
 	end
 
 	---@type lspconfig.options
@@ -62,12 +63,12 @@ function M.config()
 					format = {
 						enable = true,
 					},
-					validate = { enable = true },
+					validate = {
+						enable = true,
+					},
 				},
 			},
 		},
-		-- gopls = {},
-		-- marksman = {},
 		pyright = {},
 		rust_analyzer = {
 			settings = {
@@ -82,7 +83,6 @@ function M.config()
 		},
 		yamlls = {},
 		lua_ls = {
-			-- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
 			single_file_support = true,
 			settings = {
 				Lua = {
@@ -139,14 +139,12 @@ function M.config()
 			settings = {
 				solargraph = {
 					hint = { enable = true },
-					diagnostics = true,
+					diagnostics = false,
 					completion = true,
 					useBundler = true,
 				},
 			},
 		},
-		-- sorbet = {},
-
 		ruby_lsp = {
 			default_config = {
 				cmd = { "bundle", "exec", "ruby-lsp" },
@@ -155,15 +153,6 @@ function M.config()
 				init_options = {
 					formatter = "auto",
 					single_file_support = true,
-					-- enabledFeatures = {
-					-- 	"documentHighlights",
-					-- 	"documentSymbols",
-					-- 	"foldingRanges",
-					-- 	"selectionRanges",
-					-- 	-- "semanticHighlighting",
-					-- 	"formatting",
-					-- 	"codeActions",
-					-- },
 				},
 				settings = {},
 			},
@@ -179,8 +168,6 @@ function M.config()
 				},
 			},
 		},
-
-		-- tailwindcss = {},
 	}
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -203,8 +190,6 @@ function M.config()
 		opts = vim.tbl_deep_extend("force", {}, options, opts or {})
 		require("lspconfig")[server].setup(opts)
 	end
-
-	-- require("user.plugins.null-ls").setup(options)
 end
 
 return M

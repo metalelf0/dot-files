@@ -6,11 +6,12 @@ local colorscheme = "ares"
 
 local M = {
 	"ab-dx/ares.nvim",
-  name = "ares",
+	name = "ares",
 	dependencies = { "rktjmp/lush.nvim" },
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
+	dev = true,
 }
 
 M.config = function()

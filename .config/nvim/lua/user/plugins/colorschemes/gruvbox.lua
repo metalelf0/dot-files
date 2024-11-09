@@ -10,7 +10,6 @@ local M = {
 	keys = themer.keys(colorscheme),
 }
 
--- FIXME wtf?!
 M.supported_variants = { "hard", "soft", "" }
 M.default_variant = "hard"
 
@@ -22,7 +21,6 @@ M.config = function()
 		undercurl = true,
 		underline = true,
 		bold = true,
-		italic = true,
 		strikethrough = true,
 		invert_selection = false,
 		invert_signs = false,
@@ -32,14 +30,13 @@ M.config = function()
 		contrast = themer.variant(M), -- can be "hard", "soft" or empty string
 		overrides = {},
 		dim_inactive = false,
-		transparent_mode = true,
+		terminal_colors = true,
+		transparent_mode = config.transparent,
+		palette_overrides = {
+			bright_red = "#f7815e",
+		},
 	})
 
-	-- Theme: If you want to change the theme you need to
-	-- change this 2 things, colorscheme will apply the theme in the IDE
-	-- and you will also need to create a theme_colors to apply the theme
-	-- to the statusline and whichkey
-	local colorscheme = "gruvbox"
 	local colors = require("user.colors.gruvbox_colors")
 
 	local function set_colors(fg, bg)

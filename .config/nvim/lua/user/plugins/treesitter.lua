@@ -70,15 +70,12 @@ function M.config()
 			"vue",
 			"wgsl",
 			"yaml",
-			-- "comment", -- comments are slowing down TS bigtime, so disable for now
-			-- "markdown",
-			-- "wgsl",
+			"comment", -- comments are slowing down TS bigtime, so disable for now
 		},
 		sync_install = false,
 		auto_install = false,
 		highlight = { enable = true, additional_vim_regex_highlighting = { "markdown" } },
 		indent = { enable = true },
-		-- context_commentstring = { enable = true, enable_autocmd = false },
 		incremental_selection = {
 			enable = true,
 			keymaps = {
@@ -96,7 +93,7 @@ function M.config()
 				},
 			},
 			navigation = {
-				enable = true,
+				enable = false,
 				keymaps = {
 					-- goto_definition = "gd",
 					-- list_definitions = "gnD",

@@ -11,17 +11,21 @@ local specs = { mini, {
 } }
 
 function mini.surround()
-	require("mini.surround").setup({
-		mappings = {
-			add = "ys", -- Add surrounding in Normal and Visual modes
-			delete = "ds", -- Delete surrounding
-			find = "gzf", -- Find surrounding (to the right)
-			find_left = "gzF", -- Find surrounding (to the left)
-			highlight = "gzh", -- Highlight surrounding
-			replace = "cs", -- Replace surrounding
-			update_n_lines = "gzn", -- Update `n_lines`
-		},
-	})
+	-- -- Note: if 'timeoutlen' is low enough to cause occasional usage of |s| key
+	-- -- (that deletes character under cursor), disable it with the following call: >lua
+	-- vim.keymap.set({ "n", "x" }, "s", "<Nop>")
+	--
+	-- require("mini.surround").setup({
+	-- 	mappings = {
+	-- 		add = "sa", -- Add surrounding in Normal and Visual modes
+	-- 		delete = "sd", -- Delete surrounding
+	-- 		find = "sf", -- Find surrounding (to the right)
+	-- 		find_left = "sF", -- Find surrounding (to the left)
+	-- 		highlight = "sh", -- Highlight surrounding
+	-- 		replace = "sc", -- Replace surrounding
+	-- 		update_n_lines = "sn", -- Update `n_lines`
+	-- 	},
+	-- })
 end
 
 function mini.align()
@@ -29,11 +33,19 @@ function mini.align()
 end
 
 function mini.icons()
-	require("mini.icons").setup()
+	require("mini.icons").setup({})
 end
 
 function mini.jump()
 	require("mini.jump").setup({})
+end
+
+function mini.jump2d()
+	-- require("mini.jump2d").setup({
+	-- 	mappings = {
+	-- 		start_jumping = "s",
+	-- 	},
+	-- })
 end
 
 function mini.pairs()
@@ -128,6 +140,9 @@ function mini.files()
 			mappings = {
 				go_in_plus = "<CR>",
 			},
+			options = {
+				use_as_default_explorer = false,
+			},
 		})
 	end
 end
@@ -177,6 +192,7 @@ function mini.config()
 	mini.icons()
 	mini.clue()
 	mini.align()
+	mini.jump2d()
 	-- mini.animate()
 end
 
