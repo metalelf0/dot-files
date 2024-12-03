@@ -39,7 +39,8 @@ local options = {
 	updatetime = 300, -- faster completion (4000ms default)
 	-- winbar = "true",
 	winblend = 10, -- fake transparency for popup windows
-	wrap = true, -- wrap long lines, please
+	wildmode = "longest:list,full",
+	wrap = true, -- wrap long lines, please,
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	laststatus = 3,
 }
@@ -54,6 +55,7 @@ end
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+vim.cmd([[set wildoptions=pum]]) -- disable PopUpMenu for wildmenu (the command-line completion thingie)
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"

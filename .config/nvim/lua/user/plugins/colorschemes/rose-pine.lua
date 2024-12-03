@@ -42,6 +42,9 @@ M.config = function()
 		disable_float_background = false,
 		extend_background_behind_borders = true,
 		disable_italics = false,
+		styles = {
+			transparency = config.transparent,
+		},
 		groups = {
 			headings = {
 				h1 = "iris",

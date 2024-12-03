@@ -1,6 +1,7 @@
 return {
 	"smoka7/hop.nvim",
 	version = "*",
+	enabled = false,
 	opts = {
 		keys = "etovxqpdygfblzhckisuran",
 	},

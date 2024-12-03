@@ -1,3 +1,5 @@
+local config = require("user.config")
+
 local M = {
 	"epwalsh/obsidian.nvim",
 	version = "*",
@@ -48,6 +50,7 @@ local M = {
 		{ "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", "n", desc = "Obsidian - quick switch" },
 		{ "<leader>os", "<cmd>ObsidianSearch<cr>", "n", desc = "Obsidian - search" },
 		{ "<leader>ot", "<cmd>ObsidianToday<cr>", "n", desc = "Obsidian - today" },
+		{ "<leader>oT", "<cmd>ObsidianTemplate<cr>", "n", desc = "Obsidian - template" },
 		{ "<leader>oy", "<cmd>ObsidianYesterday<cr>", "n", desc = "Obsidian - yesterday" },
 		{ "<leader>oL", "<cmd>ObsidianLinkNew<cr>", "v", desc = "Obsidian - new link" },
 		{ "<leader>ol", "<cmd>ObsidianLink<cr>", "v", desc = "Obsidian - link" },

@@ -12,7 +12,7 @@ return {
 			defaults = {
 				dynamic_preview_title = true,
 				layout_strategy = "vertical",
-				path_display = { "filename_first", shorten = 3, truncate = 3 },
+				path_display = { "filename_first", shorten = 3, truncate = 3, reverse_directories = false },
 				prompt_prefix = " ",
 				selection_caret = " ",
 				sorting_strategy = "ascending",

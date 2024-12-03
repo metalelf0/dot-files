@@ -1,6 +1,11 @@
+local config = require("user.config")
+
 local M = {
 	"goolord/alpha-nvim",
-	enabled = true,
+	enabled = (config.dashboard == "alpha"),
+	keys = {
+		{ "<leader>a", "<cmd>Alpha<cr>", desc = "Dashboard" },
+	},
 }
 
 M.footer = function()

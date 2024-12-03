@@ -121,8 +121,7 @@ keymap("n", "<leader>.", "<cmd>Neotree toggle reveal_force_cwd<cr>", { desc = "F
 
 keymap("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "Search text" })
 
--- keymap("n", "<leader>a", "<cmd>Dashboard<cr>", { desc = "󰕮 Dashboard" })
-keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Dashboard" })
+-- keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Dashboard" })
 
 keymap("n", "<leader>p", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 

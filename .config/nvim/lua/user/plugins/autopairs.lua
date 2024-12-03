@@ -1,6 +1,8 @@
+local config = require("user.config")
+
 local M = {
-  "windwp/nvim-autopairs",
-  event = "InsertEnter"
+	"windwp/nvim-autopairs",
+	event = "InsertEnter",
 }
 
 M.config = function()

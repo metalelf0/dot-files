@@ -7,6 +7,7 @@ local M = {
 	version = false,
 	event = "InsertEnter",
 	name = "nvim-cmp",
+	enabled = (config.completion_engine == "nvim-cmp"),
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
@@ -53,8 +54,8 @@ function M.config()
 			},
 		},
 		mapping = cmp.mapping.preset.insert({
-			["<C-k>"] = cmp.mapping.select_prev_item(),
-			["<C-j>"] = cmp.mapping.select_next_item(),
+			["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+			["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
 			["<C-b>"] = cmp.mapping.scroll_docs(-4),
 			["<C-f>"] = cmp.mapping.scroll_docs(4),
 			["<C-Space>"] = cmp.mapping.complete({}),
