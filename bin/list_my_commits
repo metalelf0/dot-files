@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Variables
+target_user=$1        # Git username to search for
+target_date=$2        # Date to search for (format: YYYY-MM-DD)
+base_directory=$(pwd) # Base directory containing the subfolders
+
+# Function to list commits by user on a specific date in a given repository
+list_commits() {
+  repo=$1
+  cd "$repo" || return
+
+  # Get the commits by user on the target date
+  commits=$(GIT_PAGER="" git log --all --author="$target_user" --since="$target_date 00:00" --until="$target_date 23:59" --pretty=format:"%h - %an: %s (%cd)" --date=short)
+  if [ -n "$commits" ]; then
+    echo "Repository: $repo"
+    echo "$commits"
+    echo "" # Add a blank line for separation
+  fi
+
+  cd "$base_directory" || return
+}
+
+# Find and loop through all subfolders that contain a .git directory (indicating they're Git repos)
+find . -type d -name ".git" | while read -r git_dir; do
+  repo_dir=$(dirname "$git_dir")
+  list_commits "$repo_dir"
+done

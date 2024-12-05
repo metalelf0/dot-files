@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+git fetch origin
+git log --color=always --format="%C(auto)%h%d %s %C(yellow)%C(bold)%cr% C(auto)(%an)" HEAD..origin/master
+
