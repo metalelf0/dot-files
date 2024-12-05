@@ -1,4 +1,5 @@
-font-family = Maple Mono
+font-family = Rec Mono Casual
+font-size = 14
 font-style = Regular
 font-thicken = true
 adjust-cell-height = 10%
@@ -9,5 +10,5 @@ window-padding-y = 20
 macos-titlebar-style = tabs
 macos-option-as-alt = left
 
-theme = /Users/andreaschiavini/.config/ghostty/themes/tokyonight_moon
-# theme = "tokyonight-storm"
+theme = /Users/andreaschiavini/.config/ghostty/themes/americano.ghostty
+# theme = ""

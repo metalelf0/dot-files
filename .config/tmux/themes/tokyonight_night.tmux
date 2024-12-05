@@ -1,0 +1,1 @@
+/Users/andreaschiavini/.local/share/nvim/lazy/tokyonight.nvim/extras/tmux/tokyonight_night.tmux

@@ -1,0 +1,85 @@
+## COLORSCHEME: everforest light hard
+set -g @everforest_bg_dim '#f2efdf'
+set -g @everforest_bg0 '#fffbef'
+set -g @everforest_bg1 '#f8f5e4'
+set -g @everforest_bg2 '#f2efdf'
+set -g @everforest_bg3 '#edeada'
+set -g @everforest_bg4 '#e8e5d5'
+set -g @everforest_bg5 '#bec5b2'
+set -g @everforest_bg_visual '#f0f2d4'
+set -g @everforest_bg_red '#ffe7de'
+set -g @everforest_bg_green '#f3f5d9'
+set -g @everforest_bg_blue '#ecf5ed'
+set -g @everforest_bg_yellow '#fef2d5'
+
+set -g @everforest_fg '#5c6a72'
+set -g @everforest_red '#f85552'
+set -g @everforest_orange '#f57d26'
+set -g @everforest_yellow '#dfa000'
+set -g @everforest_green '#8da101'
+set -g @everforest_aqua '#35a77c'
+set -g @everforest_blue '#3a94c5'
+set -g @everforest_purple '#df69ba'
+set -g @everforest_grey0 '#a6b0a0'
+set -g @everforest_grey1 '#939f91'
+set -g @everforest_grey2 '#829181'
+set -g @everforest_statusline1 '#93b259'
+set -g @everforest_statusline2 '#708089'
+set -g @everforest_statusline3 '#e66868'
+
+set-option -g status "on"
+set -g status-interval 2
+
+set-option -g status-fg '#5c6a72' # fg (No idea why I can't use variables here)
+set-option -g status-bg '#fffbef' # bg0
+
+set-option -g mode-style fg='#{@everforest_purple}',bg='#{@everforest_bg_red}' # fg=purple, bg=bg_visual
+
+# default statusbar colors
+set-option -g status-style fg='#{@everforest_fg}',bg='#{@everforest_bg_dim}',default # fg=fg bg=bg_dim
+
+# ---- Windows ----
+# default window title colors
+set-window-option -g window-status-style fg='#{@everforest_bg5}',bg='#{@everforest_bg0}' # fg=yellow bg=bg0
+
+# default window with an activity alert
+set-window-option -g window-status-activity-style 'bg=#{@everforest_bg1},fg=#{@everforest_bg3}' # bg=bg1, fg=fg3
+
+# active window title colors
+set-window-option -g window-status-current-style fg='#{@everforest_fg}',bg='#{@everforest_bg_green}' # fg=fg bg=bg_green
+
+# ---- Pane ----
+# pane borders
+set-option -g pane-border-style fg='#{@everforest_bg1}' # fg=bg1
+set-option -g pane-active-border-style 'fg=#{@everforest_blue}' # fg=blue
+
+# pane number display
+set-option -g display-panes-active-colour '#3a9c53' # blue
+set-option -g display-panes-colour '#f57d26' # orange
+
+# ---- Command ----
+# message info
+set-option -g message-style fg='#{@everforest_statusline3}',bg='#{@everforest_bg_dim}' # fg=statusline3 bg=bg_dim
+
+# writing commands inactive
+set-option -g message-command-style 'fg=#{@everforest_bg3},bg=#{@everforest_bg1}' # bg=fg3, fg=bg1
+
+# ---- Miscellaneous ----
+# clock
+set-window-option -g clock-mode-colour '#3a9c53' #blue
+
+# bell
+set-window-option -g window-status-bell-style fg='#{@everforest_bg0}',bg='#{@everforest_statusline3}' # fg=bg, bg=statusline3
+
+# ---- Formatting ----
+set-option -g status-left-style none
+set -g status-left-length 60
+set -g status-left '#[fg=#{@everforest_bg_dim},bg=#{@everforest_green},bold] #S #[fg=#{@everforest_green},bg=#{@everforest_bg2},nobold]#[fg=#{@everforest_green},bg=#{@everforest_bg2},bold] #(whoami) #[fg=#{@everforest_bg2},bg=#{@everforest_bg0},nobold]'
+
+set-option -g status-right-style none
+set -g status-right-length 150
+set -g status-right '#[fg=#{@everforest_bg2}]#[fg=#{@everforest_fg},bg=#{@everforest_bg2}] #[fg=#{@everforest_fg},bg=#{@everforest_bg2}]%Y-%m-%d  %H:%M #[fg=#{@everforest_aqua},bg=#{@everforest_bg2},bold]#[fg=#{@everforest_bg_dim},bg=#{@everforest_aqua},bold] #h '
+
+set -g window-status-separator '#[fg=#{@everforest_grey2},bg=#{@everforest_bg0}] '
+set -g window-status-format "#[fg=#{@everforest_grey0},bg=#{@everforest_bg0}] #I  #[fg=#{@everforest_grey0},bg=#{@everforest_bg0}]#W "
+set -g window-status-current-format "#[fg=#{@everforest_bg0},bg=#{@everforest_bg_green}]#[fg=#{@everforest_fg},bg=#{@everforest_bg_green}] #I  #[fg=#{@everforest_fg},bg=#{@everforest_bg_green},bold]#W #[fg=#{@everforest_bg_green},bg=#{@everforest_bg0},nobold]"
