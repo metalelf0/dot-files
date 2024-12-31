@@ -1,5 +1,3 @@
 mac_osx/.vim/backup/
-
 .config/nvim/.netrwhist
 .config/nvim/plugin/packer_compiled.lua
-.config/nvim/lua/user/fun.lua

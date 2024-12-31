@@ -12,18 +12,11 @@ return {
 	"tpope/vim-eunuch",
 	"tpope/vim-endwise",
 	"williamboman/mason-lspconfig.nvim",
+	"metalelf0/nvim-colorscheme-convert",
 
 	require("user.plugins.colorschemes"),
-
-	{ dir = "~/Documents/codice_elf0/nvim-colorscheme-convert" },
-	-- {
-	-- 	config = function()
-	-- 		require("treesitter-renamer").config()
-	-- 	end,
-	-- },
 	{
-		dir = "~/Documents/codice_elf0/treesitter-renamer",
-		-- "metalelf0/treesitter-renamer.nvim",
+		"metalelf0/treesitter-renamer.nvim",
 		dependencies = {
 			"tpope/vim-eunuch",
 		},
@@ -32,15 +25,10 @@ return {
 				rename_file = "<leader>rr",
 			},
 		},
-
-		-- config = function()
-		-- 	require("treesitter-renamer").config()
-		-- end,
 	},
 	{
-		dir = "~/Documents/codice_elf0/supermover.nvim",
+		"metalelf0/supermover.nvim",
 		event = "VeryLazy",
-		-- "metalelf0/treesitter-renamer.nvim",
 		dependencies = {
 			"tpope/vim-eunuch",
 			"nvim-telescope/telescope.nvim",
@@ -50,9 +38,5 @@ return {
 				move_file = "<leader>fm",
 			},
 		},
-
-		-- config = function()
-		-- 	require("treesitter-renamer").config()
-		-- end,
 	},
 }
