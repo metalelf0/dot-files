@@ -9,19 +9,22 @@ return {
 
 	config = function()
 		require("markview").setup({
-			headings = {
-				shift_width = 0,
-			},
-			list_items = {
-				shift_width = 2,
-				marker_minus = {
-					text = "⁃",
+			markdown = {
+				headings = {
+					shift_width = 0,
 				},
-				marker_plus = {
-					text = "✦",
-				},
-				marker_star = {
-					text = "☆",
+				list_items = {
+					marker_minus = {
+						add_padding = false,
+						text = "⁃",
+					},
+					marker_plus = {
+						text = "✦",
+					},
+					marker_star = {
+						text = "☆",
+					},
+					shift_width = 2,
 				},
 			},
 		})

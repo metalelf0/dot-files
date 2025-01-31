@@ -15,8 +15,9 @@ return {
 					border = "single",
 				},
 			},
+			scratch = {},
 			words = {
-				enabled = true,
+				enabled = false,
 				debounce = 200,
 				notify_jump = false,
 				notify_end = true,
@@ -77,6 +78,20 @@ return {
 					Snacks.words.jump(-vim.v.count1)
 				end,
 				desc = "Prev Reference",
+			},
+			{
+				"<leader>s.",
+				function()
+					Snacks.scratch()
+				end,
+				desc = "Toggle Scratch Buffer",
+			},
+			{
+				"<leader>sS",
+				function()
+					Snacks.scratch.select()
+				end,
+				desc = "Select Scratch Buffer",
 			},
 		},
 	},

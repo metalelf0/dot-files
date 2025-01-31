@@ -1,5 +1,29 @@
 #!/bin/bash
 
+# list_my_commits
+# --------------
+# Lists all commits made by a specific user on a specific date across all Git repositories
+# in the current directory and its subdirectories.
+#
+# Usage:
+#   ./list_my_commits <username> <date>
+#
+# Arguments:
+#   username - Git username/email to search for
+#   date     - Date in YYYY-MM-DD format
+#
+# Example:
+#   ./list_my_commits "John Doe" "2024-03-20"
+#
+# Output:
+#   Displays repository path and commit information for each matching commit:
+#   - Commit hash
+#   - Author name
+#   - Commit message
+#   - Commit date
+#
+# Note: Must be run from a directory containing Git repositories
+
 # Variables
 target_user=$1        # Git username to search for
 target_date=$2        # Date to search for (format: YYYY-MM-DD)

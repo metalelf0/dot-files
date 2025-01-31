@@ -12,7 +12,7 @@ local M = {
 		workspaces = {
 			{
 				name = "Andrea",
-				path = "/Users/andreaschiavini/Library/Mobile Documents/iCloud~md~obsidian/Documents/Andrea",
+				path = config.obsidian_workspace_path,
 			},
 		},
 		-- dir = "~/iCloud-Obsidian",

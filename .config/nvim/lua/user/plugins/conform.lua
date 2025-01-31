@@ -26,6 +26,7 @@ M.opts = {
 		json = { "prettierd", "prettier", stop_after_first = true },
 		eruby = { "erb_format" },
 		html = { "prettierd", "prettier", stop_after_first = true },
+		xml = { "xmlformatter" },
 	},
 	default_format_opts = {
 		lsp_format = "fallback",

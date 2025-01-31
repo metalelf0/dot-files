@@ -1,5 +1,8 @@
+local config = require("user.config")
+
 local M = {
 	"akinsho/bufferline.nvim",
+	enabled = (config.bufferline_plugin == "bufferline"),
 	event = "BufReadPre",
 	keys = {
 		{ "<leader>bp", "<cmd>BufferLineTogglePin<cr>", desc = "Toggle pin" },
@@ -32,6 +35,7 @@ function M.config()
 			show_buffer_close_icons = false,
 			show_buffer_icons = true,
 			indicator = { "none" },
+			themable = true,
 		},
 	})
 end

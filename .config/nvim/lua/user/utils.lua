@@ -21,7 +21,7 @@ M.find_files_in_dir = function(directory)
 end
 
 M.search_files_in_dir = function(directory)
-	require("telescope.builtin").live_grep({ cwd = directory, search_dirs = { directory } })
+	require("telescope").extensions.live_grep_args.live_grep_args({ cwd = directory, search_dirs = { directory } })
 end
 
 M.nvim_config_base_path = function()

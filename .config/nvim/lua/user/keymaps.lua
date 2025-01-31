@@ -119,7 +119,9 @@ end, { desc = "File manager" })
 
 keymap("n", "<leader>.", "<cmd>Neotree toggle reveal_force_cwd<cr>", { desc = "Focus file in tree" })
 
-keymap("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "Search text" })
+keymap("n", "<leader>/", function()
+	require("telescope").extensions.live_grep_args.live_grep_args()
+end, { desc = "Search text" })
 
 -- keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Dashboard" })
 
@@ -307,7 +309,12 @@ keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Find Help" }
 keymap("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
 keymap("n", "<leader>sp", "<cmd>Telescope neoclip<cr>", { desc = "Clipboard (aka pastes)" })
 keymap("n", "<leader>sr", "<cmd>Telescope oldfiles<cr>", { desc = "Open recent File" })
-keymap("n", "<leader>st", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Search text" })
+keymap(
+	"n",
+	"<leader>st",
+	":lua require('telescope').extensions.live_grep_args.live_grep_args(theme = 'ivy')<CR>",
+	{ desc = "Search text" }
+)
 
 keymap("n", "<leader>sT", "<cmd>TodoTelescope<cr>", { desc = "Search todo" })
 
