@@ -48,3 +48,7 @@ local mappings = {
 	{ "<leader>u", group = "UI", nowait = true, remap = false },
 }
 which_key.add(mappings)
+
+vim.diagnostic.config({
+	virtual_lines = false,
+})

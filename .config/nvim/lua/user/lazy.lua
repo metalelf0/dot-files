@@ -16,4 +16,5 @@ require("lazy").setup("user.plugins", {
 		path = "/Users/andreaschiavini/Documents/codice_elf0/",
 		fallback = true, -- Fallback to git when local plugin doesn't exists
 	},
+	concurrency = 64,
 })

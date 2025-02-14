@@ -1,5 +1,18 @@
 local config = require("user.config")
 
+local function mark_task_done()
+	local date = os.date("%Y-%m-%d")
+	local line_number = vim.fn.line(".")
+	local line = vim.fn.getline(line_number)
+
+	if line:match("%- %[ %] #task") then
+		local new_line = line:gsub("%- %[ %] #task", "- [x] #task") .. " ✅ " .. date
+		vim.fn.setline(line_number, new_line)
+	else
+		print("No task to mark as done on this line.")
+	end
+end
+
 local M = {
 	"epwalsh/obsidian.nvim",
 	version = "*",
@@ -54,6 +67,14 @@ local M = {
 		{ "<leader>oy", "<cmd>ObsidianYesterday<cr>", "n", desc = "Obsidian - yesterday" },
 		{ "<leader>oL", "<cmd>ObsidianLinkNew<cr>", "v", desc = "Obsidian - new link" },
 		{ "<leader>ol", "<cmd>ObsidianLink<cr>", "v", desc = "Obsidian - link" },
+		{
+			"<leader>otd",
+			function()
+				mark_task_done()
+			end,
+			"n",
+			desc = "Obsidian - mark task as done",
+		},
 	},
 }
 

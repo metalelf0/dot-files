@@ -73,7 +73,7 @@ M.config = function()
 			border = "curved",
 			highlights = {
 				border = "shadow",
-				background = "Normal",
+				-- background = "Normal",
 				width = 10,
 			},
 		},

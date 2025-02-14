@@ -5,13 +5,13 @@ local M = {
 	event = "VeryLazy",
 	enabled = (config.keymapper == "which-key"),
 	opts = {
-		preset = "modern",
-		win = {
-			width = math.huge,
-			height = { min = 4, max = 25 },
-			col = 4,
-			no_overlap = false,
-		},
+		preset = "helix",
+		-- win = {
+		-- 	width = math.huge,
+		-- 	height = { min = 4, max = 25 },
+		-- 	col = 4,
+		-- 	no_overlap = false,
+		-- },
 	},
 }
 

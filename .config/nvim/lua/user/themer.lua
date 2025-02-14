@@ -32,7 +32,7 @@ M.keys = function(colorscheme)
 			{
 				"<leader>ut",
 				function()
-					require("telescope.builtin").colorscheme({ enable_preview = true })
+					Snacks.pickers.colorscheme()
 				end,
 				desc = "Colorscheme with preview",
 			},

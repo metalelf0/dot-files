@@ -88,12 +88,6 @@ xnoremap ß s<c-r>=join(sort(split(@", '\s*,\s*')), ', ')<cr><esc>
 	true
 )
 
-local find_files = function()
-	require("telescope.builtin").find_files(
-		require("telescope.themes").get_dropdown({ path_display = { "filename_first", truncate = 5 } })
-	)
-end
-
 -- local telescope_colorscheme = function()
 -- 	require("telescope.builtin").colorscheme({ enable_preview = true })
 -- end
@@ -120,22 +114,25 @@ end, { desc = "File manager" })
 keymap("n", "<leader>.", "<cmd>Neotree toggle reveal_force_cwd<cr>", { desc = "Focus file in tree" })
 
 keymap("n", "<leader>/", function()
-	require("telescope").extensions.live_grep_args.live_grep_args()
+	Snacks.picker.grep()
+	-- require("telescope").extensions.live_grep_args.live_grep_args()
 end, { desc = "Search text" })
 
--- keymap("n", "<leader>a", "<cmd>Alpha<cr>", { desc = "Dashboard" })
+keymap("n", "<leader>p", function()
+	Snacks.picker.files()
+end, { desc = "Find files" })
 
-keymap("n", "<leader>p", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-
-vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope enhanced_find_files<cr>")
+vim.keymap.set("n", "<leader><leader>", function()
+	Snacks.picker.smart()
+end)
 
 -- Buffers --
 keymap("n", "<leader>bb", function()
-	require("telescope.builtin").buffers()
+	Snacks.picker.buffers()
 end, { desc = "Buffers" })
 keymap("n", "<leader>,", function()
-	require("telescope.builtin").buffers({ only_cwd = true })
-end, { desc = "Buffers" })
+	Snacks.picker.buffers({ filter = { cwd = true } })
+end, { desc = "Cwd buffers" })
 
 vim.keymap.set("n", "<Leader>bu", function()
 	require("user.buffer_utils").clear_unused()
@@ -156,12 +153,15 @@ keymap("n", "<leader>bca", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all" })
 --
 -- Git --
 keymap("n", "<leader>ga", "<cmd>AdvancedGitSearch<cr>", { desc = "Advanced git search" })
-keymap("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Checkout branch" })
-keymap("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Checkout commit" })
+keymap("n", "<leader>gb", function()
+	Snacks.picker.git_branches()
+end, { desc = "Checkout branch" })
+keymap("n", "<leader>gc", function()
+	Snacks.picker.git_log()
+end, { desc = "Checkout commit" })
 keymap("n", "<leader>gG", function()
 	_LAZYGIT_TOGGLE()
 end, { desc = "Lazygit" })
--- keymap("n", "<leader>go", "<cmd>Telescope git_status<cr>", { desc = "Open changed file" })
 keymap("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
 -- harpoon --
@@ -224,6 +224,16 @@ keymap("n", "<leader>uw", function()
 end, { desc = "Export colors to Wezterm" })
 
 -- Git and friends --
+keymap("n", "<leader>gll", function()
+	Snacks.picker.git_log()
+end, { desc = "Git log (cwd)" })
+keymap("n", "<leader>glf", function()
+	Snacks.picker.git_log_file()
+end, { desc = "Git log (file)" })
+keymap("n", "<leader>glL", function()
+	Snacks.picker.git_log_line()
+end, { desc = "Git log (line)" })
+
 keymap("n", "<leader>goo", "<cmd>Octo pr create<CR>", { desc = "Open PR" })
 keymap("n", "<leader>gol", "<cmd>Octo pr list<CR>", { desc = "List PRs" })
 keymap("n", "<leader>gou", "<cmd>Octo pr url<CR>", { desc = "Copy PR url" })
@@ -243,12 +253,14 @@ keymap("n", "<leader>jf", "<cmd>TestFile<CR>", { desc = "File" })
 keymap("n", "<leader>js", "<cmd>TestSuite<CR>", { desc = "Suite" })
 
 -- LSP --
-keymap("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Document diagnostics" })
+keymap("n", "<leader>lD", function()
+	Snacks.picker.diagnostics_buffer()
+end, { desc = "Document diagnostics" })
 keymap("n", "<leader>lI", "<cmd>LspInstallInfo<cr>", { desc = "Installer info" })
 keymap("n", "<leader>lR", vim.lsp.buf.rename, { desc = "Rename" })
 keymap("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Action" })
 keymap("n", "<leader>ld", function()
-	require("telescope.builtin").lsp_definitions({ jump_type = "never" })
+	Snacks.picker.lsp_definitions()
 end, { desc = "Show definition" })
 
 keymap("n", "<leader>lf", function()
@@ -268,18 +280,17 @@ keymap("n", "<leader>lk", function()
 end, { desc = "Prev diagnostic" })
 keymap("n", "<leader>ll", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Line diagnostic" })
 keymap("n", "<leader>lr", function()
-	require("telescope.builtin").lsp_references({ jump_type = "never" })
+	Snacks.picker.lsp_references()
 end, { desc = "Show references" })
-keymap("n", "<leader>ls", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { desc = "Workspace symbols" })
-keymap("n", "<leader>lw", "<cmd>Telescope diagnostics<cr>", { desc = "Workspace diagnostics" })
+keymap("n", "<leader>ls", function()
+	Snacks.picker.lsp_symbols()
+end, { desc = "Workspace symbols" })
+keymap("n", "<leader>lw", function()
+	Snacks.picker.diagnostics()
+end, { desc = "Workspace diagnostics" })
 keymap("n", "<leader>lt", "<cmd>TroubleToggle<cr>", { desc = "Trouble toggle" })
 
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Definition", noremap = true, silent = true })
--- keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "References", noremap = true, silent = true })
-
-keymap("n", "gr", function()
-	require("telescope.builtin").lsp_references({ jump_type = "never" })
-end, { desc = "References" })
 
 -- Org, obsidian and friends --
 -- see lua/user/plugins/obsidian.nvim
@@ -298,9 +309,15 @@ end, { desc = "Action" })
 keymap("n", "<leader>s<CR>", function()
 	require("telescope.builtin").resume()
 end, { desc = "Resume previous search" })
-keymap("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
-keymap("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
-keymap("n", "<leader>sR", "<cmd>Telescope registers<cr>", { desc = "Registers" })
+keymap("n", "<leader>sC", function()
+	Snacks.picker.command_history()
+end, { desc = "Commands" })
+keymap("n", "<leader>sM", function()
+	Snacks.picker.man()
+end, { desc = "Man Pages" })
+keymap("n", "<leader>sR", function()
+	Snacks.picker.registers()
+end, { desc = "Registers" })
 keymap("n", "<leader>sb", function()
 	require("telescope.builtin").live_grep({ grep_open_files = true })
 end, { desc = "Search in buffers" })

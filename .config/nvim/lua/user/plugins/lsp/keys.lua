@@ -14,7 +14,13 @@ function setup_whichkey(client, buffer)
 
 	local keymap = {
 		{ "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help" },
-		{ "<leader>xd", "<cmd>Telescope diagnostics<cr>", desc = "Search Diagnostics" },
+		{
+			"<leader>xd",
+			function()
+				Snacks.picker.diagnostics()
+			end,
+			desc = "Search Diagnostics",
+		},
 		{ "K", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover" },
 		{ "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "Next Diagnostic" },
 		{
@@ -39,12 +45,35 @@ function setup_whichkey(client, buffer)
 			desc = "Prev Warning",
 		},
 		{ "g", group = "goto" },
-		{ "gD", "<cmd>Telescope lsp_declarations<CR>", desc = "Goto Declaration" },
-		{ "gI", "<cmd>Telescope lsp_implementations<CR>", desc = "Goto Implementation" },
-		{ "gR", "<cmd>Trouble lsp_references<cr>", desc = "Trouble References" },
-		{ "gd", "<cmd>Telescope lsp_definitions<cr>", desc = "Goto Definition" },
-		{ "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
-		{ "gt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto Type Definition" },
+		{
+			"gI",
+			function()
+				Snacks.picker.lsp_implementations()
+			end,
+			desc = "Goto Implementation",
+		},
+		{
+			"gr",
+			function()
+				Snacks.picker.lsp_references()
+			end,
+			nowait = true,
+			desc = "References",
+		},
+		{
+			"gd",
+			function()
+				Snacks.picker.lsp_definitions()
+			end,
+			desc = "Goto Definition",
+		},
+		{
+			"gt",
+			function()
+				Snacks.picker.lsp_type_definitions()
+			end,
+			desc = "Goto Type Definition",
+		},
 		{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", mode = "v" },
 	}
 
