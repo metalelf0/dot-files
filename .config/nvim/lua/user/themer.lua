@@ -32,7 +32,7 @@ M.keys = function(colorscheme)
 			{
 				"<leader>ut",
 				function()
-					Snacks.pickers.colorscheme()
+					Snacks.picker.colorschemes()
 				end,
 				desc = "Colorscheme with preview",
 			},

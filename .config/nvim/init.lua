@@ -30,24 +30,28 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = create_missing_dirs,
 })
 
-local which_key = require("which-key")
-local mappings = {
-	{ "<leader>P", group = "Packer / Projects", nowait = true, remap = false },
-	{ "<leader>b", group = "Buffers", nowait = true, remap = false },
-	{ "<leader>bc", group = "Close", nowait = true, remap = false },
-	{ "<leader>c", group = "Cursors", nowait = true, remap = false },
-	{ "<leader>g", group = "Git", nowait = true, remap = false },
-	{ "<leader>h", group = "Helpers", nowait = true, remap = false },
-	{ "<leader>i", group = "Insert", nowait = true, remap = false },
-	{ "<leader>j", group = "Test / join", nowait = true, remap = false },
-	{ "<leader>l", group = "LSP", nowait = true, remap = false },
-	{ "<leader>o", group = "Obsidian", nowait = true, remap = false },
-	{ "<leader>r", group = "Refactorings", nowait = true, remap = false },
-	{ "<leader>s", group = "Search", nowait = true, remap = false },
-	{ "<leader>t", group = "Terminal", nowait = true, remap = false },
-	{ "<leader>u", group = "UI", nowait = true, remap = false },
-}
-which_key.add(mappings)
+local config = require("user.config")
+
+if config.keymapper == "which-key" then
+	local which_key = require("which-key")
+	local mappings = {
+		{ "<leader>P", group = "Packer / Projects", nowait = true, remap = false },
+		{ "<leader>b", group = "Buffers", nowait = true, remap = false },
+		{ "<leader>bc", group = "Close", nowait = true, remap = false },
+		{ "<leader>c", group = "Cursors", nowait = true, remap = false },
+		{ "<leader>g", group = "Git", nowait = true, remap = false },
+		{ "<leader>h", group = "Helpers", nowait = true, remap = false },
+		{ "<leader>i", group = "Insert", nowait = true, remap = false },
+		{ "<leader>j", group = "Test / join", nowait = true, remap = false },
+		{ "<leader>l", group = "LSP", nowait = true, remap = false },
+		{ "<leader>o", group = "Obsidian", nowait = true, remap = false },
+		{ "<leader>r", group = "Refactorings", nowait = true, remap = false },
+		{ "<leader>s", group = "Search", nowait = true, remap = false },
+		{ "<leader>t", group = "Terminal", nowait = true, remap = false },
+		{ "<leader>u", group = "UI", nowait = true, remap = false },
+	}
+	which_key.add(mappings)
+end
 
 vim.diagnostic.config({
 	virtual_lines = false,

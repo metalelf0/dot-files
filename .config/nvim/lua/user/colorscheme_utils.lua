@@ -1,11 +1,116 @@
 ---@diagnostic disable: param-type-mismatch, no-unknown
 local M = {}
 local config = require("user.config")
+local core = require("lib/core")
 
 M.config = {
 	kitty_export_path = os.getenv("HOME") .. "/.config/kitty/",
 	wezterm_export_path = os.getenv("HOME") .. "/.config/wezterm/colors/",
+	ghostty_themes_path = os.getenv("HOME") .. "/.config/ghostty/themes/",
+	ghostty_config_file = os.getenv("HOME") .. "/.config/ghostty/config",
+	tmux_config_file = os.getenv("HOME") .. "/.config/tmux/tmux.conf",
+	tmux_themes_path = os.getenv("HOME") .. "/.config/tmux/themes/",
 }
+
+M.export_colors_to_ghostty = function()
+	local colorscheme = vim.api.nvim_exec("colorscheme", true)
+	local config_path = vim.fn.expand(M.config.ghostty_config_file)
+
+	local theme_file_path = vim.fn.expand(M.config.ghostty_themes_path .. "/" .. colorscheme)
+	if vim.fn.filereadable(vim.fn.expand(theme_file_path)) == 0 then
+		print("Ghostty theme file not found, creating it...")
+		M.write_ghostty_theme(theme_file_path)
+	else
+		print("Ghostty theme file found...")
+	end
+
+	local lines = {}
+	for line in io.lines(config_path) do
+		if line:match("^theme%s*=%s*") then
+			line = "theme = " .. core.get_homedir() .. "/.config/ghostty/themes/" .. colorscheme
+		end
+		table.insert(lines, line)
+	end
+
+	local file = io.open(config_path, "w")
+	for _, line in ipairs(lines) do
+		file:write(line .. "\n")
+	end
+	file:close()
+end
+
+M.write_ghostty_theme = function(target_file)
+	local file = io.open(target_file, "w")
+	-- Terminal color indices and their traditional names
+	local color_mappings = {
+		[0] = "black",
+		[1] = "red",
+		[2] = "green",
+		[3] = "yellow",
+		[4] = "blue",
+		[5] = "magenta",
+		[6] = "cyan",
+		[7] = "white",
+		-- Bright colors
+		[8] = "bright-black",
+		[9] = "bright-red",
+		[10] = "bright-green",
+		[11] = "bright-yellow",
+		[12] = "bright-blue",
+		[13] = "bright-magenta",
+		[14] = "bright-cyan",
+		[15] = "bright-white",
+	}
+
+	-- Helper function to convert color to hex
+	local function to_hex(color)
+		if type(color) == "number" then
+			return string.format("#%06x", color)
+		elseif type(color) == "string" and color:match("^#%x%x%x%x%x%x$") then
+			return color
+		end
+		return nil
+	end
+
+	-- Get foreground and background colors
+	local normal_group = vim.api.nvim_get_hl(0, { name = "Normal" })
+	local fg = normal_group.fg and string.format("#%06x", normal_group.fg) or "default"
+	local bg = normal_group.bg and string.format("#%06x", normal_group.bg) or "default"
+
+	-- Print Ghostty theme header
+	file:write("# Ghostty theme generated from Neovim highlights\n")
+	file:write(string.format("foreground = %s\n", fg))
+	file:write(string.format("background = %s\n", bg))
+
+	-- Get and print terminal colors
+	for i = 0, 15 do
+		local color_hex
+
+		-- Try Terminal highlight group first
+		local success, color = pcall(function()
+			return vim.api.nvim_get_hl(0, { name = string.format("Terminal%d", i) })
+		end)
+
+		if success and color.fg then
+			color_hex = to_hex(color.fg)
+		end
+
+		-- Fallback to g:terminal_color_* if Terminal highlight group is empty
+		if not color_hex then
+			local var_name = string.format("terminal_color_%d", i)
+			local term_color = vim.g[var_name]
+			if term_color then
+				color_hex = term_color
+			end
+		end
+
+		-- Print the color if we found one
+		if color_hex then
+			file:write(string.format("palette = %s=%s\n", i, color_hex))
+		end
+	end
+	file:close()
+end
 
 M.export_colors_to_kitty = function()
 	local fn = vim.fn
@@ -111,6 +216,33 @@ M.dump_table = function(io, t, indent, done)
 			end
 		end
 	end
+end
+
+M.export_colors_to_tmux = function()
+	local colorscheme = vim.api.nvim_exec("colorscheme", true)
+	local config_path = vim.fn.expand(M.config.tmux_config_file)
+
+	local lines = {}
+	for line in io.lines(config_path) do
+		if line:find(".palette.tmux") then
+			local theme_path = vim.fn.expand(M.config.tmux_themes_path .. colorscheme .. ".palette.tmux")
+			if vim.fn.filereadable(vim.fn.expand(theme_path)) == 1 then
+				line = "source-file " .. theme_path
+				vim.notify("Tmux palette is now " .. theme_path)
+			else
+				vim.notify(
+					"No palette file found for colorscheme " .. colorscheme .. ", would expect one at " .. theme_path
+				)
+			end
+		end
+		table.insert(lines, line)
+	end
+
+	local file = io.open(config_path, "w")
+	for _, line in ipairs(lines) do
+		file:write(line .. "\n")
+	end
+	file:close()
 end
 
 return M

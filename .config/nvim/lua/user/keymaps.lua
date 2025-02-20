@@ -215,13 +215,26 @@ keymap("n", "<leader>uddd", "<Plug>(toggle-lsp-diag-default)", { desc = "Diagnos
 keymap("n", "<leader>uddo", "<Plug>(toggle-lsp-diag-off)", { desc = "Diagnostic - toggle default off" })
 keymap("n", "<leader>uddf", "<Plug>(toggle-lsp-diag-on)", { desc = "Diagnostic - toggle default on" })
 
+keymap("n", "<leader>uddv", function()
+	local new_config = not vim.diagnostic.config().virtual_lines
+	vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = "Toggle diagnostic virtual_lines" })
+
 keymap("n", "<leader>ui", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
-keymap("n", "<leader>uk", function()
+
+-- colorscheme utils
+keymap("n", "<leader>uck", function()
 	require("user.colorscheme_utils").export_colors_to_kitty()
 end, { desc = "Export colors to Kitty" })
-keymap("n", "<leader>uw", function()
+keymap("n", "<leader>ucw", function()
 	require("user.colorscheme_utils").export_colors_to_wezterm()
 end, { desc = "Export colors to Wezterm" })
+keymap("n", "<leader>ucg", function()
+	require("user.colorscheme_utils").export_colors_to_ghostty()
+end, { desc = "Export colors to Ghostty" })
+keymap("n", "<leader>uct", function()
+	require("user.colorscheme_utils").export_colors_to_tmux()
+end, { desc = "Export colors to Tmux" })
 
 -- Git and friends --
 keymap("n", "<leader>gll", function()
@@ -322,10 +335,15 @@ keymap("n", "<leader>sb", function()
 	require("telescope.builtin").live_grep({ grep_open_files = true })
 end, { desc = "Search in buffers" })
 keymap("n", "<leader>sg", "<cmd>AdvancedGitSearch<cr>", { desc = "Search inside git" })
-keymap("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Find Help" })
-keymap("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
-keymap("n", "<leader>sp", "<cmd>Telescope neoclip<cr>", { desc = "Clipboard (aka pastes)" })
-keymap("n", "<leader>sr", "<cmd>Telescope oldfiles<cr>", { desc = "Open recent File" })
+keymap("n", "<leader>sh", function()
+	Snacks.picker.help()
+end, { desc = "Find Help" })
+keymap("n", "<leader>sk", function()
+	Snacks.picker.keymaps()
+end, { desc = "Keymaps" })
+keymap("n", "<leader>sr", function()
+	Snacks.picker.recent()
+end, { desc = "Open recent File" })
 keymap(
 	"n",
 	"<leader>st",
@@ -333,7 +351,9 @@ keymap(
 	{ desc = "Search text" }
 )
 
-keymap("n", "<leader>sT", "<cmd>TodoTelescope<cr>", { desc = "Search todo" })
+keymap("n", "<leader>sT", function()
+	Snacks.picker.todo_comments()
+end, { desc = "Search todo" })
 
 keymap("n", "<leader>sw", function()
 	require("telescope.builtin").grep_string()
