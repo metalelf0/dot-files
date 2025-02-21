@@ -114,7 +114,7 @@ end, { desc = "File manager" })
 keymap("n", "<leader>.", "<cmd>Neotree toggle reveal_force_cwd<cr>", { desc = "Focus file in tree" })
 
 keymap("n", "<leader>/", function()
-	Snacks.picker.grep()
+	Snacks.picker.grep({ layout = "ivy_split" })
 	-- require("telescope").extensions.live_grep_args.live_grep_args()
 end, { desc = "Search text" })
 
@@ -160,7 +160,7 @@ keymap("n", "<leader>gc", function()
 	Snacks.picker.git_log()
 end, { desc = "Checkout commit" })
 keymap("n", "<leader>gG", function()
-	_LAZYGIT_TOGGLE()
+	require("snacks").lazygit()
 end, { desc = "Lazygit" })
 keymap("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 

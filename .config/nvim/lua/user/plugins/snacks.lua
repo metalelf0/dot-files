@@ -4,11 +4,63 @@ return {
 		priority = 1000,
 		lazy = false,
 		opts = {
-			statuscolumn = { enabled = false },
-			quickfile = { enabled = false },
-			rename = { enabled = false },
 			bufdelete = { enabled = false },
+			dashboard = {
+				enabled = true,
+				preset = {
+					keys = {
+						{
+							icon = " ",
+							key = "f",
+							desc = "find file",
+							action = ":lua snacks.dashboard.pick('files')",
+						},
+						{ icon = " ", key = "n", desc = "new file", action = ":ene | startinsert" },
+						{
+							icon = " ",
+							key = "g",
+							desc = "find text",
+							action = ":lua snacks.dashboard.pick('live_grep')",
+						},
+						{
+							icon = " ",
+							key = "r",
+							desc = "recent files",
+							action = ":lua snacks.dashboard.pick('oldfiles')",
+						},
+						{
+							icon = " ",
+							key = "c",
+							desc = "config",
+							action = function()
+								require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
+							end,
+						},
+						{ icon = " ", key = "s", desc = "restore session", section = "session" },
+						{
+							icon = "󰒲 ",
+							key = "l",
+							desc = "lazy",
+							action = ":lazy",
+							enabled = package.loaded.lazy ~= nil,
+						},
+						{ icon = " ", key = "q", desc = "quit", action = ":qa" },
+					},
+				},
+			},
 			image = {},
+			lazygit = {},
+			quickfile = { enabled = false },
+			picker = {
+				formatters = {
+					file = {
+						truncate = 120,
+					},
+				},
+			},
+			rename = { enabled = false },
+			scratch = {},
+			statuscolumn = { enabled = false },
 			terminal = {
 				enabled = true,
 				win = {
@@ -16,7 +68,11 @@ return {
 					border = "single",
 				},
 			},
-			scratch = {},
+			toggle = {
+				enabled = true,
+				which_key = true,
+				notify = true,
+			},
 			words = {
 				enabled = false,
 				debounce = 200,
@@ -25,54 +81,6 @@ return {
 				foldopen = true,
 				jumplist = true,
 				modes = { "n" },
-			},
-			dashboard = {
-				enabled = true,
-				preset = {
-					keys = {
-						{
-							icon = " ",
-							key = "f",
-							desc = "Find File",
-							action = ":lua Snacks.dashboard.pick('files')",
-						},
-						{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-						{
-							icon = " ",
-							key = "g",
-							desc = "Find Text",
-							action = ":lua Snacks.dashboard.pick('live_grep')",
-						},
-						{
-							icon = " ",
-							key = "r",
-							desc = "Recent Files",
-							action = ":lua Snacks.dashboard.pick('oldfiles')",
-						},
-						{
-							icon = " ",
-							key = "c",
-							desc = "Config",
-							action = function()
-								Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-							end,
-						},
-						{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
-						{
-							icon = "󰒲 ",
-							key = "L",
-							desc = "Lazy",
-							action = ":Lazy",
-							enabled = package.loaded.lazy ~= nil,
-						},
-						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
-					},
-				},
-			},
-			toggle = {
-				enabled = true,
-				which_key = true,
-				notify = true,
 			},
 		},
 		keys = {
