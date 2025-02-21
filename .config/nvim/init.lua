@@ -52,7 +52,3 @@ if config.keymapper == "which-key" then
 	}
 	which_key.add(mappings)
 end
-
-vim.diagnostic.config({
-	virtual_lines = false,
-})

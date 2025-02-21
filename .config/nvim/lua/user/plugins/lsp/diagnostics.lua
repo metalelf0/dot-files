@@ -11,29 +11,35 @@ function M.setup()
 		{ name = "DiagnosticSignInfo", text = "" },
 	}
 
-	for _, sign in ipairs(signs) do
-		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-	end
+	-- for _, sign in ipairs(signs) do
+	-- 	vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+	-- end
 
 	vim.diagnostic.config({
 		underline = true,
 		update_in_insert = true,
 		severity_sort = true,
+		virtual_lines = false,
 		signs = {
 			active = signs,
 		},
 	})
 
-	-- vim.lsp.handlers["workspace/diagnostic/refresh"] = function(_, _, ctx)
-	--   local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id)
-	--   vim.diagnostic.reset(ns)
-	--   return vim.NIL
+	-- for type, icon in pairs(M.signs) do
+	-- 	local hl = "DiagnosticSign" .. type
+	-- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 	-- end
 
-	for type, icon in pairs(M.signs) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+	local function disable_virtual_lines()
+		vim.diagnostic.config({
+			virtual_lines = false,
+		})
 	end
+
+	vim.api.nvim_create_autocmd("LspAttach", {
+		pattern = "*",
+		callback = disable_virtual_lines,
+	})
 end
 
 return M
