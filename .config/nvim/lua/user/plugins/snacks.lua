@@ -13,20 +13,20 @@ return {
 							icon = " ",
 							key = "f",
 							desc = "find file",
-							action = ":lua snacks.dashboard.pick('files')",
+							action = ":lua Snacks.dashboard.pick('files')",
 						},
 						{ icon = " ", key = "n", desc = "new file", action = ":ene | startinsert" },
 						{
 							icon = " ",
 							key = "g",
 							desc = "find text",
-							action = ":lua snacks.dashboard.pick('live_grep')",
+							action = ":lua Snacks.dashboard.pick('live_grep')",
 						},
 						{
 							icon = " ",
 							key = "r",
 							desc = "recent files",
-							action = ":lua snacks.dashboard.pick('oldfiles')",
+							action = ":lua Snacks.dashboard.pick('oldfiles')",
 						},
 						{
 							icon = " ",
