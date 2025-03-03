@@ -230,9 +230,8 @@ M.export_colors_to_tmux = function()
 				line = "source-file " .. theme_path
 				vim.notify("Tmux palette is now " .. theme_path)
 			else
-				vim.notify(
-					"No palette file found for colorscheme " .. colorscheme .. ", would expect one at " .. theme_path
-				)
+				vim.notify("No palette file found for colorscheme " .. colorscheme .. ", writing one at " .. theme_path)
+				M.write_tmux_theme(theme_path)
 			end
 		end
 		table.insert(lines, line)
@@ -242,6 +241,31 @@ M.export_colors_to_tmux = function()
 	for _, line in ipairs(lines) do
 		file:write(line .. "\n")
 	end
+	file:close()
+end
+
+M.write_tmux_theme = function(target_file)
+	local file = io.open(target_file, "w")
+
+	local lualine_a_visual_group = vim.api.nvim_get_hl(0, { name = "lualine_a_visual" })
+	local dark_fg = lualine_a_visual_group.fg and string.format("#%06x", lualine_a_visual_group.fg) or "default"
+	local color_fg = lualine_a_visual_group.bg and string.format("#%06x", lualine_a_visual_group.bg) or "default"
+
+	local lualine_a_insert_group = vim.api.nvim_get_hl(0, { name = "lualine_a_insert" })
+	local accent = lualine_a_insert_group.bg and string.format("#%06x", lualine_a_insert_group.bg) or "default"
+
+	local lualine_b_normal_group = vim.api.nvim_get_hl(0, { name = "lualine_b_normal" })
+	local color_bg = lualine_b_normal_group.bg and string.format("#%06x", lualine_b_normal_group.bg) or "default"
+
+	local lualine_c_normal_group = vim.api.nvim_get_hl(0, { name = "lualine_c_normal" })
+	local darker_bg = lualine_c_normal_group.bg and string.format("#%06x", lualine_c_normal_group.bg) or "default"
+
+	file:write("# Tmux palette theme generated from Neovim lualine highlights\n")
+	file:write(string.format('color_fg="%s"\n', color_fg))
+	file:write(string.format('color_bg="%s"\n', color_bg))
+	file:write(string.format('color_dark_fg="%s"\n', dark_fg))
+	file:write(string.format('color_darker_bg="%s"\n', darker_bg))
+	file:write(string.format('color_alt_accent="%s"\n', accent))
 	file:close()
 end
 

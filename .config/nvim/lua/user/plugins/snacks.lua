@@ -33,7 +33,10 @@ return {
 							key = "c",
 							desc = "config",
 							action = function()
-								require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
+								require("snacks").picker.files({
+									cwd = vim.fn.stdpath("config"),
+									pattern = "config.lua",
+								})
 							end,
 						},
 						{ icon = " ", key = "s", desc = "restore session", section = "session" },
@@ -48,7 +51,11 @@ return {
 					},
 				},
 			},
-			image = {},
+			image = {
+				doc = {
+					conceal = true,
+				},
+			},
 			lazygit = {},
 			quickfile = { enabled = false },
 			picker = {

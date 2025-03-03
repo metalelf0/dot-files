@@ -3,6 +3,8 @@ local config = require("user.config")
 local M = {
 	"windwp/nvim-autopairs",
 	event = "InsertEnter",
+	-- only enable this for nvim-cmp for the moment
+	enabled = (config.completion_engine == "nvim-cmp"),
 }
 
 M.config = function()

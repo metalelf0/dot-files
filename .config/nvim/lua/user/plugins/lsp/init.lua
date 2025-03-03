@@ -1,11 +1,13 @@
 ---@diagnostic disable: missing-fields, assign-type-mismatch
 local utils = require("user.utils")
+local config = require("user.config")
 
 local M = {
 	"neovim/nvim-lspconfig",
 	event = "BufReadPre",
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		(config.completion_engine == "nvim-cmp" and "hrsh7th/cmp-nvim-lsp" or null),
+		(config.completion_engine == "blink-cmp" and "saghen/blink.cmp" or null),
 		{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 		{
 			"folke/neodev.nvim",
@@ -171,7 +173,13 @@ function M.config()
 	}
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+	if config.completion_engine == "nvim-cmp" then
+		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+	elseif config.completion_engine == "blink-cmp" then
+		capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+	end
+
 	capabilities.textDocument.foldingRange = {
 		dynamicRegistration = false,
 		lineFoldingOnly = true,

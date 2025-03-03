@@ -4,7 +4,7 @@ return {
 	"saghen/blink.cmp",
 	lazy = false, -- lazy loading handled internally
 	-- optional: provides snippets for the snippet source
-	enabled = (config.completion_engine == "blink.cmp"),
+	enabled = (config.completion_engine == "blink-cmp"),
 	dependencies = "rafamadriz/friendly-snippets",
 
 	-- use a release tag to download pre-built binaries
@@ -28,5 +28,10 @@ return {
 
 		-- experimental signature help support
 		-- trigger = { signature_help = { enabled = true } }
+		sources = {
+
+			default = { "lsp", "path", "snippets", "buffer" },
+		},
 	},
+	opts_extend = { "sources.default" },
 }

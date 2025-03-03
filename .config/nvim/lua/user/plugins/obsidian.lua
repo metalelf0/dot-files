@@ -33,7 +33,7 @@ local M = {
 			folder = "work/dailies",
 		},
 		completion = {
-			nvim_cmp = true,
+			nvim_cmp = (config.completion_engine == "nvim-cmp"),
 			min_chars = 2,
 		},
 		templates = {

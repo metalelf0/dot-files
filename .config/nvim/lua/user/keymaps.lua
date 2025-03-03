@@ -100,18 +100,22 @@ local insert_gitmoji = function()
 	require("telescope.builtin").symbols({ sources = { "gitmoji" } })
 end
 
--- - to open file browser
-keymap("n", "-", function()
+local open_file_explorer = function()
 	if config.filemanager == "oil" then
 		require("oil").open()
 	elseif config.filemanager == "mini.files" then
 		MiniFiles.open(vim.api.nvim_buf_get_name(0))
 	elseif config.filemanager == "neo-tree" then
 		vim.cmd([[Neotree toggle reveal_force_cwd]])
+	elseif config.filemanager == "snacks" then
+		Snacks.picker.explorer()
 	end
-end, { desc = "File manager" })
+end
 
-keymap("n", "<leader>.", "<cmd>Neotree toggle reveal_force_cwd<cr>", { desc = "Focus file in tree" })
+-- - to open file browser
+keymap("n", "-", function() open_file_explorer() end, { desc = "File manager" })
+
+keymap("n", "<leader>.", function() open_file_explorer() end, { desc = "Focus file in tree" })
 
 keymap("n", "<leader>/", function()
 	Snacks.picker.grep({ layout = "ivy_split" })
@@ -198,6 +202,9 @@ end, { desc = "Quick menu" })
 -- Ui --
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
 keymap("n", "<leader>ue", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+keymap("n", "<leader>uE", function()
+	Snacks.picker.explorer()
+end, { desc = "Snacks explorer" })
 keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
 -- keymap("n", "<leader>udd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
 
