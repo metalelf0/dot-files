@@ -14,7 +14,7 @@ local function mark_task_done()
 end
 
 local M = {
-	"epwalsh/obsidian.nvim",
+	"obsidian-nvim/obsidian.nvim",
 	version = "*",
 	ft = "markdown",
 	cmd = { "ObsidianOpen", "ObsidianToday", "ObsidianYesterday", "ObsidianSearch", "ObsidianNew" },
@@ -34,6 +34,7 @@ local M = {
 		},
 		completion = {
 			nvim_cmp = (config.completion_engine == "nvim-cmp"),
+			blink = (config.completion_engine == "blink-cmp"),
 			min_chars = 2,
 		},
 		templates = {

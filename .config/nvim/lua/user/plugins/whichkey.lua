@@ -6,12 +6,6 @@ local M = {
 	enabled = (config.keymapper == "which-key"),
 	opts = {
 		preset = "helix",
-		-- win = {
-		-- 	width = math.huge,
-		-- 	height = { min = 4, max = 25 },
-		-- 	col = 4,
-		-- 	no_overlap = false,
-		-- },
 	},
 }
 

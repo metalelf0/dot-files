@@ -16,6 +16,7 @@ return {
 	require("user.plugins.colorschemes.posterpole"),
 	require("user.plugins.colorschemes.quietlight"),
 	require("user.plugins.colorschemes.rose-pine"),
+	require("user.plugins.colorschemes.shadow"),
 	require("user.plugins.colorschemes.tokyonight"),
 	require("user.plugins.colorschemes.yorumi"),
 	require("user.plugins.colorschemes.vague"),

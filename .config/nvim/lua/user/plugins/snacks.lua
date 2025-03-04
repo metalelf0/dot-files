@@ -39,12 +39,12 @@ return {
 								})
 							end,
 						},
-						{ icon = " ", key = "s", desc = "restore session", section = "session" },
+						{ icon = " ", key = "s", desc = "Sestore session", section = "session" },
 						{
 							icon = "󰒲 ",
 							key = "l",
-							desc = "lazy",
-							action = ":lazy",
+							desc = "Lazy",
+							action = ":Lazy",
 							enabled = package.loaded.lazy ~= nil,
 						},
 						{ icon = " ", key = "q", desc = "quit", action = ":qa" },
@@ -62,6 +62,14 @@ return {
 				formatters = {
 					file = {
 						truncate = 120,
+					},
+				},
+				win = {
+					input = {
+						keys = {
+							["<C-h>"] = { "history_back", mode = { "i", "n" } },
+							["<C-l>"] = { "history_forward", mode = { "i", "n" } },
+						},
 					},
 				},
 			},
