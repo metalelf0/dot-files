@@ -172,28 +172,6 @@ keymap("n", "<leader>gG", function()
 end, { desc = "Lazygit" })
 keymap("n", "<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 
--- harpoon --
-keymap("n", "<leader>`", function()
-	require("harpoon.ui").toggle_quick_menu()
-end, { desc = "Harpoon menu" })
-
-keymap("n", "<leader>~", function()
-	require("harpoon.mark").add_file()
-end, { desc = "Add file" })
-
-keymap("n", "<leader>1", function()
-	require("harpoon.ui").nav_file(1)
-end, { desc = "Goto file 1" })
-keymap("n", "<leader>2", function()
-	require("harpoon.ui").nav_file(2)
-end, { desc = "Goto file 2" })
-keymap("n", "<leader>3", function()
-	require("harpoon.ui").nav_file(3)
-end, { desc = "Goto file 3" })
-keymap("n", "<leader>4", function()
-	require("harpoon.ui").nav_file(4)
-end, { desc = "Goto file 4" })
-
 -- Helpers --
 keymap("n", "<leader>hl", function()
 	require("lazy").show()

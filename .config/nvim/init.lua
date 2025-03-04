@@ -49,6 +49,8 @@ if config.keymapper == "which-key" then
 		{ "<leader>s", group = "Search", nowait = true, remap = false },
 		{ "<leader>t", group = "Terminal", nowait = true, remap = false },
 		{ "<leader>u", group = "UI", nowait = true, remap = false },
+		{ "<leader>uc", group = "Colors", nowait = true, remap = false },
+		{ "<leader>ud", group = "Diagnostics", nowait = true, remap = false },
 	}
 	which_key.add(mappings)
 end
