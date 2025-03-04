@@ -126,4 +126,13 @@ M.open_link_in_browser = function(url)
 	vim.cmd("! " .. finalCommand)
 end
 
+M.toggle_indent_lines = function()
+	local snacks = require("snacks")
+	if snacks.indent.enabled then
+		snacks.indent.disable()
+	else
+		snacks.indent.enable()
+	end
+end
+
 return M

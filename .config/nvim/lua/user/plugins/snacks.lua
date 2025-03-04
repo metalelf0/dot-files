@@ -56,8 +56,32 @@ return {
 					conceal = true,
 				},
 			},
+			indent = {
+				enabled = true,
+				hl = {
+					"SnacksIndent1",
+					"SnacksIndent2",
+					"SnacksIndent3",
+					"SnacksIndent4",
+					"SnacksIndent5",
+					"SnacksIndent6",
+					"SnacksIndent7",
+					"SnacksIndent8",
+				},
+				scope = {
+					hl = {
+						"SnacksIndent1",
+						"SnacksIndent2",
+						"SnacksIndent3",
+						"SnacksIndent4",
+						"SnacksIndent5",
+						"SnacksIndent6",
+						"SnacksIndent7",
+						"SnacksIndent8",
+					},
+				},
+			},
 			lazygit = {},
-			quickfile = { enabled = false },
 			picker = {
 				formatters = {
 					file = {
@@ -73,6 +97,7 @@ return {
 					},
 				},
 			},
+			quickfile = { enabled = false },
 			rename = { enabled = false },
 			scratch = {},
 			statuscolumn = { enabled = false },

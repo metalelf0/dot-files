@@ -113,9 +113,13 @@ local open_file_explorer = function()
 end
 
 -- - to open file browser
-keymap("n", "-", function() open_file_explorer() end, { desc = "File manager" })
+keymap("n", "-", function()
+	open_file_explorer()
+end, { desc = "File manager" })
 
-keymap("n", "<leader>.", function() open_file_explorer() end, { desc = "Focus file in tree" })
+keymap("n", "<leader>.", function()
+	open_file_explorer()
+end, { desc = "Focus file in tree" })
 
 keymap("n", "<leader>/", function()
 	Snacks.picker.grep({ layout = "ivy_split" })
@@ -227,7 +231,9 @@ keymap("n", "<leader>uddv", function()
 	vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = "Toggle diagnostic virtual_lines" })
 
-keymap("n", "<leader>ui", "<cmd>IndentBlanklineToggle<CR>", { desc = "Indent lines (toggle)" })
+keymap("n", "<leader>ui", function()
+	utils.toggle_indent_lines()
+end, { desc = "Indent lines (toggle)" })
 
 -- colorscheme utils
 keymap("n", "<leader>uck", function()
