@@ -1,6 +1,6 @@
 return {
-	colorscheme = "kanagawa",
-	variant = "dragon",
+	colorscheme = "flexoki",
+	variant = "dawn",
 	transparent = false, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	autoformat_enabled = true,
 	filemanager = "oil", -- supported: mini.files, oil, neo-tree, snacks

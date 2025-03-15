@@ -4,6 +4,25 @@ return {
 		priority = 1000,
 		lazy = false,
 		opts = {
+			bigfile = {
+				enabled = true,
+				size = 0.6 * 1024 * 1024, -- 600 kb
+				setup = function(ctx)
+					if vim.fn.exists(":NoMatchParen") ~= 0 then
+						vim.cmd([[NoMatchParen]])
+					end
+					Snacks.util.wo(0, { foldmethod = "manual", statuscolumn = "", conceallevel = 0 })
+					vim.b.minianimate_disable = true
+					if ctx.ft == "sql" then
+						vim.cmd([[TSBufDisable highlight]])
+					end
+					vim.schedule(function()
+						if vim.api.nvim_buf_is_valid(ctx.buf) then
+							vim.bo[ctx.buf].syntax = ctx.ft
+						end
+					end)
+				end,
+			},
 			bufdelete = { enabled = false },
 			dashboard = {
 				enabled = true,

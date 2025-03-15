@@ -1,24 +1,21 @@
 local config = require("user.config")
 local themer = require("user.themer")
 
-local colorscheme = "jellybeans"
+local colorscheme = "one"
 
 local M = {
-	"WTFox/jellybeans.nvim",
+	"disrupted/one.nvim",
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
-	opts = {
-		transparent = config.transparent,
-	},
 }
 
 M.config = function()
-	if config.colorscheme ~= "jellybeans" then
+	if config.colorscheme ~= "one" then
 		return false
 	end
 
-	vim.cmd.colorscheme("jellybeans")
+	vim.cmd.colorscheme("one")
 end
 
 return M

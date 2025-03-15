@@ -12,11 +12,19 @@ M.config = {
 	tmux_themes_path = os.getenv("HOME") .. "/.config/tmux/themes/",
 }
 
+M.get_palette_name = function()
+	local colorscheme = vim.api.nvim_exec("colorscheme", true)
+	local background = vim.api.nvim_get_option("background")
+	return colorscheme .. "-" .. background
+end
+
 M.export_colors_to_ghostty = function()
 	local colorscheme = vim.api.nvim_exec("colorscheme", true)
 	local config_path = vim.fn.expand(M.config.ghostty_config_file)
 
-	local theme_file_path = vim.fn.expand(M.config.ghostty_themes_path .. "/" .. colorscheme)
+	local palette_name = M.get_palette_name()
+
+	local theme_file_path = vim.fn.expand(M.config.ghostty_themes_path .. "/" .. palette_name)
 	if vim.fn.filereadable(vim.fn.expand(theme_file_path)) == 0 then
 		print("Ghostty theme file not found, creating it...")
 		M.write_ghostty_theme(theme_file_path)
@@ -27,7 +35,7 @@ M.export_colors_to_ghostty = function()
 	local lines = {}
 	for line in io.lines(config_path) do
 		if line:match("^theme%s*=%s*") then
-			line = "theme = " .. core.get_homedir() .. "/.config/ghostty/themes/" .. colorscheme
+			line = "theme = " .. core.get_homedir() .. "/.config/ghostty/themes/" .. palette_name
 		end
 		table.insert(lines, line)
 	end
@@ -221,16 +229,19 @@ end
 M.export_colors_to_tmux = function()
 	local colorscheme = vim.api.nvim_exec("colorscheme", true)
 	local config_path = vim.fn.expand(M.config.tmux_config_file)
+	local palette_name = M.get_palette_name()
 
 	local lines = {}
 	for line in io.lines(config_path) do
 		if line:find(".palette.tmux") then
-			local theme_path = vim.fn.expand(M.config.tmux_themes_path .. colorscheme .. ".palette.tmux")
+			local theme_path = vim.fn.expand(M.config.tmux_themes_path .. palette_name .. ".palette.tmux")
 			if vim.fn.filereadable(vim.fn.expand(theme_path)) == 1 then
 				line = "source-file " .. theme_path
 				vim.notify("Tmux palette is now " .. theme_path)
 			else
-				vim.notify("No palette file found for colorscheme " .. colorscheme .. ", writing one at " .. theme_path)
+				vim.notify(
+					"No palette file found for colorscheme " .. palette_name .. ", writing one at " .. theme_path
+				)
 				M.write_tmux_theme(theme_path)
 			end
 		end

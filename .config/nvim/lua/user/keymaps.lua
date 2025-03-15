@@ -134,6 +134,10 @@ vim.keymap.set("n", "<leader><leader>", function()
 	Snacks.picker.smart()
 end)
 
+vim.keymap.set("n", "<leader><CR>", function()
+	Snacks.picker.resume()
+end)
+
 -- Buffers --
 keymap("n", "<leader>bb", function()
 	Snacks.picker.buffers()
@@ -183,9 +187,16 @@ end, { desc = "Quick menu" })
 
 -- Ui --
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
-keymap("n", "<leader>ue", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+
+-- keymap("n", "<leader>uE", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+
+keymap("n", "<leader>ue", function()
+	Snacks.explorer()
+end, { desc = "Snacks explorer" })
+
 keymap("n", "<leader>uE", function()
-	Snacks.picker.explorer()
+	local max_width = utils.longest_path_perc(100, vim.fn.expand("%.:h"))
+	Snacks.explorer({ layout = { layout = { width = max_width } } })
 end, { desc = "Snacks explorer" })
 keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
 -- keymap("n", "<leader>udd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
@@ -288,6 +299,9 @@ keymap("n", "<leader>lr", function()
 end, { desc = "Show references" })
 keymap("n", "<leader>ls", function()
 	Snacks.picker.lsp_symbols()
+end, { desc = "Symbols" })
+keymap("n", "<leader>lS", function()
+	Snacks.picker.lsp_workspace_symbols()
 end, { desc = "Workspace symbols" })
 keymap("n", "<leader>lw", function()
 	Snacks.picker.diagnostics()
@@ -310,6 +324,7 @@ keymap("n", "<leader>ra", function()
 end, { desc = "Action" })
 
 -- Search --
+---@format disable
 keymap("n", "<leader>s<CR>", function()
 	require("telescope.builtin").resume()
 end, { desc = "Resume previous search" })
@@ -341,13 +356,14 @@ keymap(
 	":lua require('telescope').extensions.live_grep_args.live_grep_args(theme = 'ivy')<CR>",
 	{ desc = "Search text" }
 )
+---@format enable
 
 keymap("n", "<leader>sT", function()
 	Snacks.picker.todo_comments()
 end, { desc = "Search todo" })
 
-keymap("n", "<leader>sw", function()
-	require("telescope.builtin").grep_string()
+keymap({ "n", "x" }, "<leader>sw", function()
+	Snacks.picker.grep_word()
 end, { desc = "Search word under cursor" })
 
 -- Terminal --
@@ -367,10 +383,6 @@ end, { desc = "Python" })
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
 keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Horizontal" })
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
-
-keymap("v", "<leader>uj", function()
-	require("user.utils").open_jira_task_visual()
-end, { desc = "Open visual selected jira task" })
 
 local status_ok, fun = pcall(require, "user.fun")
 if status_ok then
