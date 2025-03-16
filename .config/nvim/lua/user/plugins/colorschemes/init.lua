@@ -31,7 +31,7 @@ return {
 	-- require("user.plugins.colorschemes.edge"),
 	-- require("user.plugins.colorschemes.freyeday"),
 	require("user.plugins.colorschemes.github-nvim-theme"),
-	-- require("user.plugins.colorschemes.gruvbox-material"),
+	require("user.plugins.colorschemes.gruvbox-material"),
 	-- require("user.plugins.colorschemes.helix"),
 	-- require("user.plugins.colorschemes.iceberg"),
 	-- require("user.plugins.colorschemes.material"),

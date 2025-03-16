@@ -1,6 +1,6 @@
 return {
-	colorscheme = "flexoki",
-	variant = "dawn",
+	colorscheme = "gruvbox-material",
+	variant = "",
 	transparent = false, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	autoformat_enabled = true,
 	filemanager = "oil", -- supported: mini.files, oil, neo-tree, snacks

@@ -102,6 +102,9 @@ function M.config()
 					},
 					diagnostics = {
 						-- enable = false,
+						globals = {
+							"vim",
+						},
 						groupSeverity = {
 							strong = "Warning",
 							strict = "Warning",
