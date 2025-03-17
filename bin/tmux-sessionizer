@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/iCloud/iCloud\~md\~obsidian/Documents ~/sources ~/Documents/codice_elf0 ~/Documents/codice_elf0/telepass -mindepth 1 -maxdepth 1 -type d | fzf)
+  selected=$(fd . ~/.config/tmux-sessionizer/projects ~/sources ~/Documents/codice_elf0 --min-depth 1 --max-depth 1 --type d --type l | fzf)
 fi
 
 if [[ -z $selected ]]; then
