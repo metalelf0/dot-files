@@ -24,6 +24,7 @@ return {
 				end,
 			},
 			bufdelete = { enabled = false },
+			scroll = {},
 			dashboard = {
 				enabled = true,
 				preset = {

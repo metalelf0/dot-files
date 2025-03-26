@@ -58,6 +58,17 @@ M.config = function()
        highlight link VertSplit Comment
        highlight clear WinSeparator
        highlight link WinSeparator Comment
+       highlight clear @markup.heading.1.markdown
+       highlight link @markup.heading.1.markdown rainbowcol1
+       highlight clear @markup.heading.2.markdown
+       highlight link @markup.heading.2.markdown rainbowcol2
+       highlight clear @markup.heading.3.markdown
+       highlight link @markup.heading.3.markdown rainbowcol3
+       highlight clear @markup.heading.4.markdown
+       highlight link @markup.heading.4.markdown rainbowcol4
+       highlight clear @markup.heading.5.markdown
+       highlight link @markup.heading.5.markdown rainbowcol5
+
 	 ]]
 
 	vim.cmd(string.gsub(setup, "@variant@", themer.variant(M)))

@@ -12,6 +12,7 @@ return {
 	"tpope/vim-eunuch",
 	"tpope/vim-endwise",
 	"williamboman/mason-lspconfig.nvim",
+	"tjdevries/colorbuddy.nvim",
 	"metalelf0/nvim-colorscheme-convert",
 
 	require("user.plugins.colorschemes"),
@@ -29,6 +30,7 @@ return {
 	{
 		"metalelf0/supermover.nvim",
 		event = "VeryLazy",
+		branch = "feat/add-snacks-picker",
 		dependencies = {
 			"tpope/vim-eunuch",
 			"nvim-telescope/telescope.nvim",
@@ -37,6 +39,7 @@ return {
 			bindings = {
 				move_file = "<leader>fm",
 			},
+			picker = "snacks",
 		},
 	},
 }

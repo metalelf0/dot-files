@@ -123,12 +123,19 @@ end, { desc = "Focus file in tree" })
 
 keymap("n", "<leader>/", function()
 	Snacks.picker.grep({ layout = "ivy_split" })
-	-- require("telescope").extensions.live_grep_args.live_grep_args()
 end, { desc = "Search text" })
 
+keymap("n", "<leader>?", function()
+	Snacks.picker.git_grep({ layout = "ivy_split" })
+end, { desc = "Search text in git files" })
+
 keymap("n", "<leader>p", function()
-	Snacks.picker.files()
+	Snacks.picker.files({ layout = "ivy" })
 end, { desc = "Find files" })
+
+keymap("n", "<leader>P", function()
+	Snacks.picker.git_files({ layout = "ivy" })
+end, { desc = "Find (git) files" })
 
 vim.keymap.set("n", "<leader><leader>", function()
 	Snacks.picker.smart()
@@ -185,7 +192,7 @@ keymap("n", "<leader>hL", function()
 	require("user.quick-menu").run()
 end, { desc = "Quick menu" })
 
--- Ui --
+-- UI --
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
 
 -- keymap("n", "<leader>uE", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
@@ -198,6 +205,7 @@ keymap("n", "<leader>uE", function()
 	local max_width = utils.longest_path_perc(100, vim.fn.expand("%.:h"))
 	Snacks.explorer({ layout = { layout = { width = max_width } } })
 end, { desc = "Snacks explorer" })
+
 keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
 -- keymap("n", "<leader>udd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
 
@@ -238,15 +246,25 @@ keymap("n", "<leader>uct", function()
 	require("user.colorscheme_utils").export_colors_to_tmux()
 end, { desc = "Export colors to Tmux" })
 
+keymap("n", "<leader>ur", function()
+	vim.o.relativenumber = not vim.o.relativenumber
+end, { desc = "Toggle relative numbers" })
+
+local copySelectedCommit = function(picker, item)
+	vim.fn.setreg("+", item.commit)
+	vim.notify("Copied " .. item.commit .. " to + register")
+	picker:close()
+end
+
 -- Git and friends --
 keymap("n", "<leader>gll", function()
-	Snacks.picker.git_log()
+	Snacks.picker.git_log({ confirm = copySelectedCommit })
 end, { desc = "Git log (cwd)" })
 keymap("n", "<leader>glf", function()
-	Snacks.picker.git_log_file()
+	Snacks.picker.git_log_file({ confirm = copySelectedCommit })
 end, { desc = "Git log (file)" })
 keymap("n", "<leader>glL", function()
-	Snacks.picker.git_log_line()
+	Snacks.picker.git_log_line({ confirm = copySelectedCommit })
 end, { desc = "Git log (line)" })
 
 keymap("n", "<leader>goo", "<cmd>Octo pr create<CR>", { desc = "Open PR" })

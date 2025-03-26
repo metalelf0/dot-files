@@ -12,23 +12,7 @@ require("user.digraphs")
 require("user.fvim")
 require("user.fun")
 require("user.git")
-
 vim.cmd([[ packadd cfilter ]])
-
-local function create_missing_dirs()
-	local dir = vim.fn.expand("<afile>:p:h")
-	if vim.tbl_contains({ "oil" }, dir) then
-		return
-	end
-	if vim.fn.isdirectory(dir) == 0 then
-		vim.fn.mkdir(dir, "p")
-	end
-end
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = create_missing_dirs,
-})
 
 local config = require("user.config")
 
@@ -53,4 +37,11 @@ if config.keymapper == "which-key" then
 		{ "<leader>ud", group = "Diagnostics", nowait = true, remap = false },
 	}
 	which_key.add(mappings)
+end
+
+if not vim.g.colors_name and config.colorscheme ~= "default" then
+	vim.cmd.colorscheme(config.colorscheme)
+	if config.colorscheme == "macro" then
+		vim.cmd([[ hi @variable.member.ruby gui='bold' ]]) -- bolder @variables
+	end
 end

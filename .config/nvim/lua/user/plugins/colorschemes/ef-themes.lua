@@ -40,6 +40,7 @@ M.supported_variants = {
 	"ef-spring",
 	"ef-summer",
 	"ef-symbiosis",
+	"ef-tint",
 	"ef-trio-dark",
 	"ef-trio-light",
 	"ef-tritanopia-dark",

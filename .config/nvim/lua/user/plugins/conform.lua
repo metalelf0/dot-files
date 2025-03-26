@@ -19,6 +19,11 @@ local M = {
 }
 
 M.opts = {
+	formatters = {
+		rubocop = {
+			args = { "--server", "--auto-correct-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" },
+		},
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "isort", "black" },
@@ -27,6 +32,7 @@ M.opts = {
 		eruby = { "erb_format" },
 		html = { "prettierd", "prettier", stop_after_first = true },
 		xml = { "xmlformatter" },
+		ruby = { "rubocop" },
 	},
 	default_format_opts = {
 		lsp_format = "fallback",
@@ -36,7 +42,7 @@ M.opts = {
 		if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 			return
 		end
-		return { timeout_ms = 300, lsp_format = "fallback" }
+		return { timeout_ms = 500, lsp_format = "fallback" }
 	end,
 }
 

@@ -32,6 +32,13 @@ function M.config()
     snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
     snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
   ]])
+
+	vim.keymap.set("i", "<c-l>", function()
+		local ls = require("luasnip")
+		if ls.choice_active() then
+			ls.change_choice(1)
+		end
+	end)
 end
 
 return M

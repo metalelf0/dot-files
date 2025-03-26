@@ -16,7 +16,7 @@ M.config = function()
 		return false
 	end
 
-	vim.cmd("colorscheme zenwritten")
+	vim.cmd.colorscheme("zenbones")
 end
 
 return M

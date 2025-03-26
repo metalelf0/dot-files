@@ -1,6 +1,6 @@
 return {
-	colorscheme = "gruvbox-material",
-	variant = "",
+	colorscheme = "ef-themes",
+	variant = "ef-tint",
 	transparent = false, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	autoformat_enabled = true,
 	filemanager = "oil", -- supported: mini.files, oil, neo-tree, snacks
@@ -10,6 +10,7 @@ return {
 	obsidian_workspace_path = os.getenv("HOME") .. "/iCloud-Obsidian/",
 	journal_dir = os.getenv("HOME") .. "/iCloud-Obsidian/work/dailies/",
 	dashboard = "snacks.nvim", -- supported: snacks.nvim, alpha
+	signs = { Error = " ", Warn = " ", Hint = " ", Info = " " },
 	startup = {
 		show_diagnostics = true,
 		show_git_blame = false,

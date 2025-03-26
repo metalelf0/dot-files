@@ -72,3 +72,18 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
 local fold_group = vim.api.nvim_create_augroup("folds", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", { command = "mkview", group = fold_group, pattern = "*.*" })
 vim.api.nvim_create_autocmd("BufWritePost", { command = "silent! loadview", group = fold_group, pattern = "*.*" })
+
+local function create_missing_dirs()
+	local dir = vim.fn.expand("<afile>:p:h")
+	if vim.tbl_contains({ "oil" }, dir) then
+		return
+	end
+	if vim.fn.isdirectory(dir) == 0 then
+		vim.fn.mkdir(dir, "p")
+	end
+end
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = create_missing_dirs,
+})

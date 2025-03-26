@@ -10,18 +10,27 @@ local M = {
 	keys = themer.keys(colorscheme),
 }
 
+M.supported_variants = { "dark-hard", "dark-medium", "dark-soft", "light-hard", "light-medium", "light-soft" }
+M.default_variant = "dark-hard"
+
 function M.config()
 	if config.colorscheme ~= "gruvbox-material" then
 		return false
 	end
 
-	vim.o.background = "dark"
-	vim.cmd("let g:gruvbox_material_background= 'hard'")
+	local bg = vim.split(themer.variant(M), "-")[1]
+	local contrast = vim.split(themer.variant(M), "-")[2]
+
+	vim.o.background = bg
+
+	vim.cmd("let g:gruvbox_material_background= " .. bg)
 	-- vim.cmd("let g:gruvbox_material_foreground = 'mix'")
-	vim.cmd("let g:gruvbox_material_ui_contrast = 'hard'")
+	vim.cmd("let g:gruvbox_material_ui_contrast = " .. contrast)
 	-- vim.cmd("let g:gruvbox_material_float_style = 'dim'")
 	vim.cmd("let g:gruvbox_material_better_performance=1")
-	-- vim.cmd("let g:gruvbox_material_transparent_background=2")
+	if config.transparent then
+		vim.cmd("let g:gruvbox_material_transparent_background=2")
+	end
 	vim.cmd("let g:gruvbox_material_diagnostic_line_highlight=1")
 	vim.cmd("let g:gruvbox_material_enable_bold=1")
 	vim.cmd("let g:gruvbox_material_enable_italic=1")

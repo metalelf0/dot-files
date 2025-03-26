@@ -3,772 +3,783 @@
 -- Author:       Bekaboo <kankefengjing@gmail.com>
 -- Maintainer:   Bekaboo <kankefengjing@gmail.com>
 -- License:      GPL-3.0
--- Last Updated: Sun 16 Jul 2023 02:23:29 PM CDT
+-- Last Updated: Mon Mar 10 11:42:40 AM PDT 2025
+
+-- Clear hlgroups and set colors_name {{{
+vim.cmd.hi('clear')
+vim.g.colors_name = 'cockatoo'
+-- }}}
 
 -- Palette {{{
 -- stylua: ignore start
-local palette_variants = {
-  dark = {
-    yellow         = '#e6bb86',
-    earth          = '#c1a575',
-    orange         = '#f0a16c',
-    pink           = '#f49ba7',
-    ochre          = '#e87c69',
-    scarlet        = '#d85959',
-    wine           = '#a52929',
-    tea            = '#a4bd84',
-    aqua           = '#79ada7',
-    turquoise      = '#7fa0af',
-    flashlight     = '#add0ef',
-    skyblue        = '#a5d5ff',
-    cerulean       = '#86aadc',
-    lavender       = '#caafeb',
-    purple         = '#a48fd1',
-    magenta        = '#dc8ed3',
-    pigeon         = '#8f9fbc',
-    cumulonimbus   = '#557396',
-    thunder        = '#425974',
-    white          = '#e5e5eb',
-    smoke          = '#bebec3',
-    beige          = '#b1aca7',
-    steel          = '#606d86',
-    iron           = '#313742',
-    deepsea        = '#334154',
-    ocean          = '#303846',
-    jeans          = '#262a34',
-    space          = '#13161f',
-    black          = '#09080b',
-    shadow         = '#09080b',
-    tea_blend      = '#425858',
-    aqua_blend     = '#2f3f48',
-    purple_blend   = '#33374b',
-    lavender_blend = '#4b4b6e',
-    scarlet_blend  = '#4b323c',
-    wine_blend     = '#35262d',
-    earth_blend    = '#303032',
-    smoke_blend    = '#272d3a',
-    pigeon_blend   = '#27323c',
-  },
-  light = {
-    yellow         = '#c88500',
-    earth          = '#b48327',
-    orange         = '#a84a24',
-    pink           = '#df6d73',
-    ochre          = '#c84b2b',
-    scarlet        = '#d85959',
-    wine           = '#a52929',
-    tea            = '#5f8c3f',
-    aqua           = '#3b8f84',
-    turquoise      = '#29647a',
-    flashlight     = '#97c0dc',
-    skyblue        = '#4c99d4',
-    cerulean       = '#3c70b4',
-    lavender       = '#9d7bca',
-    purple         = '#8b71c7',
-    magenta        = '#ac4ea1',
-    pigeon         = '#6666a8',
-    cumulonimbus   = '#486a91',
-    thunder        = '#dfd6ce',
-    white          = '#385372',
-    smoke          = '#404553',
-    beige          = '#385372',
-    steel          = '#9a978a',
-    iron           = '#b8b7b3',
-    deepsea        = '#e6ded6',
-    ocean          = '#f0e8e2',
-    jeans          = '#faf4ed',
-    space          = '#faf7ee',
-    black          = '#efefef',
-    shadow         = '#3c3935',
-    tea_blend      = '#bdc8ad',
-    aqua_blend     = '#c4cdc2',
-    purple_blend   = '#e1dbe2',
-    lavender_blend = '#bcb0cd',
-    scarlet_blend  = '#e6b8b3',
-    wine_blend     = '#e6c9c3',
-    earth_blend    = '#ebe0ce',
-    smoke_blend    = '#e4e4e2',
-    pigeon_blend   = '#f4eee8',
-  },
-}
+local c_yellow
+local c_earth
+local c_orange
+local c_pink
+local c_ochre
+local c_scarlet
+local c_wine
+local c_tea
+local c_aqua
+local c_turquoise
+local c_flashlight
+local c_skyblue
+local c_cerulean
+local c_lavender
+local c_purple
+local c_magenta
+local c_pigeon
+local c_cumulonimbus
+local c_thunder
+local c_smoke
+local c_beige
+local c_steel
+local c_iron
+local c_deepsea
+local c_ocean
+local c_jeans
+local c_space
+local c_black
+local c_shadow
+local c_tea_blend
+local c_aqua_blend
+local c_purple_blend
+local c_lavender_blend
+local c_scarlet_blend
+local c_wine_blend
+local c_yellow_blend
+local c_smoke_blend
+
+if vim.go.bg == 'dark' then
+  c_yellow         = { '#e6bb86', 179 }
+  c_earth          = { '#c1a575', 137 }
+  c_orange         = { '#f0a16c', 215 }
+  c_pink           = { '#f49ba7', 217 }
+  c_ochre          = { '#e87c69', 167 }
+  c_scarlet        = { '#d85959', 167 }
+  c_wine           = { '#a54a4a', 131 }
+  c_tea            = { '#a4bd84', 107 }
+  c_aqua           = { '#79ada7', 109 }
+  c_turquoise      = { '#7fa0af', 109 }
+  c_flashlight     = { '#add0ef', 153 }
+  c_skyblue        = { '#a5d5ff', 153 }
+  c_cerulean       = { '#86aadc', 110 }
+  c_lavender       = { '#caafeb', 183 }
+  c_purple         = { '#a48fd1', 176 }
+  c_magenta        = { '#dc8ed3', 176 }
+  c_pigeon         = { '#8f9fbc', 103 }
+  c_cumulonimbus   = { '#708296', 103 }
+  c_thunder        = { '#454e5a', 59  }
+  c_smoke          = { '#e2e2e8', 254 }
+  c_beige          = { '#b1aca7', 248 }
+  c_steel          = { '#606d86', 60  }
+  c_iron           = { '#313742', 237 }
+  c_deepsea        = { '#404954', 238 }
+  c_ocean          = { '#363c46', 237 }
+  c_jeans          = { '#2f353e', 236 }
+  c_space          = { '#13161f', 234 }
+  c_black          = { '#09080b', 233 }
+  c_shadow         = { '#09080b', 233 }
+  c_tea_blend      = { '#425858', 240 }
+  c_aqua_blend     = { '#2f3f48', 238 }
+  c_purple_blend   = { '#33374b', 238 }
+  c_lavender_blend = { '#4b4b6e', 60  }
+  c_scarlet_blend  = { '#4b323c', 52  }
+  c_wine_blend     = { '#3e3136', 52  }
+  c_yellow_blend   = { '#4d4d50', 239 }
+  c_smoke_blend    = { '#272d3a', 236 }
+else
+  c_yellow         = { '#c88500', 172 }
+  c_earth          = { '#b48327', 136 }
+  c_orange         = { '#a84a24', 130 }
+  c_pink           = { '#df6d73', 168 }
+  c_ochre          = { '#c84b2b', 166 }
+  c_scarlet        = { '#d85959', 167 }
+  c_wine           = { '#a52929', 124 }
+  c_tea            = { '#5f8c3f', 65  }
+  c_aqua           = { '#3b8f84', 66  }
+  c_turquoise      = { '#29647a', 24  }
+  c_flashlight     = { '#97c0dc', 110 }
+  c_skyblue        = { '#4c99d4', 68  }
+  c_cerulean       = { '#3c70b4', 25  }
+  c_lavender       = { '#9d7bca', 140 }
+  c_purple         = { '#8b71c7', 140 }
+  c_magenta        = { '#ac4ea1', 132 }
+  c_pigeon         = { '#6666a8', 61  }
+  c_cumulonimbus   = { '#486a91', 60  }
+  c_thunder        = { '#dfd6ce', 253 }
+  c_smoke          = { '#404553', 238 }
+  c_beige          = { '#385372', 60  }
+  c_steel          = { '#9a978a', 247 }
+  c_iron           = { '#b8b7b3', 249 }
+  c_deepsea        = { '#e6ded6', 254 }
+  c_ocean          = { '#f0e8e2', 255 }
+  c_jeans          = { '#faf4ed', 255 }
+  c_space          = { '#faf7ee', 255 }
+  c_black          = { '#efefef', 255 }
+  c_shadow         = { '#3c3935', 237 }
+  c_tea_blend      = { '#bdc8ad', 151 }
+  c_aqua_blend     = { '#c4cdc2', 251 }
+  c_purple_blend   = { '#e1dbe2', 254 }
+  c_lavender_blend = { '#bcb0cd', 182 }
+  c_scarlet_blend  = { '#e6b8b3', 217 }
+  c_wine_blend     = { '#e6c9c3', 224 }
+  c_yellow_blend   = { '#ebe0ce', 224 }
+  c_smoke_blend    = { '#e4e4e2', 254 }
+end
 -- stylua: ignore end
-local palette = palette_variants[vim.go.bg]
 -- }}}
 
--- Terminal colors {{{
-local termcolor_variants = {
-	dark = {
-		terminal_color_0 = palette.ocean,
-		terminal_color_8 = palette.white,
-		terminal_color_1 = palette.ochre,
-		terminal_color_9 = palette.ochre,
-		terminal_color_2 = palette.tea,
-		terminal_color_10 = palette.tea,
-		terminal_color_3 = palette.yellow,
-		terminal_color_11 = palette.yellow,
-		terminal_color_4 = palette.cumulonimbus,
-		terminal_color_12 = palette.cumulonimbus,
-		terminal_color_5 = palette.lavender,
-		terminal_color_13 = palette.lavender,
-		terminal_color_6 = palette.aqua,
-		terminal_color_14 = palette.aqua,
-		terminal_color_7 = palette.white,
-		terminal_color_15 = palette.pigeon,
-	},
-	light = {
-		terminal_color_0 = palette.ocean,
-		terminal_color_8 = palette.white,
-		terminal_color_1 = palette.ochre,
-		terminal_color_9 = palette.ochre,
-		terminal_color_2 = palette.tea,
-		terminal_color_10 = palette.tea,
-		terminal_color_3 = palette.yellow,
-		terminal_color_11 = palette.yellow,
-		terminal_color_4 = palette.flashlight,
-		terminal_color_12 = palette.cumulonimbus,
-		terminal_color_5 = palette.pigeon,
-		terminal_color_13 = palette.pigeon,
-		terminal_color_6 = palette.aqua,
-		terminal_color_14 = palette.aqua,
-		terminal_color_7 = palette.white,
-		terminal_color_15 = palette.pigeon,
-	},
-}
-local termcolors = termcolor_variants[vim.go.bg]
+-- Set terminal colors {{{
+-- stylua: ignore start
+if vim.go.bg == 'dark' then
+  vim.g.terminal_color_0  = c_ocean[1]
+  vim.g.terminal_color_1  = c_ochre[1]
+  vim.g.terminal_color_2  = c_tea[1]
+  vim.g.terminal_color_3  = c_yellow[1]
+  vim.g.terminal_color_4  = c_cumulonimbus[1]
+  vim.g.terminal_color_5  = c_lavender[1]
+  vim.g.terminal_color_6  = c_aqua[1]
+  vim.g.terminal_color_7  = c_smoke[1]
+  vim.g.terminal_color_8  = c_smoke[1]
+  vim.g.terminal_color_9  = c_ochre[1]
+  vim.g.terminal_color_10 = c_tea[1]
+  vim.g.terminal_color_11 = c_yellow[1]
+  vim.g.terminal_color_12 = c_cumulonimbus[1]
+  vim.g.terminal_color_13 = c_lavender[1]
+  vim.g.terminal_color_14 = c_aqua[1]
+  vim.g.terminal_color_15 = c_pigeon[1]
+else
+  vim.g.terminal_color_0  = c_ocean[1]
+  vim.g.terminal_color_1  = c_ochre[1]
+  vim.g.terminal_color_2  = c_tea[1]
+  vim.g.terminal_color_3  = c_yellow[1]
+  vim.g.terminal_color_4  = c_flashlight[1]
+  vim.g.terminal_color_5  = c_pigeon[1]
+  vim.g.terminal_color_6  = c_aqua[1]
+  vim.g.terminal_color_7  = c_smoke[1]
+  vim.g.terminal_color_8  = c_smoke[1]
+  vim.g.terminal_color_9  = c_ochre[1]
+  vim.g.terminal_color_10 = c_tea[1]
+  vim.g.terminal_color_11 = c_yellow[1]
+  vim.g.terminal_color_12 = c_cumulonimbus[1]
+  vim.g.terminal_color_13 = c_pigeon[1]
+  vim.g.terminal_color_14 = c_aqua[1]
+  vim.g.terminal_color_15 = c_pigeon[1]
+end
 -- }}}
 
 -- Highlight groups {{{1
 local hlgroups = {
-	-- Common {{{2
-	Normal = { fg = palette.smoke, bg = palette.jeans },
-	NormalFloat = { fg = palette.smoke, bg = palette.ocean },
-	NormalNC = { link = "Normal" },
-	ColorColumn = { bg = palette.deepsea },
-	Conceal = { fg = palette.smoke },
-	Cursor = { fg = palette.space, bg = palette.white },
-	CursorColumn = { bg = palette.ocean },
-	CursorIM = { fg = palette.space, bg = palette.flashlight },
-	CursorLine = { bg = palette.ocean },
-	CursorLineNr = { fg = palette.orange, bold = true },
-	DebugPC = { bg = palette.purple_blend },
-	lCursor = { link = "Cursor" },
-	TermCursor = { fg = palette.space, bg = palette.orange },
-	TermCursorNC = { fg = palette.orange, bg = palette.ocean },
-	DiffAdd = { bg = palette.aqua_blend },
-	DiffAdded = { fg = palette.tea, bg = palette.aqua_blend },
-	DiffChange = { bg = palette.purple_blend },
-	DiffDelete = { fg = palette.wine, bg = palette.wine_blend },
-	DiffRemoved = { fg = palette.scarlet, bg = palette.wine_blend },
-	DiffText = { bg = palette.lavender_blend },
-	Directory = { fg = palette.pigeon },
-	EndOfBuffer = { fg = palette.iron },
-	ErrorMsg = { fg = palette.scarlet },
-	FoldColumn = { fg = palette.steel },
-	Folded = { fg = palette.steel, bg = palette.ocean },
-	FloatBorder = { fg = palette.smoke, bg = palette.ocean },
-	FloatShadow = { bg = palette.shadow, blend = 70 },
-	FloatShadowThrough = { link = "None" },
-	HealthSuccess = { fg = palette.tea },
-	Search = { bg = palette.thunder },
-	IncSearch = { fg = palette.black, bg = palette.orange, bold = true },
-	CurSearch = { link = "IncSearch" },
-	LineNr = { fg = palette.steel },
-	ModeMsg = { fg = palette.smoke },
-	MoreMsg = { fg = palette.aqua },
-	MsgArea = { link = "Normal" },
-	MsgSeparator = { link = "StatusLine" },
-	MatchParen = { bg = palette.thunder, bold = true },
-	NonText = { fg = palette.iron },
-	Pmenu = { fg = palette.smoke, bg = palette.ocean },
-	PmenuSbar = { bg = palette.deepsea },
-	PmenuSel = { fg = palette.white, bg = palette.thunder },
-	PmenuThumb = { bg = palette.orange },
-	Question = { fg = palette.smoke },
-	QuickFixLine = { link = "Visual" },
-	SignColumn = { fg = palette.smoke },
-	SpecialKey = { fg = palette.orange },
-	SpellBad = { underdashed = true },
-	SpellCap = { link = "SpellBad" },
-	SpellLocal = { link = "SpellBad" },
-	SpellRare = { link = "SpellBad" },
-	StatusLine = { fg = palette.smoke, bg = palette.deepsea },
-	StatusLineNC = { fg = palette.steel, bg = palette.ocean },
-	Substitute = { link = "Search" },
-	TabLine = { link = "StatusLine" },
-	TabLineFill = { fg = palette.pigeon, bg = palette.ocean },
-	Title = { fg = palette.pigeon, bold = true },
-	VertSplit = { fg = palette.deepsea },
-	Visual = { bg = palette.deepsea },
-	VisualNOS = { link = "Visual" },
-	WarningMsg = { fg = palette.yellow },
-	Whitespace = { link = "NonText" },
-	WildMenu = { link = "PmenuSel" },
-	WinSeparator = { link = "VertSplit" },
-	WinBar = { fg = palette.smoke },
-	WinBarNC = { fg = palette.pigeon },
-	-- }}}2
+  -- Common {{{2
+  Normal = { fg = c_smoke, bg = c_jeans },
+  NormalFloat = { fg = c_smoke, bg = c_ocean },
+  NormalNC = { link = 'Normal' },
+  ColorColumn = { bg = c_deepsea },
+  Conceal = { fg = c_smoke },
+  Cursor = { fg = c_space, bg = c_smoke },
+  CursorColumn = { bg = c_ocean },
+  CursorIM = { fg = c_space, bg = c_flashlight },
+  CursorLine = { bg = c_ocean },
+  CursorLineNr = { fg = c_orange, bold = true },
+  DebugPC = { bg = c_purple_blend },
+  lCursor = { link = 'Cursor' },
+  TermCursor = { fg = c_space, bg = c_orange },
+  DiffAdd = { bg = c_aqua_blend },
+  DiffAdded = { fg = c_tea, bg = c_aqua_blend },
+  DiffChange = { bg = c_purple_blend },
+  DiffDelete = { fg = c_wine, bg = c_wine_blend },
+  DiffRemoved = { fg = c_scarlet, bg = c_wine_blend },
+  DiffText = { bg = c_lavender_blend },
+  Directory = { fg = c_pigeon },
+  EndOfBuffer = { fg = c_iron },
+  ErrorMsg = { fg = c_scarlet },
+  FoldColumn = { fg = c_steel },
+  Folded = { fg = c_steel, bg = c_ocean },
+  FloatBorder = { fg = c_smoke, bg = c_ocean },
+  FloatShadow = { bg = c_shadow, blend = 70 },
+  FloatShadowThrough = { link = 'None' },
+  HealthSuccess = { fg = c_tea },
+  Search = { bg = c_thunder },
+  IncSearch = { fg = c_black, bg = c_orange, bold = true },
+  CurSearch = { link = 'IncSearch' },
+  LineNr = { fg = c_steel },
+  ModeMsg = { fg = c_smoke },
+  MoreMsg = { fg = c_aqua },
+  MsgArea = { link = 'Normal' },
+  MsgSeparator = { link = 'StatusLine' },
+  MatchParen = { bg = c_thunder, bold = true },
+  NonText = { fg = c_steel },
+  Pmenu = { fg = c_smoke, bg = c_ocean },
+  PmenuSbar = { bg = c_deepsea },
+  PmenuSel = { fg = c_smoke, bg = c_thunder },
+  PmenuThumb = { bg = c_orange },
+  Question = { fg = c_smoke },
+  QuickFixLine = { link = 'Visual' },
+  SignColumn = { fg = c_smoke },
+  SpecialKey = { fg = c_orange },
+  SpellBad = { underdashed = true },
+  SpellCap = { link = 'SpellBad' },
+  SpellLocal = { link = 'SpellBad' },
+  SpellRare = { link = 'SpellBad' },
+  StatusLine = { fg = c_smoke, bg = c_deepsea },
+  StatusLineNC = { fg = c_steel, bg = c_ocean },
+  Substitute = { link = 'Search' },
+  TabLine = { link = 'StatusLine' },
+  TabLineFill = { fg = c_pigeon, bg = c_ocean },
+  Title = { fg = c_pigeon, bold = true },
+  VertSplit = { fg = c_ocean },
+  Visual = { bg = c_deepsea },
+  VisualNOS = { link = 'Visual' },
+  WarningMsg = { fg = c_yellow },
+  Whitespace = { link = 'NonText' },
+  WildMenu = { link = 'PmenuSel' },
+  WinSeparator = { link = 'VertSplit' },
+  WinBar = { fg = c_smoke },
+  WinBarNC = { fg = c_pigeon },
+  -- }}}2
 
-	-- Syntax {{{2
-	Comment = { fg = palette.steel, italic = true },
-	Constant = { fg = palette.ochre },
-	String = { fg = palette.turquoise },
-	DocumentKeyword = { fg = palette.tea },
-	Character = { fg = palette.orange },
-	Number = { fg = palette.purple },
-	Boolean = { fg = palette.ochre },
-	Array = { fg = palette.orange },
-	Float = { link = "Number" },
-	Identifier = { fg = palette.smoke },
-	Builtin = { fg = palette.pink, italic = true },
-	Field = { fg = palette.pigeon },
-	Enum = { fg = palette.ochre },
-	Namespace = { fg = palette.ochre },
-	Function = { fg = palette.yellow },
-	Statement = { fg = palette.lavender },
-	Specifier = { fg = palette.lavender },
-	Object = { fg = palette.lavender },
-	Conditional = { fg = palette.magenta },
-	Repeat = { fg = palette.magenta },
-	Label = { fg = palette.magenta },
-	Operator = { fg = palette.orange },
-	Keyword = { fg = palette.cerulean },
-	Exception = { fg = palette.magenta },
-	PreProc = { fg = palette.turquoise },
-	PreCondit = { link = "PreProc" },
-	Include = { link = "PreProc" },
-	Define = { link = "PreProc" },
-	Macro = { fg = palette.ochre },
-	Type = { fg = palette.lavender },
-	StorageClass = { link = "Keyword" },
-	Structure = { link = "Type" },
-	Typedef = { fg = palette.beige },
-	Special = { fg = palette.orange },
-	SpecialChar = { link = "Special" },
-	Tag = { fg = palette.flashlight, underline = true },
-	Delimiter = { fg = palette.orange },
-	Bracket = { fg = palette.cumulonimbus },
-	SpecialComment = { link = "SpecialChar" },
-	Debug = { link = "Special" },
-	Underlined = { underline = true },
-	Ignore = { fg = palette.iron },
-	Error = { fg = palette.scarlet },
-	Todo = { fg = palette.black, bg = palette.beige, bold = true },
-	-- }}}2
+  -- Syntax {{{2
+  Comment = { fg = c_steel },
+  Constant = { fg = c_ochre },
+  String = { fg = c_turquoise },
+  DocumentKeyword = { fg = c_tea },
+  Character = { fg = c_orange },
+  Number = { fg = c_purple },
+  Boolean = { fg = c_ochre },
+  Array = { fg = c_orange },
+  Float = { link = 'Number' },
+  Identifier = {},
+  Builtin = { fg = c_pink },
+  Field = { fg = c_pigeon },
+  Enum = { fg = c_ochre },
+  Namespace = { fg = c_ochre },
+  Function = { fg = c_yellow },
+  Statement = { fg = c_lavender },
+  Specifier = { fg = c_lavender },
+  Object = { fg = c_lavender },
+  Conditional = { link = 'Keyword' },
+  Repeat = { link = 'Keyword' },
+  Label = { fg = c_magenta },
+  Operator = { fg = c_orange },
+  Keyword = { fg = c_cerulean },
+  Exception = { fg = c_magenta },
+  PreProc = { fg = c_turquoise },
+  PreCondit = { link = 'PreProc' },
+  Include = { link = 'PreProc' },
+  Define = { link = 'PreProc' },
+  Macro = { fg = c_ochre },
+  Type = { fg = c_lavender },
+  StorageClass = { link = 'Keyword' },
+  Structure = { link = 'Type' },
+  Typedef = { fg = c_beige },
+  Special = { fg = c_orange },
+  SpecialChar = { link = 'Special' },
+  Tag = { fg = c_flashlight, underline = true },
+  Delimiter = { fg = c_orange },
+  Bracket = { fg = c_cumulonimbus },
+  SpecialComment = { link = 'SpecialChar' },
+  Debug = { link = 'Special' },
+  Underlined = { underline = true },
+  Ignore = { fg = c_iron },
+  Error = { fg = c_scarlet },
+  Todo = { fg = c_black, bg = c_beige, bold = true },
+  -- }}}2
 
-	-- Treesitter syntax {{{2
-	["@field"] = { link = "Field" },
-	["@property"] = { link = "Field" },
-	["@annotation"] = { link = "Operator" },
-	["@comment"] = { link = "Comment" },
-	["@none"] = { link = "None" },
-	["@preproc"] = { link = "PreProc" },
-	["@define"] = { link = "Define" },
-	["@operator"] = { link = "Operator" },
-	["@punctuation.delimiter"] = { link = "Delimiter" },
-	["@punctuation.bracket"] = { link = "Bracket" },
-	["@punctuation.special"] = { link = "Delimiter" },
-	["@string"] = { link = "String" },
-	["@string.regex"] = { link = "String" },
-	["@string.escape"] = { link = "SpecialChar" },
-	["@string.special"] = { link = "SpecialChar" },
-	["@character"] = { link = "Character" },
-	["@character.special"] = { link = "SpecialChar" },
-	["@boolean"] = { link = "Boolean" },
-	["@number"] = { link = "Number" },
-	["@float"] = { link = "Float" },
-	["@function"] = { link = "Function" },
-	["@function.call"] = { link = "Function" },
-	["@function.builtin"] = { link = "Special" },
-	["@function.macro"] = { link = "Macro" },
-	["@method"] = { link = "Function" },
-	["@method.call"] = { link = "Function" },
-	["@constructor"] = { link = "Function" },
-	["@parameter"] = { link = "Parameter" },
-	["@keyword"] = { link = "Keyword" },
-	["@keyword.function"] = { link = "Keyword" },
-	["@keyword.return"] = { link = "Keyword" },
-	["@conditional"] = { link = "Conditional" },
-	["@repeat"] = { link = "Repeat" },
-	["@debug"] = { link = "Debug" },
-	["@label"] = { link = "Keyword" },
-	["@include"] = { link = "Include" },
-	["@exception"] = { link = "Exception" },
-	["@type"] = { link = "Type" },
-	["@type.Builtin"] = { link = "Type" },
-	["@type.qualifier"] = { link = "Type" },
-	["@type.definition"] = { link = "Typedef" },
-	["@storageclass"] = { link = "StorageClass" },
-	["@attribute"] = { link = "Label" },
-	["@variable"] = { link = "Identifier" },
-	["@variable.Builtin"] = { link = "Builtin" },
-	["@constant"] = { link = "Constant" },
-	["@constant.Builtin"] = { link = "Constant" },
-	["@constant.macro"] = { link = "Macro" },
-	["@namespace"] = { link = "Namespace" },
-	["@string.special.symbol"] = { link = "Identifier" },
-	["@text"] = { link = "String" },
-	["@text.title"] = { link = "Title" },
-	["@text.literal"] = { link = "String" },
-	["@text.uri"] = { link = "htmlLink" },
-	["@text.math"] = { link = "Special" },
-	["@text.environment"] = { link = "Macro" },
-	["@text.environment.name"] = { link = "Type" },
-	["@text.reference"] = { link = "Constant" },
-	["@text.todo"] = { link = "Todo" },
-	["@text.todo.unchecked"] = { link = "Todo" },
-	["@text.todo.checked"] = { link = "Done" },
-	["@text.note"] = { link = "SpecialComment" },
-	["@text.warning"] = { link = "WarningMsg" },
-	["@text.danger"] = { link = "ErrorMsg" },
-	["@text.diff.add"] = { link = "DiffAdded" },
-	["@text.diff.delete"] = { link = "DiffRemoved" },
-	["@tag"] = { link = "Tag" },
-	["@tag.attribute"] = { link = "Identifier" },
-	["@tag.delimiter"] = { link = "Delimiter" },
-	["@text.strong"] = { bold = true },
-	["@text.strike"] = { strikethrough = true },
-	["@text.emphasis"] = {
-		fg = palette.black,
-		bg = palette.beige,
-		bold = true,
-		italic = true,
-	},
-	["@text.underline"] = { underline = true },
-	["@keyword.operator"] = { link = "Operator" },
-	-- }}}2
+  -- Treesitter syntax {{{2
+  ['@variable.member'] = { link = 'Field' },
+  ['@property'] = { link = 'Field' },
+  ['@annotation'] = { link = 'Operator' },
+  ['@comment'] = { link = 'Comment' },
+  ['@none'] = { link = 'None' },
+  ['@keyword.directive'] = { link = 'PreProc' },
+  ['@keyword.directive.define'] = { link = 'Define' },
+  ['@operator'] = { link = 'Operator' },
+  ['@punctuation.delimiter'] = { link = 'Delimiter' },
+  ['@punctuation.bracket'] = { link = 'Bracket' },
+  ['@markup.list'] = { link = 'Delimiter' },
+  ['@string'] = { link = 'String' },
+  ['@string.regexp'] = { link = 'String' },
+  ['@string.escape'] = { link = 'SpecialChar' },
+  ['@markup.link.label'] = { link = 'SpecialChar' },
+  ['@character'] = { link = 'Character' },
+  ['@character.special'] = { link = 'SpecialChar' },
+  ['@boolean'] = { link = 'Boolean' },
+  ['@number'] = { link = 'Number' },
+  ['@number.float'] = { link = 'Float' },
+  ['@function'] = { link = 'Function' },
+  ['@function.call'] = { link = 'Function' },
+  ['@function.builtin'] = { link = 'Builtin' },
+  ['@function.macro'] = { link = 'Macro' },
+  ['@function.method'] = { link = 'Function' },
+  ['@function.method.call'] = { link = 'Function' },
+  ['@constructor'] = { link = 'Function' },
+  ['@variable.parameter'] = { link = 'Parameter' },
+  ['@keyword'] = { link = 'Keyword' },
+  ['@keyword.function'] = { link = 'Keyword' },
+  ['@keyword.return'] = { link = 'Keyword' },
+  ['@keyword.conditional'] = { link = 'Conditional' },
+  ['@keyword.repeat'] = { link = 'Repeat' },
+  ['@keyword.debug'] = { link = 'Debug' },
+  ['@label'] = { link = 'Keyword' },
+  ['@keyword.import'] = { link = 'Include' },
+  ['@keyword.exception'] = { link = 'Exception' },
+  ['@type'] = { link = 'Type' },
+  ['@type.Builtin'] = { link = 'Type' },
+  ['@type.qualifier'] = { link = 'Type' },
+  ['@type.definition'] = { link = 'Typedef' },
+  ['@keyword.storage'] = { link = 'StorageClass' },
+  ['@attribute'] = { link = 'Label' },
+  ['@variable'] = { link = 'Identifier' },
+  ['@variable.Builtin'] = { link = 'Builtin' },
+  ['@constant'] = { link = 'Constant' },
+  ['@constant.Builtin'] = { link = 'Constant' },
+  ['@constant.macro'] = { link = 'Macro' },
+  ['@module'] = { link = 'Namespace' },
+  ['@markup.link.label.symbol'] = { link = 'Identifier' },
+  ['@markup'] = { link = 'String' },
+  ['@markup.heading'] = { link = 'Title' },
+  ['@markup.raw'] = { link = 'String' },
+  ['@markup.link.url'] = { link = 'htmlLink' },
+  ['@markup.math'] = { link = 'Special' },
+  ['@markup.environment'] = { link = 'Macro' },
+  ['@markup.environment.name'] = { link = 'Type' },
+  ['@markup.link'] = { link = 'Constant' },
+  ['@markup.heading.1.markdown'] = { link = 'markdownH1' },
+  ['@markup.heading.2.markdown'] = { link = 'markdownH2' },
+  ['@markup.heading.3.markdown'] = { link = 'markdownH3' },
+  ['@markup.heading.4.markdown'] = { link = 'markdownH4' },
+  ['@markup.heading.5.markdown'] = { link = 'markdownH5' },
+  ['@markup.heading.6.markdown'] = { link = 'markdownH6' },
+  ['@markup.heading.1.marker.markdown'] = { link = 'markdownH1Delimiter' },
+  ['@markup.heading.2.marker.markdown'] = { link = 'markdownH2Delimiter' },
+  ['@markup.heading.3.marker.markdown'] = { link = 'markdownH3Delimiter' },
+  ['@markup.heading.4.marker.markdown'] = { link = 'markdownH4Delimiter' },
+  ['@markup.heading.5.marker.markdown'] = { link = 'markdownH5Delimiter' },
+  ['@markup.heading.6.marker.markdown'] = { link = 'markdownH6Delimiter' },
+  ['@comment.todo'] = { link = 'Todo' },
+  ['@comment.todo.unchecked'] = { link = 'Todo' },
+  ['@comment.todo.checked'] = { link = 'Done' },
+  ['@comment.info'] = { link = 'SpecialComment' },
+  ['@comment.warning'] = { link = 'WarningMsg' },
+  ['@comment.error'] = { link = 'ErrorMsg' },
+  ['@diff.delta'] = { link = 'DiffChanged' },
+  ['@diff.minus'] = { link = 'DiffRemoved' },
+  ['@diff.plus'] = { link = 'DiffAdded' },
+  ['@tag'] = { link = 'Tag' },
+  ['@tag.attribute'] = { link = 'Identifier' },
+  ['@tag.delimiter'] = { link = 'Delimiter' },
+  ['@markup.strong'] = { bold = true },
+  ['@markup.strike'] = { strikethrough = true },
+  ['@markup.emphasis'] = { fg = c_beige, bold = true, italic = true, },
+  ['@markup.underline'] = { underline = true },
+  ['@keyword.operator'] = { link = 'Operator' },
+  -- }}}2
 
-	-- LSP semantic {{{2
-	["@lsp.type.enum"] = { link = "Type" },
-	["@lsp.type.type"] = { link = "Type" },
-	["@lsp.type.class"] = { link = "Structure" },
-	["@lsp.type.struct"] = { link = "Structure" },
-	["@lsp.type.macro"] = { link = "Macro" },
-	["@lsp.type.method"] = { link = "Function" },
-	["@lsp.type.comment"] = { link = "Comment" },
-	["@lsp.type.function"] = { link = "Function" },
-	["@lsp.type.property"] = { link = "Field" },
-	["@lsp.type.variable"] = { link = "Variable" },
-	["@lsp.type.decorator"] = { link = "Label" },
-	["@lsp.type.interface"] = { link = "Structure" },
-	["@lsp.type.namespace"] = { link = "Namespace" },
-	["@lsp.type.parameter"] = { link = "Parameter" },
-	["@lsp.type.enumMember"] = { link = "Enum" },
-	["@lsp.type.typeParameter"] = { link = "Parameter" },
-	["@lsp.typemod.keyword.documentation"] = { link = "DocumentKeyword" },
-	["@lsp.typemod.function.defaultLibrary"] = { link = "Special" },
-	["@lsp.typemod.variable.defaultLibrary"] = { link = "Builtin" },
-	["@lsp.typemod.variable.global"] = { link = "Identifier" },
-	-- }}}2
+  -- LSP semantic {{{2
+  ['@lsp.type.enum'] = { link = 'Type' },
+  ['@lsp.type.type'] = { link = 'Type' },
+  ['@lsp.type.class'] = { link = 'Structure' },
+  ['@lsp.type.struct'] = { link = 'Structure' },
+  ['@lsp.type.macro'] = { link = 'Macro' },
+  ['@lsp.type.method'] = { link = 'Function' },
+  ['@lsp.type.comment'] = { link = 'Comment' },
+  ['@lsp.type.function'] = { link = 'Function' },
+  ['@lsp.type.property'] = { link = 'Field' },
+  ['@lsp.type.variable'] = { link = 'Variable' },
+  ['@lsp.type.decorator'] = { link = 'Label' },
+  ['@lsp.type.interface'] = { link = 'Structure' },
+  ['@lsp.type.namespace'] = { link = 'Namespace' },
+  ['@lsp.type.parameter'] = { link = 'Parameter' },
+  ['@lsp.type.enumMember'] = { link = 'Enum' },
+  ['@lsp.type.typeParameter'] = { link = 'Parameter' },
+  ['@lsp.typemod.keyword.documentation'] = { link = 'DocumentKeyword' },
+  ['@lsp.typemod.function.defaultLibrary'] = { link = 'Special' },
+  ['@lsp.typemod.variable.defaultLibrary'] = { link = 'Builtin' },
+  ['@lsp.typemod.variable.global'] = { link = 'Identifier' },
+  -- }}}2
 
-	-- LSP {{{2
-	LspReferenceText = { link = "Identifier" },
-	LspReferenceRead = { link = "LspReferenceText" },
-	LspReferenceWrite = { link = "LspReferenceText" },
-	LspSignatureActiveParameter = { link = "IncSearch" },
-	LspInfoBorder = { link = "FloatBorder" },
-	LspInlayHint = { link = "DiagnosticVirtualTextHint" },
-	-- }}}2
+  -- LSP {{{2
+  LspReferenceText = { link = 'Identifier' },
+  LspReferenceRead = { link = 'LspReferenceText' },
+  LspReferenceWrite = { link = 'LspReferenceText' },
+  LspSignatureActiveParameter = { link = 'IncSearch' },
+  LspInfoBorder = { link = 'FloatBorder' },
+  -- }}}2
 
-	-- Diagnostic {{{2
-	DiagnosticOk = { fg = palette.tea },
-	DiagnosticError = { fg = palette.wine },
-	DiagnosticWarn = { fg = palette.earth },
-	DiagnosticInfo = { fg = palette.smoke },
-	DiagnosticHint = { fg = palette.pigeon },
-	DiagnosticVirtualTextOk = { fg = palette.tea, bg = palette.tea_blend },
-	DiagnosticVirtualTextError = { fg = palette.wine, bg = palette.wine_blend },
-	DiagnosticVirtualTextWarn = { fg = palette.earth, bg = palette.earth_blend },
-	DiagnosticVirtualTextInfo = { fg = palette.smoke, bg = palette.smoke_blend },
-	DiagnosticVirtualTextHint = { fg = palette.pigeon, bg = palette.deepsea },
-	DiagnosticUnderlineOk = { underline = true, sp = palette.tea },
-	DiagnosticUnderlineError = { undercurl = true, sp = palette.wine },
-	DiagnosticUnderlineWarn = { undercurl = true, sp = palette.earth },
-	DiagnosticUnderlineInfo = { undercurl = true, sp = palette.flashlight },
-	DiagnosticUnderlineHint = { undercurl = true, sp = palette.pigeon },
-	DiagnosticFloatingOk = { link = "DiagnosticOk" },
-	DiagnosticFloatingError = { link = "DiagnosticError" },
-	DiagnosticFloatingWarn = { link = "DiagnosticWarn" },
-	DiagnosticFloatingInfo = { link = "DiagnosticInfo" },
-	DiagnosticFloatingHint = { link = "DiagnosticHint" },
-	DiagnosticSignOk = { link = "DiagnosticOk" },
-	DiagnosticSignError = { link = "DiagnosticError" },
-	DiagnosticSignWarn = { link = "DiagnosticWarn" },
-	DiagnosticSignInfo = { link = "DiagnosticInfo" },
-	DiagnosticSignHint = { link = "DiagnosticHint" },
-	DiagnosticSignOkCul = { link = "DiagnosticError" },
-	DiagnosticSignErrorCul = { link = "DiagnosticError" },
-	DiagnosticSignWarnCul = { link = "DiagnosticWarn" },
-	DiagnosticSignInfoCul = { link = "DiagnosticInfo" },
-	DiagnosticSignHintCul = { link = "DiagnosticHint" },
-	-- }}}2
+  -- Diagnostic {{{2
+  DiagnosticOk = { fg = c_tea },
+  DiagnosticError = { fg = c_wine },
+  DiagnosticWarn = { fg = c_yellow },
+  DiagnosticInfo = { fg = c_smoke },
+  DiagnosticHint = { fg = c_pigeon },
+  DiagnosticVirtualTextOk = { fg = c_tea, bg = c_tea_blend },
+  DiagnosticVirtualTextError = { fg = c_wine, bg = c_wine_blend },
+  DiagnosticVirtualTextWarn = { fg = c_yellow, bg = c_yellow_blend },
+  DiagnosticVirtualTextInfo = { fg = c_smoke, bg = c_smoke_blend },
+  DiagnosticVirtualTextHint = { fg = c_pigeon, bg = c_deepsea },
+  DiagnosticUnderlineOk = { underline = true, sp = c_tea },
+  DiagnosticUnderlineError = { undercurl = true, sp = c_wine },
+  DiagnosticUnderlineWarn = { undercurl = true, sp = c_yellow },
+  DiagnosticUnderlineInfo = { undercurl = true, sp = c_flashlight },
+  DiagnosticUnderlineHint = { undercurl = true, sp = c_pigeon },
+  DiagnosticFloatingOk = { link = 'DiagnosticOk' },
+  DiagnosticFloatingError = { link = 'DiagnosticError' },
+  DiagnosticFloatingWarn = { link = 'DiagnosticWarn' },
+  DiagnosticFloatingInfo = { link = 'DiagnosticInfo' },
+  DiagnosticFloatingHint = { link = 'DiagnosticHint' },
+  DiagnosticSignOk = { link = 'DiagnosticOk' },
+  DiagnosticSignError = { link = 'DiagnosticError' },
+  DiagnosticSignWarn = { link = 'DiagnosticWarn' },
+  DiagnosticSignInfo = { link = 'DiagnosticInfo' },
+  DiagnosticSignHint = { link = 'DiagnosticHint' },
+  DiagnosticUnnecessary = {
+    fg = c_steel,
+    sp = c_pigeon,
+    undercurl = true,
+  },
+  -- }}}2
 
-	-- Filetype {{{2
-	-- HTML
-	htmlArg = { fg = palette.pigeon },
-	htmlBold = { bold = true },
-	htmlBoldItalic = { bold = true, italic = true },
-	htmlTag = { fg = palette.smoke },
-	htmlTagName = { link = "Tag" },
-	htmlSpecialTagName = { fg = palette.yellow },
-	htmlEndTag = { fg = palette.yellow },
-	htmlH1 = { fg = palette.yellow, bold = true },
-	htmlH2 = { fg = palette.ochre, bold = true },
-	htmlH3 = { fg = palette.pink, bold = true },
-	htmlH4 = { fg = palette.lavender, bold = true },
-	htmlH5 = { fg = palette.cerulean, bold = true },
-	htmlH6 = { fg = palette.aqua, bold = true },
-	htmlItalic = { italic = true },
-	htmlLink = { fg = palette.flashlight, underline = true },
-	htmlSpecialChar = { fg = palette.beige },
-	htmlTitle = { fg = palette.pigeon },
-	-- Json
-	jsonKeyword = { link = "Keyword" },
-	jsonBraces = { fg = palette.smoke },
-	-- Markdown
-	markdownBold = { fg = palette.aqua, bold = true },
-	markdownBoldItalic = { fg = palette.skyblue, bold = true, italic = true },
-	markdownCode = { fg = palette.pigeon },
-	markdownError = { link = "None" },
-	markdownEscape = { link = "None" },
-	markdownListMarker = { fg = palette.orange },
-	markdownH1 = { link = "htmlH1" },
-	markdownH2 = { link = "htmlH2" },
-	markdownH3 = { link = "htmlH3" },
-	markdownH4 = { link = "htmlH4" },
-	markdownH5 = { link = "htmlH5" },
-	markdownH6 = { link = "htmlH6" },
-	-- Shell
-	shDeref = { link = "Macro" },
-	shDerefVar = { link = "Macro" },
-	-- Git
-	gitHash = { fg = palette.pigeon },
-	-- Checkhealth
-	helpHeader = { fg = palette.pigeon, bold = true },
-	helpSectionDelim = { fg = palette.ochre, bold = true },
-	helpCommand = { fg = palette.turquoise },
-	helpBacktick = { fg = palette.turquoise },
-	-- Man
-	manBold = { fg = palette.ochre, bold = true },
-	manItalic = { fg = palette.turquoise, italic = true },
-	manOptionDesc = { fg = palette.ochre },
-	manReference = { link = "htmlLink" },
-	manSectionHeading = { link = "manBold" },
-	manUnderline = { fg = palette.cerulean, italic = true },
-	-- }}}2
+  -- Filetype {{{2
+  -- HTML
+  htmlArg = { fg = c_pigeon },
+  htmlBold = { bold = true },
+  htmlBoldItalic = { bold = true, italic = true },
+  htmlTag = { fg = c_smoke },
+  htmlTagName = { link = 'Tag' },
+  htmlSpecialTagName = { fg = c_yellow },
+  htmlEndTag = { fg = c_yellow },
+  htmlH1 = { fg = c_yellow, bold = true },
+  htmlH2 = { fg = c_ochre, bold = true },
+  htmlH3 = { fg = c_pink, bold = true },
+  htmlH4 = { fg = c_lavender, bold = true },
+  htmlH5 = { fg = c_cerulean, bold = true },
+  htmlH6 = { fg = c_aqua, bold = true },
+  htmlItalic = { italic = true },
+  htmlLink = { fg = c_flashlight, underline = true },
+  htmlSpecialChar = { fg = c_beige },
+  htmlTitle = { fg = c_pigeon },
 
-	-- Plugins {{{2
-	-- nvim-cmp
-	CmpItemAbbr = { fg = palette.smoke },
-	CmpItemAbbrDeprecated = { strikethrough = true },
-	CmpItemAbbrMatch = { fg = palette.white, bold = true },
-	CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
-	CmpItemKindText = { link = "String" },
-	CmpItemKindMethod = { link = "Function" },
-	CmpItemKindFunction = { link = "Function" },
-	CmpItemKindConstructor = { link = "Function" },
-	CmpItemKindField = { fg = palette.purple },
-	CmpItemKindProperty = { link = "CmpItemKindField" },
-	CmpItemKindVariable = { fg = palette.aqua },
-	CmpItemKindReference = { link = "CmpItemKindVariable" },
-	CmpItemKindModule = { fg = palette.magenta },
-	CmpItemKindEnum = { fg = palette.ochre },
-	CmpItemKindEnumMember = { link = "CmpItemKindEnum" },
-	CmpItemKindKeyword = { link = "Keyword" },
-	CmpItemKindOperator = { link = "Operator" },
-	CmpItemKindSnippet = { fg = palette.tea },
-	CmpItemKindColor = { fg = palette.pink },
-	CmpItemKindConstant = { link = "Constant" },
-	CmpItemKindCopilot = { fg = palette.magenta },
-	CmpItemKindValue = { link = "Number" },
-	CmpItemKindClass = { link = "Type" },
-	CmpItemKindStruct = { link = "Type" },
-	CmpItemKindEvent = { fg = palette.flashlight },
-	CmpItemKindInterface = { fg = palette.flashlight },
-	CmpItemKindFile = { link = "DevIconDefault" },
-	CmpItemKindFolder = { link = "Directory" },
-	CmpItemKindUnit = { fg = palette.cerulean },
-	CmpItemKind = { fg = palette.smoke },
-	CmpItemMenu = { link = "Pmenu" },
-	CmpVirtualText = { fg = palette.steel, italic = true },
+  -- Json
+  jsonKeyword = { link = 'Keyword' },
+  jsonBraces = { fg = c_smoke },
 
-	-- gitsigns
-	GitSignsAdd = { fg = palette.tea_blend },
-	GitSignsAddInline = { fg = palette.tea, bg = palette.tea_blend },
-	GitSignsAddLnInline = { fg = palette.tea, bg = palette.tea_blend },
-	GitSignsAddPreview = { link = "DiffAdded" },
-	GitSignsChange = { fg = palette.lavender_blend },
-	GitSignsChangeInline = { fg = palette.lavender, bg = palette.lavender_blend },
-	GitSignsChangeLnInline = {
-		fg = palette.lavender,
-		bg = palette.lavender_blend,
-	},
-	GitSignsCurrentLineBlame = { fg = palette.smoke, bg = palette.smoke_blend },
-	GitSignsDelete = { fg = palette.wine },
-	GitSignsDeleteInline = { fg = palette.scarlet, bg = palette.scarlet_blend },
-	GitSignsDeleteLnInline = { fg = palette.scarlet, bg = palette.scarlet_blend },
-	GitSignsDeletePreview = { fg = palette.scarlet, bg = palette.wine_blend },
-	GitSignsDeleteVirtLnInLine = {
-		fg = palette.scarlet,
-		bg = palette.scarlet_blend,
-	},
-	GitSignsUntracked = { fg = palette.scarlet_blend },
-	GitSignsUntrackedLn = { bg = palette.scarlet_blend },
-	GitSignsUntrackedNr = { fg = palette.pink },
+  -- Markdown
+  markdownBold = { fg = c_aqua, bold = true },
+  markdownBoldItalic = { fg = c_skyblue, bold = true, italic = true },
+  markdownCode = { fg = c_pigeon },
+  markdownError = { link = 'None' },
+  markdownEscape = { link = 'None' },
+  markdownListMarker = { fg = c_orange },
+  markdownH1 = { link = 'htmlH1' },
+  markdownH2 = { link = 'htmlH2' },
+  markdownH3 = { link = 'htmlH3' },
+  markdownH4 = { link = 'htmlH4' },
+  markdownH5 = { link = 'htmlH5' },
+  markdownH6 = { link = 'htmlH6' },
 
-	-- fugitive
-	fugitiveHash = { link = "gitHash" },
-	fugitiveHeader = { link = "Title" },
-	fugitiveHeading = { fg = palette.orange, bold = true },
-	fugitiveHelpTag = { fg = palette.orange },
-	fugitiveSymbolicRef = { fg = palette.yellow },
-	fugitiveStagedModifier = { fg = palette.tea, bold = true },
-	fugitiveUnstagedModifier = { fg = palette.scarlet, bold = true },
-	fugitiveUntrackedModifier = { fg = palette.pigeon, bold = true },
-	fugitiveStagedHeading = { fg = palette.aqua, bold = true },
-	fugitiveUnstagedHeading = { fg = palette.ochre, bold = true },
-	fugitiveUntrackedHeading = { fg = palette.lavender, bold = true },
+  -- Shell
+  shDeref = { link = 'Macro' },
+  shDerefVar = { link = 'Macro' },
 
-	-- telescope
-	TelescopeNormal = { link = "NormalFloat" },
-	TelescopePromptNormal = { bg = palette.deepsea },
-	TelescopeTitle = { fg = palette.space, bg = palette.turquoise, bold = true },
-	TelescopePromptTitle = {
-		fg = palette.space,
-		bg = palette.yellow,
-		bold = true,
-	},
-	TelescopeBorder = { fg = palette.smoke, bg = palette.ocean },
-	TelescopePromptBorder = { fg = palette.smoke, bg = palette.deepsea },
-	TelescopeSelection = { bg = palette.thunder },
-	TelescopeMultiSelection = { bg = palette.thunder, bold = true },
-	TelescopePreviewLine = { bg = palette.thunder },
-	TelescopeMatching = { link = "Search" },
-	TelescopePromptCounter = { link = "Comment" },
-	TelescopePromptPrefix = { fg = palette.orange },
-	TelescopeSelectionCaret = { fg = palette.orange, bg = palette.thunder },
+  -- Git
+  gitHash = { fg = c_pigeon },
 
-	-- fidget
-	FidgetTask = { fg = palette.thunder },
-	FidgetTitle = { fg = palette.thunder, bold = true },
+  -- Checkhealth
+  helpHeader = { fg = c_pigeon, bold = true },
+  helpSectionDelim = { fg = c_ochre, bold = true },
+  helpCommand = { fg = c_turquoise },
+  helpBacktick = { fg = c_turquoise },
 
-	-- nvim-dap-ui
-	DapUIBreakpointsCurrentLine = { link = "CursorLineNr" },
-	DapUIBreakpointsInfo = { fg = palette.tea },
-	DapUIBreakpointsPath = { link = "Directory" },
-	DapUICurrentFrameName = { fg = palette.tea, bold = true },
-	DapUIDecoration = { fg = palette.yellow },
-	DapUIFloatBorder = { link = "FloatBorder" },
-	DapUINormalFloat = { link = "NormalFloat" },
-	DapUILineNumber = { link = "LineNr" },
-	DapUIModifiedValue = { fg = palette.skyblue, bold = true },
-	DapUIPlayPause = { fg = palette.tea },
-	DapUIPlayPauseNC = { fg = palette.tea },
-	DapUIRestart = { fg = palette.tea },
-	DapUIRestartNC = { fg = palette.tea },
-	DapUIScope = { fg = palette.orange },
-	DapUISource = { link = "Directory" },
-	DapUIStepBack = { fg = palette.lavender },
-	DapUIStepBackRC = { fg = palette.lavender },
-	DapUIStepInto = { fg = palette.lavender },
-	DapUIStepIntoRC = { fg = palette.lavender },
-	DapUIStepOut = { fg = palette.lavender },
-	DapUIStepOutRC = { fg = palette.lavender },
-	DapUIStepOver = { fg = palette.lavender },
-	DapUIStepOverRC = { fg = palette.lavender },
-	DapUIStop = { fg = palette.scarlet },
-	DapUIStopNC = { fg = palette.scarlet },
-	DapUIStoppedThread = { fg = palette.tea },
-	DapUIThread = { fg = palette.aqua },
-	DapUIType = { link = "Type" },
-	DapUIVariable = { link = "Identifier" },
-	DapUIWatchesEmpty = { link = "Comment" },
-	DapUIWatchesError = { link = "Error" },
-	DapUIWatchesValue = { fg = palette.orange },
+  -- Man
+  manBold = { fg = c_ochre, bold = true },
+  manItalic = { fg = c_turquoise, italic = true },
+  manOptionDesc = { fg = c_ochre },
+  manReference = { link = 'htmlLink' },
+  manSectionHeading = { link = 'manBold' },
+  manUnderline = { fg = c_cerulean },
+  -- }}}2
 
-	-- vimtex
-	texArg = { fg = palette.pigeon },
-	texArgNew = { fg = palette.skyblue },
-	texCmd = { fg = palette.yellow },
-	texCmdBib = { link = "texCmd" },
-	texCmdClass = { link = "texCmd" },
-	texCmdDef = { link = "texCmd" },
-	texCmdE3 = { link = "texCmd" },
-	texCmdEnv = { link = "texCmd" },
-	texCmdEnvM = { link = "texCmd" },
-	texCmdError = { link = "ErrorMsg" },
-	texCmdFatal = { link = "ErrorMsg" },
-	texCmdGreek = { link = "texCmd" },
-	texCmdInput = { link = "texCmd" },
-	texCmdItem = { link = "texCmd" },
-	texCmdLet = { link = "texCmd" },
-	texCmdMath = { link = "texCmd" },
-	texCmdNew = { link = "texCmd" },
-	texCmdPart = { link = "texCmd" },
-	texCmdRef = { link = "texCmd" },
-	texCmdSize = { link = "texCmd" },
-	texCmdStyle = { link = "texCmd" },
-	texCmdTitle = { link = "texCmd" },
-	texCmdTodo = { link = "texCmd" },
-	texCmdType = { link = "texCmd" },
-	texCmdVerb = { link = "texCmd" },
-	texComment = { link = "Comment" },
-	texDefParm = { link = "Keyword" },
-	texDelim = { fg = palette.pigeon },
-	texE3Cmd = { link = "texCmd" },
-	texE3Delim = { link = "texDelim" },
-	texE3Opt = { link = "texOpt" },
-	texE3Parm = { link = "texParm" },
-	texE3Type = { link = "texCmd" },
-	texEnvOpt = { link = "texOpt" },
-	texError = { link = "ErrorMsg" },
-	texFileArg = { link = "Directory" },
-	texFileOpt = { link = "texOpt" },
-	texFilesArg = { link = "texFileArg" },
-	texFilesOpt = { link = "texFileOpt" },
-	texLength = { fg = palette.lavender },
-	texLigature = { fg = palette.pigeon },
-	texOpt = { fg = palette.smoke },
-	texOptEqual = { fg = palette.orange },
-	texOptSep = { fg = palette.orange },
-	texParm = { fg = palette.pigeon },
-	texRefArg = { fg = palette.lavender },
-	texRefOpt = { link = "texOpt" },
-	texSymbol = { fg = palette.orange },
-	texTitleArg = { link = "Title" },
-	texVerbZone = { fg = palette.pigeon },
-	texZone = { fg = palette.aqupigeon },
-	texMathArg = { fg = palette.pigeon },
-	texMathCmd = { link = "texCmd" },
-	texMathSub = { fg = palette.pigeon },
-	texMathOper = { fg = palette.orange },
-	texMathZone = { fg = palette.yellow },
-	texMathDelim = { fg = palette.smoke },
-	texMathError = { link = "Error" },
-	texMathGroup = { fg = palette.pigeon },
-	texMathSuper = { fg = palette.pigeon },
-	texMathSymbol = { fg = palette.yellow },
-	texMathZoneLD = { fg = palette.pigeon },
-	texMathZoneLI = { fg = palette.pigeon },
-	texMathZoneTD = { fg = palette.pigeon },
-	texMathZoneTI = { fg = palette.pigeon },
-	texMathCmdText = { link = "texCmd" },
-	texMathZoneEnv = { fg = palette.pigeon },
-	texMathArrayArg = { fg = palette.yellow },
-	texMathCmdStyle = { link = "texCmd" },
-	texMathDelimMod = { fg = palette.smoke },
-	texMathSuperSub = { fg = palette.smoke },
-	texMathDelimZone = { fg = palette.pigeon },
-	texMathStyleBold = { fg = palette.smoke, bold = true },
-	texMathStyleItal = { fg = palette.smoke, italic = true },
-	texMathEnvArgName = { fg = palette.lavender },
-	texMathErrorDelim = { link = "Error" },
-	texMathDelimZoneLD = { fg = palette.steel },
-	texMathDelimZoneLI = { fg = palette.steel },
-	texMathDelimZoneTD = { fg = palette.steel },
-	texMathDelimZoneTI = { fg = palette.steel },
-	texMathZoneEnsured = { fg = palette.pigeon },
-	texMathCmdStyleBold = { fg = palette.yellow, bold = true },
-	texMathCmdStyleItal = { fg = palette.yellow, italic = true },
-	texMathStyleConcArg = { fg = palette.pigeon },
-	texMathZoneEnvStarred = { fg = palette.pigeon },
+  -- Plugins {{{2
+  -- netrw
+  netrwClassify = { link = 'Directory' },
 
-	-- lazy.nvim
-	LazyDir = { link = "Directory" },
-	LazyUrl = { link = "htmlLink" },
-	LazySpecial = { fg = palette.orange },
-	LazyCommit = { fg = palette.tea },
-	LazyReasonFt = { fg = palette.pigeon },
-	LazyReasonCmd = { fg = palette.yellow },
-	LazyReasonPlugin = { fg = palette.turquoise },
-	LazyReasonSource = { fg = palette.orange },
-	LazyReasonRuntime = { fg = palette.lavender },
-	LazyReasonEvent = { fg = palette.flashlight },
-	LazyReasonKeys = { fg = palette.pink },
-	LazyButton = { bg = palette.ocean },
-	LazyButtonActive = { bg = palette.thunder, bold = true },
-	LazyH1 = { fg = palette.space, bg = palette.yellow, bold = true },
+  -- nvim-cmp
+  CmpItemAbbr = { fg = c_smoke },
+  CmpItemAbbrDeprecated = { strikethrough = true },
+  CmpItemAbbrMatch = { fg = c_smoke, bold = true },
+  CmpItemAbbrMatchFuzzy = { link = 'CmpItemAbbrMatch' },
+  CmpItemKindText = { link = 'String' },
+  CmpItemKindMethod = { link = 'Function' },
+  CmpItemKindFunction = { link = 'Function' },
+  CmpItemKindConstructor = { link = 'Function' },
+  CmpItemKindField = { fg = c_purple },
+  CmpItemKindProperty = { link = 'CmpItemKindField' },
+  CmpItemKindVariable = { fg = c_aqua },
+  CmpItemKindReference = { link = 'CmpItemKindVariable' },
+  CmpItemKindModule = { fg = c_magenta },
+  CmpItemKindEnum = { fg = c_ochre },
+  CmpItemKindEnumMember = { link = 'CmpItemKindEnum' },
+  CmpItemKindKeyword = { link = 'Keyword' },
+  CmpItemKindOperator = { link = 'Operator' },
+  CmpItemKindSnippet = { fg = c_tea },
+  CmpItemKindColor = { fg = c_pink },
+  CmpItemKindConstant = { link = 'Constant' },
+  CmpItemKindCopilot = { fg = c_magenta },
+  CmpItemKindValue = { link = 'Number' },
+  CmpItemKindClass = { link = 'Type' },
+  CmpItemKindStruct = { link = 'Type' },
+  CmpItemKindEvent = { fg = c_flashlight },
+  CmpItemKindInterface = { fg = c_flashlight },
+  CmpItemKindFile = { link = 'Special' },
+  CmpItemKindFolder = { link = 'Directory' },
+  CmpItemKindUnit = { fg = c_cerulean },
+  CmpItemKind = { fg = c_smoke },
+  CmpItemMenu = { link = 'Pmenu' },
+  CmpVirtualText = { fg = c_steel, italic = true },
 
-	-- copilot.lua
-	CopilotSuggestion = { fg = palette.steel, italic = true },
-	CopilotAnnotation = { fg = palette.steel, italic = true },
+  -- gitsigns
+  GitSignsAdd = { fg = c_tea_blend },
+  GitSignsAddInline = { fg = c_tea, bg = c_tea_blend },
+  GitSignsAddLnInline = { fg = c_tea, bg = c_tea_blend },
+  GitSignsAddPreview = { link = 'DiffAdded' },
+  GitSignsChange = { fg = c_lavender_blend },
+  GitSignsChangeInline = { fg = c_lavender, bg = c_lavender_blend },
+  GitSignsChangeLnInline = { fg = c_lavender, bg = c_lavender_blend, },
+  GitSignsCurrentLineBlame = { fg = c_smoke, bg = c_smoke_blend },
+  GitSignsDelete = { fg = c_wine },
+  GitSignsDeleteInline = { fg = c_scarlet, bg = c_scarlet_blend },
+  GitSignsDeleteLnInline = { fg = c_scarlet, bg = c_scarlet_blend },
+  GitSignsDeletePreview = { fg = c_scarlet, bg = c_wine_blend },
+  GitSignsDeleteVirtLnInLine = { fg = c_scarlet, bg = c_scarlet_blend, },
+  GitSignsUntracked = { fg = c_scarlet_blend },
+  GitSignsUntrackedLn = { bg = c_scarlet_blend },
+  GitSignsUntrackedNr = { fg = c_pink },
 
-	-- statusline plugin
-	StatusLineDiagnosticError = { fg = palette.wine, bg = palette.deepsea },
-	StatusLineDiagnosticHint = { fg = palette.pigeon, bg = palette.deepsea },
-	StatusLineDiagnosticInfo = { fg = palette.smoke, bg = palette.deepsea },
-	StatusLineDiagnosticWarn = { fg = palette.earth, bg = palette.deepsea },
-	StatusLineFaded = { fg = palette.pigeon, bg = palette.deepsea },
-	StatusLineGitAdded = { fg = palette.tea, bg = palette.deepsea },
-	StatusLineGitChanged = { fg = palette.lavender, bg = palette.deepsea },
-	StatusLineGitRemoved = { fg = palette.scarlet, bg = palette.deepsea },
-	StatusLineHeader = { fg = palette.jeans, bg = palette.steel },
-	StatusLineHeaderModified = { fg = palette.jeans, bg = palette.pink },
-	StatusLineStrong = { fg = palette.white, bg = palette.deepsea, bold = true },
+  -- fugitive
+  fugitiveHash = { link = 'gitHash' },
+  fugitiveHeader = { link = 'Title' },
+  fugitiveHeading = { fg = c_orange, bold = true },
+  fugitiveHelpTag = { fg = c_orange },
+  fugitiveSymbolicRef = { fg = c_yellow },
+  fugitiveStagedModifier = { fg = c_tea, bold = true },
+  fugitiveUnstagedModifier = { fg = c_scarlet, bold = true },
+  fugitiveUntrackedModifier = { fg = c_pigeon, bold = true },
+  fugitiveStagedHeading = { fg = c_aqua, bold = true },
+  fugitiveUnstagedHeading = { fg = c_ochre, bold = true },
+  fugitiveUntrackedHeading = { fg = c_lavender, bold = true },
 
-	-- glance.nvim
-	GlanceBorderTop = { link = "WinSeparator" },
-	GlancePreviewBorderBottom = { link = "GlanceBorderTop" },
-	GlanceListBorderBottom = { link = "GlanceBorderTop" },
-	GlanceFoldIcon = { link = "Comment" },
-	GlanceListCount = { fg = palette.jeans, bg = palette.pigeon },
-	GlanceListCursorLine = { bg = palette.deepsea },
-	GlanceListNormal = { bg = palette.deepsea },
-	GlanceListMatch = { bg = palette.thunder, bold = true },
-	GlancePreviewNormal = { link = "Pmenu" },
-	GlanceWinBarFilename = {
-		fg = palette.pigeon,
-		bg = palette.deepsea,
-		bold = true,
-	},
-	GlanceWinBarFilepath = { fg = palette.pigeon, bg = palette.deepsea },
-	GlanceWinBarTitle = {
-		fg = palette.pigeon,
-		bg = palette.deepsea,
-		bold = true,
-	},
-	-- }}}2
+  -- telescope
+  TelescopeNormal = { link = 'NormalFloat' },
+  TelescopePromptNormal = { bg = c_deepsea },
+  TelescopeTitle = { fg = c_space, bg = c_turquoise, bold = true },
+  TelescopePromptTitle = { fg = c_space, bg = c_yellow, bold = true, },
+  TelescopeBorder = { fg = c_smoke, bg = c_ocean },
+  TelescopePromptBorder = { fg = c_smoke, bg = c_deepsea },
+  TelescopeSelection = { fg = c_smoke, bg = c_thunder },
+  TelescopeMultiIcon = { fg = c_pigeon, bold = true },
+  TelescopeMultiSelection = { bg = c_thunder, bold = true },
+  TelescopePreviewLine = { bg = c_thunder },
+  TelescopeMatching = { link = 'Search' },
+  TelescopePromptCounter = { link = 'Comment' },
+  TelescopePromptPrefix = { fg = c_orange },
+  TelescopeSelectionCaret = { fg = c_orange, bg = c_thunder },
 
-	-- Extra {{{2
-	Yellow = { fg = palette.yellow },
-	Earth = { fg = palette.earth },
-	Orange = { fg = palette.orange },
-	Scarlet = { fg = palette.scarlet },
-	Ochre = { fg = palette.ochre },
-	Wine = { fg = palette.wine },
-	Pink = { fg = palette.pink },
-	Tea = { fg = palette.tea },
-	Flashlight = { fg = palette.flashlight },
-	Aqua = { fg = palette.aqua },
-	Cerulean = { fg = palette.cerulean },
-	SkyBlue = { fg = palette.skyblue },
-	Turquoise = { fg = palette.turquoise },
-	Lavender = { fg = palette.lavender },
-	Magenta = { fg = palette.magenta },
-	Purple = { fg = palette.purple },
-	Thunder = { fg = palette.thunder },
-	White = { fg = palette.white },
-	Beige = { fg = palette.beige },
-	Pigeon = { fg = palette.pigeon },
-	Steel = { fg = palette.steel },
-	Smoke = { fg = palette.smoke },
-	Iron = { fg = palette.iron },
-	Deepsea = { fg = palette.deepsea },
-	Ocean = { fg = palette.ocean },
-	Space = { fg = palette.space },
-	Black = { fg = palette.black },
-	-- }}}2
+  -- nvim-dap-ui
+  DapUIBreakpointsCurrentLine = { link = 'CursorLineNr' },
+  DapUIBreakpointsInfo = { fg = c_tea },
+  DapUIBreakpointsPath = { link = 'Directory' },
+  DapUICurrentFrameName = { fg = c_tea, bold = true },
+  DapUIDecoration = { fg = c_yellow },
+  DapUIFloatBorder = { link = 'FloatBorder' },
+  DapUINormalFloat = { link = 'NormalFloat' },
+  DapUILineNumber = { link = 'LineNr' },
+  DapUIModifiedValue = { fg = c_skyblue, bold = true },
+  DapUIPlayPause = { fg = c_tea },
+  DapUIPlayPauseNC = { fg = c_tea },
+  DapUIRestart = { fg = c_tea },
+  DapUIRestartNC = { fg = c_tea },
+  DapUIScope = { fg = c_orange },
+  DapUISource = { link = 'Directory' },
+  DapUIStepBack = { fg = c_lavender },
+  DapUIStepBackRC = { fg = c_lavender },
+  DapUIStepInto = { fg = c_lavender },
+  DapUIStepIntoRC = { fg = c_lavender },
+  DapUIStepOut = { fg = c_lavender },
+  DapUIStepOutRC = { fg = c_lavender },
+  DapUIStepOver = { fg = c_lavender },
+  DapUIStepOverRC = { fg = c_lavender },
+  DapUIStop = { fg = c_scarlet },
+  DapUIStopNC = { fg = c_scarlet },
+  DapUIStoppedThread = { fg = c_tea },
+  DapUIThread = { fg = c_aqua },
+  DapUIType = { link = 'Type' },
+  DapUIVariable = { link = 'Identifier' },
+  DapUIWatchesEmpty = { link = 'Comment' },
+  DapUIWatchesError = { link = 'Error' },
+  DapUIWatchesValue = { fg = c_orange },
+
+  -- vimtex
+  texArg = { fg = c_pigeon },
+  texArgNew = { fg = c_skyblue },
+  texCmd = { fg = c_yellow },
+  texCmdBib = { link = 'texCmd' },
+  texCmdClass = { link = 'texCmd' },
+  texCmdDef = { link = 'texCmd' },
+  texCmdE3 = { link = 'texCmd' },
+  texCmdEnv = { link = 'texCmd' },
+  texCmdEnvM = { link = 'texCmd' },
+  texCmdError = { link = 'ErrorMsg' },
+  texCmdFatal = { link = 'ErrorMsg' },
+  texCmdGreek = { link = 'texCmd' },
+  texCmdInput = { link = 'texCmd' },
+  texCmdItem = { link = 'texCmd' },
+  texCmdLet = { link = 'texCmd' },
+  texCmdMath = { link = 'texCmd' },
+  texCmdNew = { link = 'texCmd' },
+  texCmdPart = { link = 'texCmd' },
+  texCmdRef = { link = 'texCmd' },
+  texCmdSize = { link = 'texCmd' },
+  texCmdStyle = { link = 'texCmd' },
+  texCmdTitle = { link = 'texCmd' },
+  texCmdTodo = { link = 'texCmd' },
+  texCmdType = { link = 'texCmd' },
+  texCmdVerb = { link = 'texCmd' },
+  texComment = { link = 'Comment' },
+  texDefParm = { link = 'Keyword' },
+  texDelim = { fg = c_pigeon },
+  texE3Cmd = { link = 'texCmd' },
+  texE3Delim = { link = 'texDelim' },
+  texE3Opt = { link = 'texOpt' },
+  texE3Parm = { link = 'texParm' },
+  texE3Type = { link = 'texCmd' },
+  texEnvOpt = { link = 'texOpt' },
+  texError = { link = 'ErrorMsg' },
+  texFileArg = { link = 'Directory' },
+  texFileOpt = { link = 'texOpt' },
+  texFilesArg = { link = 'texFileArg' },
+  texFilesOpt = { link = 'texFileOpt' },
+  texLength = { fg = c_lavender },
+  texLigature = { fg = c_pigeon },
+  texOpt = { fg = c_smoke },
+  texOptEqual = { fg = c_orange },
+  texOptSep = { fg = c_orange },
+  texParm = { fg = c_pigeon },
+  texRefArg = { fg = c_lavender },
+  texRefOpt = { link = 'texOpt' },
+  texSymbol = { fg = c_orange },
+  texTitleArg = { link = 'Title' },
+  texVerbZone = { fg = c_pigeon },
+  texZone = { fg = c_pigeon },
+  texMathArg = { fg = c_pigeon },
+  texMathCmd = { link = 'texCmd' },
+  texMathSub = { fg = c_pigeon },
+  texMathOper = { fg = c_orange },
+  texMathZone = { fg = c_yellow },
+  texMathDelim = { fg = c_smoke },
+  texMathError = { link = 'Error' },
+  texMathGroup = { fg = c_pigeon },
+  texMathSuper = { fg = c_pigeon },
+  texMathSymbol = { fg = c_yellow },
+  texMathZoneLD = { fg = c_pigeon },
+  texMathZoneLI = { fg = c_pigeon },
+  texMathZoneTD = { fg = c_pigeon },
+  texMathZoneTI = { fg = c_pigeon },
+  texMathCmdText = { link = 'texCmd' },
+  texMathZoneEnv = { fg = c_pigeon },
+  texMathArrayArg = { fg = c_yellow },
+  texMathCmdStyle = { link = 'texCmd' },
+  texMathDelimMod = { fg = c_smoke },
+  texMathSuperSub = { fg = c_smoke },
+  texMathDelimZone = { fg = c_pigeon },
+  texMathStyleBold = { fg = c_smoke, bold = true },
+  texMathStyleItal = { fg = c_smoke, italic = true },
+  texMathEnvArgName = { fg = c_lavender },
+  texMathErrorDelim = { link = 'Error' },
+  texMathDelimZoneLD = { fg = c_steel },
+  texMathDelimZoneLI = { fg = c_steel },
+  texMathDelimZoneTD = { fg = c_steel },
+  texMathDelimZoneTI = { fg = c_steel },
+  texMathZoneEnsured = { fg = c_pigeon },
+  texMathCmdStyleBold = { fg = c_yellow, bold = true },
+  texMathCmdStyleItal = { fg = c_yellow, italic = true },
+  texMathStyleConcArg = { fg = c_pigeon },
+  texMathZoneEnvStarred = { fg = c_pigeon },
+
+  -- lazy.nvim
+  LazyDir = { link = 'Directory' },
+  LazyUrl = { link = 'htmlLink' },
+  LazySpecial = { fg = c_orange },
+  LazyCommit = { fg = c_tea },
+  LazyReasonFt = { fg = c_pigeon },
+  LazyReasonCmd = { fg = c_yellow },
+  LazyReasonPlugin = { fg = c_turquoise },
+  LazyReasonSource = { fg = c_orange },
+  LazyReasonRuntime = { fg = c_lavender },
+  LazyReasonEvent = { fg = c_flashlight },
+  LazyReasonKeys = { fg = c_pink },
+  LazyButton = { bg = c_ocean },
+  LazyButtonActive = { bg = c_thunder, bold = true },
+  LazyH1 = { fg = c_space, bg = c_yellow, bold = true },
+
+  -- copilot.lua
+  CopilotSuggestion = { fg = c_steel, italic = true },
+  CopilotAnnotation = { fg = c_steel, italic = true },
+
+  -- statusline plugin
+  StatusLineDiagnosticError = { fg = c_wine, bg = c_deepsea },
+  StatusLineDiagnosticHint = { fg = c_pigeon, bg = c_deepsea },
+  StatusLineDiagnosticInfo = { fg = c_smoke, bg = c_deepsea },
+  StatusLineDiagnosticWarn = { fg = c_yellow, bg = c_deepsea },
+  StatusLineGitAdded = { fg = c_tea, bg = c_deepsea },
+  StatusLineGitChanged = { fg = c_lavender, bg = c_deepsea },
+  StatusLineGitRemoved = { fg = c_scarlet, bg = c_deepsea },
+  StatusLineHeader = { fg = c_jeans, bg = c_pigeon },
+  StatusLineHeaderModified = { fg = c_jeans, bg = c_ochre },
+
+  -- }}}2
+
+  -- Extra {{{2
+  Yellow = { fg = c_yellow },
+  Earth = { fg = c_earth },
+  Orange = { fg = c_orange },
+  Scarlet = { fg = c_scarlet },
+  Ochre = { fg = c_ochre },
+  Wine = { fg = c_wine },
+  Pink = { fg = c_pink },
+  Tea = { fg = c_tea },
+  Flashlight = { fg = c_flashlight },
+  Aqua = { fg = c_aqua },
+  Cerulean = { fg = c_cerulean },
+  SkyBlue = { fg = c_skyblue },
+  Turquoise = { fg = c_turquoise },
+  Lavender = { fg = c_lavender },
+  Magenta = { fg = c_magenta },
+  Purple = { fg = c_purple },
+  Thunder = { fg = c_thunder },
+  White = { fg = c_smoke },
+  Beige = { fg = c_beige },
+  Pigeon = { fg = c_pigeon },
+  Steel = { fg = c_steel },
+  Smoke = { fg = c_smoke },
+  Iron = { fg = c_iron },
+  Deepsea = { fg = c_deepsea },
+  Ocean = { fg = c_ocean },
+  Space = { fg = c_space },
+  Black = { fg = c_black },
+  -- }}}2
 }
 -- }}}1
 
 -- Set highlight groups {{{1
-vim.cmd.hi("clear")
-for termcolor, hex in pairs(termcolors) do
-	vim.g[termcolor] = hex
+for name, attr in pairs(hlgroups) do
+  attr.ctermbg = attr.bg and attr.bg[2]
+  attr.ctermfg = attr.fg and attr.fg[2]
+  attr.bg = attr.bg and attr.bg[1]
+  attr.fg = attr.fg and attr.fg[1]
+  attr.sp = attr.sp and attr.sp[1]
+  vim.api.nvim_set_hl(0, name, attr)
 end
-for hlgroup_name, hlgroup_attr in pairs(hlgroups) do
-	vim.api.nvim_set_hl(0, hlgroup_name, hlgroup_attr)
-end
-vim.g.colors_name = "cockatoo"
 -- }}}1
 
--- vim:ts=2:sw=2:sts=2:fdm=marker:fdl=0
+-- vim:ts=2:sw=2:sts=2:fdm=marker
