@@ -24,7 +24,7 @@ return {
 				end,
 			},
 			bufdelete = { enabled = false },
-			scroll = {},
+			-- scroll = {},
 			dashboard = {
 				enabled = true,
 				preset = {
@@ -105,7 +105,7 @@ return {
 			picker = {
 				formatters = {
 					file = {
-						truncate = 120,
+						truncate = 60,
 					},
 				},
 				win = {
@@ -142,6 +142,7 @@ return {
 				jumplist = true,
 				modes = { "n" },
 			},
+			zen = {},
 		},
 		keys = {
 			{

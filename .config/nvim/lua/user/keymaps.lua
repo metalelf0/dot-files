@@ -130,11 +130,11 @@ keymap("n", "<leader>?", function()
 end, { desc = "Search text in git files" })
 
 keymap("n", "<leader>p", function()
-	Snacks.picker.files({ layout = "ivy" })
+	Snacks.picker.files({ layout = "telescope" })
 end, { desc = "Find files" })
 
 keymap("n", "<leader>P", function()
-	Snacks.picker.git_files({ layout = "ivy" })
+	Snacks.picker.git_files({ layout = "telescope" })
 end, { desc = "Find (git) files" })
 
 vim.keymap.set("n", "<leader><leader>", function()
@@ -401,6 +401,16 @@ end, { desc = "Python" })
 keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
 keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Horizontal" })
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
+
+-- Window mappings
+
+keymap("n", "<C-w>f", function()
+	require("snacks").zen()
+end, { desc = "Zen window" })
+
+keymap("n", "<C-w>z", function()
+	require("snacks").zen.zoom()
+end, { desc = "Zoom window" })
 
 local status_ok, fun = pcall(require, "user.fun")
 if status_ok then

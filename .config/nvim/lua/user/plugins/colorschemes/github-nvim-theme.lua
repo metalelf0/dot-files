@@ -34,6 +34,10 @@ function M.config()
 
 	require("github-theme").setup({
 		palettes = {
+			-- comments are too dark!
+			github_light = {
+				comment = "#bbbbbb",
+			},
 			github_light_default = {
 				comment = "#bbbbbb",
 			},
@@ -47,6 +51,7 @@ function M.config()
 
 	local setup = [[
     colorscheme @variant@
+    hi Comment guifg='#aaaaaa'
 	]]
 
 	vim.cmd(string.gsub(setup, "@variant@", themer.variant(M)))

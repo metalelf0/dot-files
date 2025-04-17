@@ -5,6 +5,7 @@ local colorscheme = "jellybeans"
 
 local M = {
 	"metalelf0/jellybeans-nvim",
+	enabled = false,
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),

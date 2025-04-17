@@ -7,7 +7,9 @@ return {
 	require("user.plugins.colorschemes.ef-themes"),
 	require("user.plugins.colorschemes.flexoki"),
 	require("user.plugins.colorschemes.gruvbox"),
+	-- remember: only enable one of the next two by using enabled = false for the other
 	require("user.plugins.colorschemes.jellybeans-metalelf0"),
+	require("user.plugins.colorschemes.jellybeans"),
 	require("user.plugins.colorschemes.kanagawa"),
 	require("user.plugins.colorschemes.modus"),
 	require("user.plugins.colorschemes.nightfox"),
@@ -22,6 +24,7 @@ return {
 	require("user.plugins.colorschemes.yorumi"),
 	require("user.plugins.colorschemes.vague"),
 	require("user.plugins.colorschemes.ayu"),
+	require("user.plugins.colorschemes.standard"),
 	-- require("user.plugins.colorschemes.bamboo"),
 	-- require("user.plugins.colorschemes.base16"),
 	-- require("user.plugins.colorschemes.black-metal"),

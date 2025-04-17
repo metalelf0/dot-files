@@ -22,7 +22,7 @@ function create_github_link()
 	file_path_handle:close()
 
 	-- Get the filename inside the current buffer
-	local filename = vim.fn.expand("%")
+	local filename = vim.fn.expand("%:L")
 
 	-- Get the current line number where the cursor is
 	local line_number = vim.fn.line(".")
