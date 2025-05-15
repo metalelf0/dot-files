@@ -5,10 +5,10 @@ M.signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 function M.setup()
 	-- Automatically update diagnostics
 	local signs = {
-		{ name = "DiagnosticSignError", text = "" },
-		{ name = "DiagnosticSignWarn", text = "" },
-		{ name = "DiagnosticSignHint", text = "" },
-		{ name = "DiagnosticSignInfo", text = "" },
+		{ name = "DiagnosticSignError", text = "" },
+		{ name = "DiagnosticSignWarn", text = "" },
+		{ name = "DiagnosticSignHint", text = "" },
+		{ name = "DiagnosticSignInfo", text = "" },
 	}
 
 	-- for _, sign in ipairs(signs) do
@@ -25,10 +25,10 @@ function M.setup()
 		},
 	})
 
-	-- for type, icon in pairs(M.signs) do
-	-- 	local hl = "DiagnosticSign" .. type
-	-- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-	-- end
+	for type, icon in pairs(M.signs) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+	end
 
 	local function disable_virtual_lines()
 		vim.diagnostic.config({

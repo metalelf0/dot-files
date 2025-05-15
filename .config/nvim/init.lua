@@ -12,6 +12,7 @@ require("user.digraphs")
 require("user.fvim")
 require("user.fun")
 require("user.git")
+require("user.clickup")
 vim.cmd([[ packadd cfilter ]])
 
 local config = require("user.config")

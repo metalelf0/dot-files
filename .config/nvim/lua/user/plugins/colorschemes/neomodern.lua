@@ -11,25 +11,31 @@ local M = {
 }
 
 M.supported_variants = {
-	"iceclimber",
-	"coffeecat",
-	"darkforest",
-	"campfire",
-	"roseprime",
-	"daylight",
+	"iceclimber-light",
+	"gyokuro-light",
+	"hojicha-light",
+	"roseprime-light",
+	"iceclimber-dark",
+	"gyokuro-dark",
+	"hojicha-dark",
+	"roseprime-dark",
 }
 
-M.default_variant = "iceclimber"
+M.default_variant = "iceclimber-dark"
 
 M.config = function()
 	if config.colorscheme ~= "neomodern" then
 		return false
 	end
 
+	local theme, variant = string.match(themer.variant(M), "([^-]+)-([^-]+)")
+
 	require("neomodern").setup({
-		style = themer.variant(M),
-		ui = {
-			telescope = "borderless",
+		theme = theme,
+		variant = variant,
+		transparent = config.transparent,
+		diagnostics = {
+			undercurl = false,
 		},
 	})
 	require("neomodern").load()

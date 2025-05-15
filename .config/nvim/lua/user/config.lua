@@ -1,9 +1,9 @@
 return {
-	colorscheme = "jellybeans",
-	variant = "",
+	colorscheme = "kanso",
+	variant = "ink",
 	transparent = false, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	autoformat_enabled = true,
-	filemanager = "oil", -- supported: mini.files, oil, neo-tree, snacks
+	filemanager = "mini.files", -- supported: mini.files, oil, neo-tree, snacks
 	keymapper = "which-key", -- supported: mini.clue, which-key
 	completion_engine = "blink-cmp", -- supported: blink-cmp, nvim-cmp
 	bufferline_plugin = "bufferline", -- supported: barbar, bufferline

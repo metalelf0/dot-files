@@ -52,8 +52,9 @@ function M.config()
 		svelte = {},
 		eslint = {},
 		html = {},
-		elixirls = {
-			cmd = { os.getenv("HOME") .. "/.local/share/nvim/mason/bin/elixir-ls" },
+		typos_lsp = {},
+		harper_ls = {
+			autostart = false,
 		},
 		jsonls = {
 			on_new_config = function(new_config)
@@ -150,29 +151,39 @@ function M.config()
 				},
 			},
 		},
-		-- ruby_lsp = {
-		-- 	default_config = {
-		-- 		cmd = { "bundle", "exec", "ruby-lsp" },
-		-- 		filetypes = { "ruby" },
-		-- 		root_dir = require("lspconfig").util.root_pattern("Gemfile", ".git", vim.fn.getcwd()),
-		-- 		init_options = {
-		-- 			formatter = "auto",
-		-- 			single_file_support = true,
-		-- 		},
-		-- 		settings = {},
-		-- 	},
-		-- 	commands = {
-		-- 		FormatRuby = {
-		-- 			function()
-		-- 				vim.lsp.buf.format({
-		-- 					name = "ruby_lsp",
-		-- 					async = true,
-		-- 				})
-		-- 			end,
-		-- 			description = "Format using ruby-lsp",
-		-- 		},
-		-- 	},
-		-- },
+		ruby_lsp = {
+			init_options = {
+				cmd = { "bundle", "exec", "ruby-lsp" },
+				addonSettings = {
+					["Ruby LSP Rails"] = {
+						enablePendingMigrationsPrompt = false,
+					},
+				},
+				formatter = "auto",
+				single_file_support = true,
+			},
+			-- default_config = {
+			-- 	cmd = { "bundle", "exec", "ruby-lsp" },
+			-- 	filetypes = { "ruby" },
+			-- 	root_dir = require("lspconfig").util.root_pattern("Gemfile", ".git", vim.fn.getcwd()),
+			-- 	init_options = {
+			-- 		formatter = "auto",
+			-- 		single_file_support = true,
+			-- 	},
+			-- 	settings = {},
+			-- },
+			-- commands = {
+			-- 	FormatRuby = {
+			-- 		function()
+			-- 			vim.lsp.buf.format({
+			-- 				name = "ruby_lsp",
+			-- 				async = true,
+			-- 			})
+			-- 		end,
+			-- 		description = "Format using ruby-lsp",
+			-- 	},
+			-- },
+		},
 	}
 
 	local capabilities = vim.lsp.protocol.make_client_capabilities()

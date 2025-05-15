@@ -13,7 +13,7 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("user.plugins", {
 	dev = {
-		path = "/Users/andreaschiavini/Documents/codice_elf0/",
+		path = "/Users/andrea.schiavini/Documents/codice_elf0/",
 		fallback = true, -- Fallback to git when local plugin doesn't exists
 	},
 	concurrency = 64,

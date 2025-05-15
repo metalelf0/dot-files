@@ -9,7 +9,6 @@ M.tools = {
 	"stylua",
 	"selene",
 	"luacheck",
-	"elixir-ls",
 	"eslint_d",
 	"shellcheck",
 	"deno",
