@@ -25,7 +25,6 @@ return {
 		---@diagnostic disable-next-line: missing-fields
 		opts = {
 			highlight = { enable = true },
-			indent = { enable = false, disable = { "yaml" } },
 			ensure_installed = {
 				"bash",
 				"c",
@@ -84,6 +83,7 @@ return {
 					node_decremental = "<bs>",
 				},
 			},
+			indent = { enable = true },
 			textobjects = {
 				move = {
 					enable = true,

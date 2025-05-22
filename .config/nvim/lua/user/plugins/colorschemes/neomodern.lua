@@ -30,6 +30,8 @@ M.config = function()
 
 	local theme, variant = string.match(themer.variant(M), "([^-]+)-([^-]+)")
 
+	vim.o.background = variant
+
 	require("neomodern").setup({
 		theme = theme,
 		variant = variant,

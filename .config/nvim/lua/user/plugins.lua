@@ -42,4 +42,11 @@ return {
 			picker = "snacks",
 		},
 	},
+	{
+		"metalelf0/git-utils.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("git-utils").setup()
+		end,
+	},
 }
