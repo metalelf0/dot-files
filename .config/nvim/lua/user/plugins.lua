@@ -44,6 +44,7 @@ return {
 	},
 	{
 		"metalelf0/git-utils.nvim",
+		dev = true,
 		event = "VeryLazy",
 		config = function()
 			require("git-utils").setup()

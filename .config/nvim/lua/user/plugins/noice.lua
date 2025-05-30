@@ -31,9 +31,9 @@ M.config = function()
 		-- 	view = "mini",
 		-- 	view_search = false,
 		-- },
-		-- cmdline = {
-		-- 	view = "cmdline",
-		-- },
+		cmdline = {
+			view = "cmdline",
+		},
 		-- you can enable a preset for easier configuration
 		presets = {
 			bottom_search = true, -- use a classic bottom cmdline for search

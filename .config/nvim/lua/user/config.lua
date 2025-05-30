@@ -1,6 +1,6 @@
 return {
-	colorscheme = "ef-themes",
-	variant = "ef-tint",
+	colorscheme = "everforest",
+	variant = "",
 	transparent = false, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	autoformat_enabled = true,
 	filemanager = "mini.files", -- supported: mini.files, oil, neo-tree, snacks
