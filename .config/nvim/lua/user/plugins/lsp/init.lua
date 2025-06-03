@@ -212,6 +212,8 @@ function M.config()
 		opts = vim.tbl_deep_extend("force", {}, options, opts or {})
 		require("lspconfig")[server].setup(opts)
 	end
+
+	vim.lsp.set_log_level(config.lsp.log_level)
 end
 
 return M

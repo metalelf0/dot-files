@@ -62,4 +62,5 @@ return {
 	-- require("user.plugins.colorschemes.vscode_modern"),
 	require("user.plugins.colorschemes.zenbones"),
 	require("user.plugins.colorschemes.black-metal"),
+	require("user.plugins.colorschemes.eldritch"),
 }

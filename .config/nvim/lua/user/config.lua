@@ -1,6 +1,6 @@
 return {
-	colorscheme = "everforest",
-	variant = "",
+	colorscheme = "kanagawa",
+	variant = "wave",
 	transparent = false, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	autoformat_enabled = true,
 	filemanager = "mini.files", -- supported: mini.files, oil, neo-tree, snacks
@@ -19,5 +19,8 @@ return {
 		obsidian = {
 			enabled = true,
 		},
+	},
+	lsp = {
+		log_level = "error", -- { debug info warn error off trace }
 	},
 }
