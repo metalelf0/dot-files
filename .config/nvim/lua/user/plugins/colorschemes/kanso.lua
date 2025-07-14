@@ -10,7 +10,7 @@ local M = {
 	keys = themer.keys(colorscheme),
 }
 
-M.supported_variants = { "zen", "pearl", "ink" }
+M.supported_variants = { "zen", "pearl", "ink", "mist" }
 M.default_variant = "zen"
 
 M.config = function()
@@ -46,7 +46,7 @@ M.config = function()
 	if config.variant == "pearl" then
 		vim.cmd("set background=light")
 	end
-	vim.cmd("colorscheme kanso")
+	vim.cmd("colorscheme kanso-" .. themer.variant(M))
 end
 
 return M

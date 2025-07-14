@@ -222,6 +222,13 @@ return {
 				end,
 				desc = "Select Scratch Buffer",
 			},
+			{
+				"<leader>uz",
+				function()
+					Snacks.zen.zen()
+				end,
+				desc = "Zen",
+			},
 		},
 	},
 }

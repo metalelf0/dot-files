@@ -13,7 +13,6 @@ local M = {
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
-	dev = true,
 }
 
 M.supported_variants = { "mocha", "latte", "frappe", "macchiato" }
@@ -72,9 +71,11 @@ M.config = function()
 			noice = true,
 			notify = true,
 			octo = true,
+			semantic_tokens = true,
 			snacks = { enabled = true, indent_scope_color = "lavender" },
 			telescope = true,
 			treesitter = true,
+			treesitter_context = true,
 			ufo = true,
 			which_key = true,
 		},

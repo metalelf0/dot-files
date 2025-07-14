@@ -45,6 +45,11 @@ M.config = function()
 		styles = {
 			transparency = config.transparent,
 		},
+		palette = {
+			main = {
+				base = "#0a0a0a",
+			},
+		},
 		groups = {
 			headings = {
 				h1 = "iris",

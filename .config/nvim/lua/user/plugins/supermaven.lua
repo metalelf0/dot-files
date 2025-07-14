@@ -3,4 +3,9 @@ return {
 	config = function()
 		require("supermaven-nvim").setup({})
 	end,
+	keys = {
+		"<leader>As",
+		"SupermavenToggle",
+		desc = "Toggle Supermaven",
+	},
 }

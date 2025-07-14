@@ -8,16 +8,22 @@ return {
 	dependencies = "rafamadriz/friendly-snippets",
 
 	-- use a release tag to download pre-built binaries
-	version = "v1.*",
+	version = "*",
 	-- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 	-- build = 'cargo build --release',
 
 	opts = {
+		snippets = { preset = "luasnip" },
+		signature = { enabled = true },
+		appearance = {
+			use_nvim_cmp_as_default = false,
+			nerd_font_variant = "normal",
+		},
 		sources = {
-			default = { "lsp", "snippets", "buffer", "path", "omni" },
+			default = { "lsp", "path", "snippets", "buffer" },
 			providers = {
-				lsp = {
-					fallbacks = {},
+				cmdline = {
+					min_keyword_length = 2,
 				},
 			},
 		},
@@ -37,7 +43,37 @@ return {
 				"fallback",
 			},
 		},
-		snippets = { preset = "luasnip" },
+		cmdline = {
+			enabled = false,
+			completion = { menu = { auto_show = true } },
+			keymap = {
+				["<CR>"] = { "accept_and_enter", "fallback" },
+			},
+		},
+		completion = {
+			menu = {
+				border = nil,
+				scrolloff = 1,
+				scrollbar = false,
+				draw = {
+					columns = {
+						{ "kind_icon" },
+						{ "label", "label_description", gap = 1 },
+						{ "kind" },
+						{ "source_name" },
+					},
+				},
+			},
+			documentation = {
+				window = {
+					border = nil,
+					scrollbar = false,
+					winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
+				},
+				auto_show = false,
+				auto_show_delay_ms = 200,
+			},
+		},
 	},
 	opts_extend = { "sources.default" },
 }

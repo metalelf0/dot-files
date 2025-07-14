@@ -18,6 +18,10 @@ M.commands.EditWeztermConfig =
 	{ command = ":e ~/.config/wezterm/wezterm.lua", description = "🔧 Edit Wezterm config" }
 M.commands.EditGhosttyConfig = { command = ":e ~/.config/ghostty/config", description = "👻 Edit Ghostty config" }
 M.commands.SourceCurrentLuaFile = { command = ":luafile %", description = "🏄 Lua: source current file" }
+M.commands.EditLspLog =
+	{ command = ":e " .. core.get_homedir() .. "/.local/state/nvim/lsp.log", description = " 🧰 Edit LSP Log" }
+M.commands.EmptyLspLog =
+	{ command = "!echo > " .. core.get_homedir() .. "/.local/state/nvim/lsp.log", description = "◻️ Empty LSP Log" }
 
 M.run = function()
 	vim.ui.select(vim.tbl_keys(M.commands), {

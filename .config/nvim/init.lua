@@ -19,7 +19,8 @@ local config = require("user.config")
 if config.keymapper == "which-key" then
 	local which_key = require("which-key")
 	local mappings = {
-		{ "<leader>P", group = "Packer / Projects", nowait = true, remap = false },
+		{ "<leader>A", group = "AI", nowait = true, remap = false },
+		{ "<leader>P", group = "Projects", nowait = true, remap = false },
 		{ "<leader>b", group = "Buffers", nowait = true, remap = false },
 		{ "<leader>bc", group = "Close", nowait = true, remap = false },
 		{ "<leader>c", group = "Cursors", nowait = true, remap = false },
@@ -29,6 +30,9 @@ if config.keymapper == "which-key" then
 		{ "<leader>j", group = "Test / join", nowait = true, remap = false },
 		{ "<leader>l", group = "LSP", nowait = true, remap = false },
 		{ "<leader>o", group = "Obsidian", nowait = true, remap = false },
+		{ "<leader>od", group = "Obsidian - dailies", nowait = true, remap = false },
+		{ "<leader>ot", group = "Obsidian - tasks", nowait = true, remap = false },
+		{ "<leader>otl", group = "Obsidian - tasks - list", nowait = true, remap = false },
 		{ "<leader>r", group = "Refactorings", nowait = true, remap = false },
 		{ "<leader>s", group = "Search", nowait = true, remap = false },
 		{ "<leader>t", group = "Terminal", nowait = true, remap = false },
@@ -45,3 +49,5 @@ if not vim.g.colors_name and config.colorscheme ~= "default" then
 		vim.cmd([[ hi @variable.member.ruby gui='bold' ]]) -- bolder @variables
 	end
 end
+
+-- vim.lsp.enable()

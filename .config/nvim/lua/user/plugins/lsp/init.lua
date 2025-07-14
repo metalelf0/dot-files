@@ -4,7 +4,7 @@ local config = require("user.config")
 
 local M = {
 	"neovim/nvim-lspconfig",
-	event = "BufReadPre",
+	-- event = "BufReadPre",
 	dependencies = {
 		(config.completion_engine == "nvim-cmp" and "hrsh7th/cmp-nvim-lsp" or null),
 		(config.completion_engine == "blink-cmp" and "saghen/blink.cmp" or null),
@@ -38,7 +38,9 @@ function M.config()
 		client.server_capabilities.definitionProvider = true
 
 		-- disable semanticTokensProvider cause it's giving me headache with ruby_ls
-		client.server_capabilities.semanticTokensProvider = nil
+		-- NOTE: no! It shouldn't be done this way!
+		-- one should NOT tweak server.capabilities in on_attach. Doing so inside on_init() would be fine.
+		-- client.server_capabilities.semanticTokensProvider = nil
 	end
 
 	---@type lspconfig.options

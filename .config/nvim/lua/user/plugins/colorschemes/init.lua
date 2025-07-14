@@ -1,7 +1,8 @@
 return {
 	require("user.plugins.colorschemes.arctic"),
 	require("user.plugins.colorschemes.ares"),
-	require("user.plugins.colorschemes.catppuccin"),
+	require("user.plugins.colorschemes.catbox"),
+	-- require("user.plugins.colorschemes.catppuccin"),
 	require("user.plugins.colorschemes.darkbox"),
 	require("user.plugins.colorschemes.everforest"),
 	require("user.plugins.colorschemes.ef-themes"),

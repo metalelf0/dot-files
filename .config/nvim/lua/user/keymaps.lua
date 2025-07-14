@@ -125,6 +125,15 @@ keymap("n", "<leader>/", function()
 	Snacks.picker.grep({ layout = "ivy_split" })
 end, { desc = "Search text" })
 
+keymap("n", "<leader>sf", function()
+	local current_file_path = vim.fn.expand("%:p:h")
+	Snacks.picker.grep({
+		layout = "ivy_split",
+		title = "Grep in " .. vim.fn.expand("%:p:h:t") .. "/",
+		dirs = { current_file_path },
+	})
+end, { desc = "Search text in current folder" })
+
 keymap("n", "<leader>?", function()
 	Snacks.picker.git_grep({ layout = "ivy_split" })
 end, { desc = "Search text in git files" })

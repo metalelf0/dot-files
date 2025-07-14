@@ -1,111 +1,136 @@
 return {
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
 		build = ":TSUpdate",
-		main = "nvim-treesitter.configs",
-		-- event = { "LazyFile", "VeryLazy" },
-		event = { "VeryLazy" },
-		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-		lazy = vim.fn.argc(-1) == 0, -- Load treesitter early when opening a file directly. i.e. calling `nvim file.txt` from the cmdline
-		init = function(plugin)
-			-- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
-			-- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
-			-- no longer trigger the **nvim-treesitter** module to be loaded in time.
-			-- Luckily, the only things that those plugins need are the custom queries, which we make available
-			-- during startup.
-			require("lazy.core.loader").add_to_rtp(plugin)
-			require("nvim-treesitter.query_predicates")
-		end,
-		keys = {
-			{ "<c-space>", desc = "Increment Selection" },
-			{ "<bs>", desc = "Decrement Selection", mode = "x" },
+		event = { "BufReadPost", "BufNewFile" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
-		---@type TSConfig
-		---@diagnostic disable-next-line: missing-fields
-		opts = {
-			highlight = { enable = true },
-			ensure_installed = {
-				"bash",
-				"c",
-				"cmake",
-				"comment",
-				"cpp",
-				"css",
-				"git_config",
-				"gitcommit",
-				"git_rebase",
-				"gitignore",
-				"gitattributes",
-				"go",
-				"gomod",
-				"gosum",
-				"gowork",
-				"graphql",
-				"html",
-				"java",
-				"javascript",
-				"jsdoc",
-				"json",
-				"json5",
-				"jsonc",
-				"latex",
-				"lua",
-				"luadoc",
-				"luap",
-				"markdown",
-				"markdown_inline",
-				"org",
-				"php",
-				"printf",
-				"query",
-				"regex",
-				"ruby",
-				"rust",
-				"scheme",
-				"scss",
-				"sql",
-				"svelte",
-				"toml",
-				"tsx",
-				"typescript",
-				"vim",
-				"vimdoc",
-				"xml",
-				"yaml",
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
-			indent = { enable = true },
-			textobjects = {
-				move = {
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				sync_install = false,
+				ignore_install = { "javascript" },
+				modules = {},
+				highlight = {
 					enable = true,
-					goto_next_start = {
-						["]f"] = "@function.outer",
-						["]c"] = "@class.outer",
-						["]a"] = "@parameter.inner",
-					},
-					goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-					goto_previous_start = {
-						["[f"] = "@function.outer",
-						["[c"] = "@class.outer",
-						["[a"] = "@parameter.inner",
-					},
-					goto_previous_end = {
-						["[F"] = "@function.outer",
-						["[C"] = "@class.outer",
-						["[A"] = "@parameter.inner",
+					additional_vim_regex_highlighting = false,
+				},
+				indent = { enable = true },
+				auto_install = true,
+				ensure_installed = {
+					"bash",
+					"c",
+					"cmake",
+					"comment",
+					"cpp",
+					"css",
+					"git_config",
+					"gitcommit",
+					"git_rebase",
+					"gitignore",
+					"gitattributes",
+					"go",
+					"gomod",
+					"gosum",
+					"gowork",
+					"graphql",
+					"html",
+					"java",
+					"javascript",
+					"jsdoc",
+					"json",
+					"json5",
+					"jsonc",
+					"latex",
+					"lua",
+					"luadoc",
+					"luap",
+					"markdown",
+					"markdown_inline",
+					"org",
+					"php",
+					"printf",
+					"query",
+					"regex",
+					"ruby",
+					"rust",
+					"scheme",
+					"scss",
+					"sql",
+					"svelte",
+					"toml",
+					"tsx",
+					"typescript",
+					"vim",
+					"vimdoc",
+					"xml",
+					"yaml",
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<leader>vv",
+						node_incremental = "+",
+						scope_incremental = false,
+						node_decremental = "_",
 					},
 				},
-			},
-		},
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+
+						keymaps = {
+							-- You can use the capture groups defined in textobjects.scm
+							["af"] = { query = "@function.outer", desc = "around a function" },
+							["if"] = { query = "@function.inner", desc = "inner part of a function" },
+							["ac"] = { query = "@class.outer", desc = "around a class" },
+							["ic"] = { query = "@class.inner", desc = "inner part of a class" },
+							["ai"] = { query = "@conditional.outer", desc = "around an if statement" },
+							["ii"] = { query = "@conditional.inner", desc = "inner part of an if statement" },
+							["al"] = { query = "@loop.outer", desc = "around a loop" },
+							["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
+							["ap"] = { query = "@parameter.outer", desc = "around parameter" },
+							["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
+						},
+						selection_modes = {
+							["@parameter.outer"] = "v", -- charwise
+							["@parameter.inner"] = "v", -- charwise
+							["@function.outer"] = "v", -- charwise
+							["@conditional.outer"] = "V", -- linewise
+							["@loop.outer"] = "V", -- linewise
+							["@class.outer"] = "<c-v>", -- blockwise
+						},
+						include_surrounding_whitespace = false,
+					},
+					move = {
+						enable = true,
+						set_jumps = true, -- whether to set jumps in the jumplist
+						goto_previous_start = {
+							["[f"] = { query = "@function.outer", desc = "Previous function" },
+							["[c"] = { query = "@class.outer", desc = "Previous class" },
+							["[p"] = { query = "@parameter.inner", desc = "Previous parameter" },
+						},
+						goto_next_start = {
+							["]f"] = { query = "@function.outer", desc = "Next function" },
+							["]c"] = { query = "@class.outer", desc = "Next class" },
+							["]p"] = { query = "@parameter.inner", desc = "Next parameter" },
+						},
+					},
+					swap = {
+						enable = true,
+						swap_next = {
+							["<leader>Sa"] = "@parameter.inner",
+						},
+						swap_previous = {
+							["<leader>SA"] = "@parameter.inner",
+						},
+					},
+				},
+			})
+		end,
 	},
 	{
 		"windwp/nvim-ts-autotag",
