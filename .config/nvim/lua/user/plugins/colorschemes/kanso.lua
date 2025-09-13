@@ -18,6 +18,28 @@ M.config = function()
 		return false
 	end
 
+	local customHighlights = function(colors)
+		if themer.variant(M) == "pearl" then
+			return {
+				MarkviewHeading1 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlYellow },
+				MarkviewHeading2 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlBlue },
+				MarkviewHeading3 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlGreen },
+				MarkviewHeading4 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlViolet },
+				MarkviewHeading5 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlOrange },
+				MarkviewHeading6 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlRed },
+			}
+		else
+			return {
+				MarkviewHeading1 = { bg = colors.palette.zenBg1, fg = colors.palette.yellow },
+				MarkviewHeading2 = { bg = colors.palette.zenBg1, fg = colors.palette.blue },
+				MarkviewHeading3 = { bg = colors.palette.zenBg1, fg = colors.palette.green },
+				MarkviewHeading4 = { bg = colors.palette.zenBg1, fg = colors.palette.violet },
+				MarkviewHeading5 = { bg = colors.palette.zenBg1, fg = colors.palette.orange },
+				MarkviewHeading6 = { bg = colors.palette.zenBg1, fg = colors.palette.red },
+			}
+		end
+	end
+
 	require("kanso").setup({
 		compile = false, -- enable compiling the colorscheme
 		undercurl = true, -- enable undercurls
@@ -28,14 +50,27 @@ M.config = function()
 		typeStyle = {},
 		disableItalics = false,
 		transparent = config.transparent, -- do not set background color
-		dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+		dimInactive = config.dimInactive, -- dim inactive window `:h hl-NormalNC`
 		terminalColors = true, -- define vim.g.terminal_color_{0,17}
 		colors = { -- add/modify theme and palette colors
 			palette = {},
 			theme = { zen = {}, pearl = {}, ink = {}, all = {} },
 		},
+		foreground = {
+			dark = "saturated",
+			light = "saturated",
+		},
 		overrides = function(colors) -- add/modify highlights
-			return {}
+			return customHighlights(colors)
+			--    {
+			-- 	Substitute = { bg = colors.palette.oldWhite },
+			-- 	MarkviewHeading1 = { bg = colors.palette.zenBg1, fg = colors.palette.yellow },
+			-- 	MarkviewHeading2 = { bg = colors.palette.zenBg1, fg = colors.palette.blue },
+			-- 	MarkviewHeading3 = { bg = colors.palette.zenBg1, fg = colors.palette.green },
+			-- 	MarkviewHeading4 = { bg = colors.palette.zenBg1, fg = colors.palette.violet },
+			-- 	MarkviewHeading5 = { bg = colors.palette.zenBg1, fg = colors.palette.orange },
+			-- 	MarkviewHeading6 = { bg = colors.palette.zenBg1, fg = colors.palette.red },
+			-- }
 		end,
 		theme = themer.variant(M), -- Load "zen" theme
 		background = { -- map the value of 'background' option to a theme

@@ -3,18 +3,7 @@ vim.opt.linespace = 4
 
 vim.g.gui_font_default_size = 15
 vim.g.gui_font_size = vim.g.gui_font_default_size
-vim.g.gui_font_face = "Iosevka Comfy"
--- vim.g.gui_font_face = "PragmataPro Mono Regular"
--- vim.g.neovide_padding_top = 50
-
-local alpha = function()
-	local vim_transparency = 255 * vim.g.transparency
-	return string.format("%x", math.floor(vim_transparency or 0.8))
-end
-
--- vim.g.neovide_transparency = 0.0
--- vim.g.transparency = 0.9
--- vim.g.neovide_background_color = "#000000" .. alpha()
+vim.g.gui_font_face = "Rec Mono Semicasual"
 
 RefreshGuiFont = function()
 	vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
@@ -34,7 +23,6 @@ end
 ResetGuiFont()
 
 -- Keymaps
-
 local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 

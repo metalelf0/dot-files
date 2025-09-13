@@ -22,6 +22,10 @@ EventLogger.log = function(event_type)
 end
 
 EventLogger.set_keymaps = function()
+	if not EventLogger.enabled then
+		return false
+	end
+
 	local keymap = vim.keymap.set
 
 	keymap("n", "<leader>olc", function()

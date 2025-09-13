@@ -22,7 +22,7 @@ M.specs = {
 		opts = function(_, opts)
 			if (vim.g.colors_name or ""):find("catppuccin") then
 				vim.print("Loading catppuccin highlights...")
-				opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
+				opts.highlights = require("catppuccin.groups.integrations.bufferline").get_theme()
 			end
 		end,
 	},
@@ -96,9 +96,15 @@ M.config = function()
 				crust = "#141617",
 			},
 		},
-		transparent_background = false,
+		float = {
+			transparent = config.transparent, -- enable transparent floating windows
+			solid = true, -- use solid styling for floating windows, see |winborder|
+		},
+		transparent_background = config.transparent,
 		show_end_of_buffer = false,
-		integration_default = false,
+		default_integrations = true,
+		auto_integrations = true,
+		term_colors = true,
 		integrations = {
 			barbecue = { dim_dirname = true, bold_basename = true, dim_context = false, alt_background = false },
 			blink_cmp = true,

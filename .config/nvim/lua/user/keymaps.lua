@@ -411,6 +411,9 @@ keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float
 keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Horizontal" })
 keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
 
+-- Utils
+keymap("n", "<leader>uf", "<cmd>call setreg('+', expand('%'))<cr>", { desc = "Copy current file relative path" })
+
 -- Window mappings
 
 keymap("n", "<C-w>f", function()

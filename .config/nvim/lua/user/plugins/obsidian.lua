@@ -17,11 +17,19 @@ local function list_in_progress_tasks()
 	})
 end
 
+local function list_tasks_done_on(date)
+	require("snacks").picker.grep({
+		cwd = config.obsidian_workspace_path,
+		search = "\\[x\\] #task.*✅ " .. date,
+		exclude = { "templates" },
+	})
+end
+
 local M = {
 	"obsidian-nvim/obsidian.nvim",
 	version = "*",
 	ft = "markdown",
-	cmd = { "ObsidianOpen", "ObsidianToday", "ObsidianYesterday", "ObsidianSearch", "ObsidianNew" },
+	cmd = { "Obsidian" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
@@ -47,7 +55,6 @@ local M = {
 				yesterday = function()
 					local t = os.time() - 86400 -- Start from yesterday
 					local day_of_week = os.date("%w", t)
-					-- %w: Sunday = 0, Monday = 1, ..., Saturday = 6
 					while day_of_week == "0" or day_of_week == "6" do
 						t = t - 86400
 						day_of_week = os.date("%w", t)
@@ -57,7 +64,6 @@ local M = {
 				tomorrow = function()
 					local t = os.time() + 86400 -- Start from tomorrow
 					local day_of_week = os.date("%w", t)
-					-- %w: Sunday = 0, Monday = 1, ..., Saturday = 6
 					while day_of_week == "0" or day_of_week == "6" do
 						t = t + 86400
 						day_of_week = os.date("%w", t)
@@ -73,31 +79,22 @@ local M = {
 			name = "snacks.pick",
 		},
 		-- Optional, key mappings.
-		mappings = {
-			-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-			["gf"] = {
-				action = function()
-					return require("obsidian").util.gf_passthrough()
-				end,
-				opts = { noremap = false, expr = true, buffer = true },
-			},
-		},
 		follow_url_func = function(url)
 			vim.fn.jobstart({ "open", url }) -- Mac OS
 		end,
 	},
 	keys = {
-		{ "<leader>ob", "<cmd>ObsidianBacklinks<cr>", "n", desc = "Obsidian - backlinks" },
-		{ "<leader>of", "<cmd>ObsidianFollowLink<cr>", "n", desc = "Obsidian - follow link" },
-		{ "<leader>on", "<cmd>ObsidianNew<cr>", "n", desc = "Obsidian - new" },
-		{ "<leader>oo", "<cmd>ObsidianQuickSwitch<cr>", "n", desc = "Obsidian - quick switch" },
-		{ "<leader>os", "<cmd>ObsidianSearch<cr>", "n", desc = "Obsidian - search" },
+		{ "<leader>ob", "<cmd>Obsidian backlinks<cr>", "n", desc = "Obsidian - backlinks" },
+		{ "<leader>of", "<cmd>Obsidian follow_link<cr>", "n", desc = "Obsidian - follow link" },
+		{ "<leader>on", "<cmd>Obsidian new<cr>", "n", desc = "Obsidian - new" },
+		{ "<leader>oo", "<cmd>Obsidian quick_switch<cr>", "n", desc = "Obsidian - quick switch" },
+		{ "<leader>os", "<cmd>Obsidian search<cr>", "n", desc = "Obsidian - search" },
 		-- od -> obsidian daily
-		{ "<leader>odt", "<cmd>ObsidianToday<cr>", "n", desc = "Obsidian - today" },
-		{ "<leader>ody", "<cmd>ObsidianYesterday<cr>", "n", desc = "Obsidian - yesterday" },
-		{ "<leader>oT", "<cmd>ObsidianTemplate<cr>", "n", desc = "Obsidian - template" },
-		{ "<leader>oL", "<cmd>ObsidianLinkNew<cr>", "v", desc = "Obsidian - new link" },
-		{ "<leader>ol", "<cmd>ObsidianLink<cr>", "v", desc = "Obsidian - link" },
+		{ "<leader>odt", "<cmd>Obsidian today<cr>", "n", desc = "Obsidian - today" },
+		{ "<leader>ody", "<cmd>Obsidian yesterday<cr>", "n", desc = "Obsidian - yesterday" },
+		{ "<leader>oT", "<cmd>Obsidian template<cr>", "n", desc = "Obsidian - template" },
+		{ "<leader>oL", "<cmd>Obsidian link_new<cr>", "v", desc = "Obsidian - new link" },
+		{ "<leader>ol", "<cmd>Obsidian link<cr>", "v", desc = "Obsidian - link" },
 		-- ot -> obsidian tasks
 		{
 			"<leader>otd",
@@ -138,6 +135,14 @@ local M = {
 			end,
 			"n",
 			desc = "Todo",
+		},
+		{
+			"<leader>otld", -- obsidian tasks list todo
+			function()
+				list_tasks_done_on(os.date("%Y-%m-%d", os.time()))
+			end,
+			"n",
+			desc = "Done",
 		},
 	},
 }

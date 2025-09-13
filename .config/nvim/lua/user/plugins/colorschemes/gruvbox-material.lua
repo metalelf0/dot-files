@@ -24,9 +24,7 @@ function M.config()
 	vim.o.background = bg
 
 	vim.cmd("let g:gruvbox_material_background= " .. bg)
-	-- vim.cmd("let g:gruvbox_material_foreground = 'mix'")
 	vim.cmd("let g:gruvbox_material_ui_contrast = " .. contrast)
-	-- vim.cmd("let g:gruvbox_material_float_style = 'dim'")
 	vim.cmd("let g:gruvbox_material_better_performance=1")
 	if config.transparent then
 		vim.cmd("let g:gruvbox_material_transparent_background=2")

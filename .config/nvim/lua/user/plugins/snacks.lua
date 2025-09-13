@@ -80,7 +80,7 @@ return {
 								})
 							end,
 						},
-						{ icon = " ", key = "s", desc = "Sestore session", section = "session" },
+						{ icon = " ", key = "s", desc = "Restore session", section = "session" },
 						{
 							icon = "󰒲 ",
 							key = "l",
@@ -92,6 +92,7 @@ return {
 					},
 				},
 			},
+			dim = {},
 			image = {
 				doc = {
 					conceal = true,

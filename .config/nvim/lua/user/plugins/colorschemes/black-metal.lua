@@ -48,6 +48,9 @@ M.config = function()
 		diagnostics = {
 			undercurl = false,
 		},
+		highlights = {
+			["@keyword"] = { fg = "$orange", fmt = "bold" },
+		},
 	})
 	require("black-metal").load()
 end

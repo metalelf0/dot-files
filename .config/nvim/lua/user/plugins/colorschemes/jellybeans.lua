@@ -1,5 +1,6 @@
 local config = require("user.config")
 local themer = require("user.themer")
+local utils = require("user.utils")
 
 local colorscheme = "jellybeans"
 
@@ -10,16 +11,45 @@ local M = {
 	keys = themer.keys(colorscheme),
 }
 
-M.supported_variants = { "jellybeans", "jellybeans_muted", "jellybeans_light", "jellybeans_muted_light" }
+M.supported_variants = {
+	"jellybeans",
+	"jellybeans_muted",
+	"jellybeans_mono",
+	"jellybeans_light",
+	"jellybeans_muted_light",
+	"jellybeans_mono_light",
+}
+
+M.variant_names = {
+	jellybeans = "jellybeans",
+	jellybeans_muted = "jellybeans-muted",
+	jellybeans_mono = "jellybeans-mono",
+	jellybeans_light = "jellybeans-light",
+	jellybeans_muted_light = "jellybeans-muted-light",
+	jellybeans_mono_light = "jellybeans-mono-light",
+}
+
+M.dark_variants = { "jellybeans", "jellybeans_muted", "jellybeans_mono" }
+M.light_variants = { "jellybeans_light", "jellybeans_muted_light", "jellybeans_mono_light" }
 M.default_variant = "jellybeans"
+M.default_dark_variant = "jellybeans"
+M.default_light_variant = "jellybeans_light"
 
 M.config = function()
 	if config.colorscheme ~= "jellybeans" then
 		return false
 	end
 
+	local dark_variant = utils.contains(M.dark_variants, themer.variant(M)) and themer.variant(M)
+		or M.default_dark_variant
+	local light_variant = utils.contains(M.light_variants, themer.variant(M)) and themer.variant(M)
+		or M.default_light_variant
+
 	require("jellybeans").setup({
-		style = string.find(themer.variant(M), "light") and "light" or "dark", -- "dark" or "light"
+		background = {
+			dark = dark_variant,
+			light = light_variant,
+		},
 		transparent = config.transparent,
 		italics = true,
 		flat_ui = true, -- toggles "flat UI" for pickers
@@ -31,7 +61,7 @@ M.config = function()
 		on_highlights = function(highlights, colors) end,
 		on_colors = function(colors) end,
 	})
-	vim.cmd.colorscheme("jellybeans")
+	vim.cmd.colorscheme(M.variant_names[themer.variant(M)])
 end
 
 return M

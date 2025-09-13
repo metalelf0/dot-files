@@ -47,7 +47,9 @@ return {
 		dev = true,
 		event = "VeryLazy",
 		config = function()
-			require("git-utils").setup()
+			require("git-utils").setup({
+				github_aliases = { "work", "personal" },
+			})
 		end,
 	},
 }
