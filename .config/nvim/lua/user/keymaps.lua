@@ -407,12 +407,46 @@ keymap("n", "<leader>tp", function()
 	_PYTHON_TOGGLE()
 end, { desc = "Python" })
 
-keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
-keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Horizontal" })
-keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
+if config.terminal_plugin == "toggleterm" then
+	keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Float" })
+	keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "Horizontal" })
+	keymap("n", "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
+else
+	keymap("n", "<leader>th", function()
+		require("snacks").terminal(nil, {
+			auto_insert = true,
+			win = { position = "bottom", height = 0.3, focusable = true, enter = true, show = true },
+		})
+	end, { desc = "Horizontal" })
+	keymap("n", "<leader>tv", function()
+		require("snacks").terminal(nil, {
+			auto_insert = true,
+			win = { position = "right", width = 0.3, focusable = true, enter = true, show = true },
+		})
+	end, { desc = "Vertical" })
+
+	local open_floating_terminal = function()
+		require("snacks").terminal(
+			nil,
+			{ auto_insert = true, win = { height = 0.6, focusable = true, enter = true, show = true } }
+		)
+	end
+
+	keymap("n", "<leader>tf", open_floating_terminal, { desc = "Float" })
+	keymap("n", "", open_floating_terminal, { desc = "Float" })
+	keymap(
+		"t", -- Terminal mode
+		"<C-\\>", -- Mapping (change as you wish)
+		[[<C-\><C-n>:close<CR>]], -- Exit term insert, run command
+		{ noremap = true, silent = true }
+	)
+	-- keymap("t", "<esc><esc>, "<cmd>close<cr>", { desc = "Hide Terminal" })
+end
 
 -- Utils
-keymap("n", "<leader>uf", "<cmd>call setreg('+', expand('%'))<cr>", { desc = "Copy current file relative path" })
+keymap("n", "<leader>uf", function()
+	utils.copy_relpath_with_line()
+end, { desc = "Copy current file relative path" })
 
 -- Window mappings
 

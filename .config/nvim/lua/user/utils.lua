@@ -228,4 +228,49 @@ M.toggle_indent_lines = function()
 	end
 end
 
+M.copy_relpath_with_line = function()
+	local buf = 0
+	local file = vim.api.nvim_buf_get_name(buf)
+	if file == nil or file == "" then
+		vim.notify("No file name for current buffer", vim.log.levels.WARN)
+		return
+	end
+
+	-- Try to find project root via .git; fall back to current working directory
+	local function project_root()
+		local dir = vim.fn.fnamemodify(file, ":p:h")
+		local git_dir = vim.fn.finddir(".git", dir .. ";")
+		if git_dir ~= "" then
+			return vim.fn.fnamemodify(git_dir, ":h")
+		end
+		return vim.loop.cwd() or vim.fn.getcwd()
+	end
+
+	local function abs(path)
+		return vim.fn.fnamemodify(path, ":p")
+	end
+
+	local root = abs(project_root())
+	if root:sub(-1) ~= "/" then
+		root = root .. "/"
+	end
+	local file_abs = abs(file)
+	local rel
+	if file_abs:sub(1, #root) == root then
+		rel = file_abs:sub(#root + 1)
+	else
+		-- If the file isn't under root, at least make it relative to CWD if possible
+		rel = vim.fn.fnamemodify(file, ":.")
+	end
+
+	local line = vim.api.nvim_win_get_cursor(0)[1]
+	local out = string.format("%s:%d", rel, line)
+
+	-- Write to system clipboard register (+). Also try (*) for X11 selection.
+	vim.fn.setreg("+", out)
+	pcall(vim.fn.setreg, "*", out)
+
+	vim.notify("Copied: " .. out, vim.log.levels.INFO)
+end
+
 return M

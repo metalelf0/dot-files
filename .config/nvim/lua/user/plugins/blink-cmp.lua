@@ -20,10 +20,25 @@ return {
 			nerd_font_variant = "normal",
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer", "omni" },
 			providers = {
 				cmdline = {
 					min_keyword_length = 2,
+				},
+				snippets = {
+					should_show_items = function(ctx)
+						return ctx.trigger.initial_kind ~= "trigger_character"
+					end,
+				},
+				buffer = {
+					opts = {
+						-- or (recommended) filter to only "normal" buffers
+						get_bufnrs = function()
+							return vim.tbl_filter(function(bufnr)
+								return vim.bo[bufnr].buftype == ""
+							end, vim.api.nvim_list_bufs())
+						end,
+					},
 				},
 			},
 		},

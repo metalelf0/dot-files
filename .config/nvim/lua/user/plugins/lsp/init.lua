@@ -142,17 +142,17 @@ function M.config()
 		},
 		teal_ls = {},
 		vimls = {},
-		solargraph = {
-			root_dir = require("lspconfig").util.root_pattern(".git", "Gemfile", vim.fn.getcwd()),
-			settings = {
-				solargraph = {
-					hint = { enable = true },
-					diagnostics = true,
-					completion = true,
-					useBundler = true,
-				},
-			},
-		},
+		-- solargraph = {
+		-- 	root_dir = require("lspconfig").util.root_pattern(".git", "Gemfile", vim.fn.getcwd()),
+		-- 	settings = {
+		-- 		solargraph = {
+		-- 			hint = { enable = true },
+		-- 			diagnostics = true,
+		-- 			completion = true,
+		-- 			useBundler = true,
+		-- 		},
+		-- 	},
+		-- },
 		ruby_lsp = {
 			init_options = {
 				cmd = { "bundle", "exec", "ruby-lsp" },

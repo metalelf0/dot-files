@@ -5,7 +5,7 @@ return {
 		lazy = false,
 		opts = {
 			bigfile = {
-				enabled = true,
+				enabled = false,
 				size = 0.6 * 1024 * 1024, -- 600 kb
 				setup = function(ctx)
 					if vim.fn.exists(":NoMatchParen") ~= 0 then
@@ -127,7 +127,7 @@ return {
 			picker = {
 				formatters = {
 					file = {
-						truncate = 60,
+						truncate = 6000,
 					},
 				},
 				win = {

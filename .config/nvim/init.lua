@@ -16,6 +16,10 @@ vim.cmd([[ packadd cfilter ]])
 
 local config = require("user.config")
 
+-- local tasks = require("user.tasks")
+-- tasks.config.vault_dir = config.obsidian_workspace_path
+-- tasks.config.excluded_words = { "Check daily note", "Review pending tasks", "Read yesterday daily" }
+
 if config.keymapper == "which-key" then
 	local which_key = require("which-key")
 	local mappings = {
@@ -51,3 +55,13 @@ if not vim.g.colors_name and config.colorscheme ~= "default" then
 end
 
 -- vim.lsp.enable()
+
+if config.terminal_plugin == "snacks" then
+	vim.g["test#custom_strategies"] = {
+		snacks = function(cmd)
+			require("user.snacks-vim-test-strategy").run(cmd)
+		end,
+	}
+
+	vim.g["test#strategy"] = "snacks"
+end

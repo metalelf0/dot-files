@@ -34,6 +34,7 @@ local M = {
 		"nvim-lua/plenary.nvim",
 	},
 	opts = {
+		legacy_commands = false,
 		workspaces = {
 			{
 				name = "Andrea",

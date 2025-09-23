@@ -1,5 +1,8 @@
+local config = require("user.config")
+
 local M = {
 	"akinsho/toggleterm.nvim",
+	enabled = (config.terminal_plugin == "toggleterm"),
 }
 
 function _G.set_terminal_keymaps()

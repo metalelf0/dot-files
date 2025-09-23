@@ -45,9 +45,9 @@ M.config = function()
 		term_colors = true,
 		auto_integrations = true,
 		default_integrations = true,
-		background = { -- :h background
-			light = "latte",
-			dark = "mocha",
+		float = {
+			transparent = false, -- enable transparent floating windows
+			solid = false, -- use solid styling for floating windows, see |winborder|
 		},
 		integrations = {
 			aerial = true,
@@ -84,25 +84,7 @@ M.config = function()
 	})
 
 	-- setup must be called before loading
-	vim.cmd([[
-  try
-    augroup CustomHighlight
-      autocmd!
-      autocmd ColorScheme catppuccin highlight clear CursorLineNr
-      autocmd ColorScheme catppuccin highlight link CursorLineNr String
-      autocmd ColorScheme catppuccin highlight clear VertSplit
-      autocmd ColorScheme catppuccin highlight link VertSplit String
-      autocmd ColorScheme catppuccin highlight clear WinSeparator
-      autocmd ColorScheme catppuccin highlight link WinSeparator String
-    augroup END
-
-    colorscheme catppuccin
-    syntax on
-  catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme default
-    set background=dark
-  endtry
-]])
+	vim.cmd.colorscheme("catppuccin")
 end
 
 return M

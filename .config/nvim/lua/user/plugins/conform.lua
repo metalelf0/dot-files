@@ -21,7 +21,7 @@ local M = {
 M.opts = {
 	formatters = {
 		rubocop = {
-			args = { "--server", "--auto-correct-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" },
+			args = { "--server", "--autocorrect-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" },
 		},
 	},
 	formatters_by_ft = {
