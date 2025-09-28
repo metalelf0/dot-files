@@ -42,7 +42,7 @@ M.config = function()
 		overrides = {},
 		dim_inactive = false,
 		terminal_colors = true,
-		transparent_mode = false,
+		transparent_mode = config.transparent,
 		palette_overrides = {
 			bright_red = "#f7815e",
 		},

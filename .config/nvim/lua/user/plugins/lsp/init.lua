@@ -36,11 +36,6 @@ function M.config()
 		require("user.plugins.lsp.keys").setup(client, bufnr)
 		-- metalelf0 customization - force definitionProvider to true to work around dynamicRegistration for solargraph
 		client.server_capabilities.definitionProvider = true
-
-		-- disable semanticTokensProvider cause it's giving me headache with ruby_ls
-		-- NOTE: no! It shouldn't be done this way!
-		-- one should NOT tweak server.capabilities in on_attach. Doing so inside on_init() would be fine.
-		-- client.server_capabilities.semanticTokensProvider = nil
 	end
 
 	---@type lspconfig.options
@@ -142,17 +137,6 @@ function M.config()
 		},
 		teal_ls = {},
 		vimls = {},
-		-- solargraph = {
-		-- 	root_dir = require("lspconfig").util.root_pattern(".git", "Gemfile", vim.fn.getcwd()),
-		-- 	settings = {
-		-- 		solargraph = {
-		-- 			hint = { enable = true },
-		-- 			diagnostics = true,
-		-- 			completion = true,
-		-- 			useBundler = true,
-		-- 		},
-		-- 	},
-		-- },
 		ruby_lsp = {
 			init_options = {
 				cmd = { "bundle", "exec", "ruby-lsp" },
@@ -164,27 +148,6 @@ function M.config()
 				formatter = "auto",
 				single_file_support = true,
 			},
-			-- default_config = {
-			-- 	cmd = { "bundle", "exec", "ruby-lsp" },
-			-- 	filetypes = { "ruby" },
-			-- 	root_dir = require("lspconfig").util.root_pattern("Gemfile", ".git", vim.fn.getcwd()),
-			-- 	init_options = {
-			-- 		formatter = "auto",
-			-- 		single_file_support = true,
-			-- 	},
-			-- 	settings = {},
-			-- },
-			-- commands = {
-			-- 	FormatRuby = {
-			-- 		function()
-			-- 			vim.lsp.buf.format({
-			-- 				name = "ruby_lsp",
-			-- 				async = true,
-			-- 			})
-			-- 		end,
-			-- 		description = "Format using ruby-lsp",
-			-- 	},
-			-- },
 		},
 	}
 

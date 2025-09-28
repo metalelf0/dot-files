@@ -16,9 +16,9 @@ local M = {
 	},
 	opts = {
 		options = {
-			highlights = config.colorscheme == "catppuccin"
-					and require("catppuccin.groups.integrations.bufferline").get_theme()
-				or nil,
+			highlights = config.colorscheme == "catppuccin" and config.bufferline_plugin == "bufferline" and require(
+				"catppuccin.groups.integrations.bufferline"
+			).get_theme() or nil,
 			close_command = function(n)
 				Snacks.bufdelete(n)
 			end,

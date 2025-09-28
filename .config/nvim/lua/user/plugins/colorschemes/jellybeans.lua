@@ -52,7 +52,7 @@ M.config = function()
 		},
 		transparent = config.transparent,
 		italics = true,
-		flat_ui = true, -- toggles "flat UI" for pickers
+		flat_ui = false, -- toggles "flat UI" for pickers
 		palette = nil, -- specify a palette variant: nil (default/"vibrant") or "jellybeans_muted"
 		plugins = {
 			all = false,

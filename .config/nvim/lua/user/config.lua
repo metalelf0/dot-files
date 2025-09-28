@@ -1,7 +1,9 @@
 return {
-	colorscheme = "kanso",
-	variant = "zen",
-	transparent = false, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
+	colorscheme = "gruvbox",
+	variant = "dark-hard",
+	-- neovide handles transparency by itself
+	-- transparent = not vim.g.neovide, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
+	transparent = true, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	dimInactive = true, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,
 	filemanager = "mini.files", -- supported: mini.files, oil, neo-tree, snacks

@@ -52,4 +52,13 @@ return {
 			})
 		end,
 	},
+	{
+		"metalelf0/cycle-ruby-word.nvim",
+		dev = true,
+		config = function()
+			require("cycle-ruby-word").setup({
+				keymap = "<leader>cw", -- default mapping
+			})
+		end,
+	},
 }

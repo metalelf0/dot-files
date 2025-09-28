@@ -1,10 +1,12 @@
+local config = require("user.config")
+
 vim.g.neovide_remember_window_size = true
 vim.opt.linespace = 4
 
 vim.g.gui_font_default_size = 15
 vim.g.gui_font_size = vim.g.gui_font_default_size
-vim.g.gui_font_face = "JetBrains Mono"
--- vim.g.gui_font_face = "Rec Mono Semicasual"
+-- vim.g.gui_font_face = "JetBrains Mono"
+vim.g.gui_font_face = "Rec Mono Semicasual"
 
 RefreshGuiFont = function()
 	vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
@@ -51,3 +53,8 @@ keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
 keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
 keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+
+if config.transparent then
+	vim.g.neovide_opacity = 0.8
+	vim.g.neovide_full_opacity = 0.8
+end
