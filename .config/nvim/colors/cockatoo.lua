@@ -3,11 +3,11 @@
 -- Author:       Bekaboo <kankefengjing@gmail.com>
 -- Maintainer:   Bekaboo <kankefengjing@gmail.com>
 -- License:      GPL-3.0
--- Last Updated: Mon Mar 10 11:42:40 AM PDT 2025
+-- Last Updated: Wed 01 Oct 2025 01:33:37 AM EDT
 
 -- Clear hlgroups and set colors_name {{{
-vim.cmd.hi('clear')
-vim.g.colors_name = 'cockatoo'
+vim.cmd.hi("clear")
+vim.g.colors_name = "cockatoo"
 -- }}}
 
 -- Palette {{{
@@ -211,6 +211,7 @@ local hlgroups = {
   MatchParen = { bg = c_thunder, bold = true },
   NonText = { fg = c_steel },
   Pmenu = { fg = c_smoke, bg = c_ocean },
+  PmenuExtra = { fg = c_steel },
   PmenuSbar = { bg = c_deepsea },
   PmenuSel = { fg = c_smoke, bg = c_thunder },
   PmenuThumb = { bg = c_orange },
@@ -249,7 +250,7 @@ local hlgroups = {
   Boolean = { fg = c_ochre },
   Array = { fg = c_orange },
   Float = { link = 'Number' },
-  Identifier = {},
+  Identifier = { fg = c_smoke },
   Builtin = { fg = c_pink },
   Field = { fg = c_pigeon },
   Enum = { fg = c_ochre },
@@ -283,7 +284,7 @@ local hlgroups = {
   Underlined = { underline = true },
   Ignore = { fg = c_iron },
   Error = { fg = c_scarlet },
-  Todo = { fg = c_black, bg = c_beige, bold = true },
+  Todo = { fg = c_beige },
   -- }}}2
 
   -- Treesitter syntax {{{2
@@ -301,6 +302,7 @@ local hlgroups = {
   ['@string'] = { link = 'String' },
   ['@string.regexp'] = { link = 'String' },
   ['@string.escape'] = { link = 'SpecialChar' },
+  ['@string.yaml'] = { link = 'Normal' },
   ['@markup.link.label'] = { link = 'SpecialChar' },
   ['@character'] = { link = 'Character' },
   ['@character.special'] = { link = 'SpecialChar' },
@@ -325,15 +327,15 @@ local hlgroups = {
   ['@keyword.import'] = { link = 'Include' },
   ['@keyword.exception'] = { link = 'Exception' },
   ['@type'] = { link = 'Type' },
-  ['@type.Builtin'] = { link = 'Type' },
+  ['@type.builtin'] = { link = 'Type' },
   ['@type.qualifier'] = { link = 'Type' },
   ['@type.definition'] = { link = 'Typedef' },
   ['@keyword.storage'] = { link = 'StorageClass' },
   ['@attribute'] = { link = 'Label' },
   ['@variable'] = { link = 'Identifier' },
-  ['@variable.Builtin'] = { link = 'Builtin' },
+  ['@variable.builtin'] = { link = 'Builtin' },
   ['@constant'] = { link = 'Constant' },
-  ['@constant.Builtin'] = { link = 'Constant' },
+  ['@constant.builtin'] = { link = 'Constant' },
   ['@constant.macro'] = { link = 'Macro' },
   ['@module'] = { link = 'Namespace' },
   ['@markup.link.label.symbol'] = { link = 'Identifier' },
@@ -357,10 +359,10 @@ local hlgroups = {
   ['@markup.heading.4.marker.markdown'] = { link = 'markdownH4Delimiter' },
   ['@markup.heading.5.marker.markdown'] = { link = 'markdownH5Delimiter' },
   ['@markup.heading.6.marker.markdown'] = { link = 'markdownH6Delimiter' },
+  ['@markup.heading.1.delimiter.vimdoc'] = { link = 'helpSectionDelim' },
+  ['@markup.heading.2.delimiter.vimdoc'] = { link = 'helpSectionDelim' },
   ['@comment.todo'] = { link = 'Todo' },
-  ['@comment.todo.unchecked'] = { link = 'Todo' },
-  ['@comment.todo.checked'] = { link = 'Done' },
-  ['@comment.info'] = { link = 'SpecialComment' },
+  ['@comment.note'] = { link = 'SpecialComment' },
   ['@comment.warning'] = { link = 'WarningMsg' },
   ['@comment.error'] = { link = 'ErrorMsg' },
   ['@diff.delta'] = { link = 'DiffChanged' },
@@ -383,8 +385,7 @@ local hlgroups = {
   ['@lsp.type.struct'] = { link = 'Structure' },
   ['@lsp.type.macro'] = { link = 'Macro' },
   ['@lsp.type.method'] = { link = 'Function' },
-  ['@lsp.type.comment'] = { link = 'Comment' },
-  ['@lsp.type.function'] = { link = 'Function' },
+  ['@lsp.type.comment'] = {}, -- avoid interfere with `@comment.note/todo/warning/error`
   ['@lsp.type.property'] = { link = 'Field' },
   ['@lsp.type.variable'] = { link = 'Variable' },
   ['@lsp.type.decorator'] = { link = 'Label' },
@@ -503,40 +504,6 @@ local hlgroups = {
   -- Plugins {{{2
   -- netrw
   netrwClassify = { link = 'Directory' },
-
-  -- nvim-cmp
-  CmpItemAbbr = { fg = c_smoke },
-  CmpItemAbbrDeprecated = { strikethrough = true },
-  CmpItemAbbrMatch = { fg = c_smoke, bold = true },
-  CmpItemAbbrMatchFuzzy = { link = 'CmpItemAbbrMatch' },
-  CmpItemKindText = { link = 'String' },
-  CmpItemKindMethod = { link = 'Function' },
-  CmpItemKindFunction = { link = 'Function' },
-  CmpItemKindConstructor = { link = 'Function' },
-  CmpItemKindField = { fg = c_purple },
-  CmpItemKindProperty = { link = 'CmpItemKindField' },
-  CmpItemKindVariable = { fg = c_aqua },
-  CmpItemKindReference = { link = 'CmpItemKindVariable' },
-  CmpItemKindModule = { fg = c_magenta },
-  CmpItemKindEnum = { fg = c_ochre },
-  CmpItemKindEnumMember = { link = 'CmpItemKindEnum' },
-  CmpItemKindKeyword = { link = 'Keyword' },
-  CmpItemKindOperator = { link = 'Operator' },
-  CmpItemKindSnippet = { fg = c_tea },
-  CmpItemKindColor = { fg = c_pink },
-  CmpItemKindConstant = { link = 'Constant' },
-  CmpItemKindCopilot = { fg = c_magenta },
-  CmpItemKindValue = { link = 'Number' },
-  CmpItemKindClass = { link = 'Type' },
-  CmpItemKindStruct = { link = 'Type' },
-  CmpItemKindEvent = { fg = c_flashlight },
-  CmpItemKindInterface = { fg = c_flashlight },
-  CmpItemKindFile = { link = 'Special' },
-  CmpItemKindFolder = { link = 'Directory' },
-  CmpItemKindUnit = { fg = c_cerulean },
-  CmpItemKind = { fg = c_smoke },
-  CmpItemMenu = { link = 'Pmenu' },
-  CmpVirtualText = { fg = c_steel, italic = true },
 
   -- gitsigns
   GitSignsAdd = { fg = c_tea_blend },

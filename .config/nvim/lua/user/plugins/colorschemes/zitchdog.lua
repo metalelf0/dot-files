@@ -14,6 +14,10 @@ M.supported_variants = { "grape", "pine" }
 M.default_variant = "grape"
 
 M.config = function()
+	if config.colorscheme ~= "zitchdog" then
+		return false
+	end
+
 	require("zitchdog").load({
 		variant = themer.variant(M), -- grape (default)/pine/night
 		-- transparent_bg = true, -- a boolean to toggle transparent background
