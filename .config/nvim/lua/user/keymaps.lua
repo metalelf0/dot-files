@@ -204,16 +204,18 @@ end, { desc = "Quick menu" })
 -- UI --
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
 
--- keymap("n", "<leader>uE", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+if config.file_tree_plugin == "neotree" then
+	keymap("n", "<leader>ue", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
+elseif config.file_tree_plugin == "snacks" then
+	keymap("n", "<leader>ue", function()
+		Snacks.explorer()
+	end, { desc = "Snacks explorer" })
 
-keymap("n", "<leader>ue", function()
-	Snacks.explorer()
-end, { desc = "Snacks explorer" })
-
-keymap("n", "<leader>uE", function()
-	local max_width = utils.longest_path_perc(100, vim.fn.expand("%.:h"))
-	Snacks.explorer({ layout = { layout = { width = max_width } } })
-end, { desc = "Snacks explorer" })
+	keymap("n", "<leader>uE", function()
+		local max_width = utils.longest_path_perc(100, vim.fn.expand("%.:h"))
+		Snacks.explorer({ layout = { layout = { width = max_width } } })
+	end, { desc = "Snacks explorer" })
+end
 
 keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
 -- keymap("n", "<leader>udd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })

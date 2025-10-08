@@ -1,3 +1,5 @@
+local config = require("user.config")
+
 return {
 	{
 		"folke/snacks.nvim",
@@ -5,7 +7,7 @@ return {
 		lazy = false,
 		opts = {
 			bigfile = {
-				enabled = false,
+				enabled = true,
 				size = 0.6 * 1024 * 1024, -- 600 kb
 				setup = function(ctx)
 					if vim.fn.exists(":NoMatchParen") ~= 0 then
@@ -26,7 +28,7 @@ return {
 			bufdelete = { enabled = false },
 			-- scroll = {},
 			dashboard = {
-				enabled = true,
+				enabled = (config.dashboard == "snacks"),
 				preset = {
 					header = [[
             █                                                █            
@@ -100,6 +102,14 @@ return {
 			},
 			indent = {
 				enabled = true,
+				indent = {
+					char = "┊",
+				},
+				scope = {
+					indent = {
+						char = "┊",
+					},
+				},
 				hl = {
 					"SnacksIndent1",
 					"SnacksIndent2",

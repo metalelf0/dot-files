@@ -17,8 +17,7 @@ M.config = function()
 
 	require("vague").setup({
 		transparent = config.transparent,
-	}
-)
+	})
 	vim.cmd("colorscheme vague")
 end
 

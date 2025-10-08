@@ -1,6 +1,8 @@
 local config = require("user.config")
 local themer = require("user.themer")
 
+-- palette file: ~/.local/share/nvim/lazy/kanso.nvim/lua/kanso/colors.lua
+
 local colorscheme = "kanso"
 
 local M = {
@@ -36,6 +38,7 @@ M.config = function()
 				MarkviewHeading4 = { bg = colors.palette.zenBg1, fg = colors.palette.violet },
 				MarkviewHeading5 = { bg = colors.palette.zenBg1, fg = colors.palette.orange },
 				MarkviewHeading6 = { bg = colors.palette.zenBg1, fg = colors.palette.red },
+				WinSeparator = { fg = colors.palette.inkBg4 },
 			}
 		end
 	end
@@ -57,20 +60,11 @@ M.config = function()
 			theme = { zen = {}, pearl = {}, ink = {}, all = {} },
 		},
 		foreground = {
-			dark = "saturated",
-			light = "saturated",
+			dark = "zen",
+			light = "pearl",
 		},
 		overrides = function(colors) -- add/modify highlights
 			return customHighlights(colors)
-			--    {
-			-- 	Substitute = { bg = colors.palette.oldWhite },
-			-- 	MarkviewHeading1 = { bg = colors.palette.zenBg1, fg = colors.palette.yellow },
-			-- 	MarkviewHeading2 = { bg = colors.palette.zenBg1, fg = colors.palette.blue },
-			-- 	MarkviewHeading3 = { bg = colors.palette.zenBg1, fg = colors.palette.green },
-			-- 	MarkviewHeading4 = { bg = colors.palette.zenBg1, fg = colors.palette.violet },
-			-- 	MarkviewHeading5 = { bg = colors.palette.zenBg1, fg = colors.palette.orange },
-			-- 	MarkviewHeading6 = { bg = colors.palette.zenBg1, fg = colors.palette.red },
-			-- }
 		end,
 		theme = themer.variant(M), -- Load "zen" theme
 		background = { -- map the value of 'background' option to a theme

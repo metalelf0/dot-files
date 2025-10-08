@@ -65,3 +65,13 @@ if config.terminal_plugin == "snacks" then
 
 	vim.g["test#strategy"] = "snacks"
 end
+
+-- FIX: this is a custom fix to avoid LSP highlighting comments and
+-- interfering with Treesitter comment highlighting
+-- See https://github.com/stsewd/tree-sitter-comment/issues/22?reload=1
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
+	end,
+})
