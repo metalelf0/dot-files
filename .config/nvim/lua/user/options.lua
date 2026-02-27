@@ -62,3 +62,7 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn = "0"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+
+vim.cmd([[
+let g:omni_sql_default_compl_type = 'syntax'
+]])

@@ -23,12 +23,14 @@ M.config = function()
 	local customHighlights = function(colors)
 		if themer.variant(M) == "pearl" then
 			return {
-				MarkviewHeading1 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlYellow },
-				MarkviewHeading2 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlBlue },
-				MarkviewHeading3 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlGreen },
-				MarkviewHeading4 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlViolet },
-				MarkviewHeading5 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlOrange },
-				MarkviewHeading6 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlRed },
+				MarkviewHeading1 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlYellow1 },
+				MarkviewHeading2 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlBlue1 },
+				MarkviewHeading3 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlGreen1 },
+				MarkviewHeading4 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlViolet1 },
+				MarkviewHeading5 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlOrange1 },
+				MarkviewHeading6 = { bg = colors.palette.pearlWhite1, fg = colors.palette.pearlRed1 },
+				WinSeparator = { fg = colors.palette.pearlBlue1 },
+				Substitute = { bg = colors.palette.pearlAquaSaturated, fg = colors.palette.pearlWhite1 },
 			}
 		else
 			return {

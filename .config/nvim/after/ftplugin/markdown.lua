@@ -1,4 +1,4 @@
-vim.opt.conceallevel = 3
+vim.opt.conceallevel = 2
 
 vim.cmd([[
   nnoremap <buffer> <Leader><Enter> :norm 0<CR>:.s/\[ ]/\[x]/g<CR>:.s/$/ ✔ /g<CR>:.s/$/\=strftime("%Y-%m-%d")/g<CR>:nohl<CR>

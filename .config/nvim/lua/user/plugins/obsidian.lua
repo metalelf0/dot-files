@@ -35,6 +35,7 @@ local M = {
 	},
 	opts = {
 		legacy_commands = false,
+		new_notes_location = "--- Inbox",
 		workspaces = {
 			{
 				name = "Andrea",
@@ -74,7 +75,7 @@ local M = {
 			},
 		},
 		ui = {
-			enable = false,
+			enable = true,
 		},
 		picker = {
 			name = "snacks.pick",

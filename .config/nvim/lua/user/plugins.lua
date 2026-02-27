@@ -2,6 +2,7 @@ local config = require("user.config")
 
 return {
 	"nvim-lua/popup.nvim",
+	"vim-scripts/dbext.vim",
 	"junegunn/fzf",
 	"metalelf0/vim-rails",
 	"tpope/vim-abolish",
@@ -29,6 +30,7 @@ return {
 	},
 	{
 		"metalelf0/supermover.nvim",
+		dev = true,
 		event = "VeryLazy",
 		branch = "feat/add-snacks-picker",
 		dependencies = {

@@ -30,6 +30,9 @@ function M.config()
 		cssls = {},
 		dockerls = {},
 		eslint = {},
+		gopls = {
+			gofumpt = true,
+		},
 		harper_ls = require("user.plugins.lsp.configs.harper_ls"),
 		html = {},
 		jsonls = require("user.plugins.lsp.configs.jsonls"),

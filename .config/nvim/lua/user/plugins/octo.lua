@@ -1,6 +1,7 @@
 return {
 	"pwntester/octo.nvim",
 	event = "VeryLazy",
+	dev = true,
 	config = function()
 		require("octo").setup({
 			ssh_aliases = {

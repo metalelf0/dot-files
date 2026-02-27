@@ -6,5 +6,29 @@ return {
 	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 	---@module 'render-markdown'
 	---@type render.md.UserConfig
-	opts = {},
+	opts = {
+		checkbox = {
+			enabled = true,
+			custom = {
+				doing = { raw = "[/]", rendered = "◪", highlight = "RenderMarkdownTodo", scope_highlight = nil },
+			},
+		},
+		heading = {
+			icons = {
+
+				"❱ ",
+				"❱❱ ",
+				"❱❱❱ ",
+				"❱❱❱❱ ",
+				"❱❱❱❱❱ ",
+				"❱❱❱❱❱❱ ",
+			},
+		},
+		link = {
+			hyperlink = "󰌹 ",
+			wiki = {
+				icon = "󰌹 ",
+			},
+		},
+	},
 }

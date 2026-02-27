@@ -34,7 +34,14 @@ M.config = function()
 		},
 	})
 
-	vim.cmd([[ colorscheme no-clown-fiesta ]])
+	local theme_name = "no-clown-fiesta"
+	if themer.variant(M) == "dim" then
+		theme_name = "no-clown-fiesta-dim"
+	elseif themer.variant(M) == "light" then
+		theme_name = "no-clown-fiesta-light"
+	end
+
+	vim.cmd(string.gsub("colorscheme @theme", "@theme", theme_name))
 end
 
 return M

@@ -1,7 +1,9 @@
 return {
+	require("user.plugins.colorschemes.alabaster"),
 	require("user.plugins.colorschemes.arctic"),
 	require("user.plugins.colorschemes.ares"),
 	require("user.plugins.colorschemes.catppuccin"),
+	require("user.plugins.colorschemes.conifer"),
 	require("user.plugins.colorschemes.darkbox"),
 	require("user.plugins.colorschemes.everforest"),
 	require("user.plugins.colorschemes.ef-themes"),
@@ -14,6 +16,7 @@ return {
 	require("user.plugins.colorschemes.kanagawa"),
 	require("user.plugins.colorschemes.kanso"),
 	require("user.plugins.colorschemes.modus"),
+	require("user.plugins.colorschemes.nanode"),
 	require("user.plugins.colorschemes.nightfox"),
 	require("user.plugins.colorschemes.no-clown-fiesta"),
 	require("user.plugins.colorschemes.oldworld"),

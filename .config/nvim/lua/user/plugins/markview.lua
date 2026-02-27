@@ -1,6 +1,6 @@
 return {
 	"OXY2DEV/markview.nvim",
-	enabled = true,
+	enabled = false,
 	ft = { "markdown" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
@@ -10,6 +10,9 @@ return {
 	config = function()
 		require("markview").setup({
 			markdown = {
+				metadata_minus = {
+					enable = false,
+				},
 				headings = {
 					shift_width = 0,
 					heading_1 = {

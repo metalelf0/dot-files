@@ -65,6 +65,13 @@ function M.longest_path()
 	return longest_length
 end
 
+function M.insert_text_at_cursor(text)
+	local pos = vim.api.nvim_win_get_cursor(0)[2]
+	local line = vim.api.nvim_get_current_line()
+	local nline = line:sub(0, pos) .. text .. line:sub(pos + 1)
+	vim.api.nvim_set_current_line(nline)
+end
+
 --- Calculate a weighted length metric for a file path as it would appear in the Snacks file explorer.
 --- This function computes a metric that represents the visual space a path might take in a file explorer,
 --- where deeper nested files are indented. The metric is calculated as:
