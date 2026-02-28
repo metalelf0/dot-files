@@ -54,7 +54,6 @@ M.config = function()
 			solid = false, -- use solid styling for floating windows, see |winborder|
 		},
 		integrations = {
-			aerial = true,
 			blink_cmp = true,
 			cmp = true,
 			dashboard = true,

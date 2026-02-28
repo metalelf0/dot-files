@@ -106,7 +106,6 @@ M.config = function()
 		},
 		tabline = {},
 		extensions = {
-			"aerial",
 			"fugitive",
 			"lazy",
 			"mason",
