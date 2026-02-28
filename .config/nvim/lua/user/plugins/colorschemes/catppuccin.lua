@@ -17,23 +17,7 @@ local M = {
 
 M.supported_variants = { "mocha", "latte", "frappe", "macchiato" }
 M.default_variant = "mocha"
-
-if config.bufferline_plugin == "bufferline" then
-	M.specs = {
-		{
-			"akinsho/bufferline.nvim",
-			optional = true,
-			opts = function(_, opts)
-				if (vim.g.colors_name or ""):find("catppuccin") then
-					vim.print("Loading catppuccin highlights...")
-					opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
-				end
-			end,
-		},
-	}
-else
-	M.specs = {}
-end
+M.specs = {}
 
 M.config = function()
 	if config.colorscheme ~= "catppuccin" then

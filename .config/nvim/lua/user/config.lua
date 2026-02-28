@@ -9,7 +9,6 @@ return {
 	filemanager = "mini.files", -- supported: mini.files, oil, neo-tree, snacks
 	keymapper = "which-key", -- supported: mini.clue, which-key
 	completion_engine = "blink-cmp", -- supported: blink-cmp, nvim-cmp
-	bufferline_plugin = "none", -- supported: barbar, bufferline, none
 	terminal_plugin = "toggleterm", -- supported: toggleterm, snacks
 	file_tree_plugin = "neotree", -- supported: neotree, snacks
 	-- NOTE: remember to use the real path here and not a symlink!

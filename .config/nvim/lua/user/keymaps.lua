@@ -160,18 +160,7 @@ vim.keymap.set("n", "<Leader>bu", function()
 	require("user.buffer_utils").clear_unused()
 end, { silent = true, desc = "Close unused buffers" })
 
-keymap("n", "<leader>bcl", "<cmd>BufferLineCloseLeft<CR>", { desc = "Close left" })
-keymap("n", "<leader>bcr", "<cmd>BufferLineCloseRight<CR>", { desc = "Close right" })
 keymap("n", "<leader>bca", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all" })
--- keymap("n", "<leader>b1", "<cmd>BufferLineGoToBuffer 1<CR>", { desc = "Buffer 1" })
--- keymap("n", "<leader>b2", "<cmd>BufferLineGoToBuffer 2<CR>", { desc = "Buffer 2" })
--- keymap("n", "<leader>b3", "<cmd>BufferLineGoToBuffer 3<CR>", { desc = "Buffer 3" })
--- keymap("n", "<leader>b4", "<cmd>BufferLineGoToBuffer 4<CR>", { desc = "Buffer 4" })
--- keymap("n", "<leader>b5", "<cmd>BufferLineGoToBuffer 5<CR>", { desc = "Buffer 5" })
--- keymap("n", "<leader>b6", "<cmd>BufferLineGoToBuffer 6<CR>", { desc = "Buffer 6" })
--- keymap("n", "<leader>b7", "<cmd>BufferLineGoToBuffer 7<CR>", { desc = "Buffer 7" })
--- keymap("n", "<leader>b8", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "Buffer 8" })
--- keymap("n", "<leader>b9", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "Buffer 9" })
 --
 -- Git --
 keymap("n", "<leader>ga", "<cmd>AdvancedGitSearch<cr>", { desc = "Advanced git search" })
