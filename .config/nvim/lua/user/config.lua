@@ -16,7 +16,6 @@ return {
 	obsidian_workspace_path = os.getenv("HOME") .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/Andrea",
 	journal_dir = os.getenv("HOME") .. "/iCloud-Obsidian/work/dailies/",
 	lazy_dev_plugins_path = os.getenv("HOME") .. "/Documents/codice_elf0/",
-	dashboard = "snacks", -- supported: snacks, alpha
 	signs = { Error = " ", Warn = " ", Hint = " ", Info = " " },
 	startup = {
 		show_diagnostics = true,

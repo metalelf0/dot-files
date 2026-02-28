@@ -28,7 +28,7 @@ return {
 			bufdelete = { enabled = false },
 			-- scroll = {},
 			dashboard = {
-				enabled = (config.dashboard == "snacks"),
+				enabled = true,
 				preset = {
 					header = [[
             █                                                █            
