@@ -1,3 +1,4 @@
+-- TODO: move this to a plugin?
 ---@diagnostic disable: param-type-mismatch, no-unknown
 local M = {}
 local config = require("user.config")

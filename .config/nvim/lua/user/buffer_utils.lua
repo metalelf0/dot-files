@@ -1,3 +1,4 @@
+-- TODO: move this to a plugin?
 local M = {}
 
 M.setup = function()

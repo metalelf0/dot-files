@@ -7,12 +7,6 @@ buffer_utils.setup()
 -- Shorten function name
 local keymap = vim.keymap.set
 
-local function merge_opts(first, second)
-	for k, v in pairs(second) do
-		first[k] = v
-	end
-end
-
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -459,13 +453,3 @@ end, { desc = "Zen window" })
 keymap("n", "<C-w>z", function()
 	require("snacks").zen.zoom()
 end, { desc = "Zoom window" })
-
-local status_ok, fun = pcall(require, "user.fun")
-if status_ok then
-	fun.set_keymaps()
-end
-
-local status_ok, event_logger = pcall(require, "user.event_logger")
-if status_ok then
-	event_logger.set_keymaps()
-end
