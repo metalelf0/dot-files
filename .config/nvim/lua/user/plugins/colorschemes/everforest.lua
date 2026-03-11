@@ -1,5 +1,5 @@
 local config = require("user.config")
-local utils = require("user.utils")
+-- local utils = require("user.utils")
 local themer = require("user.themer")
 
 local colorscheme = "everforest"
@@ -19,7 +19,7 @@ function M.config()
 	local is_transparent = config.transparent and 2 or 0
 
 	require("everforest").setup({
-		background = "hard", -- can be "hard", "medium" or "soft"
+		background = "medium", -- can be "hard", "medium" or "soft"
 		ui_contrast = "high", -- "high" or "low"
 		transparent_background_level = is_transparent,
 	})

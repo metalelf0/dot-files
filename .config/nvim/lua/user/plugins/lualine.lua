@@ -109,7 +109,6 @@ M.config = function()
 			"fugitive",
 			"lazy",
 			"mason",
-			"neo-tree",
 			"quickfix",
 			"toggleterm",
 			"trouble",

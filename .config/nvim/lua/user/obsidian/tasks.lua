@@ -1,5 +1,8 @@
 local M = {}
 
+-- marks a task line as done. This:
+-- - updates the checkbox from [ ] or [/] to [x]
+-- - adds a done marker with current date at the end of the line (e.g. " ✅ 2026-03-11")
 M.mark_task_done = function()
 	local date = os.date("%Y-%m-%d")
 	local line_number = vim.fn.line(".")
@@ -16,6 +19,9 @@ M.mark_task_done = function()
 	end
 end
 
+-- marks a task line as in progress. This:
+-- - updates the checkbox from [ ] or [x] to [/]
+-- - adds an "in progress" marker with current date at the end of the line (e.g. " 🛫 2026-03-11")
 M.mark_task_in_progress = function()
 	local date = os.date("%Y-%m-%d")
 	local line_number = vim.fn.line(".")
@@ -32,6 +38,8 @@ M.mark_task_in_progress = function()
 	end
 end
 
+-- marks a task line as todo. This:
+-- - updates the checkbox from [x] or [/] to [ ]
 M.mark_task_todo = function()
 	local date = os.date("%Y-%m-%d")
 	local line_number = vim.fn.line(".")

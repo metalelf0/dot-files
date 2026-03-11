@@ -58,14 +58,14 @@ vim.api.nvim_create_autocmd("BufWritePre", { command = [[ :%s/\s\+$//e ]], group
 vim.api.nvim_create_autocmd("RecordingEnter", {
 	callback = function()
 		local recording_register = vim.fn.reg_recording()
-		require("notify")("Recording @" .. recording_register, vim.log.levels.INFO, { title = "Macro" })
+		Snacks.notify.info("Recording @" .. recording_register, { title = "Macro" })
 	end,
 })
 
 vim.api.nvim_create_autocmd("RecordingLeave", {
 	callback = function()
 		local recording_register = vim.fn.reg_recording()
-		require("notify")("Recording @" .. recording_register .. " done!", vim.log.levels.INFO, { title = "Macro" })
+		Snacks.notify.info("Recording @" .. recording_register .. " done!", { title = "Macro" })
 	end,
 })
 

@@ -68,7 +68,7 @@ M.config = function()
 
 	require("tokyonight").setup({
 		style = themer.variant(M),
-		sidebars = { "neo-tree", "qf", "vista_kind", "terminal", "packer", "toggleterm" },
+		sidebars = { "qf", "vista_kind", "terminal", "packer", "toggleterm" },
 		dim_inactive = false,
 		transparent = config.transparent,
 		plugins = {

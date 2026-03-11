@@ -75,7 +75,7 @@ local M = {
 			},
 		},
 		ui = {
-			enable = true,
+			enable = false,
 		},
 		picker = {
 			name = "snacks.pick",

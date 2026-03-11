@@ -13,10 +13,6 @@ vim.cmd([[ packadd cfilter ]])
 
 local config = require("user.config")
 
--- local tasks = require("user.tasks")
--- tasks.config.vault_dir = config.obsidian_workspace_path
--- tasks.config.excluded_words = { "Check daily note", "Review pending tasks", "Read yesterday daily" }
-
 if config.keymapper == "which-key" then
 	local which_key = require("which-key")
 	local mappings = {

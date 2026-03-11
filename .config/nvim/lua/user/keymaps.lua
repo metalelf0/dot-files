@@ -20,6 +20,9 @@ vim.g.maplocalleader = ","
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- C-w space to rotate splits
+keymap("n", "<C-w><Space>", "<C-w>r")
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -48,6 +51,18 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
+-- text utils
+keymap("n", "crT", function()
+	local line = vim.api.nvim_get_current_line()
+
+	-- Matches the first letter of a word and the rest of it (including apostrophes)
+	local title_case = line:gsub("(%a)([%w_']*)", function(first, rest)
+		return first:upper() .. rest:lower()
+	end)
+
+	vim.api.nvim_set_current_line(title_case)
+end, { desc = "Title Case current line" })
+
 -- Visual Block --
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
@@ -65,7 +80,6 @@ local clearStuff = function()
 		mc.clearCursors()
 	end
 	vim.cmd("noh")
-	require("notify").dismiss()
 end
 
 keymap("n", "<Esc><Esc>", clearStuff)
@@ -99,8 +113,6 @@ local open_file_explorer = function()
 		require("oil").open()
 	elseif config.filemanager == "mini.files" then
 		MiniFiles.open(vim.api.nvim_buf_get_name(0))
-	elseif config.filemanager == "neo-tree" then
-		vim.cmd([[Neotree toggle reveal_force_cwd]])
 	elseif config.filemanager == "snacks" then
 		Snacks.picker.explorer()
 	end
@@ -187,18 +199,14 @@ end, { desc = "Quick menu" })
 -- UI --
 keymap("n", "<leader>ub", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle current line blame" })
 
-if config.file_tree_plugin == "neotree" then
-	keymap("n", "<leader>ue", "<cmd>Neotree toggle<cr>", { desc = "Explorer" })
-elseif config.file_tree_plugin == "snacks" then
-	keymap("n", "<leader>ue", function()
-		Snacks.explorer()
-	end, { desc = "Snacks explorer" })
+keymap("n", "<leader>ue", function()
+	Snacks.explorer()
+end, { desc = "Snacks explorer" })
 
-	keymap("n", "<leader>uE", function()
-		local max_width = utils.longest_path_perc(100, vim.fn.expand("%.:h"))
-		Snacks.explorer({ layout = { layout = { width = max_width } } })
-	end, { desc = "Snacks explorer" })
-end
+keymap("n", "<leader>uE", function()
+	local max_width = utils.longest_path_perc(100, vim.fn.expand("%.:h"))
+	Snacks.explorer({ layout = { layout = { width = max_width } } })
+end, { desc = "Snacks explorer" })
 
 keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
 -- keymap("n", "<leader>udd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })

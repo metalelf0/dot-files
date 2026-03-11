@@ -135,6 +135,11 @@ return {
 			},
 			lazygit = {},
 			picker = {
+				sources = {
+					explorer = {
+						auto_close = true,
+					},
+				},
 				formatters = {
 					file = {
 						truncate = 6000,
