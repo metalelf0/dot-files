@@ -35,7 +35,10 @@ local M = {
 	},
 	opts = {
 		legacy_commands = false,
-		new_notes_location = "--- Inbox",
+		notes_subdir = "--- Inbox",
+		note_id_func = function(title)
+			return require("obsidian.builtin").title_id(title)
+		end,
 		workspaces = {
 			{
 				name = "Andrea",
@@ -80,6 +83,9 @@ local M = {
 		picker = {
 			name = "snacks.pick",
 		},
+		-- wiki_link_func = function()
+		-- 	return require("obsidian.builtin").wiki_link_alias_only
+		-- end,
 		-- Optional, key mappings.
 		follow_url_func = function(url)
 			vim.fn.jobstart({ "open", url }) -- Mac OS
@@ -121,6 +127,14 @@ local M = {
 			end,
 			"n",
 			desc = "Obsidian - mark task as todo",
+		},
+		{
+			"<leader>ote",
+			function()
+				tasks.edit_task_date()
+			end,
+			"n",
+			desc = "Obsidian - Edit task dates",
 		},
 		{
 			"<leader>otli", -- obsidian tasks list todo

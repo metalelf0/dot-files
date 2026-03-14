@@ -9,22 +9,34 @@ return {
 	opts = {
 		checkbox = {
 			enabled = true,
-			unchecked = { icon = "⚪", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-			checked = { icon = "✅", highlight = "RenderMarkdownDone", scope_highlight = nil },
+			unchecked = { icon = "⚪", highlight = "RenderMarkdownTodo", scope_highlight = "@character" },
+			checked = { icon = "✅", highlight = "RenderMarkdownDone", scope_highlight = "@attribute.builtin" },
 			custom = {
-				doing = { raw = "[/]", rendered = "⏳", highlight = "RenderMarkdownTodo", scope_highlight = nil },
+				doing = {
+					raw = "[/]",
+					rendered = "⏳",
+					highlight = "RenderMarkdownTodo",
+					scope_highlight = "@attribute",
+				},
 				fire = { raw = "[f]", rendered = "🔥", highlight = "RenderMarkdownTodo", scope_highlight = nil },
 				note = { raw = "[n]", rendered = "📝", highlight = "RenderMarkdownTodo", scope_highlight = nil },
 				win = { raw = "[w]", rendered = "🏆", highlight = "RenderMarkdownTodo", scope_highlight = nil },
 				idea = { raw = "[I]", rendered = "💡", highlight = "RenderMarkdownTodo", scope_highlight = nil },
+				location = { raw = "[l]", rendered = "📍", highlight = "RenderMarkdownTodo", scope_highlight = nil },
 				important = {
 					raw = "[!]",
 					rendered = "⚠️",
 					highlight = "RenderMarkdownTodo",
-					scope_highlight = nil,
+					scope_highlight = "@markup.strong",
 				},
 				question = { raw = "[?]", rendered = "❓", highlight = "RenderMarkdownTodo", scope_highlight = nil },
 				scheduling = { raw = "[<]", rendered = "📅", highlight = "RenderMarkdownTodo", scope_highlight = nil },
+				canceled = {
+					raw = "[-]",
+					rendered = "❌",
+					highlight = "RenderMarkdownTodo",
+					scope_highlight = "@lsp.mod.deprecated",
+				},
 			},
 		},
 		heading = {

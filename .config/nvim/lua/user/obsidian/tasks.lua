@@ -56,4 +56,63 @@ M.mark_task_todo = function()
 	end
 end
 
+-- edits a date on a task line. This:
+-- - asks the user to select a date type (Done ✅, Planned 📅, Started 🛫, Canceled ❌)
+-- - asks for a date in YYYY-MM-DD format, pre-populated with the existing value or today
+-- - replaces the date if already present, or appends it to the end of the line
+M.edit_task_date = function()
+	local line_number = vim.fn.line(".")
+	local line = vim.fn.getline(line_number)
+
+	if not line:match("^%- %[.%] #task") then
+		print("No task on this line.")
+		return
+	end
+
+	local date_types = {
+		{ label = "Done", symbol = "✅" },
+		{ label = "Planned", symbol = "📅" },
+		{ label = "Started", symbol = "🛫" },
+		{ label = "Canceled", symbol = "❌" },
+		{ label = "Added", symbol = "➕" },
+	}
+
+	vim.ui.select(date_types, {
+		prompt = "Select date type:",
+		format_item = function(item)
+			return item.symbol .. " " .. item.label
+		end,
+	}, function(choice)
+		if not choice then
+			return
+		end
+
+		local existing_date = line:match(choice.symbol .. " (%d%d%d%d%-%d%d%-%d%d)")
+		local default_date = existing_date or os.date("%Y-%m-%d")
+
+		vim.ui.input({
+			prompt = choice.symbol .. " " .. choice.label .. " date (YYYY-MM-DD): ",
+			default = default_date,
+		}, function(date)
+			if not date or date == "" then
+				return
+			end
+
+			if not date:match("^%d%d%d%d%-%d%d%-%d%d$") then
+				print("Invalid date format. Use YYYY-MM-DD.")
+				return
+			end
+
+			local new_line
+			if line:match(choice.symbol .. " %d%d%d%d%-%d%d%-%d%d") then
+				new_line = line:gsub(choice.symbol .. " %d%d%d%d%-%d%d%-%d%d", choice.symbol .. " " .. date)
+			else
+				new_line = line .. " " .. choice.symbol .. " " .. date
+			end
+
+			vim.fn.setline(line_number, new_line)
+		end)
+	end)
+end
+
 return M
