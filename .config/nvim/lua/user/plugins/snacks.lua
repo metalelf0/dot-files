@@ -95,6 +95,7 @@ return {
 				},
 			},
 			dim = {},
+			gh = {},
 			image = {
 				doc = {
 					conceal = true,
@@ -135,6 +136,10 @@ return {
 			},
 			lazygit = {},
 			picker = {
+				layout = {
+					preview = "main",
+					preset = "ivy",
+				},
 				sources = {
 					explorer = {
 						auto_close = true,

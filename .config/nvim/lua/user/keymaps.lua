@@ -145,11 +145,11 @@ keymap("n", "<leader>?", function()
 end, { desc = "Search text in git files" })
 
 keymap("n", "<leader>p", function()
-	Snacks.picker.files({ layout = "telescope" })
+	Snacks.picker.files({ layout = "ivy_split" })
 end, { desc = "Find files" })
 
 keymap("n", "<leader>P", function()
-	Snacks.picker.git_files({ layout = "telescope" })
+	Snacks.picker.git_files({ layout = "ivy_split" })
 end, { desc = "Find (git) files" })
 
 vim.keymap.set("n", "<leader><leader>", function()

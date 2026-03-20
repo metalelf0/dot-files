@@ -1,5 +1,5 @@
 local M = {
-	"williamboman/mason.nvim",
+	"mason-org/mason.nvim",
 	build = ":MasonUpdate",
 	cmd = "Mason",
 }

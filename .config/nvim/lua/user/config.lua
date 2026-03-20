@@ -1,6 +1,6 @@
 return {
-	colorscheme = "black-metal",
-	variant = "burzum",
+	colorscheme = "gruvbox",
+	variant = "dark-hard",
 	-- neovide handles transparency by itself
 	-- transparent = not vim.g.neovide, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),
 	transparent = false, -- (os.getenv("ALACRITTY_WINDOW_ID") ~= nil),

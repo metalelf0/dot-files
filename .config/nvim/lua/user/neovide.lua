@@ -6,7 +6,7 @@ vim.opt.linespace = 4
 vim.g.gui_font_default_size = 15
 vim.g.gui_font_size = vim.g.gui_font_default_size
 -- vim.g.gui_font_face = "JetBrains Mono"
-vim.g.gui_font_face = "Rec Mono Semicasual"
+vim.g.gui_font_face = "Maple Mono"
 
 RefreshGuiFont = function()
 	vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
@@ -23,7 +23,7 @@ ResetGuiFont = function()
 end
 
 -- Call function on startup to set default value
-ResetGuiFont()
+-- ResetGuiFont()
 
 -- Keymaps
 local opts = { noremap = true, silent = true }

@@ -5,10 +5,13 @@ local mini = {
 	-- event = "VeryLazy",
 }
 
-local specs = { mini, {
-	"JoosepAlviste/nvim-ts-context-commentstring",
-	event = "VeryLazy",
-} }
+local specs = {
+	mini,
+	-- {
+	-- 	-- "JoosepAlviste/nvim-ts-context-commentstring",
+	-- 	event = "VeryLazy",
+	-- },
+}
 
 function mini.surround()
 	-- -- Note: if 'timeoutlen' is low enough to cause occasional usage of |s| key
@@ -124,7 +127,7 @@ function mini.comment()
 	require("mini.comment").setup({
 		hooks = {
 			pre = function()
-				require("ts_context_commentstring.internal").update_commentstring({})
+				-- require("ts_context_commentstring.internal").update_commentstring({})
 			end,
 		},
 	})

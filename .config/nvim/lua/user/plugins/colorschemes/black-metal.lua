@@ -43,7 +43,7 @@ M.config = function()
 	require("black-metal").setup({
 		theme = theme,
 		variant = variant,
-		alt_bg = true,
+		alt_bg = false,
 		transparent = config.transparent,
 		diagnostics = {
 			undercurl = false,
