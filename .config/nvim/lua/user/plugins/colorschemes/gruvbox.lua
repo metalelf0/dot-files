@@ -49,6 +49,7 @@ M.config = function()
 	})
 
 	vim.cmd.colorscheme("gruvbox")
+	vim.cmd.hi("link @markup.link.label.markdown_inline GruvboxGreenSign")
 end
 
 return M

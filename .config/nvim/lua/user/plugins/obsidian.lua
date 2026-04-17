@@ -92,7 +92,9 @@ local M = {
 		{ "<leader>oo", "<cmd>Obsidian quick_switch<cr>", "n", desc = "Obsidian - quick switch" },
 		{ "<leader>os", "<cmd>Obsidian search<cr>", "n", desc = "Obsidian - search" },
 		-- od -> obsidian daily
+		{ "<leader>odd", "<cmd>Obsidian dailies<cr>", "n", desc = "Obsidian - dailies" },
 		{ "<leader>odt", "<cmd>Obsidian today<cr>", "n", desc = "Obsidian - today" },
+		{ "<leader>odw", "<cmd>Obsidian tomorrow<cr>", "n", desc = "Obsidian - tomorrow" },
 		{ "<leader>ody", "<cmd>Obsidian yesterday<cr>", "n", desc = "Obsidian - yesterday" },
 		{ "<leader>oT", "<cmd>Obsidian template<cr>", "n", desc = "Obsidian - template" },
 		{ "<leader>oL", "<cmd>Obsidian link_new<cr>", "v", desc = "Obsidian - new link" },

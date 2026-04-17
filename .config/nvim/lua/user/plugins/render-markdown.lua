@@ -9,7 +9,7 @@ return {
 	opts = {
 		checkbox = {
 			enabled = true,
-			unchecked = { icon = "⚪", highlight = "RenderMarkdownTodo", scope_highlight = "@character" },
+			unchecked = { icon = "◻️", highlight = "RenderMarkdownTodo", scope_highlight = "@character" },
 			checked = { icon = "✅", highlight = "RenderMarkdownDone", scope_highlight = "@attribute.builtin" },
 			custom = {
 				doing = {
@@ -54,6 +54,9 @@ return {
 			hyperlink = "󰌹 ",
 			wiki = {
 				icon = "󰌹 ",
+			},
+			custom = {
+				notion = { pattern = "notion%.so", icon = " " },
 			},
 		},
 	},

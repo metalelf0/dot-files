@@ -40,7 +40,7 @@ function mini.icons()
 end
 
 function mini.jump()
-	require("mini.jump").setup({})
+	require("mini.jump").setup()
 end
 
 function mini.jump2d()
@@ -52,7 +52,7 @@ function mini.jump2d()
 end
 
 function mini.pairs()
-	require("mini.pairs").setup({})
+	require("mini.pairs").setup()
 end
 
 function mini.clue()
@@ -152,7 +152,7 @@ end
 
 function mini.ai()
 	local ai = require("mini.ai")
-	require("mini.ai").setup({
+	ai.setup({
 		n_lines = 500,
 		-- search_method = "cover_or_next",
 		custom_textobjects = {
@@ -185,6 +185,22 @@ function mini.ai()
 	map("o", "block")
 end
 
+function mini.notify()
+	local notify = require("mini.notify")
+	notify.setup({
+		content = {
+			format = function(message)
+				return message.msg
+			end,
+		},
+	})
+end
+
+function mini.sessions()
+	local sessions = require("mini.sessions")
+	sessions.setup({})
+end
+
 function mini.config()
 	-- M.jump()
 	mini.surround()
@@ -196,6 +212,8 @@ function mini.config()
 	mini.clue()
 	mini.align()
 	mini.jump2d()
+	mini.notify()
+	mini.sessions()
 	-- mini.animate()
 end
 

@@ -203,11 +203,6 @@ keymap("n", "<leader>ue", function()
 	Snacks.explorer()
 end, { desc = "Snacks explorer" })
 
-keymap("n", "<leader>uE", function()
-	local max_width = utils.longest_path_perc(100, vim.fn.expand("%.:h"))
-	Snacks.explorer({ layout = { layout = { width = max_width } } })
-end, { desc = "Snacks explorer" })
-
 keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
 -- keymap("n", "<leader>udd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
 

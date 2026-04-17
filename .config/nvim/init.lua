@@ -9,6 +9,7 @@ require("user.colorscheme_utils")
 require("user.neovide")
 require("user.autocommands")
 require("user.digraphs")
+require("user.ui2")
 vim.cmd([[ packadd cfilter ]])
 
 local config = require("user.config")
@@ -47,8 +48,6 @@ if not vim.g.colors_name and config.colorscheme ~= "default" then
 	end
 end
 
--- vim.lsp.enable()
-
 if config.terminal_plugin == "snacks" then
 	vim.g["test#custom_strategies"] = {
 		snacks = function(cmd)
@@ -62,9 +61,11 @@ end
 -- FIX: this is a custom fix to avoid LSP highlighting comments and
 -- interfering with Treesitter comment highlighting
 -- See https://github.com/stsewd/tree-sitter-comment/issues/22?reload=1
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
 	end,
 })
+
+vim.cmd("packadd nvim.undotree")
+vim.keymap.set("n", "<leader>U", require("undotree").open)

@@ -155,6 +155,7 @@ return {
 						keys = {
 							["<C-h>"] = { "history_back", mode = { "i", "n" } },
 							["<C-l>"] = { "history_forward", mode = { "i", "n" } },
+							["<C-p>"] = { "toggle_preview", mode = { "i", "n" } },
 						},
 					},
 				},
@@ -207,6 +208,13 @@ return {
 					Snacks.gitbrowse()
 				end,
 				desc = "Git Browse",
+			},
+			{
+				"<leader>gP",
+				function()
+					Snacks.picker.gh_pr()
+				end,
+				desc = "GitHub Pull Requests",
 			},
 			{
 				"<leader>gF",

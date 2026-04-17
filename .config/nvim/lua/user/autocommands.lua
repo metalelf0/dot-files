@@ -74,8 +74,11 @@ vim.api.nvim_create_autocmd("BufWritePre", { command = "mkview", group = fold_gr
 vim.api.nvim_create_autocmd("BufWritePost", { command = "silent! loadview", group = fold_group, pattern = "*.*" })
 
 local function create_missing_dirs()
-	local dir = vim.fn.expand("<afile>:p:h")
+	local dir = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
 	if vim.tbl_contains({ "oil" }, dir) then
+		return
+	end
+	if vim.bo.filetype == "oil" or vim.api.nvim_buf_get_name(0) == "" then
 		return
 	end
 	if vim.fn.isdirectory(dir) == 0 then

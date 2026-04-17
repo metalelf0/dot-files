@@ -1,5 +1,7 @@
 return {
 	"Shatur/neovim-session-manager",
+	-- TODO: fix this - has some incompatibility with nvim-treesitter main branch
+	enabled = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},

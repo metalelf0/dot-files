@@ -18,6 +18,8 @@ M.supported_variants = {
 	"jellybeans_light",
 	"jellybeans_muted_light",
 	"jellybeans_mono_light",
+	"jellybeans_warm",
+	"jellybeans_hc",
 }
 
 M.variant_names = {
@@ -27,9 +29,11 @@ M.variant_names = {
 	jellybeans_light = "jellybeans-light",
 	jellybeans_muted_light = "jellybeans-muted-light",
 	jellybeans_mono_light = "jellybeans-mono-light",
+	jellybeans_warm = "jellybeans-warm",
+	jellybeans_hc = "jellybeans-hc",
 }
 
-M.dark_variants = { "jellybeans", "jellybeans_muted", "jellybeans_mono" }
+M.dark_variants = { "jellybeans", "jellybeans_muted", "jellybeans_mono", "jellybeans-warm", "jellybeans-hc" }
 M.light_variants = { "jellybeans_light", "jellybeans_muted_light", "jellybeans_mono_light" }
 M.default_variant = "jellybeans"
 M.default_dark_variant = "jellybeans"
@@ -53,9 +57,9 @@ M.config = function()
 		transparent = config.transparent,
 		italics = true,
 		flat_ui = false, -- toggles "flat UI" for pickers
-		palette = nil, -- specify a palette variant: nil (default/"vibrant") or "jellybeans_muted"
+		palette = nil, -- specify a palette variant: nil (default/vibrant) or "jellybeans_muted"
 		plugins = {
-			all = false,
+			all = true,
 			auto = true, -- will read lazy.nvim and apply the colors for plugins that are installed
 		},
 		on_highlights = function(highlights, colors) end,

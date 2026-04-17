@@ -11,14 +11,16 @@ local M = {
 }
 
 M.supported_variants = {
-	"iceclimber-light",
-	"gyokuro-light",
-	"hojicha-light",
-	"roseprime-light",
-	"iceclimber-dark",
 	"gyokuro-dark",
+	"gyokuro-light",
 	"hojicha-dark",
+	"hojicha-light",
+	"iceclimber-dark",
+	"iceclimber-light",
+	"moon-dark",
+	"moon-light",
 	"roseprime-dark",
+	"roseprime-light",
 }
 
 M.default_variant = "iceclimber-dark"
@@ -32,10 +34,15 @@ M.config = function()
 
 	vim.o.background = variant
 
+	local bg = "default"
+	if config.transparent then
+		bg = "transparent"
+	end
+
 	require("neomodern").setup({
+		bg = bg,
 		theme = theme,
 		variant = variant,
-		transparent = config.transparent,
 		diagnostics = {
 			undercurl = false,
 		},
