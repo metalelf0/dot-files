@@ -1,6 +1,15 @@
 ---@diagnostic disable: undefined-global
 vim.loader.enable()
 
+-- If nvim is launched with a single directory argument (`nvim .`), cd into it
+-- and clear the arglist BEFORE plugins load, so directory-hijacking file
+-- explorers (e.g. oil.nvim) never see it. Session loading then runs on an
+-- empty arglist from VimEnter.
+if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+	vim.cmd("cd " .. vim.fn.fnameescape(vim.fn.argv(0)))
+	vim.cmd("silent! %argdelete")
+end
+
 require("user.options")
 require("user.keymaps")
 require("user.lazy")

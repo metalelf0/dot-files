@@ -198,7 +198,47 @@ end
 
 function mini.sessions()
 	local sessions = require("mini.sessions")
-	sessions.setup({})
+	local opts = {
+		autoread = false, -- we handle loading manually to key sessions by cwd
+		autowrite = true, -- save current session on exit
+		file = "", -- disable per-project `Session.vim` files
+		-- Allow read/write over oil's hijacked directory buffer (marked modified).
+		force = { read = true, write = true },
+	}
+	sessions.setup(opts)
+
+	-- Each project's global session name is its absolute path with `/` -> `%`.
+	local function session_name_for_cwd()
+		return (vim.fn.getcwd():gsub("/", "%%"))
+	end
+
+	local function load_session_for_cwd()
+		sessions.setup(opts) -- refresh `detected` for the current cwd
+		local name = session_name_for_cwd()
+		if sessions.detected[name] then
+			sessions.read(name)
+		end
+	end
+
+	vim.api.nvim_create_user_command("SessionSave", function()
+		sessions.write(session_name_for_cwd())
+	end, { desc = "Save session for current directory" })
+
+	vim.api.nvim_create_user_command("SessionDelete", function()
+		sessions.delete(session_name_for_cwd())
+	end, { desc = "Delete session for current directory" })
+
+	-- The early-arg hook in init.lua has already rewritten `nvim <dir>` into
+	-- an empty arglist (cwd set to the target dir). So by VimEnter we only
+	-- need to load the session when nvim was started with no file args.
+	vim.api.nvim_create_autocmd("VimEnter", {
+		nested = true,
+		callback = function()
+			if vim.fn.argc() == 0 then
+				load_session_for_cwd()
+			end
+		end,
+	})
 end
 
 function mini.config()
