@@ -37,6 +37,7 @@ function M.config()
 		html = {},
 		jsonls = require("user.plugins.lsp.configs.jsonls"),
 		lua_ls = require("user.plugins.lsp.configs.lua_ls"),
+		markdown_oxide = require("user.plugins.lsp.configs.markdown_oxide"),
 		pyright = {},
 		-- ruby_lsp = require("lua.user.plugins.lsp.configs.ruby-lsp"),
 		ruby_lsp = {},
@@ -72,6 +73,29 @@ function M.config()
 	end
 
 	vim.lsp.log.set_level(config.lsp.log_level)
+
+	-- codelens setup
+	local function codelens_supported(bufnr)
+		for _, c in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+			if c.server_capabilities and c.server_capabilities.codeLensProvider then
+				return true
+			end
+		end
+		return false
+	end
+
+	vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "BufEnter" }, {
+		buffer = bufnr,
+		callback = function()
+			if codelens_supported(bufnr) then
+				vim.lsp.codelens.enable(true, { bufnr = bufnr })
+			end
+		end,
+	})
+
+	if codelens_supported(bufnr) then
+		vim.lsp.codelens.enable(true, { bufnr = bufnr })
+	end
 end
 
 return M

@@ -63,7 +63,21 @@ function setup_whichkey(client, buffer)
 		{
 			"gd",
 			function()
-				Snacks.picker.lsp_definitions()
+				local seen = {} -- Define the table inside the function scope
+
+				Snacks.picker.lsp_definitions({
+					transform = function(item)
+						-- Create a unique key for the file and position
+						local key = string.format("%s:%d:%d", item.file, item.pos[1], item.pos[2])
+
+						if seen[key] then
+							return false
+						end
+
+						seen[key] = true
+						return item
+					end,
+				})
 			end,
 			desc = "Goto Definition",
 		},
