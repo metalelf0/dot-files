@@ -19,8 +19,11 @@ require("user.neovide")
 require("user.autocommands")
 require("user.digraphs")
 require("user.ui2")
-vim.cmd([[ packadd cfilter ]])
 
+-- require("user.statusline")
+-- vim.opt.statusline = "%!v:lua.require'user.statusline'.render()"
+
+vim.cmd([[ packadd cfilter ]])
 local config = require("user.config")
 
 if config.keymapper == "which-key" then

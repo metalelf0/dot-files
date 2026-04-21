@@ -55,7 +55,26 @@ function setup_whichkey(client, buffer)
 		{
 			"gr",
 			function()
-				Snacks.picker.lsp_references()
+				local seen = {} -- Define the table inside the function scope
+				Snacks.picker.lsp_references({
+					transform = function(item)
+						-- Create a unique key for the file and position
+						local key = string.format("%s:%d:%d", item.file, item.pos[1], item.pos[2])
+						-- Some markdown LSPs return matches with different positions, e.g. for one is file:12:23 and for another is file:12:24
+						-- so to filter out duplicates we need to get -1 and +1 and see if it was already seen
+						local prefix, num_str = key:match("(.-):(%d+)$")
+						local num = tonumber(num_str)
+						local plus_one = prefix .. ":" .. (num + 1)
+						local minus_one = prefix .. ":" .. (num - 1)
+
+						if seen[key] or seen[plus_one] or seen[minus_one] then
+							return false
+						end
+
+						seen[key] = true
+						return item
+					end,
+				})
 			end,
 			nowait = true,
 			desc = "References",

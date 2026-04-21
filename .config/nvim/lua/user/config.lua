@@ -1,6 +1,6 @@
 return {
-	colorscheme = "forsake-repent",
-	variant = "repent",
+	colorscheme = "umbraline",
+	variant = "cursor",
 	transparent = false,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,

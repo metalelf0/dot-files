@@ -1,7 +1,7 @@
 local M = {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
-	-- enabled = false,
+	enabled = true,
 }
 
 local only_if_wide_enough = function()
