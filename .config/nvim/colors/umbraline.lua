@@ -176,6 +176,7 @@ local function build_theme(name)
 	end
 
 	t.shadow = blend(t.string, t.bg0, 0.15)
+	t.highlighter = blend(t.yellow, t.bg0, 0.35)
 	return t
 end
 
@@ -197,6 +198,7 @@ local pmenu_sel = t.pmenu_sel
 local border = t.border
 local floatbg = t.floatbg
 local shadow = t.shadow
+local highlighter = t.highlighter
 
 -- apply
 local function apply()
@@ -479,8 +481,9 @@ local function apply()
 	-- markdown customization / improvements
 	set_hl("@markup.link.label.markdown_inline", { bg = maybe(shadow), fg = string_accent })
 	set_hl("@lsp.type.decorator.markdown", { bg = maybe(shadow), fg = string_accent })
-	set_hl("@markup.raw", { bg = maybe(cursorln) })
-	set_hl("RenderMarkdownCode", { bg = maybe(cursorln) })
+	set_hl("@markup.raw", { bg = maybe(highlighter) })
+	set_hl("RenderMarkdownCode", { bg = maybe(shadow) })
+	set_hl("RenderMarkdownCodeInline", { bg = maybe(highlighter) })
 
 	if o.transparent then
 		for _, g in ipairs({
