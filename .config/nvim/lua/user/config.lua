@@ -1,6 +1,6 @@
 return {
 	colorscheme = "umbraline",
-	variant = "cursor",
+	variant = "cursor-light",
 	transparent = false,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,

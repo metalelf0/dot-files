@@ -10,7 +10,7 @@
   "claudecode.nvim": { "branch": "main", "commit": "432121f0f5b9bda041030d1e9e83b7ba3a93dd8f" },
   "codereview.nvim": { "branch": "main", "commit": "722542eae21160a71b99f0068b4331ce185aac45" },
   "colorbuddy.nvim": { "branch": "master", "commit": "8b968581e5c19d22a861d5f3fe5dbd83394fa681" },
-  "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
+  "conform.nvim": { "branch": "master", "commit": "dca1a190aa85f9065979ef35802fb77131911106" },
   "conifer.nvim": { "branch": "main", "commit": "83104ae71cba003b76b0cea45cbb19bc9c62693a" },
   "cursor-light.nvim": { "branch": "main", "commit": "9397cbfc685a9686f66aee212232724981650381" },
   "darkbox.nvim": { "branch": "main", "commit": "98aaef0cdcb1db28bd3e13c8f8f92609e54b5fe1" },

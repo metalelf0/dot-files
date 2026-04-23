@@ -3,7 +3,7 @@
 -- cool UI chrome. Inspired by the "lack" aesthetic.
 --
 -- Options (set BEFORE :colorscheme):
---   vim.g.umbraline = { theme = "default" } -- or "cursor"
+--   vim.g.umbraline = { theme = "default" } -- or "cursor", "cursor-light"
 --   vim.g.umbraline_theme = "default"       -- legacy alias
 --   vim.g.umbraline_transparent = false
 --   vim.g.umbraline_dim_inactive = true
@@ -129,6 +129,7 @@ local presets = {
 		-- special = "#cc7ab7",
 		string = "#cc8fbd",
 		special = "#cc8fbd",
+		on_accent = "#111111",
 		terminal = {
 			[0] = "#2b2b2b",
 			[1] = "#d56b6b",
@@ -149,6 +150,48 @@ local presets = {
 			[15] = "#f7efe4",
 		},
 	},
+	-- Light variant of cursor: WCAG 2.1 AA (>= 4.5:1) for all syntax text on bg0.
+	["cursor-light"] = {
+		black = "#111111",
+		bg_dim = "#ededed",
+		bg0 = "#f3f3f3",
+		bg1 = "#e8e8e8",
+		bg2 = "#dcdcdc",
+		bg3 = "#c8c8c8",
+		fg0 = "#1d1d1d",
+		fg1 = "#2b2b2b",
+		fg2 = "#5c564f",
+		fg3 = "#6e6459",
+		luster = "#0a0a0a",
+		lack = "#3d6577",
+		yellow = "#8e5e24",
+		green = "#4e6930",
+		red = "#a03a3a",
+		string = "#93467e",
+		special = "#93467e",
+		-- Fg to place on top of accent backgrounds (Search, Todo, FlashLabel, etc.).
+		-- Light here because accents (yellow/lack/red/string) are mid-to-dark tones
+		-- chosen to pass AA when used as text on bg0 — so bg-use needs a LIGHT fg.
+		on_accent = "#f7f7f7",
+		terminal = {
+			[0] = "#1d1d1d",
+			[1] = "#a03a3a",
+			[2] = "#4e6930",
+			[3] = "#8e5e24",
+			[4] = "#3d6577",
+			[5] = "#93467e",
+			[6] = "#3d6577",
+			[7] = "#cfc3b1",
+			[8] = "#6e6459",
+			[9] = "#c55050",
+			[10] = "#5f7e3a",
+			[11] = "#a87330",
+			[12] = "#4e7589",
+			[13] = "#a8578f",
+			[14] = "#4e7589",
+			[15] = "#f3ede2",
+		},
+	},
 }
 
 local function resolve_preset(name)
@@ -165,6 +208,7 @@ local function build_theme(name)
 	local t = vim.tbl_extend("force", {}, resolve_preset(name))
 	t.string = t.string or t.green
 	t.special = t.special or t.yellow
+	t.on_accent = t.on_accent or t.black
 	t.sel = blend(t.lack, t.bg0, 0.18)
 	t.cursorln = blend(t.lack, t.bg0, 0.07)
 	t.pmenu = t.bg2
@@ -189,6 +233,7 @@ local luster = t.luster
 local lack = t.lack
 local yellow, green, red = t.yellow, t.green, t.red
 local string_accent, special = t.string, t.special
+local on_accent = t.on_accent
 
 -- derived
 local sel = t.sel
@@ -236,9 +281,9 @@ local function apply()
 	set_hl("PmenuSbar", { bg = maybe(blend(bg0, pmenu, 0.25)) })
 	set_hl("PmenuThumb", { bg = maybe(blend(lack, pmenu, 0.30)) })
 
-	set_hl("Search", { fg = black, bg = yellow, bold = o.bold })
-	set_hl("IncSearch", { fg = black, bg = lack, bold = o.bold })
-	set_hl("CurSearch", { fg = black, bg = red, bold = o.bold })
+	set_hl("Search", { fg = on_accent, bg = yellow, bold = o.bold })
+	set_hl("IncSearch", { fg = on_accent, bg = lack, bold = o.bold })
+	set_hl("CurSearch", { fg = on_accent, bg = red, bold = o.bold })
 	set_hl("MatchParen", { fg = lack, bg = maybe(blend(lack, bg0, 0.16)), bold = o.bold })
 
 	set_hl("Visual", { bg = maybe(sel) })
@@ -297,7 +342,10 @@ local function apply()
 	set_hl("Typedef", { fg = yellow })
 	set_hl("PreProc", { fg = fg1 })
 	set_hl("Special", { fg = special })
-	set_hl("Todo", { fg = black, bg = maybe(yellow), bold = o.bold })
+	-- Nvim default: Delimiter -> NvimLightGrey2 (a hardcoded light gray) which
+	-- washes out on light backgrounds. @punctuation inherits from it.
+	set_hl("Delimiter", { fg = fg1 })
+	set_hl("Todo", { fg = on_accent, bg = maybe(yellow), bold = o.bold })
 	link("luaNumber", "Number")
 	link("luaString", "String")
 
@@ -355,6 +403,10 @@ local function apply()
 	link("@tag", "Tag")
 	link("@tag.attribute", "Identifier")
 	link("@tag.delimiter", "Delimiter")
+	link("@punctuation", "Delimiter")
+	link("@punctuation.bracket", "Delimiter")
+	link("@punctuation.delimiter", "Delimiter")
+	link("@punctuation.special", "Special")
 
 	-- LaTeX
 	set_hl("texCmd", { fg = yellow })
@@ -458,9 +510,9 @@ local function apply()
 	set_hl("NotifyTRACETitle", { fg = lack, bold = o.bold })
 
 	set_hl("MasonNormal", { fg = fg0, bg = maybe(floatbg) })
-	set_hl("MasonHeader", { fg = black, bg = yellow, bold = o.bold })
+	set_hl("MasonHeader", { fg = on_accent, bg = yellow, bold = o.bold })
 	set_hl("LazyNormal", { fg = fg0, bg = maybe(floatbg) })
-	set_hl("LazyH1", { fg = black, bg = lack, bold = o.bold })
+	set_hl("LazyH1", { fg = on_accent, bg = lack, bold = o.bold })
 	set_hl("NoicePopup", { fg = fg0, bg = maybe(floatbg) })
 	set_hl("NoiceCmdlineIcon", { fg = lack })
 	set_hl("NoiceCmdlinePopupBorder", { fg = border })
@@ -477,6 +529,15 @@ local function apply()
 	set_hl("HopNextKey", { fg = lack, bold = o.bold })
 	set_hl("HopNextKey1", { fg = yellow, bold = o.bold })
 	set_hl("HopNextKey2", { fg = red })
+
+	-- flash.nvim (folke/flash.nvim). Default FlashLabel is hard-coded magenta on
+	-- white and FlashMatch/FlashCurrent link to Search/IncSearch — route them
+	-- through on_accent so labels stay readable on both dark and light palettes.
+	set_hl("FlashBackdrop", { fg = fg3 })
+	set_hl("FlashMatch", { fg = on_accent, bg = yellow, bold = o.bold })
+	set_hl("FlashCurrent", { fg = on_accent, bg = red, bold = o.bold })
+	set_hl("FlashLabel", { fg = on_accent, bg = string_accent, bold = o.bold })
+	set_hl("FlashPromptIcon", { fg = special })
 
 	-- markdown customization / improvements
 	set_hl("@markup.link.label.markdown_inline", { bg = maybe(shadow), fg = string_accent })
