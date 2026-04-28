@@ -1,6 +1,6 @@
 return {
-	colorscheme = "umbraline",
-	variant = "cursor-light",
+	colorscheme = "jellybeans",
+	variant = "jellybeans",
 	transparent = false,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,

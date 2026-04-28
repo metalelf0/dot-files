@@ -56,7 +56,7 @@ return {
 				icon = "󰌹 ",
 			},
 			custom = {
-				notion = { pattern = "notion%.so", icon = " " },
+				notion = { pattern = "notion%.so", icon = "  " },
 			},
 		},
 	},

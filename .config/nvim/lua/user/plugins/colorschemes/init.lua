@@ -21,6 +21,7 @@ return {
 	require("user.plugins.colorschemes.jellybeans"),
 	require("user.plugins.colorschemes.kanagawa"),
 	require("user.plugins.colorschemes.kanso"),
+	require("user.plugins.colorschemes.kintsugi"),
 	require("user.plugins.colorschemes.lume"),
 	require("user.plugins.colorschemes.midnight"),
 	require("user.plugins.colorschemes.modus"),
