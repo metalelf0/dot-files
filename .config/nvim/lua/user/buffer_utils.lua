@@ -15,9 +15,15 @@ M.setup = function()
 		group = id,
 		pattern = { "*" },
 		callback = function()
-			vim.api.nvim_create_autocmd({ "InsertEnter", "BufModifiedSet" }, {
+			vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 				buffer = 0,
 				once = true,
+				callback = function()
+					persistbuffer()
+				end,
+			})
+			vim.api.nvim_create_autocmd({ "OptionSet" }, {
+				pattern = "modified",
 				callback = function()
 					persistbuffer()
 				end,
