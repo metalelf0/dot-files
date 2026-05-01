@@ -77,6 +77,16 @@ return {
 		)
 	),
 	s("task", fmt([[- [ ] #task {} ]], { i(1) })),
+	s(
+		"taskd",
+		fmt([[- [ ] #task {} ➕ {} 📅 {} ]], {
+			i(1),
+			f(function()
+				return os.date("%Y-%m-%d")
+			end),
+			i(2),
+		})
+	),
 	s("callout", fmt(">[!{}] {}\n> {}", { c(1, callout_types), i(2), i(3) })),
 
 	s(

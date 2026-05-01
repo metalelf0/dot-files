@@ -1,21 +1,22 @@
 local config = require("user.config")
+local utils = require("user.utils")
 local themer = require("user.themer")
 
-local colorscheme = "midnight"
+local colorscheme = "base46"
 
 local M = {
-	"barrettruth/midnight.nvim",
+	"AvengeMedia/base46",
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
 }
 
 M.config = function()
-	if config.colorscheme ~= "midnight" then
+	if config.colorscheme ~= "base46" then
 		return false
 	end
 
-	vim.cmd.colorscheme("midnight")
+	vim.cmd.colorscheme("base46-gruvchad")
 end
 
 return M

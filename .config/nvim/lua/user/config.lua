@@ -1,6 +1,6 @@
 return {
-	colorscheme = "jellybeans",
-	variant = "jellybeans",
+	colorscheme = "thorn",
+	variant = "forest",
 	transparent = false,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,
