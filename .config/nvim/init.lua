@@ -30,11 +30,16 @@ if config.keymapper == "which-key" then
 	local which_key = require("which-key")
 	local mappings = {
 		{ "<leader>A", group = "AI", nowait = true, remap = false },
+		{ "<leader>Ao", group = "AI - Opencode", nowait = true, remap = false },
 		{ "<leader>P", group = "Projects", nowait = true, remap = false },
 		{ "<leader>b", group = "Buffers", nowait = true, remap = false },
 		{ "<leader>bc", group = "Close", nowait = true, remap = false },
 		{ "<leader>c", group = "Cursors", nowait = true, remap = false },
 		{ "<leader>g", group = "Git", nowait = true, remap = false },
+		{ "<leader>gh", group = "Git - Helpers", nowait = true, remap = false },
+		{ "<leader>gl", group = "Git - Log", nowait = true, remap = false },
+		{ "<leader>go", group = "Git - PRs", nowait = true, remap = false },
+		{ "<leader>gu", group = "Git - Utils", nowait = true, remap = false },
 		{ "<leader>h", group = "Helpers", nowait = true, remap = false },
 		{ "<leader>i", group = "Insert", nowait = true, remap = false },
 		{ "<leader>j", group = "Test / join", nowait = true, remap = false },

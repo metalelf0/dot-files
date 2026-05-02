@@ -133,6 +133,14 @@ local M = {
 			desc = "Obsidian - Edit task dates",
 		},
 		{
+			"<leader>otn",
+			function()
+				tasks.create_task()
+			end,
+			"n",
+			desc = "Obsidian - new task",
+		},
+		{
 			"<leader>otli", -- obsidian tasks list todo
 			function()
 				list_in_progress_tasks()
