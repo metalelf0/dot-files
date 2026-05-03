@@ -217,11 +217,19 @@ M.create_task = function()
 	local outer_col = math.max(0, math.floor((vim.o.columns - (OUTER_W + 2)) / 2))
 
 	-- ── shared state ──────────────────────────────────────────────────────
+	-- the user interacts with two sub-windows (description, calendar). on submit/cancel
+	-- we must tear down all three windows (description, calendar, outer) in a way that:
+	--   - doesn't leave any window or buffer hanging on screen
+	--   - is idempotent: re-entry from BufWipeout cascades is a no-op
+	--   - runs the "decide whether to write the task" logic exactly once
+	-- to that end, every entry point sets `cancelled` (or leaves it false on a successful
+	-- submit), records the planned date, and calls `close_all()`. `close_all` tears down
+	-- every window in child-first order then calls `finish()` exactly once.
 	local description = ""
+	local planned_date = nil
 	local cancelled = false
-	-- `closing` short-circuits the close-cascade: when one sub-window closes, it triggers
-	-- the others, but we don't want those to recursively trigger the first one again.
 	local closing = false
+	local finished = false
 
 	-- ── outer window: a non-interactive frame around the dialog ───────────
 	local outer_buf = vim.api.nvim_create_buf(false, true)
@@ -252,7 +260,6 @@ M.create_task = function()
 			relativenumber = false,
 			signcolumn = "no",
 			wrap = false,
-			winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
 		},
 		bo = {
 			bufhidden = "wipe",
@@ -334,23 +341,59 @@ M.create_task = function()
 	-- ── helpers used by both panes ────────────────────────────────────────
 	local cal_win_handle, cal_buf_handle -- assigned after calendar.pick opens.
 
-	local function close_outer()
-		if outer_win and outer_win.close and outer_win.win and vim.api.nvim_win_is_valid(outer_win.win) then
-			outer_win:close()
+	-- finish() runs once after every window has been torn down. it decides whether to
+	-- write the task based on the flags collected during teardown.
+	local function finish()
+		if finished then
+			return
 		end
+		finished = true
+
+		if cancelled then
+			vim.notify("Task creation cancelled.", vim.log.levels.WARN)
+			return
+		end
+
+		local desc_trimmed = vim.trim(description)
+		if desc_trimmed == "" then
+			vim.notify("Task creation cancelled: empty description.", vim.log.levels.WARN)
+			return
+		end
+
+		write_task(desc_trimmed, planned_date)
 	end
 
-	local function close_desc()
-		if desc_win and desc_win.close and desc_win.win and vim.api.nvim_win_is_valid(desc_win.win) then
-			desc_win:close()
+	-- close everything in child-first order. this is idempotent: subsequent calls (from
+	-- BufWipeout cascades, etc.) are no-ops thanks to the `closing` guard.
+	local function close_all()
+		if closing then
+			return
 		end
-	end
+		closing = true
 
-	local function close_calendar()
-		-- closing the calendar buffer triggers its BufWipeout, which fires the calendar's on_select.
+		-- snapshot the description before its buffer is wiped.
+		if vim.api.nvim_buf_is_valid(desc_buf) then
+			description = read_description()
+		end
+
+		-- close children first (calendar, then description), then the outer frame.
 		if cal_buf_handle and vim.api.nvim_buf_is_valid(cal_buf_handle) then
-			vim.api.nvim_buf_delete(cal_buf_handle, { force = true })
+			pcall(vim.api.nvim_buf_delete, cal_buf_handle, { force = true })
 		end
+		if desc_win and desc_win.close and desc_win.win and vim.api.nvim_win_is_valid(desc_win.win) then
+			pcall(function()
+				desc_win:close()
+			end)
+		end
+		if outer_win and outer_win.close and outer_win.win and vim.api.nvim_win_is_valid(outer_win.win) then
+			pcall(function()
+				outer_win:close()
+			end)
+		end
+
+		-- defer finish() so any pending textlock from the BufWipeout cascade clears first
+		-- and the screen has had a chance to redraw.
+		vim.schedule(finish)
 	end
 
 	local function focus_description()
@@ -394,11 +437,11 @@ M.create_task = function()
 		if vim.fn.mode():match("^[iR]") then
 			vim.cmd("stopinsert")
 		end
-		close_desc()
+		close_all()
 	end, desc_map)
 	vim.keymap.set("n", "q", function()
 		cancelled = true
-		close_desc()
+		close_all()
 	end, desc_map)
 
 	-- keep the placeholder hint in sync as the user types.
@@ -407,23 +450,25 @@ M.create_task = function()
 		callback = refresh_hint,
 	})
 
-	-- when the description sub-window goes away, tear down the calendar and the outer frame.
+	-- safety net: if the description buffer is wiped through some other mechanism
+	-- (e.g. the user :bd's it), treat it as a cancel and tear everything else down.
+	-- if a submit/cancel keymap already started the tear-down, `closing` is true and
+	-- close_all is a no-op.
 	vim.api.nvim_create_autocmd("BufWipeout", {
 		buffer = desc_buf,
 		once = true,
 		callback = function()
-			if closing then
-				return
+			if not closing then
+				cancelled = true
 			end
-			closing = true
-			close_calendar()
-			close_outer()
+			close_all()
 		end,
 	})
 
 	-- ── calendar sub-window ───────────────────────────────────────────────
-	-- calendar.pick fires on_select exactly once on any closure. that's where we decide
-	-- whether to write the task.
+	-- calendar.pick fires on_select exactly once on any closure. its only job here is
+	-- to record the result; the actual write happens later in `finish()` after every
+	-- window has been torn down.
 	calendar.pick({
 		title = " 📅 Planned date ",
 		date = os.date("%Y-%m-%d"),
@@ -432,32 +477,13 @@ M.create_task = function()
 		row = CAL_REL_ROW,
 		col = CAL_REL_COL,
 		on_select = function(planned, outcome)
-			-- the calendar's buffer is wiping right now. close the rest.
-			closing = true
-			close_desc()
-			close_outer()
-
-			if cancelled or outcome == "cancelled" then
-				vim.notify("Task creation cancelled.", vim.log.levels.WARN)
-				return
+			-- "selected" -> planned is "YYYY-MM-DD"; "cleared" -> planned is nil; "cancelled" -> planned is nil.
+			planned_date = planned
+			if outcome == "cancelled" and not closing then
+				-- user pressed <Esc>/q on the calendar. propagate as a cancel.
+				cancelled = true
 			end
-
-			-- `description` is updated whenever focus leaves the description (<Tab>/<CR>);
-			-- if the user jumped straight to the calendar without editing, fall back to
-			-- whatever's currently in the description buffer (might already be wiped, in
-			-- which case we use the cached value).
-			local desc_text = description
-			if desc_text == "" and vim.api.nvim_buf_is_valid(desc_buf) then
-				desc_text = read_description()
-			end
-			local desc_trimmed = vim.trim(desc_text)
-			if desc_trimmed == "" then
-				vim.notify("Task creation cancelled: empty description.", vim.log.levels.WARN)
-				return
-			end
-
-			-- "selected" -> planned is "YYYY-MM-DD"; "cleared" -> planned is nil.
-			write_task(desc_trimmed, planned)
+			close_all()
 		end,
 	})
 
