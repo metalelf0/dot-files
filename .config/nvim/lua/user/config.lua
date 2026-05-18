@@ -1,7 +1,7 @@
 return {
-	colorscheme = "thorn",
-	variant = "forest",
-	transparent = false,
+	colorscheme = "umbraline",
+	variant = "cursor-light",
+	transparent = true,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,
 	filemanager = "oil", -- supported: mini.files, oil, snacks
@@ -13,6 +13,7 @@ return {
 	obsidian_workspace_path = os.getenv("HOME") .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/Andrea",
 	journal_dir = os.getenv("HOME") .. "/iCloud-Obsidian/work/dailies/",
 	lazy_dev_plugins_path = os.getenv("HOME") .. "/Documents/codice_elf0/",
+	enable_code_lens = false,
 	startup = {
 		show_diagnostics = true,
 		show_git_blame = false,

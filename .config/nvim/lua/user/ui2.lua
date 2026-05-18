@@ -1,5 +1,5 @@
 require("vim._core.ui2").enable({
-	enable = true, -- Whether to enable or disable the UI.
+	enable = false, -- Whether to enable or disable the UI.
 	msg = { -- Options related to the message module.
 		---@type 'cmd'|'msg' Default message target, either in the
 		---cmdline or in a separate ephemeral message window.

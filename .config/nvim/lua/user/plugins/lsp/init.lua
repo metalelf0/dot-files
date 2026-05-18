@@ -76,6 +76,10 @@ function M.config()
 
 	-- codelens setup
 	local function codelens_supported(bufnr)
+		if config.enable_code_lens == false then
+			return false
+		end
+
 		for _, c in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
 			if c.server_capabilities and c.server_capabilities.codeLensProvider then
 				return true

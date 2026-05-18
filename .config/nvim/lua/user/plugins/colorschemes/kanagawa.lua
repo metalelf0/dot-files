@@ -68,7 +68,7 @@ M.config = function()
 				["@text.todo.checked.markdown"] = { bg = theme.ui.bg_p1, fg = palette.dragonGreen },
 				["@text.todo.unchecked.markdown"] = { bg = theme.ui.bg_p1, fg = palette.peachRed },
 				-- VertSplit = { fg = palette.dragonGreen },
-				VertSplit = { fg = "#FFFFFF" },
+				WinSeparator = { fg = theme.ui.special },
 			}
 		end,
 	})

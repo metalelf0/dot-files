@@ -5,15 +5,14 @@ local M = {}
 -- - adds a done marker with current date at the end of the line (e.g. " ✅ 2026-03-11")
 M.mark_task_done = function()
 	local date = os.date("%Y-%m-%d")
-	local line_number = vim.fn.line(".")
-	local line = vim.fn.getline(line_number)
+	local line = vim.api.nvim_get_current_line()
 
 	if line:match("%- %[ %] #task") then
 		local new_line = line:gsub("%- %[ %] #task", "- [x] #task") .. " ✅ " .. date
-		vim.fn.setline(line_number, new_line)
+		vim.api.nvim_set_current_line(new_line)
 	elseif line:match("%- %[/%] #task") then
 		local new_line = line:gsub("%- %[/%] #task", "- [x] #task") .. " ✅ " .. date
-		vim.fn.setline(line_number, new_line)
+		vim.api.nvim_set_current_line(new_line)
 	else
 		print("No task to mark as done on this line.")
 	end
@@ -24,15 +23,14 @@ end
 -- - adds an "in progress" marker with current date at the end of the line (e.g. " 🛫 2026-03-11")
 M.mark_task_in_progress = function()
 	local date = os.date("%Y-%m-%d")
-	local line_number = vim.fn.line(".")
-	local line = vim.fn.getline(line_number)
+	local line = vim.api.nvim_get_current_line()
 
 	if line:match("%- %[ %] #task") then
 		local new_line = line:gsub("%- %[ %] #task", "- [/] #task") .. " 🛫 " .. date
-		vim.fn.setline(line_number, new_line)
+		vim.api.nvim_set_current_line(new_line)
 	elseif line:match("%- %[x%] #task") then
 		local new_line = line:gsub("%- %[x%] #task", "- [/] #task") .. " 🛫 " .. date
-		vim.fn.setline(line_number, new_line)
+		vim.api.nvim_set_current_line(new_line)
 	else
 		print("No task to mark as in progress on this line.")
 	end
@@ -42,27 +40,22 @@ end
 -- - updates the checkbox from [x] or [/] to [ ]
 M.mark_task_todo = function()
 	local date = os.date("%Y-%m-%d")
-	local line_number = vim.fn.line(".")
-	local line = vim.fn.getline(line_number)
+	local line = vim.api.nvim_get_current_line()
 
 	if line:match("%- %[x%] #task") then
 		local new_line = line:gsub("%- %[x%] #task", "- [ ] #task")
-		vim.fn.setline(line_number, new_line)
+		vim.api.nvim_set_current_line(new_line)
 	elseif line:match("%- %[/%] #task") then
 		local new_line = line:gsub("%- %[/%] #task", "- [ ] #task")
-		vim.fn.setline(line_number, new_line)
+		vim.api.nvim_set_current_line(new_line)
 	else
 		print("No task to mark as todo on this line.")
 	end
 end
 
--- edits a date on a task line. This:
--- - asks the user to select a date type (Done ✅, Planned 📅, Started 🛫, Canceled ❌)
--- - asks for a date in YYYY-MM-DD format, pre-populated with the existing value or today
--- - replaces the date if already present, or appends it to the end of the line
+-- edits a date on a task line.
 M.edit_task_date = function()
-	local line_number = vim.fn.line(".")
-	local line = vim.fn.getline(line_number)
+	local line = vim.api.nvim_get_current_line()
 
 	if not line:match("^%- %[.%] #task") then
 		print("No task on this line.")
@@ -110,13 +103,13 @@ M.edit_task_date = function()
 				new_line = line .. " " .. choice.symbol .. " " .. date
 			end
 
-			vim.fn.setline(line_number, new_line)
+			vim.api.nvim_set_current_line(new_line)
 		end)
 	end)
 end
 
 -- writes the new task line to tasks.md and refreshes any open buffer for it.
-local function write_task(description, planned)
+local function write_task(description, planned, curfile)
 	local config = require("user.config")
 	local today = os.date("%Y-%m-%d")
 
@@ -164,6 +157,7 @@ M.create_task = function()
 	Form.open({
 		title = " New task ",
 		footer = " <Tab> nav  <CR> ok  <Esc> cancel ",
+		width = 50,
 		components = {
 			{
 				name = "description",
@@ -179,11 +173,17 @@ M.create_task = function()
 				label = " 📅 Planned date ",
 				default_value = "today",
 			},
+			{
+				name = "current_file",
+				type = "checkbox",
+				label = " Write in current file ",
+			},
 		},
 		on_submit = function(values)
 			local description = values[1].value
 			local planned = values[2].value
-			write_task(description, planned)
+			local curfile = values[3].value
+			write_task(description, planned, curfile)
 		end,
 		on_cancel = function()
 			vim.notify("Task creation cancelled.", vim.log.levels.WARN)

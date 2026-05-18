@@ -4,5 +4,7 @@ return {
 	cmd = { "CodeReview" },
 	opts = {
 		platform = "github",
+		picker = "snacks",
+		debug = true,
 	},
 }

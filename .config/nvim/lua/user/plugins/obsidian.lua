@@ -1,5 +1,10 @@
 local config = require("user.config")
 local tasks = require("user.obsidian.tasks")
+local task_dates_conceal = require("user.obsidian.task_dates_conceal")
+local task_dates_highlight = require("user.obsidian.task_dates_highlight")
+
+-- Set up the comment-style highlight for task dates on plugin load.
+task_dates_highlight.setup()
 
 local function list_todo_tasks()
 	require("snacks").picker.grep({
@@ -49,7 +54,7 @@ local M = {
 		completion = {
 			nvim_cmp = (config.completion_engine == "nvim-cmp"),
 			blink = (config.completion_engine == "blink-cmp"),
-			min_chars = 2,
+			min_chars = 0,
 		},
 		daily_notes = {
 			folder = "work/dailies",
@@ -97,8 +102,8 @@ local M = {
 		{ "<leader>odw", "<cmd>Obsidian tomorrow<cr>", "n", desc = "Obsidian - tomorrow" },
 		{ "<leader>ody", "<cmd>Obsidian yesterday<cr>", "n", desc = "Obsidian - yesterday" },
 		{ "<leader>oT", "<cmd>Obsidian template<cr>", "n", desc = "Obsidian - template" },
-		{ "<leader>oL", "<cmd>Obsidian link_new<cr>", "v", desc = "Obsidian - new link" },
-		{ "<leader>ol", "<cmd>Obsidian link<cr>", "v", desc = "Obsidian - link" },
+		{ "<leader>oL", "<cmd>Obsidian link_new<cr>", mode = "v", desc = "Obsidian - new link" },
+		{ "<leader>ol", "<cmd>Obsidian link<cr>", mode = "v", desc = "Obsidian - link" },
 		-- ot -> obsidian tasks
 		{
 			"<leader>otd",
@@ -139,6 +144,14 @@ local M = {
 			end,
 			"n",
 			desc = "Obsidian - new task",
+		},
+		{
+			"<leader>oth",
+			function()
+				task_dates_conceal.toggle()
+			end,
+			"n",
+			desc = "Obsidian - toggle task date concealment",
 		},
 		{
 			"<leader>otli", -- obsidian tasks list todo

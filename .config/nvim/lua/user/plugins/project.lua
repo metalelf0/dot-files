@@ -1,21 +1,14 @@
 local M = {
-	"metalelf0/project.nvim",
+	"DrKJeff16/project.nvim",
 	-- "ahmedkhalf/project.nvim",
-	dev = true,
+	-- dev = true,
 	event = "VeryLazy",
 }
 
 M.config = function()
-	local project = require("project_nvim")
+	local project = require("project")
 	project.setup({
-		active = true,
-		on_config_done = nil,
-		manual_mode = false,
-		detection_methods = { "pattern" },
 		patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".project_root" },
-		show_hidden = false,
-		silent_chdir = true,
-		ignore_lsp = {},
 	})
 
 	local telescope = require("telescope")

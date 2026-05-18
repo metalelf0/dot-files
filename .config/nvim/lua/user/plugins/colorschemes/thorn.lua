@@ -24,6 +24,8 @@ M.config = function()
 		transparent = config.transparent,
 	})
 	vim.cmd("colorscheme thorn")
+	vim.cmd("hi clear WinSeparator")
+	vim.cmd("hi link WinSeparator FloatBorder")
 end
 
 return M
