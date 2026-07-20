@@ -9,7 +9,21 @@ return {
 		excluded_words = { "Check daily note", "Review pending tasks", "Read yesterday daily" },
 		excluded_paths = { "Academy" },
 	},
+	cmd = {
+		"Taskdash",
+		"TaskdashFloat",
+		"TaskdashDebug",
+		"TaskdashSetup",
+	},
 	keys = {
+		{
+			"<leader>T",
+			function()
+				require("taskdash").dashboard({ mode = "float" })
+			end,
+			desc = "Taskdash: Toggle dashboard (float)",
+		},
+
 		-- Global: open dashboard
 		{
 			"<leader>otD",

@@ -1,4 +1,5 @@
 local config = require("user.config")
+local utils = require("user.utils")
 
 local mini = {
 	"echasnovski/mini.nvim",
@@ -204,6 +205,7 @@ function mini.sessions()
 		file = "", -- disable per-project `Session.vim` files
 		-- Allow read/write over oil's hijacked directory buffer (marked modified).
 		force = { read = true, write = true },
+		directory = os.getenv("HOME") .. "/.local/share/nvim/sessions",
 	}
 	sessions.setup(opts)
 

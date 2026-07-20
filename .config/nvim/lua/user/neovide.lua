@@ -5,7 +5,7 @@ vim.opt.linespace = 4
 
 vim.g.gui_font_default_size = 15
 vim.g.gui_font_size = vim.g.gui_font_default_size
--- vim.g.gui_font_face = "JetBrains Mono"
+-- vim.g.gui_font_face = "Hack Mono"
 vim.g.gui_font_face = "Maple Mono"
 
 RefreshGuiFont = function()

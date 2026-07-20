@@ -48,9 +48,16 @@ M.custom_highlights = function(hl, c)
 		}
 	end
 
-	hl.WinSeparator = {
-		fg = "#e0af68", -- this is ok for the "moon" theme
-	}
+	if themer.variant(M) == "moon" then
+		hl.WinSeparator = {
+			fg = "#e0af68", -- this is ok for the "moon" theme
+		}
+	end
+	if themer.variant(M) == "day" then
+		hl["@markup.raw.markdown_inline"] = {
+			bg = "#73daca", -- this is ok for the "moon" theme
+		}
+	end
 	hl["@string.special.symbol"] = { fg = c.green }
 	hl["@label"] = { fg = c.yellow }
 	hl["@exception.ruby"] = { fg = c.red }

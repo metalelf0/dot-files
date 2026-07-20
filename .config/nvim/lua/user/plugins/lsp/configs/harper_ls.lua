@@ -5,6 +5,7 @@ return {
 		["harper-ls"] = {
 			userDictPath = "~/dict.txt",
 			linters = {
+				UseTitleCase = false,
 				SentenceCapitalization = false,
 				SpellCheck = false,
 			},

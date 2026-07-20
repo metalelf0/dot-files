@@ -79,8 +79,11 @@ return {
 	s("task", fmt([[- [ ] #task {} ]], { i(1) })),
 	s(
 		"taskd",
-		fmt([[- [ ] #task {} ➕ {} 📅 {} ]], {
+		fmt([[- [ ] #task {} ➕ {} 📅 {}{} ]], {
 			i(1),
+			f(function()
+				return os.date("%Y-%m-%d")
+			end),
 			f(function()
 				return os.date("%Y-%m-%d")
 			end),
@@ -200,4 +203,5 @@ SORT file.mtime DESC
 			}
 		)
 	),
+	markdown,
 }

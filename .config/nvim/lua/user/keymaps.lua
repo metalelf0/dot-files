@@ -111,6 +111,8 @@ end
 local open_file_explorer = function()
 	if config.filemanager == "oil" then
 		require("oil").open()
+	elseif config.filemanager == "fyler" then
+		require("fyler").open()
 	elseif config.filemanager == "mini.files" then
 		MiniFiles.open(vim.api.nvim_buf_get_name(0))
 	elseif config.filemanager == "snacks" then

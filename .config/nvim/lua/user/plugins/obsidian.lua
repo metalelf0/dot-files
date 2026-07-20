@@ -35,8 +35,10 @@ local M = {
 	version = "*",
 	ft = "markdown",
 	cmd = { "Obsidian" },
+	-- dev = true,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"ibhagwan/fzf-lua",
 	},
 	opts = {
 		legacy_commands = false,
@@ -52,15 +54,13 @@ local M = {
 			},
 		},
 		completion = {
-			nvim_cmp = (config.completion_engine == "nvim-cmp"),
-			blink = (config.completion_engine == "blink-cmp"),
 			min_chars = 0,
 		},
 		daily_notes = {
 			folder = "work/dailies",
 		},
 		templates = {
-			subdir = "templates",
+			folder = "templates/defaults/neovim",
 			date_format = "%Y-%m-%d",
 			substitutions = {
 				yesterday = function()
@@ -87,7 +87,11 @@ local M = {
 			enable = false,
 		},
 		picker = {
-			name = "snacks.pick",
+			name = "telescope.nvim",
+			note_mappings = {
+				new = "<C-x>",
+				insert_link = "<C-l>",
+			},
 		},
 	},
 	keys = {

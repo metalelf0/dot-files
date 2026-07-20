@@ -58,7 +58,7 @@ M.config = function()
 		opts.inverse = true
 		opts.contrast = "soft"
 		opts.dim_inactive = false
-		opts.transparent_mode = false
+		opts.transparent_mode = config.transparent
 		opts.palette_overrides = vim.tbl_deep_extend("force", opts.palette_overrides or {}, palette_overrides)
 		opts.overrides = opts.overrides or {}
 		require("gruvbox").setup(opts)

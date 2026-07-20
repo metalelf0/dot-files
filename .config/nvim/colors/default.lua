@@ -26,5 +26,8 @@ vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = 'NvimDarkRed', ctermfg = 9 })
 vim.api.nvim_set_hl(0, 'GitSignsDeletePreview', { bg = 'NvimDarkRed', ctermbg = 9 })
 -- stylua: ignore end
 
+vim.api.nvim_set_hl(0, "@markup.raw", { fg = "NvimLightGreen", bg = "NvimDarkGrey2" })
+vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { fg = "NvimLightGreen", bg = "NvimDarkGrey2" })
+
 require("lualine").setup({ options = { theme = require("lualine.themes.codedark") } })
 -- vim:ts=2:sw=2:sts=2:fdm=marker

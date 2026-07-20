@@ -63,7 +63,7 @@ function M.config()
 			["<Tab>"] = cmp.mapping.confirm({ select = true }),
 		}),
 		sources = cmp.config.sources({
-			{ name = "supermaven" },
+			-- { name = "supermaven" },
 			{
 				name = "luasnip",
 				group_index = 1,

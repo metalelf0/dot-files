@@ -9,37 +9,36 @@ return {
 	opts = {
 		checkbox = {
 			enabled = true,
-			unchecked = { icon = "◻️", highlight = "RenderMarkdownTodo", scope_highlight = "@character" },
-			checked = { icon = "✅", highlight = "RenderMarkdownDone", scope_highlight = "@attribute.builtin" },
+			unchecked = { icon = "◻️" },
+			checked = { icon = "✅" },
 			custom = {
-				doing = {
-					raw = "[/]",
-					rendered = "⏳",
-					highlight = "RenderMarkdownTodo",
-					scope_highlight = "@attribute",
-				},
-				fire = { raw = "[f]", rendered = "🔥", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-				note = { raw = "[n]", rendered = "📝", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-				win = { raw = "[w]", rendered = "🏆", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-				idea = { raw = "[I]", rendered = "💡", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-				location = { raw = "[l]", rendered = "📍", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-				important = {
-					raw = "[!]",
-					rendered = "⚠️",
-					highlight = "RenderMarkdownTodo",
-					scope_highlight = "@markup.strong",
-				},
-				question = { raw = "[?]", rendered = "❓", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-				scheduling = { raw = "[<]", rendered = "📅", highlight = "RenderMarkdownTodo", scope_highlight = nil },
-				canceled = {
-					raw = "[-]",
-					rendered = "❌",
-					highlight = "RenderMarkdownTodo",
-					scope_highlight = "@lsp.mod.deprecated",
-				},
+				doing = { raw = "[/]", rendered = "⏳" },
+				forwarded = { raw = "[>]", rendered = "➡️" },
+				fire = { raw = "[f]", rendered = "🔥" },
+				note = { raw = "[n]", rendered = "📝" },
+				win = { raw = "[w]", rendered = "🏆" },
+				idea = { raw = "[I]", rendered = "💡" },
+				git = { raw = "[g]", rendered = " " },
+				location = { raw = "[l]", rendered = "📍" },
+				meeting = { raw = "[m]", rendered = "🎧" },
+				important = { raw = "[!]", rendered = "⚠️" },
+				question = { raw = "[?]", rendered = "❓" },
+				scheduling = { raw = "[<]", rendered = "📅" },
+
+				-- this has to be named "todo" rather than "canceled" to override an existing default
+				todo = { raw = "[-]", rendered = "❌" },
 			},
 		},
 		heading = {
+			-- disable background on headings
+			backgrounds = {
+				"TabLineFill",
+				"TabLineFill",
+				"TabLineFill",
+				"TabLineFill",
+				"TabLineFill",
+				"TabLineFill",
+			},
 			icons = {
 
 				"❱ ",
@@ -51,12 +50,13 @@ return {
 			},
 		},
 		link = {
-			hyperlink = "󰌹 ",
+			hyperlink = "↪ ",
 			wiki = {
-				icon = "󰌹 ",
+				icon = "↪ ",
 			},
 			custom = {
-				notion = { pattern = "notion%.so", icon = "  " },
+				notion = { pattern = "notion%.com", icon = "  " },
+				notion_v2_cause_I_dont_care_patterns = { pattern = "notion%.so", icon = "  " },
 			},
 		},
 	},

@@ -104,3 +104,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = create_missing_dirs,
 })
+
+vim.api.nvim_create_user_command("DbToJson", ":%!python3 ~/bin/db-to-json.py", {})
