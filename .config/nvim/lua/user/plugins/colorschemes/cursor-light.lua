@@ -25,6 +25,14 @@ local M = {
 -- Built-ins         Teal          #6F9BA6
 -- Macros/Decorators Green         #1F8A65
 
+M.after = function()
+	vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = "#1a1b4e", update = true })
+	vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { fg = "#3a366e" })
+	vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { fg = "#5a548f" })
+	vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { fg = "#7c73b1" })
+	vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { fg = "#9e94d5" })
+end
+
 M.config = function()
 	if config.colorscheme ~= "cursor-light" then
 		return false
@@ -33,6 +41,7 @@ M.config = function()
 		ui = true,
 	})
 	vim.cmd.colorscheme("cursor-light")
+	M.after()
 end
 
 return M

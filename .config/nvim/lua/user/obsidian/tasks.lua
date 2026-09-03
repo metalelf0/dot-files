@@ -18,6 +18,21 @@ M.mark_task_done = function()
 	end
 end
 
+M.mark_task_canceled = function()
+	local date = os.date("%Y-%m-%d")
+	local line = vim.api.nvim_get_current_line()
+
+	if line:match("%- %[ %] #task") then
+		local new_line = line:gsub("%- %[ %] #task", "- [-] #task") .. " ❌ " .. date
+		vim.api.nvim_set_current_line(new_line)
+	elseif line:match("%- %[/%] #task") then
+		local new_line = line:gsub("%- %[/%] #task", "- [-] #task") .. " ❌ " .. date
+		vim.api.nvim_set_current_line(new_line)
+	else
+		print("No task to mark as canceled on this line.")
+	end
+end
+
 -- marks a task line as in progress. This:
 -- - updates the checkbox from [ ] or [x] to [/]
 -- - adds an "in progress" marker with current date at the end of the line (e.g. " 🛫 2026-03-11")

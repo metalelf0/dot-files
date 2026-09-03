@@ -19,6 +19,7 @@ require("user.neovide")
 require("user.autocommands")
 require("user.digraphs")
 require("user.ui2")
+require("user.converters.csv_to_json")
 
 -- require("user.statusline")
 -- vim.opt.statusline = "%!v:lua.require'user.statusline'.render()"
@@ -86,3 +87,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.cmd("packadd nvim.undotree")
 vim.keymap.set("n", "<leader>U", require("undotree").open)
+
+vim.opt.runtimepath:append("~/Documents/codice_elf0/neovim-to-minimal-theme")
+require("neovim-to-minimal-theme").setup({
+	vault_presets_dir = "~/iCloud-Obsidian/minimal-themes",
+})

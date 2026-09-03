@@ -34,18 +34,22 @@ require("vim._core.ui2").enable({
 			typed_cmd = "cmd",
 		},
 		cmd = { -- Options related to messages in the cmdline window.
-			height = 0.5, -- Maximum height while expanded for messages beyond 'cmdheight'.
+			-- height = 0.5, -- Maximum height while expanded for messages beyond 'cmdheight'.
 		},
 		dialog = { -- Options related to dialog window.
 			height = 0.5, -- Maximum height.
 		},
 		msg = { -- Options related to msg window.
 			height = 0.3, -- Maximum height.
-			timeout = 4000, -- Time a message is visible in the message window.
+			-- timeout = 4000, -- Time a message is visible in the message window.
 		},
 		pager = { -- Options related to message window.
 			height = 0.5, -- Maximum height.
 		},
+	},
+	messagesopt = {
+		timeout = 4000, -- Time a message is visible in the message window.
+		maxheight = 0.5,
 	},
 })
 

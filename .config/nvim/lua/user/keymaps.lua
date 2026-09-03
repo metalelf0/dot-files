@@ -205,7 +205,13 @@ keymap("n", "<leader>ue", function()
 	Snacks.explorer()
 end, { desc = "Snacks explorer" })
 
-keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
+if config.filemanager == "neotree" then
+	keymap("n", "<leader>ug", "<cmd>Neotree git_status<cr>", { desc = "Git status explorer" })
+end
+
+if config.picker == "snacks" then
+	keymap("n", "<leader>gpd", function() Snacks.picker.git_diff() end, { desc = "Git diff" })
+end
 -- keymap("n", "<leader>udd", "<cmd>ToggleDiag<CR>", { desc = "Toggle diagnostics" })
 
 keymap("n", "<leader>udu", "<Plug>(toggle-lsp-diag-underline)", { desc = "Diagnostic - toggle underline" })

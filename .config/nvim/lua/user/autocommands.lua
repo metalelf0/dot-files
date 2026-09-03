@@ -38,6 +38,29 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd("BufWinEnter", { command = ":set formatoptions-=cro", group = general_group })
 vim.api.nvim_create_autocmd("FileType", { command = "set nobuflisted", group = general_group, pattern = "qf" })
 
+local function hide_statuscolumn_numbers()
+	vim.opt_local.number = false
+	vim.opt_local.relativenumber = false
+	vim.opt_local.statuscolumn = ""
+end
+
+local function hide_explorer_numbers(args)
+	if not vim.tbl_contains({ "oil", "snacks_dashboard", "taskdash" }, vim.bo[args.buf].filetype) then
+		return
+	end
+	local win = vim.api.nvim_get_current_win()
+	vim.schedule(function()
+		if vim.api.nvim_win_is_valid(win) and vim.api.nvim_win_get_buf(win) == args.buf then
+			vim.api.nvim_win_call(win, hide_statuscolumn_numbers)
+		end
+	end)
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType", "WinEnter" }, {
+	callback = hide_explorer_numbers,
+	group = general_group,
+})
+
 -- highlight yanked text for a brief while
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()

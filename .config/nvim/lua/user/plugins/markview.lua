@@ -1,6 +1,8 @@
+local config = require("user.config")
+
 return {
 	"OXY2DEV/markview.nvim",
-	enabled = false,
+	enabled = (config.markdown_plugin == "markview"),
 	ft = { "markdown" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",

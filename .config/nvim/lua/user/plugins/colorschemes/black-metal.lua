@@ -8,7 +8,7 @@ local M = {
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
-	dev = true,
+	-- dev = true,
 }
 
 M.supported_variants = {
@@ -45,6 +45,7 @@ M.config = function()
 		variant = variant,
 		alt_bg = false,
 		transparent = config.transparent,
+		trve = false,
 		diagnostics = {
 			undercurl = false,
 		},

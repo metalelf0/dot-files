@@ -11,7 +11,7 @@ local M = {
 	keys = themer.keys(colorscheme),
 }
 
-M.supported_variants = { "ember", "ember-soft", "ember-light" }
+M.supported_variants = { "ember", "ember-soft", "ember-light", "ember-lighter" }
 M.default_variant = "ember"
 
 function M.config()

@@ -11,6 +11,66 @@ local state = {
 	saved_winopts = {},
 }
 
+-- Neovim's bundled markdown_inline highlights query conceals the brackets of
+-- "shortcut" links (any "[...]" that isn't a proper inline/reference link),
+-- see $VIMRUNTIME/queries/markdown_inline/highlights.scm. Tree-sitter's
+-- markdown grammar only recognizes " ", "x", "X" as real checkbox markers,
+-- so custom states like "[/]" or "[n]" parse as shortcut links instead and
+-- get caught by that same rule. That collides with touchup.nvim, which
+-- redraws its own "[" + icon + "]" over custom checkbox states: both are
+-- fighting over the same cells, and the built-in conceal wins, eating the
+-- opening bracket. We patch that one rule out while our own concealment is
+-- enabled (raising 'conceallevel' is what activates it in the first place),
+-- and restore the original query when we turn concealment back off.
+local shortcut_link_conceal_pattern = "; Conceal shortcut links.-%)%)"
+local original_markdown_inline_highlights = nil
+
+-- Forces every buffer currently attached to a treesitter highlighter to
+-- rebuild it, so query changes made via `vim.treesitter.query.set` apply
+-- immediately instead of only to buffers opened after the change.
+local function refresh_markdown_highlighting()
+	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(bufnr) and vim.treesitter.highlighter.active[bufnr] then
+			vim.treesitter.stop(bufnr)
+			vim.treesitter.start(bufnr)
+		end
+	end
+end
+
+-- Removes the shortcut-link bracket-conceal rule from the markdown_inline
+-- highlights query, keeping everything else (emphasis, code spans, real
+-- links, entities, ...) intact.
+local function patch_shortcut_link_conceal()
+	if original_markdown_inline_highlights then
+		return
+	end
+	local ok, files = pcall(vim.treesitter.query.get_files, "markdown_inline", "highlights")
+	if not ok or not files or #files == 0 then
+		return
+	end
+	local chunks = {}
+	for _, file in ipairs(files) do
+		table.insert(chunks, table.concat(vim.fn.readfile(file), "\n"))
+	end
+	local original = table.concat(chunks, "\n")
+	if not original:find(shortcut_link_conceal_pattern) then
+		return
+	end
+	original_markdown_inline_highlights = original
+	vim.treesitter.query.set("markdown_inline", "highlights", (original:gsub(shortcut_link_conceal_pattern, "")))
+	refresh_markdown_highlighting()
+end
+
+-- Restores the original markdown_inline highlights query.
+local function restore_shortcut_link_conceal()
+	if not original_markdown_inline_highlights then
+		return
+	end
+	vim.treesitter.query.set("markdown_inline", "highlights", original_markdown_inline_highlights)
+	original_markdown_inline_highlights = nil
+	refresh_markdown_highlighting()
+end
+
 -- Places conceal extmarks over date segments on all task lines in `bufnr`.
 local function apply_buf(bufnr)
 	if not vim.api.nvim_buf_is_loaded(bufnr) then
@@ -65,6 +125,7 @@ end
 -- Turns concealment on globally: apply to all buffers/windows + watch for changes.
 local function enable()
 	state.enabled = true
+	patch_shortcut_link_conceal()
 	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
 		apply_buf(bufnr)
 	end
@@ -102,6 +163,7 @@ local function disable()
 		restore_win_conceal(winid)
 	end
 	state.saved_winopts = {}
+	restore_shortcut_link_conceal()
 end
 
 -- Public toggle entry point.

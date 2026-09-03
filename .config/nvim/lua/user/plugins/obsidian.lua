@@ -35,7 +35,7 @@ local M = {
 	version = "*",
 	ft = "markdown",
 	cmd = { "Obsidian" },
-	-- dev = true,
+	dev = true,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"ibhagwan/fzf-lua",
@@ -47,6 +47,9 @@ local M = {
 			-- return require("obsidian.builtin").title_id(title)
 			return title
 		end,
+		cache = {
+			enabled = true,
+		},
 		workspaces = {
 			{
 				name = "Andrea",
@@ -96,7 +99,7 @@ local M = {
 	},
 	keys = {
 		{ "<leader>ob", "<cmd>Obsidian backlinks<cr>", "n", desc = "Obsidian - backlinks" },
-		{ "<leader>of", "<cmd>Obsidian follow_link<cr>", "n", desc = "Obsidian - follow link" },
+		{ "<leader>oF", "<cmd>Obsidian follow_link<cr>", "n", desc = "Obsidian - follow link" },
 		{ "<leader>on", "<cmd>Obsidian new<cr>", "n", desc = "Obsidian - new" },
 		{ "<leader>oo", "<cmd>Obsidian quick_switch<cr>", "n", desc = "Obsidian - quick switch" },
 		{ "<leader>os", "<cmd>Obsidian search<cr>", "n", desc = "Obsidian - search" },
@@ -108,7 +111,17 @@ local M = {
 		{ "<leader>oT", "<cmd>Obsidian template<cr>", "n", desc = "Obsidian - template" },
 		{ "<leader>oL", "<cmd>Obsidian link_new<cr>", mode = "v", desc = "Obsidian - new link" },
 		{ "<leader>ol", "<cmd>Obsidian link<cr>", mode = "v", desc = "Obsidian - link" },
+		{ "<leader>ofi", "<cmd>Obsidian incoming_links<cr>", mode = "n", desc = "Obsidian - find incoming links" },
+		{ "<leader>ofo", "<cmd>Obsidian outgoing_links<cr>", mode = "n", desc = "Obsidian - find outgoing links" },
 		-- ot -> obsidian tasks
+		{
+			"<leader>otc",
+			function()
+				tasks.mark_task_canceled()
+			end,
+			"n",
+			desc = "Obsidian - mark task as canceled",
+		},
 		{
 			"<leader>otd",
 			function()
