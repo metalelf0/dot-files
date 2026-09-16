@@ -12,7 +12,7 @@ local M = {
 	keys = themer.keys(colorscheme),
 }
 
-M.supported_variants = { "mist", "dawn", "ash" }
+M.supported_variants = { "mist", "dawn", "ash", "mira" }
 M.default_variant = "mist"
 
 function M.config()

@@ -5,13 +5,13 @@ local colorscheme = "circadia"
 
 local M = {
 	"tanmaymanojgandhi/circadia",
+	enabled = true,
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
 	supported_variants = { "light", "hard" },
 	default_variant = "light",
 	init = function(plugin)
-		vim.print("circadia is initializing")
 		local port_path = vim.fs.joinpath(plugin.dir, "ports", "neovim")
 		local lua_path = vim.fs.joinpath(port_path, "lua", "?.lua")
 		local lua_init = vim.fs.joinpath(port_path, "lua", "?", "init.lua")
@@ -45,7 +45,6 @@ local M = {
 
 		-- Add directory to runtime path
 		vim.opt.rtp:prepend(vim.fs.joinpath(vim.fn.stdpath("data"), "circadia_colors"))
-		vim.print("circadia has initialized")
 	end,
 }
 

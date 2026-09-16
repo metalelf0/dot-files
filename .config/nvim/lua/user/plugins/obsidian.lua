@@ -84,6 +84,10 @@ local M = {
 					end
 					return os.date("%Y-%m-%d", t)
 				end,
+				today_with_day_of_week = function()
+					local t = os.time()
+					return os.date("%Y-%m-%d, %A", t)
+				end,
 			},
 		},
 		ui = {

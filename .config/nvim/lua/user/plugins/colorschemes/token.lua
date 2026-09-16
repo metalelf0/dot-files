@@ -12,13 +12,15 @@ local M = {
 
 M.supported_variants = {
 	"classic-dark",
-	"ultra-dark",
-	"flint-dark",
-	"temper-dark",
 	"classic-light",
-	"ultra-light",
+	"flint-dark",
 	"flint-light",
+	"meridian-dark",
+	"meridian-light",
+	"temper-dark",
 	"temper-light",
+	"ultra-dark",
+	"ultra-light",
 }
 
 M.default_variant = "classic-dark"

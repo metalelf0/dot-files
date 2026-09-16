@@ -9,6 +9,7 @@ return {
 			icons = {
 				["m"] = { text = "󰋋", hl = "TouchupCheckboxChecked" },
 				["n"] = { text = "", hl = "TouchupCheckboxChecked" },
+				["w"] = { text = "", hl = "TouchupCheckboxChecked" },
 			},
 		},
 	},

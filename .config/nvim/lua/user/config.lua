@@ -1,9 +1,7 @@
 return {
-	colorscheme = "circadia",
-	light_colorscheme = "circadia-light",
-	dark_colorscheme = "luna",
-	variant = "light",
-	transparent = false,
+	colorscheme = "github",
+	variant = "github_light",
+	transparent = true,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,
 	filemanager = "oil", -- supported: mini.files, oil, snacks, fyler
