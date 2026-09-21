@@ -19,6 +19,7 @@ require("user.neovide")
 require("user.autocommands")
 require("user.digraphs")
 require("user.ui2")
+require("user.recol")
 require("user.converters.csv_to_json")
 
 -- require("user.statusline")

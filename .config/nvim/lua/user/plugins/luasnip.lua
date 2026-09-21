@@ -17,6 +17,7 @@ function M.config()
 	luasnip.config.setup({
 		history = true,
 		enable_autosnippets = true,
+		store_selection_keys = "<Tab>", -- enable storing visually-selected text with <Tab>
 		-- Update more often, :h events for more info.
 		-- updateevents = "TextChanged,TextChangedI",
 	})

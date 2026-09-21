@@ -1,6 +1,6 @@
 return {
-	colorscheme = "github",
-	variant = "github_light",
+	colorscheme = "vague",
+	variant = "",
 	transparent = true,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,

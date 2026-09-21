@@ -7,6 +7,16 @@ local s = ls.snippet
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
+-- helper function to allow using visual selection in snippets
+-- see https://ejmastnak.com/tutorials/vim-latex/luasnip/#advanced-nodes
+local get_visual = function(args, parent)
+	if #parent.snippet.env.LS_SELECT_RAW > 0 then
+		return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
+	else -- If LS_SELECT_RAW is empty, return a blank insert node
+		return sn(nil, i(1))
+	end
+end
+
 local cb_text = function(args)
 	local checkboxes = {
 		["[ ]"] = "Todo",
@@ -203,5 +213,13 @@ SORT file.mtime DESC
 			}
 		)
 	),
+	s(
+		{ trig = "md_http_link", dscr = "Wrap selected text in a markdown link" },
+		fmta("[<>](<>)", {
+			i(1),
+			d(2, get_visual),
+		})
+	),
+
 	markdown,
 }

@@ -51,6 +51,7 @@ return {
 	require("user.plugins.colorschemes.sora"),
 	require("user.plugins.colorschemes.south"),
 	require("user.plugins.colorschemes.standard"),
+	require("user.plugins.colorschemes.suannhai"),
 	require("user.plugins.colorschemes.thorn"),
 	require("user.plugins.colorschemes.token"),
 	require("user.plugins.colorschemes.tokyonight"),
