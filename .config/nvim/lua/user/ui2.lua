@@ -1,5 +1,5 @@
 require("vim._core.ui2").enable({
-	enable = false, -- Whether to enable or disable the UI.
+	enable = true, -- Whether to enable or disable the UI.
 	msg = { -- Options related to the message module.
 		---@type 'cmd'|'msg' Default message target, either in the
 		---cmdline or in a separate ephemeral message window.
@@ -83,3 +83,12 @@ msgs.set_pos = function(tgt)
 		})
 	end
 end
+
+-- custom command to show messages - author: @metalelf0
+vim.api.nvim_create_user_command("ShowMessages", function()
+	local scratch = vim.api.nvim_create_buf(false, true)
+	local msgs_text = vim.split(vim.fn.execute("messages", "silent"), "\n")
+	vim.api.nvim_buf_set_lines(scratch, 0, -1, false, msgs_text)
+	vim.cmd("botright split")
+	vim.api.nvim_win_set_buf(0, scratch)
+end, {})

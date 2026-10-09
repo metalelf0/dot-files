@@ -47,7 +47,7 @@ M.config = function()
 		},
 		palette = {
 			main = {
-				base = "#0a0a0a",
+				-- base = "#0a0a0a",
 			},
 		},
 		groups = {

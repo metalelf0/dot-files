@@ -1,10 +1,11 @@
+-- formerly known as gruvdark
 local config = require("user.config")
 local themer = require("user.themer")
 
-local colorscheme = "gruvdark"
+local colorscheme = "shibumi"
 
 local M = {
-	"darianmorat/gruvdark.nvim",
+	"darianmorat/shibumi.nvim",
 	version = "*",
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
@@ -14,11 +15,11 @@ local M = {
 	},
 }
 
-M.supported_variants = { "gruvdark", "gruvdark-light" }
-M.default_variant = "gruvdark"
+M.supported_variants = { "shibumi", "shibumi-light" }
+M.default_variant = "shibumi"
 
 M.config = function()
-	if config.colorscheme ~= "gruvdark" then
+	if config.colorscheme ~= "shibumi" then
 		return false
 	end
 

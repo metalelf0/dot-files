@@ -35,9 +35,9 @@ local M = {
 	version = "*",
 	ft = "markdown",
 	cmd = { "Obsidian" },
-	dev = true,
+	-- dev = true,
 	dependencies = {
-		"nvim-lua/plenary.nvim",
+		-- "nvim-lua/plenary.nvim",
 		"ibhagwan/fzf-lua",
 	},
 	opts = {
@@ -100,6 +100,9 @@ local M = {
 				insert_link = "<C-l>",
 			},
 		},
+		note = {
+			template = "new note.md",
+		},
 	},
 	keys = {
 		{ "<leader>ob", "<cmd>Obsidian backlinks<cr>", "n", desc = "Obsidian - backlinks" },
@@ -115,8 +118,8 @@ local M = {
 		{ "<leader>oT", "<cmd>Obsidian template<cr>", "n", desc = "Obsidian - template" },
 		{ "<leader>oL", "<cmd>Obsidian link_new<cr>", mode = "v", desc = "Obsidian - new link" },
 		{ "<leader>ol", "<cmd>Obsidian link<cr>", mode = "v", desc = "Obsidian - link" },
-		{ "<leader>ofi", "<cmd>Obsidian incoming_links<cr>", mode = "n", desc = "Obsidian - find incoming links" },
-		{ "<leader>ofo", "<cmd>Obsidian outgoing_links<cr>", mode = "n", desc = "Obsidian - find outgoing links" },
+		{ "<leader>ofi", "<cmd>Obsidian find_incoming<cr>", mode = "n", desc = "Obsidian - find incoming links" },
+		{ "<leader>ofo", "<cmd>Obsidian find_outgoing<cr>", mode = "n", desc = "Obsidian - find outgoing links" },
 		-- ot -> obsidian tasks
 		{
 			"<leader>otc",

@@ -8,7 +8,7 @@ local M = {
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
-	dev = true,
+	-- dev = true,
 }
 
 M.supported_variants = {
@@ -53,7 +53,9 @@ M.config = function()
 			background = true,
 		},
 		colors = {
-			fg = "#f1f1f1",
+			dark = {
+				fg = "#f1f1f1",
+			},
 		},
 	})
 	require("black-metal").load()

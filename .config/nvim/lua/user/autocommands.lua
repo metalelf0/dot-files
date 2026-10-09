@@ -64,7 +64,15 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "FileType", "WinEnter" 
 -- highlight yanked text for a brief while
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
-		require("vim.hl").on_yank({ timeout = 200 })
+		-- require("vim.hl").on_yank({ timeout = 200 })
+		require("vim.hl").hl_op({ hiGroup = "Visual", timeout = 200 })
+	end,
+})
+
+vim.api.nvim_create_autocmd("TextPutPost", {
+	callback = function()
+		-- require("vim.hl").on_yank({ timeout = 200 })
+		require("vim.hl").hl_op({ hiGroup = "Visual", timeout = 200 })
 	end,
 })
 
@@ -128,4 +136,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = create_missing_dirs,
 })
 
-vim.api.nvim_create_user_command("DbToJson", ":%!python3 ~/bin/db-to-json.py", {})
+-- vim.api.nvim_create_user_command("DbToJson", ":%!python3 ~/bin/db-to-json.py", {})
+require("user.autocommands.db-to-json")
+require("user.autocommands.dadbod-autoinit")

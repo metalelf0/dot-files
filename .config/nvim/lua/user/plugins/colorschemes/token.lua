@@ -43,7 +43,7 @@ M.config = function()
 
 	---@type token.Config
 	local config = {
-		transparent = false,
+		transparent = config.transparent,
 		plugins = { gitsigns = true, snacks = true },
 	}
 

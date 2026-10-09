@@ -1,10 +1,10 @@
 return {
-	colorscheme = "vague",
-	variant = "",
+	colorscheme = "cendre",
+	variant = "hard",
 	transparent = true,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,
-	filemanager = "oil", -- supported: mini.files, oil, snacks, fyler
+	filemanager = "oil", -- supported:: mini.clue, which-key
 	keymapper = "which-key", -- supported: mini.clue, which-key
 	completion_engine = "blink-cmp", -- supported: blink-cmp, nvim-cmp
 	terminal_plugin = "toggleterm", -- supported: toggleterm, snacks
