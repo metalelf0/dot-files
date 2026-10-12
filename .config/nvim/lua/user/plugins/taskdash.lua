@@ -8,6 +8,12 @@ return {
 		vault_dir = config.obsidian_workspace_path,
 		excluded_words = { "Check daily note", "Review pending tasks", "Read yesterday daily" },
 		excluded_paths = { "Academy" },
+		on_render = function(bufnr, locations)
+			require("user.obsidian.task_urgency").apply_taskdash(bufnr, locations)
+		end,
+		urgency_score = function(task)
+			return require("user.obsidian.task_urgency").calculate_urgency(task.raw)
+		end,
 	},
 	cmd = {
 		"Taskdash",
@@ -78,9 +84,9 @@ return {
 		{
 			"<Tab>",
 			function()
-				require("taskdash").toggle_group()
+				require("taskdash").cycle_view()
 			end,
-			desc = "Taskdash: Toggle group",
+			desc = "Taskdash: Cycle views",
 			ft = "taskdash",
 		},
 		{
