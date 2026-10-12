@@ -14,13 +14,13 @@ M.supported_variants = { "hard", "medium", "soft" }
 M.default_variant = "hard"
 
 M.config = function()
-	if config.dark_colorscheme ~= "cendre" or config.colorscheme ~= "cendre" then
+	if config.colorscheme ~= "cendre" then
 		return false
 	end
 	require("cendre").setup({
 		background = themer.variant(M),
 		italic_virtual_text = true,
-		transparent = config.transparent,
+		transparent = false,
 		on_highlights = function(hl, c)
 			hl["@markup.link.label.markdown_inline"] = { bg = c.bg1 }
 			hl["@markup.raw"] = { bg = c.bg2 }

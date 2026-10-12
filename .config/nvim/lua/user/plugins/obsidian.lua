@@ -178,6 +178,14 @@ local M = {
 			desc = "Obsidian - toggle task date concealment",
 		},
 		{
+			"<leader>otp",
+			function()
+				tasks.edit_task_priority()
+			end,
+			"n",
+			desc = "Obsidian - Edit task priority",
+		},
+		{
 			"<leader>otli", -- obsidian tasks list todo
 			function()
 				list_in_progress_tasks()

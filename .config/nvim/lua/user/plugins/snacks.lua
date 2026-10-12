@@ -76,6 +76,7 @@ return {
 							key = "c",
 							desc = "config",
 							action = function()
+								vim.cmd.cd(vim.fn.stdpath("config"))
 								require("snacks").picker.files({
 									cwd = vim.fn.stdpath("config"),
 									pattern = "config.lua",

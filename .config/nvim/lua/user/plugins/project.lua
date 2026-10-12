@@ -8,7 +8,18 @@ local M = {
 M.config = function()
 	local project = require("project")
 	project.setup({
-		patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", ".project_root" },
+		use_git = false,
+		lsp = { enabled = false },
+		patterns = {
+			".project_root",
+			".git",
+			"_darcs",
+			".hg",
+			".bzr",
+			".svn",
+			"Makefile",
+			"package.json",
+		},
 	})
 
 	local telescope = require("telescope")

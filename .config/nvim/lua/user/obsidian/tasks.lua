@@ -123,6 +123,67 @@ M.edit_task_date = function()
 	end)
 end
 
+M.edit_task_priority = function()
+	local line = vim.api.nvim_get_current_line()
+
+	if not line:match("^%- %[.%] #task") then
+		print("No task on this line.")
+		return
+	end
+
+	local priority_types = {
+		{ label = "Highest", symbol = "🔺" },
+		{ label = "High", symbol = "⏫" },
+		{ label = "Medium", symbol = "🔼" },
+		{ label = "No", symbol = "" },
+		{ label = "Low", symbol = "🔽" },
+		{ label = "Lowest", symbol = "⏬" },
+	}
+
+	vim.ui.select(priority_types, {
+		prompt = "Select priority:",
+		format_item = function(item)
+			return item.symbol ~= "" and (item.symbol .. " " .. item.label) or item.label
+		end,
+	}, function(choice)
+		if not choice then
+			return
+		end
+
+		-- Check if line already contains one of the priority symbols
+		local existing_symbol = nil
+		for _, item in ipairs(priority_types) do
+			if item.symbol ~= "" and line:find(item.symbol, 1, true) then
+				existing_symbol = item.symbol
+				break
+			end
+		end
+
+		local new_line = line
+		if existing_symbol then
+			if choice.symbol ~= "" then
+				-- Replace existing priority emoji in place
+				new_line = line:gsub(vim.pesc(existing_symbol), choice.symbol, 1)
+			else
+				-- Remove existing priority emoji and clean up spacing
+				if line:find("%s+" .. vim.pesc(existing_symbol) .. "$") then
+					new_line = line:gsub("%s+" .. vim.pesc(existing_symbol) .. "$", "")
+				else
+					new_line = line:gsub("%s*" .. vim.pesc(existing_symbol) .. "%s*", " ", 1)
+				end
+			end
+		else
+			if choice.symbol ~= "" then
+				-- Append priority emoji at the end of the line
+				local trimmed = line:match("^(.-)%s*$")
+				new_line = trimmed .. " " .. choice.symbol
+			end
+		end
+
+		vim.api.nvim_set_current_line(new_line)
+	end)
+end
+
 -- writes the new task line to tasks.md and refreshes any open buffer for it.
 local function write_task(description, planned, curfile)
 	local config = require("user.config")
