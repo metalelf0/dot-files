@@ -58,11 +58,13 @@ M.custom_highlights = function(hl, c)
 			bg = "#73daca", -- this is ok for the "moon" theme
 		}
 	end
+
 	hl["@string.special.symbol"] = { fg = c.green }
 	hl["@label"] = { fg = c.yellow }
 	hl["@exception.ruby"] = { fg = c.red }
 	hl["@type.ruby"] = { fg = c.orange }
 	hl["@string.special.symbol.ruby"] = { fg = c.green }
+	hl["Hashtag"] = { fg = c.fg, bg = c.bg_highlight }
 end
 
 M.config = function()
@@ -89,14 +91,7 @@ M.config = function()
 		end,
 	})
 
-	vim.cmd([[
-try
-  colorscheme tokyonight
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-  set background=dark
-endtry
-]])
+	vim.cmd.colorscheme("tokyonight")
 end
 
 return M

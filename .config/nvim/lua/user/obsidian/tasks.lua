@@ -79,7 +79,8 @@ M.edit_task_date = function()
 
 	local date_types = {
 		{ label = "Done", symbol = "✅" },
-		{ label = "Planned", symbol = "📅" },
+		{ label = "Due", symbol = "📅" },
+		{ label = "Scheduled", symbol = "⏳" },
 		{ label = "Started", symbol = "🛫" },
 		{ label = "Canceled", symbol = "❌" },
 		{ label = "Added", symbol = "➕" },
@@ -185,13 +186,13 @@ M.edit_task_priority = function()
 end
 
 -- writes the new task line to tasks.md and refreshes any open buffer for it.
-local function write_task(description, planned, curfile)
+local function write_task(description, scheduled, curfile)
 	local config = require("user.config")
 	local today = os.date("%Y-%m-%d")
 
 	local line = "- [ ] #task " .. description
-	if planned and planned ~= "" then
-		line = line .. " 📅 " .. planned
+	if scheduled and scheduled ~= "" then
+		line = line .. " ⏳ " .. scheduled
 	end
 	line = line .. " ➕ " .. today
 
@@ -244,9 +245,9 @@ M.create_task = function()
 				required = true,
 			},
 			{
-				name = "planned_date",
+				name = "scheduled_date",
 				type = "date",
-				label = " 📅 Planned date ",
+				label = " ⏳ Scheduled date ",
 				default_value = "today",
 			},
 			{
@@ -257,9 +258,9 @@ M.create_task = function()
 		},
 		on_submit = function(values)
 			local description = values[1].value
-			local planned = values[2].value
+			local scheduled = values[2].value
 			local curfile = values[3].value
-			write_task(description, planned, curfile)
+			write_task(description, scheduled, curfile)
 		end,
 		on_cancel = function()
 			vim.notify("Task creation cancelled.", vim.log.levels.WARN)

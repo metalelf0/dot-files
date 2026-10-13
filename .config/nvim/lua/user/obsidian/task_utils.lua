@@ -1,11 +1,16 @@
 local M = {}
 
--- Date-marker symbols used on task lines (Done, Planned, Started, Canceled, Added).
-M.DATE_SYMBOLS = { "✅", "📅", "🛫", "❌", "➕" }
+-- Date-marker symbols used on task lines (Done, Due, Scheduled, Started, Canceled, Added).
+M.DATE_SYMBOLS = { "✅", "📅", "⏳", "🛫", "❌", "➕" }
 
 -- Returns true if `line` is an obsidian task line (e.g. "- [ ] #task ...").
 function M.is_task_line(line)
 	return line:match("^%- %[.%] #task") ~= nil
+end
+
+-- Returns true for open Obsidian tasks: todo and in-progress.
+function M.is_open_task_line(line)
+	return line:match("^%- %[ %] #task") ~= nil or line:match("^%- %[/%] #task") ~= nil
 end
 
 -- Finds byte ranges of " YYYY-MM-DD" segments following date symbols on a line.

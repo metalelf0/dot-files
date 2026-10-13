@@ -89,7 +89,7 @@ return {
 	s("task", fmt([[- [ ] #task {} ]], { i(1) })),
 	s(
 		"td",
-		fmt([[- [ ] #task {} ➕ {} 📅 {}{}]], {
+		fmt([[- [ ] #task {} ➕ {} ⏳ {}{}]], {
 			i(1),
 			f(function()
 				return os.date("%Y-%m-%d")

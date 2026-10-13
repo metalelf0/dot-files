@@ -2,6 +2,7 @@ local config = require("user.config")
 local tasks = require("user.obsidian.tasks")
 local task_dates_conceal = require("user.obsidian.task_dates_conceal")
 local task_dates_highlight = require("user.obsidian.task_dates_highlight")
+local task_urgency = require("user.obsidian.task_urgency")
 
 -- Set up the comment-style highlight for task dates on plugin load.
 task_dates_highlight.setup()
@@ -176,6 +177,14 @@ local M = {
 			end,
 			"n",
 			desc = "Obsidian - toggle task date concealment",
+		},
+		{
+			"<leader>otu",
+			function()
+				task_urgency.toggle()
+			end,
+			"n",
+			desc = "Obsidian - toggle task urgency",
 		},
 		{
 			"<leader>otp",
