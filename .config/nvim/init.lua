@@ -21,7 +21,7 @@ require("user.digraphs")
 require("user.ui2")
 require("user.recol")
 require("user.converters.csv_to_json")
-
+require("user.pele")
 -- require("user.statusline")
 -- vim.opt.statusline = "%!v:lua.require'user.statusline'.render()"
 

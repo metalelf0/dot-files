@@ -1,7 +1,7 @@
 return {
-	colorscheme = "tokyonight",
-	variant = "moon",
-	transparent = false,
+  colorscheme = "token",
+  variant = "meridian-dark",
+	transparent = true,
 	dimInactive = false, -- dim inactive windows if theme supports it
 	autoformat_enabled = true,
 	filemanager = "oil", -- supported:: mini.clue, which-key

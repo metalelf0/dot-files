@@ -36,7 +36,7 @@ local M = {
 	version = "*",
 	ft = "markdown",
 	cmd = { "Obsidian" },
-	-- dev = true,
+	dev = true,
 	dependencies = {
 		-- "nvim-lua/plenary.nvim",
 		"ibhagwan/fzf-lua",
@@ -50,6 +50,10 @@ local M = {
 		end,
 		cache = {
 			enabled = true,
+		},
+		search = {
+			sort_by = "frecency",
+			sort_reversed = true,
 		},
 		workspaces = {
 			{

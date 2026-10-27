@@ -91,7 +91,7 @@ M.config = function()
 		end,
 	})
 
-	vim.cmd.colorscheme("tokyonight")
+	vim.cmd.colorscheme("tokyonight-" .. themer.variant(M))
 end
 
 return M

@@ -10,6 +10,8 @@ return {
 				["m"] = { text = "󰋋", hl = "TouchupCheckboxChecked" },
 				["n"] = { text = "", hl = "TouchupCheckboxChecked" },
 				["w"] = { text = "", hl = "TouchupCheckboxChecked" },
+				["p"] = { text = "", hl = "TouchupCheckboxChecked" },
+				["c"] = { text = "", hl = "TouchupCheckboxChecked" },
 			},
 		},
 	},
