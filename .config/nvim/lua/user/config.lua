@@ -14,6 +14,8 @@ return {
 	obsidian_workspace_path = os.getenv("HOME") .. "/Library/Mobile Documents/iCloud~md~obsidian/Documents/Andrea",
 	markdown_plugin = "touchup", -- supported: markview, touchup, render-markdown
 	journal_dir = os.getenv("HOME") .. "/iCloud-Obsidian/work/dailies/",
+	-- Relative to obsidian_workspace_path. Where promoted project notes are created.
+	project_dir = "--- Inbox",
 	lazy_dev_plugins_path = os.getenv("HOME") .. "/Documents/codice_elf0/",
 	enable_code_lens = false,
 	startup = {
