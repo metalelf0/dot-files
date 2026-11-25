@@ -199,6 +199,14 @@ local M = {
 			desc = "Obsidian - Edit task priority",
 		},
 		{
+			"<leader>otf",
+			function()
+				require("user.obsidian.promote_task_to_project").promote()
+			end,
+			"n",
+			desc = "Obsidian - promote task to project",
+		},
+		{
 			"<leader>otli", -- obsidian tasks list todo
 			function()
 				list_in_progress_tasks()

@@ -1,6 +1,6 @@
 # Promote Obsidian task to project
 
-> **Status:** In progress
+> **Status:** Implemented
 
 ## Goal
 
@@ -51,7 +51,7 @@ Single PR: one concern, no consumer without the other halves, ~300 changed lines
 - [ ] Add `project_dir = "--- Inbox"` to `lua/user/config.lua`
 - [x] Extend `lua/user/obsidian/task_utils.lua`: `PRIORITY_ICONS`, `EXTRA_MARKERS`, `parse_task(line)` → `{ title, dates, priority, extras }`, with plenary specs
 - [x] Add `lua/user/obsidian/promote_task_to_project.lua`: template constant, `render()`, `filename_for()`, `extract_links()`, `create_project()`, `promote()`, with plenary specs
-- [ ] Wire `<Leader>otf` in `lua/user/plugins/obsidian.lua` keys table
+- [x] Wire `<Leader>otf` in `lua/user/plugins/obsidian.lua` keys table
 
 ## Agent decisions
 
