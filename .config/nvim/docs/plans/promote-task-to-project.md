@@ -62,3 +62,5 @@ Single PR: one concern, no consumer without the other halves, ~300 changed lines
 - `#` kept inside filenames, only a leading run stripped: `#` is legal on every target filesystem, and dropping it would mangle titles like `PR #2819` (box 4)
 - Source status and date markers ported onto the project task line (`- [-] #task #project … ➕ … 🛫 … ⏳ … 📅 … ❌ …`), per user request after implementation: the promoted project task inherits the original's state instead of starting fresh (box 5)
 - Ported markers emitted in frontmatter key order (created, started, scheduled, planned, cancelled) rather than source-line order, so the task line reads like the note header (box 5)
+- Block scoping added after implementation, per user request: `is_task_line` relaxed to allow any indentation (child tasks now also get urgency labels and date concealment), and `parse_task` gained an optional `children` argument returning `{ text, tasks }` (box 5)
+- Child text dedented to its common prefix into `## Description`; child tasks dedented then re-indented two spaces under the project task so they read as subtasks; runs of 2+ blank lines collapsed file-wide (box 5)

@@ -89,20 +89,32 @@ local function first_marker_start(text)
 end
 
 -- Parses an obsidian task line into its title, dates, priority and extra fields.
+-- `children`, when given, is the list of indented lines that follow the task; they are
+-- split into `children.text` and `children.tasks`, keeping their original indentation.
 -- Returns nil when `line` is not an obsidian task line.
-function M.parse_task(line)
+function M.parse_task(line, children)
 	if not M.is_task_line(line) then
 		return nil
 	end
 
-	local body = line:gsub("^%- %[.%] #task ", "", 1)
+	local body = line:gsub("^%s*%- %[.%] #task ", "", 1)
+	local indent = line:match("^(%s*)") or ""
 	local task = {
 		title = "",
-		status = line:sub(4, 4),
+		status = line:sub(#indent + 4, #indent + 4),
 		dates = {},
 		extras = {},
 		priority = "medium",
+		children = { text = {}, tasks = {} },
 	}
+
+	for _, child in ipairs(children or {}) do
+		if M.is_task_line(child) then
+			table.insert(task.children.tasks, child)
+		else
+			table.insert(task.children.text, child)
+		end
+	end
 
 	local boundary = first_marker_start(body)
 	task.title = (boundary and body:sub(1, boundary - 1) or body):gsub("%s+$", "")
@@ -127,14 +139,15 @@ function M.parse_task(line)
 	return task
 end
 
--- Returns true if `line` is an obsidian task line (e.g. "- [ ] #task ...").
+-- Returns true if `line` is an obsidian task line, at any indentation
+-- (e.g. "- [ ] #task ..." or "  - [/] #task ...").
 function M.is_task_line(line)
-	return line:match("^%- %[.%] #task") ~= nil
+	return line:match("^%s*%- %[.%] #task") ~= nil
 end
 
 -- Returns true for open Obsidian tasks: todo and in-progress.
 function M.is_open_task_line(line)
-	return line:match("^%- %[ %] #task") ~= nil or line:match("^%- %[/%] #task") ~= nil
+	return line:match("^%s*%- %[ %] #task") ~= nil or line:match("^%s*%- %[/%] #task") ~= nil
 end
 
 -- Finds byte ranges of " YYYY-MM-DD" segments following date symbols on a line.

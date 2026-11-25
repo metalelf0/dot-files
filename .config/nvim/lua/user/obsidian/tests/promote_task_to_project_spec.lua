@@ -156,3 +156,121 @@ describe("promote_task_to_project.promoted_line", function()
 		)
 	end)
 end)
+
+describe("promote_task_to_project.block_lines", function()
+	local lines = {
+		"- [ ] #task Do something",
+		"  Remember to buy the milk.",
+		"  - [ ] #task Add more stuff",
+		"- [ ] #task Unrelated",
+	}
+
+	it("collects indented lines and stops at a column-0 line", function()
+		assert.are.same({
+			"  Remember to buy the milk.",
+			"  - [ ] #task Add more stuff",
+		}, promote.block_lines(lines, 1))
+	end)
+
+	it("returns nothing when the task has no children", function()
+		assert.are.same({}, promote.block_lines(lines, 4))
+	end)
+
+	it("allows blank lines between indented lines", function()
+		local with_blank = {
+			"- [ ] #task Do something",
+			"  first",
+			"",
+			"  second",
+			"- [ ] #task Unrelated",
+		}
+
+		assert.are.same({ "  first", "", "  second" }, promote.block_lines(with_blank, 1))
+	end)
+
+	it("ends the block on a trailing blank line", function()
+		local trailing = { "- [ ] #task Do something", "  first", "", "- [ ] #task Unrelated" }
+
+		assert.are.same({ "  first" }, promote.block_lines(trailing, 1))
+	end)
+end)
+
+describe("promote_task_to_project.dedent", function()
+	it("strips the common leading whitespace", function()
+		assert.are.same({ "a", "  b" }, promote.dedent({ "    a", "      b" }))
+	end)
+
+	it("ignores blank lines when computing the common prefix", function()
+		assert.are.same({ "a", "", "b" }, promote.dedent({ "  a", "", "  b" }))
+	end)
+
+	it("leaves flush-left lines untouched", function()
+		assert.are.same({ "a" }, promote.dedent({ "a" }))
+	end)
+end)
+
+describe("promote_task_to_project.collapse_blank_runs", function()
+	it("collapses runs of blank lines to one", function()
+		assert.are.same("a\n\nb", promote.collapse_blank_runs("a\n\n\n\nb"))
+	end)
+
+	it("leaves single blank lines alone", function()
+		assert.are.same("a\n\nb", promote.collapse_blank_runs("a\n\nb"))
+	end)
+end)
+
+describe("promote_task_to_project.render children", function()
+	local function task_with(children)
+		return {
+			title = "Do something",
+			status = " ",
+			priority = "medium",
+			dates = {},
+			extras = {},
+			children = children,
+		}
+	end
+
+	it("case 1: text lines go under Description, flush left", function()
+		local out = promote.render(task_with({ text = { "  Remember to buy the milk." }, tasks = {} }), {
+			now = "2026-11-25 14:30",
+			today = "2026-11-25",
+		})
+
+		assert.is_truthy(out:find("## Description\n\nRemember to buy the milk.\n", 1, true))
+	end)
+
+	it("case 2: child tasks go under the project task, indented", function()
+		local out = promote.render(task_with({
+			text = {},
+			tasks = { "  - [ ] #task Remember to buy the milk. ⏫ ➕ 2026-11-18" },
+		}), { now = "2026-11-25 14:30", today = "2026-11-25" })
+
+		assert.is_truthy(out:find(
+			"- [ ] #task #project Do something ➕ 2026-11-25\n"
+				.. "  - [ ] #task Remember to buy the milk. ⏫ ➕ 2026-11-18\n"
+				.. "- [ ] #task Update notion page link ➕ 2026-11-25",
+			1,
+			true
+		))
+	end)
+
+	it("case 3: mixed, text to Description and tasks to Tasks", function()
+		local out = promote.render(task_with({
+			text = { "  Remember to buy the milk." },
+			tasks = { "  - [ ] #task Add more stuff" },
+		}), { now = "2026-11-25 14:30", today = "2026-11-25" })
+
+		assert.is_truthy(out:find("## Description\n\nRemember to buy the milk.\n", 1, true))
+		assert.is_truthy(out:find("\n  - [ ] #task Add more stuff\n", 1, true))
+	end)
+
+	it("keeps relative nesting between child tasks", function()
+		local out = promote.render(task_with({
+			text = {},
+			tasks = { "  - [ ] #task A", "      - [ ] #task deep" },
+		}), { now = "2026-11-25 14:30", today = "2026-11-25" })
+
+		assert.is_truthy(out:find("\n  - [ ] #task A\n      - [ ] #task deep\n", 1, true))
+	end)
+end)

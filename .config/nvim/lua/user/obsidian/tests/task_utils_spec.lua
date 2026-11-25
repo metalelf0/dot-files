@@ -94,4 +94,56 @@ describe("task_utils.parse_task", function()
 			assert.are.same(case[2], task_utils.parse_task(case[1]).status, case[1])
 		end
 	end)
+
+	it("reports the status of an indented task", function()
+		assert.are.same("-", task_utils.parse_task("    - [-] #task Ship").status)
+	end)
+end)
+
+describe("task_utils.is_task_line", function()
+	it("matches a task at column 0", function()
+		assert.is_true(task_utils.is_task_line("- [ ] #task Ship"))
+	end)
+
+	it("matches an indented task", function()
+		assert.is_true(task_utils.is_task_line("  - [ ] #task Ship"))
+		assert.is_true(task_utils.is_task_line("\t- [ ] #task Ship"))
+	end)
+
+	it("rejects a plain bullet and a plain line", function()
+		assert.is_false(task_utils.is_task_line("  - plain bullet"))
+		assert.is_false(task_utils.is_task_line("  Remember to buy the milk."))
+	end)
+end)
+
+describe("task_utils.parse_task children", function()
+	it("splits child lines into text and tasks", function()
+		local task = task_utils.parse_task("- [ ] #task Do something", {
+			"  Remember to buy the milk.",
+			"  - [ ] #task Remember to buy the milk.",
+			"  More prose.",
+		})
+
+		assert.are.same({ "  Remember to buy the milk.", "  More prose." }, task.children.text)
+		assert.are.same({ "  - [ ] #task Remember to buy the milk." }, task.children.tasks)
+	end)
+
+	it("treats a plain indented bullet as text", function()
+		local task = task_utils.parse_task("- [ ] #task Do something", { "  - plain bullet" })
+
+		assert.are.same({ "  - plain bullet" }, task.children.text)
+		assert.are.same({}, task.children.tasks)
+	end)
+
+	it("returns empty children when none are given", function()
+		local task = task_utils.parse_task("- [ ] #task Do something")
+
+		assert.are.same({ text = {}, tasks = {} }, task.children)
+	end)
+
+	it("does not treat the task's own line as a child", function()
+		local task = task_utils.parse_task("- [ ] #task Do something", {})
+
+		assert.are.same("Do something", task.title)
+	end)
 end)

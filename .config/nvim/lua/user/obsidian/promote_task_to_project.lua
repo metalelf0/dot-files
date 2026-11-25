@@ -17,7 +17,7 @@ created: "{{created}}"
 
 ## Description
 
-## Links
+{{description}}## Links
 
 - [g] GitHub PR: {{github}}
 - [n] Notion page: {{notion}}
@@ -25,7 +25,7 @@ created: "{{created}}"
 ## Tasks
 
 - [{{status}}] #task #project {{title}} {{markers}}
-- [ ] #task Update notion page link ➕ {{today}}
+{{child_tasks}}- [ ] #task Update notion page link ➕ {{today}}
 ]]
 
 -- Same order as the frontmatter keys, so the task line reads like the note header.
@@ -84,6 +84,85 @@ local function fill(template, values)
 	)
 end
 
+-- Returns the indented lines that follow `index` in `lines` (1-indexed), verbatim.
+-- A blank line is kept only when another indented line follows; any column-0 line ends
+-- the block.
+function M.block_lines(lines, index)
+	local block = {}
+	local pending_blanks = 0
+	for i = index + 1, #lines do
+		local line = lines[i]
+		if line:match("^%s*$") then
+			pending_blanks = pending_blanks + 1
+		elseif line:match("^%s") then
+			for _ = 1, pending_blanks do
+				table.insert(block, "")
+			end
+			pending_blanks = 0
+			table.insert(block, line)
+		else
+			break
+		end
+	end
+	return block
+end
+
+-- Strips the longest common leading whitespace from `lines`, ignoring blank lines.
+function M.dedent(lines)
+	local prefix
+	for _, line in ipairs(lines) do
+		if line:match("%S") then
+			local indent = line:match("^(%s*)")
+			if prefix == nil then
+				prefix = indent
+			else
+				local i = 1
+				while i <= #prefix and i <= #indent and prefix:sub(i, i) == indent:sub(i, i) do
+					i = i + 1
+				end
+				prefix = prefix:sub(1, i - 1)
+			end
+		end
+	end
+	prefix = prefix or ""
+	local out = {}
+	for _, line in ipairs(lines) do
+		table.insert(out, line:sub(#prefix + 1))
+	end
+	return out
+end
+
+-- Collapses every run of two or more blank lines into a single blank line.
+function M.collapse_blank_runs(text)
+	return (text:gsub("\n\n\n+", "\n\n"))
+end
+
+-- Returns the Description body (dedented prose, blank lines kept) or "" when empty.
+local function description_body(children)
+	local children_with_text = children or { text = {}, tasks = {} }
+	if #children_with_text.text == 0 then
+		return ""
+	end
+	return table.concat(M.dedent(children_with_text.text), "\n") .. "\n\n"
+end
+
+-- Returns the child tasks, re-indented two spaces under the project task so they read as
+-- its subtasks, or "" when there are none. Their relative nesting is preserved.
+local function child_task_lines(children)
+	local children_with_tasks = children or { text = {}, tasks = {} }
+	if #children_with_tasks.tasks == 0 then
+		return ""
+	end
+	local dedented = M.dedent(children_with_tasks.tasks)
+	local out = {}
+	for _, line in ipairs(dedented) do
+		if line:match("%S") then
+			table.insert(out, "  " .. line)
+		end
+	end
+	return table.concat(out, "\n") .. "\n"
+end
+
 -- Renders the project note for a parsed task.
 -- `options.now` is "YYYY-MM-DD HH:mm"; `options.today` is "YYYY-MM-DD" and defaults to `now`'s date.
 function M.render(task, options)
@@ -110,7 +189,7 @@ function M.render(task, options)
 
 	local created = task.dates.created and (task.dates.created .. " 00:00") or now
 
-	return (fill(M.TEMPLATE:gsub("^\n", ""), {
+	return M.collapse_blank_runs(fill(M.TEMPLATE:gsub("^\n", ""), {
 		created = created,
 		optional_dates = #date_lines > 0 and (table.concat(date_lines, "\n") .. "\n") or "",
 		extra_fields = #extra_lines > 0 and (table.concat(extra_lines, "\n") .. "\n") or "",
@@ -118,6 +197,8 @@ function M.render(task, options)
 		title = task.title,
 		status = task.status or " ",
 		markers = task_markers(task, today),
+		description = description_body(task.children),
+		child_tasks = child_task_lines(task.children),
 		github = links.github or "",
 		notion = links.notion or "",
 		today = today,
@@ -144,8 +225,11 @@ end
 
 -- Promotes the task on the current line into a project note.
 function M.promote()
+	local bufnr = vim.api.nvim_get_current_buf()
 	local line = vim.api.nvim_get_current_line()
-	local task = task_utils.parse_task(line)
+	local row = vim.api.nvim_win_get_cursor(0)[1]
+	local children = M.block_lines(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false), row)
+	local task = task_utils.parse_task(line, children)
 	if not task or task.title == "" then
 		vim.notify("Not an obsidian task line", vim.log.levels.ERROR)
 		return
@@ -164,7 +248,9 @@ function M.promote()
 		return
 	end
 
-	vim.api.nvim_set_current_line(M.promoted_line(task.title))
+	-- Replace the task line and drop its children, which now live in the project note.
+	vim.api.nvim_buf_set_lines(bufnr, row - 1, row + #children, false, { M.promoted_line(task.title) })
+	vim.api.nvim_win_set_cursor(0, { row, 0 })
 	vim.notify("Promoted to " .. path, vim.log.levels.INFO)
 end
 
