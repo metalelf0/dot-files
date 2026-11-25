@@ -81,4 +81,17 @@ describe("task_utils.parse_task", function()
 
 		assert.are.same("Merge [PR #2819](https://github.com/qonto-private/accounting/pull/2819)", task.title)
 	end)
+
+	it("reports the checkbox status", function()
+		local cases = {
+			{ "- [ ] #task Ship", " " },
+			{ "- [/] #task Ship", "/" },
+			{ "- [-] #task Ship", "-" },
+			{ "- [x] #task Ship", "x" },
+		}
+
+		for _, case in ipairs(cases) do
+			assert.are.same(case[2], task_utils.parse_task(case[1]).status, case[1])
+		end
+	end)
 end)

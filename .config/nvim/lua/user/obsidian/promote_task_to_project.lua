@@ -24,9 +24,31 @@ created: "{{created}}"
 
 ## Tasks
 
-- [ ] #task #project {{title}} ➕ {{today}}
+- [{{status}}] #task #project {{title}} {{markers}}
 - [ ] #task Update notion page link ➕ {{today}}
 ]]
+
+-- Same order as the frontmatter keys, so the task line reads like the note header.
+M.TASK_MARKERS = { "➕", "🛫", "⏳", "📅", "❌" }
+
+-- Task-line keys in the order `M.TASK_MARKERS` emits them.
+local TASK_DATE_KEYS = { "created", "started", "scheduled", "planned", "cancelled" }
+
+-- Returns the " ➕ 2026-11-18 🛫 2026-11-19" trailer for the project task line.
+-- Falls back to `today` for the created marker when the source set no dates.
+local function task_markers(task, today)
+	local parts = {}
+	for i, key in ipairs(TASK_DATE_KEYS) do
+		local date = task.dates[key]
+		if date then
+			table.insert(parts, M.TASK_MARKERS[i] .. " " .. date)
+		end
+	end
+	if #parts == 0 then
+		return "➕ " .. today
+	end
+	return table.concat(parts, " ")
+end
 
 -- Returns `title` as a filename: markdown links lose their URL, filesystem-illegal
 -- characters collapse to "-", and a leading "#" is dropped.
@@ -94,6 +116,8 @@ function M.render(task, options)
 		extra_fields = #extra_lines > 0 and (table.concat(extra_lines, "\n") .. "\n") or "",
 		priority = task.priority,
 		title = task.title,
+		status = task.status or " ",
+		markers = task_markers(task, today),
 		github = links.github or "",
 		notion = links.notion or "",
 		today = today,

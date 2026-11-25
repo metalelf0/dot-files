@@ -60,3 +60,5 @@ Single PR: one concern, no consumer without the other halves, ~300 changed lines
 - Recurrence is parsed last, its value running to end of line, because Tasks recurrence text contains spaces (`every week`) (box 3)
 - `create_project()` folded into `promote()`: a separate function would only wrap `writefile` and the collision-suffix loop, adding a seam with one caller (box 4)
 - `#` kept inside filenames, only a leading run stripped: `#` is legal on every target filesystem, and dropping it would mangle titles like `PR #2819` (box 4)
+- Source status and date markers ported onto the project task line (`- [-] #task #project … ➕ … 🛫 … ⏳ … 📅 … ❌ …`), per user request after implementation: the promoted project task inherits the original's state instead of starting fresh (box 5)
+- Ported markers emitted in frontmatter key order (created, started, scheduled, planned, cancelled) rather than source-line order, so the task line reads like the note header (box 5)

@@ -96,7 +96,13 @@ function M.parse_task(line)
 	end
 
 	local body = line:gsub("^%- %[.%] #task ", "", 1)
-	local task = { title = "", dates = {}, extras = {}, priority = "medium" }
+	local task = {
+		title = "",
+		status = line:sub(4, 4),
+		dates = {},
+		extras = {},
+		priority = "medium",
+	}
 
 	local boundary = first_marker_start(body)
 	task.title = (boundary and body:sub(1, boundary - 1) or body):gsub("%s+$", "")

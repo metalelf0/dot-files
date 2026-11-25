@@ -99,6 +99,38 @@ describe("promote_task_to_project.render", function()
 		assert.is_truthy(out:find("- [ ] #task Update notion page link ➕ 2026-11-25", 1, true))
 	end)
 
+	it("ports the source task's status and dates onto the project task line", function()
+		local source = {
+			title = "Ship it",
+			status = "-",
+			priority = "high",
+			dates = { created = "2026-11-18", started = "2026-11-19", planned = "2026-11-21" },
+			extras = {},
+		}
+
+		local out = promote.render(source, { now = "2026-11-25 14:30", today = "2026-11-25" })
+
+		assert.is_truthy(
+			out:find("- [-] #task #project Ship it ➕ 2026-11-18 🛫 2026-11-19 📅 2026-11-21", 1, true)
+		)
+	end)
+
+	it("keeps the second project task on today's date", function()
+		local source = { title = "Ship it", status = "-", priority = "high", dates = { created = "2026-11-18" }, extras = {} }
+
+		local out = promote.render(source, { now = "2026-11-25 14:30", today = "2026-11-25" })
+
+		assert.is_truthy(out:find("- [ ] #task Update notion page link ➕ 2026-11-25", 1, true))
+	end)
+
+	it("falls back to a todo checkbox and today's date when the source has no status or dates", function()
+		local bare = { title = "Ship it", priority = "medium", dates = {}, extras = {} }
+
+		local out = promote.render(bare, { now = "2026-11-25 14:30", today = "2026-11-25" })
+
+		assert.is_truthy(out:find("- [ ] #task #project Ship it ➕ 2026-11-25", 1, true))
+	end)
+
 	it("adds the extra markers after priority, only when present", function()
 		local with_extras = {
 			title = "Ship",
