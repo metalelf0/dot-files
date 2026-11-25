@@ -49,10 +49,12 @@ Single PR: one concern, no consumer without the other halves, ~300 changed lines
 
 - [x] Add `plenary.nvim` as a top-level plugin spec in `lua/user/plugins/plenary.lua`
 - [ ] Add `project_dir = "--- Inbox"` to `lua/user/config.lua`
-- [ ] Extend `lua/user/obsidian/task_utils.lua`: `PRIORITY_ICONS`, `EXTRA_MARKERS`, `parse_task(line)` → `{ title, dates, priority, extras }`, with plenary specs
+- [x] Extend `lua/user/obsidian/task_utils.lua`: `PRIORITY_ICONS`, `EXTRA_MARKERS`, `parse_task(line)` → `{ title, dates, priority, extras }`, with plenary specs
 - [ ] Add `lua/user/obsidian/promote_task_to_project.lua`: template constant, `render()`, `filename_for()`, `extract_links()`, `create_project()`, `promote()`, with plenary specs
 - [ ] Wire `<Leader>otf` in `lua/user/plugins/obsidian.lua` keys table
 
 ## Agent decisions
 
 - Plenary placed as a real plugin dependency (`lua/user/plugins/plenary.lua`) rather than relying on transitive availability: no top-level plenary spec exists, specs must be runnable standalone (box 2)
+- `M.DATE_MARKER_KEYS` split from `M.EXTRA_MARKERS` with a separate `M.DONE_MARKERS`: ✅ maps to an extras key but its value is a date, so it needs date-shaped matching (box 3)
+- Recurrence is parsed last, its value running to end of line, because Tasks recurrence text contains spaces (`every week`) (box 3)
