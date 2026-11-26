@@ -17,6 +17,11 @@ M.commands.EditLazygitConfig =
 M.commands.EditWeztermConfig =
 	{ command = ":e ~/.config/wezterm/wezterm.lua", description = "🔧 Edit Wezterm config" }
 M.commands.EditGhosttyConfig = { command = ":e ~/.config/ghostty/config", description = "👻 Edit Ghostty config" }
+M.commands.EditAtuinConfig = { command = ":e ~/.config/atuin/config.toml", description = "📘 Edit Atuin config" }
+M.commands.EditRiftConfig = { command = ":e ~/.config/rift/config.toml", description = "🖼 Edit Rift config" }
+M.commands.EditSketchybarConfig =
+	{ command = ":e ~/.config/sketchybar/sketchybarrc", description = " Edit Sketchybar config" }
+M.commands.EditZshConfig = { command = ":e ~/.zshrc", description = " Edit Zsh config" }
 M.commands.SourceCurrentLuaFile = { command = ":luafile %", description = "🏄 Lua: source current file" }
 M.commands.EditLspLog =
 	{ command = ":e " .. core.get_homedir() .. "/.local/state/nvim/lsp.log", description = "🧰 Edit LSP Log" }

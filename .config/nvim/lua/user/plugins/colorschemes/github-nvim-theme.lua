@@ -18,11 +18,11 @@ M.supported_variants = {
 	"github_dark_dimmed",
 	"github_dark_high_contrast",
 	"github_dark_tritanopia",
-	"github_dimmed",
 	"github_light",
 	"github_light_colorblind",
 	"github_light_default",
 	"github_light_high_contrast",
+	"github_light_tritanopia",
 }
 
 M.default_variant = "github_dark"

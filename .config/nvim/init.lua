@@ -11,6 +11,7 @@ if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
 end
 
 require("user.options")
+require("user.edgee-setup")
 require("user.keymaps")
 require("user.lazy")
 require("user.utils")
@@ -22,6 +23,7 @@ require("user.ui2")
 require("user.recol")
 require("user.converters.csv_to_json")
 require("user.pele")
+require("user.markdown_utils")
 -- require("user.statusline")
 -- vim.opt.statusline = "%!v:lua.require'user.statusline'.render()"
 

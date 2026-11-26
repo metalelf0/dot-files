@@ -26,6 +26,8 @@ M.config = function()
 			hl["@markup.raw"] = { bg = c.bg2 }
 		end,
 	})
+	-- setup() only stores opts; load() applies the highlights
+	require("cendre").load()
 end
 
 return M

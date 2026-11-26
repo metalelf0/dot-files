@@ -45,6 +45,12 @@ local options = {
 	laststatus = 3,
 }
 
+local has_rex = vim.env.REX_SESSION
+if has_rex then
+	options.pumblend = 0
+	options.winblend = 0
+end
+
 vim.opt.shortmess:append("c")
 vim.opt.shortmess:append("F")
 

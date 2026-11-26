@@ -8,8 +8,9 @@ local M = {
 	lazy = themer.lazy_load(colorscheme),
 	priority = themer.priority_for(colorscheme),
 	keys = themer.keys(colorscheme),
-	dev = true,
+	-- dev = true,
 }
+
 local bases = {
 	"bathory",
 	"burzum",

@@ -11,19 +11,31 @@ local M = {
 	keys = themer.keys(colorscheme),
 }
 
+M.supported_variants = {
+	"dark-medium",
+	"dark-hard",
+	"dark-soft",
+	"light-medium",
+	"light-hard",
+	"light-soft",
+}
+
 function M.config()
 	if config.colorscheme ~= "everforest" then
 		return false
 	end
 
 	local is_transparent = config.transparent and 2 or 0
+	local bg = vim.split(themer.variant(M), "-")[1]
+	local contrast = vim.split(themer.variant(M), "-")[2]
 
 	require("everforest").setup({
-		background = "hard", -- can be "hard", "medium" or "soft"
+		background = contrast, -- can be "hard", "medium" or "soft"
 		ui_contrast = "high", -- "high" or "low"
 		transparent_background_level = is_transparent,
 	})
 
+	vim.o.background = bg
 	vim.cmd("colorscheme " .. config.colorscheme)
 
 	vim.o.cursorline = true

@@ -32,7 +32,7 @@ return {
 	require("user.plugins.colorschemes.github-nvim-theme"),
 	require("user.plugins.colorschemes.gruvbox"),
 	require("user.plugins.colorschemes.gruvbox-material"),
-	require("user.plugins.colorschemes.guts"),
+	-- require("user.plugins.colorschemes.guts"),
 	require("user.plugins.colorschemes.jellybeans"),
 	require("user.plugins.colorschemes.kanagawa"),
 	require("user.plugins.colorschemes.kanso"),

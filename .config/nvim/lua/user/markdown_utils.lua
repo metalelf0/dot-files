@@ -80,4 +80,44 @@ end
 
 vim.keymap.set("n", "<leader>mh", M.enable_highlights, { desc = "Highlight markdown text" })
 
+M.md_link = function()
+	local mode = vim.fn.mode()
+	vim.cmd("normal! \27") -- leave visual so '< '> marks update
+
+	local s = vim.api.nvim_buf_get_mark(0, "<")
+	local e = vim.api.nvim_buf_get_mark(0, ">")
+	local sr, sc = s[1] - 1, s[2]
+	local er, ec = e[1] - 1, e[2]
+
+	local last = vim.api.nvim_buf_get_lines(0, er, er + 1, false)[1] or ""
+	if mode == "V" then
+		sc, ec = 0, #last
+	else
+		-- end mark = first byte of last char (inclusive) → make exclusive, multibyte-safe
+		ec = (ec >= #last) and #last or (ec + vim.str_utf_end(last, ec + 1) + 1)
+	end
+
+	local lines = vim.api.nvim_buf_get_text(0, sr, sc, er, ec, {})
+	local sel = vim.trim(table.concat(lines, " "))
+	if sel == "" then
+		return
+	end
+
+	local is_url = sel:match("^https?://") ~= nil
+	local prompt = is_url and "Link text: " or "URI: "
+
+	vim.ui.input({ prompt = prompt }, function(input)
+		if not input or input == "" then
+			return
+		end
+		local text, uri = sel, input
+		if is_url then
+			text, uri = input, sel
+		end
+		vim.api.nvim_buf_set_text(0, sr, sc, er, ec, { ("[%s](%s)"):format(text, uri) })
+	end)
+end
+
+vim.keymap.set("x", "<Leader>oh", M.md_link, { desc = "Selection → markdown link" })
+
 return M

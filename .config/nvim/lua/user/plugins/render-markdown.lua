@@ -52,9 +52,9 @@ return {
 			},
 		},
 		link = {
-			hyperlink = "↪ ",
+			hyperlink = "",
 			wiki = {
-				icon = "↪ ",
+				icon = "",
 			},
 			custom = {
 				notion = { pattern = "notion%.com", icon = "  " },
