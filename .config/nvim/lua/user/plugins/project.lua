@@ -1,5 +1,6 @@
 local M = {
-	"DrKJeff16/project.nvim",
+	"metalelf0/project.nvim",
+	branch = "fix/root-included-all-patterns",
 	-- "ahmedkhalf/project.nvim",
 	-- dev = true,
 	event = "VeryLazy",

@@ -92,7 +92,7 @@
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
   "posterpole.nvim": { "branch": "master", "commit": "56df340ec5100e0a527bf1d361e81e3080d66f2f" },
-  "project.nvim": { "branch": "main", "commit": "f375de57fcb3630dd5a29d7b5c8f9099cf947974" },
+  "project.nvim": { "branch": "fix/root-included-all-patterns", "commit": "404a3ac4c3c31f487c2b87d2beb4552ee6d55765" },
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "quickbuf.nvim": { "branch": "main", "commit": "9a70d2ab8513e910bacf037c6dcba4ebbf89cf71" },
   "quicker.nvim": { "branch": "master", "commit": "063cc44da1eef8681bbd653b29d3bc961780886a" },
